@@ -5,7 +5,9 @@
  */
 package project_305;
 
+import java.io.*;
 import java.io.FileNotFoundException;
+import java.net.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -18,6 +20,11 @@ public class OwnerPage_Chat extends javax.swing.JFrame {
     /**
      * Creates new form OwnerPage_Chat
      */
+    static ServerSocket serverSocket;
+    static Socket socket;
+    static DataInputStream dis;
+    static DataOutputStream dos;
+    
     public OwnerPage_Chat() {
         initComponents();
         setLocationRelativeTo(null);
@@ -38,6 +45,10 @@ public class OwnerPage_Chat extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        msgArea = new javax.swing.JTextArea();
+        SendingMsg = new javax.swing.JTextField();
+        send = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -83,6 +94,24 @@ public class OwnerPage_Chat extends javax.swing.JFrame {
         });
         jPanel1.add(jLabel6);
         jLabel6.setBounds(0, 0, 50, 30);
+
+        msgArea.setColumns(20);
+        msgArea.setRows(5);
+        jScrollPane1.setViewportView(msgArea);
+
+        jPanel1.add(jScrollPane1);
+        jScrollPane1.setBounds(10, 180, 270, 220);
+        jPanel1.add(SendingMsg);
+        SendingMsg.setBounds(10, 410, 270, 40);
+
+        send.setText("jButton1");
+        send.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sendActionPerformed(evt);
+            }
+        });
+        jPanel1.add(send);
+        send.setBounds(190, 480, 97, 29);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project_305/‏‏chat_O.png"))); // NOI18N
         jPanel1.add(jLabel1);
@@ -143,6 +172,17 @@ public class OwnerPage_Chat extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_jLabel6MouseClicked
 
+    private void sendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendActionPerformed
+        // TODO add your handling code here:
+        try {
+        String msg="";
+        msg=SendingMsg.getText();
+        dos.writeUTF(msg);
+        } catch (IOException ex) {
+            System.out.println("Exception");
+        }
+    }//GEN-LAST:event_sendActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -176,9 +216,26 @@ public class OwnerPage_Chat extends javax.swing.JFrame {
                 new OwnerPage_Chat().setVisible(true);
             }
         });
+    String msgin="";
+    
+        try{
+        serverSocket= new ServerSocket(1201);
+        socket=serverSocket.accept();
+        
+        dis=new DataInputStream(socket.getInputStream());
+        dos=new DataOutputStream(socket.getOutputStream());
+            while (!msgin.equalsIgnoreCase("Bye")) {
+                msgin=dis.readUTF();
+                msgArea.setText(msgArea.getText()+"\n"+msgin);
+            }
+        
+    }   catch (Exception ex) { 
+            Logger.getLogger(OwnerPage_Chat.class.getName()).log(Level.SEVERE, null, ex);
+        } 
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField SendingMsg;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -186,5 +243,8 @@ public class OwnerPage_Chat extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private static javax.swing.JTextArea msgArea;
+    private javax.swing.JButton send;
     // End of variables declaration//GEN-END:variables
 }
