@@ -23,8 +23,8 @@ public class TenantPage_Chat extends javax.swing.JFrame {
      */
     static Socket socket;
     static DataInputStream input;
-        static DataOutputStream output;
-    
+    static DataOutputStream output;
+
     public TenantPage_Chat() {
         initComponents();
         setLocationRelativeTo(null);
@@ -45,10 +45,10 @@ public class TenantPage_Chat extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        textArea1 = new java.awt.TextArea();
-        textField1 = new java.awt.TextField();
-        jLabel2 = new javax.swing.JLabel();
+        massArea = new java.awt.TextArea();
+        txt = new java.awt.TextField();
         button1 = new java.awt.Button();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -93,21 +93,26 @@ public class TenantPage_Chat extends javax.swing.JFrame {
         });
         jPanel1.add(jLabel9);
         jLabel9.setBounds(240, 600, 40, 30);
-        jPanel1.add(textArea1);
-        textArea1.setBounds(0, 190, 300, 270);
+        jPanel1.add(massArea);
+        massArea.setBounds(0, 190, 300, 270);
 
-        textField1.setText("textField1");
-        jPanel1.add(textField1);
-        textField1.setBounds(10, 490, 200, 40);
+        txt.setText("textField1");
+        jPanel1.add(txt);
+        txt.setBounds(10, 490, 200, 40);
+
+        button1.setLabel("button1");
+        button1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(button1);
+        button1.setBounds(230, 500, 57, 24);
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project_305/chat_T.png"))); // NOI18N
         jLabel2.setText("jLabel2");
         jPanel1.add(jLabel2);
         jLabel2.setBounds(0, 0, 300, 650);
-
-        button1.setLabel("button1");
-        jPanel1.add(button1);
-        button1.setBounds(230, 500, 57, 24);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -156,7 +161,7 @@ public class TenantPage_Chat extends javax.swing.JFrame {
 
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
         // TODO add your handling code here:
-        TenantPage_Home ob=new TenantPage_Home();
+        TenantPage_Home ob = new TenantPage_Home();
         ob.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jLabel5MouseClicked
@@ -177,6 +182,18 @@ public class TenantPage_Chat extends javax.swing.JFrame {
 
         }
     }//GEN-LAST:event_jLabel8MouseClicked
+
+    private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
+
+        try {
+            String massageOut = "";
+            massageOut = txt.getText();
+            output.writeUTF(massageOut);
+        } catch (Exception e) {
+  System.out.println("Exception button");
+        }
+
+    }//GEN-LAST:event_button1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -211,15 +228,20 @@ public class TenantPage_Chat extends javax.swing.JFrame {
                 new TenantPage_Chat().setVisible(true);
             }
         });
+
+        try {
+            socket = new Socket("127.0.0.1", 1201);
+            input = new DataInputStream(socket.getInputStream());
+            output = new DataOutputStream(socket.getOutputStream());
+            String massage = "";
+            while (!massage.equalsIgnoreCase("Bay")) {
+                massage = input.readUTF();
+                massArea.setText(massArea.getText() + "\n Server:  " + massage);
+            }
+        } catch (Exception e) {
+            System.out.println("Exception");
+        }
     }
-    
-//    try{
-//            System.out.println("");
-//}catch(Exception e){
-//    socket = new Socket("127.0.0.1",1201);
-//    input = new DataInputStream(socket.getInputStream());
-//    output = new DataOutputStream(socket.getOutputStream())
-//}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private java.awt.Button button1;
@@ -230,7 +252,7 @@ public class TenantPage_Chat extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private java.awt.TextArea textArea1;
-    private java.awt.TextField textField1;
+    private static java.awt.TextArea massArea;
+    private java.awt.TextField txt;
     // End of variables declaration//GEN-END:variables
 }
