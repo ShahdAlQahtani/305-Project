@@ -5,7 +5,10 @@
  */
 package project_305;
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.FileNotFoundException;
+import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -18,6 +21,10 @@ public class TenantPage_Chat extends javax.swing.JFrame {
     /**
      * Creates new form TenantPage_Chat
      */
+    static Socket socket;
+    static DataInputStream input;
+        static DataOutputStream output;
+    
     public TenantPage_Chat() {
         initComponents();
         setLocationRelativeTo(null);
@@ -38,7 +45,10 @@ public class TenantPage_Chat extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        textArea1 = new java.awt.TextArea();
+        textField1 = new java.awt.TextField();
+        jLabel2 = new javax.swing.JLabel();
+        button1 = new java.awt.Button();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -83,10 +93,21 @@ public class TenantPage_Chat extends javax.swing.JFrame {
         });
         jPanel1.add(jLabel9);
         jLabel9.setBounds(240, 600, 40, 30);
+        jPanel1.add(textArea1);
+        textArea1.setBounds(0, 190, 300, 270);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project_305/TenantPage – 10.png"))); // NOI18N
-        jPanel1.add(jLabel1);
-        jLabel1.setBounds(0, 0, 300, 650);
+        textField1.setText("textField1");
+        jPanel1.add(textField1);
+        textField1.setBounds(10, 490, 200, 40);
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project_305/chat_T.png"))); // NOI18N
+        jLabel2.setText("jLabel2");
+        jPanel1.add(jLabel2);
+        jLabel2.setBounds(0, 0, 300, 650);
+
+        button1.setLabel("button1");
+        jPanel1.add(button1);
+        button1.setBounds(230, 500, 57, 24);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -102,50 +123,6 @@ public class TenantPage_Chat extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
-        // BBAACCCCKKKKKK
-        if (TenantPage_Current.curr == false) {
-           
-            TenantPage_Current ob = new TenantPage_Current();
-            ob.setVisible(true);
-            this.setVisible(false);
-       
-        } else {
-            
-            TenantPage_Hallinfo ob = new TenantPage_Hallinfo();
-            ob.setVisible(true);
-            this.setVisible(false);
-
-        }
-    }//GEN-LAST:event_jLabel8MouseClicked
-
-    private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
-        // TODO add your handling code here:
-        TenantPage_Home ob=new TenantPage_Home();
-        ob.setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_jLabel5MouseClicked
-
-    private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
-        // TODO add your handling code here:
-        TenantPage_Search ob;
-        try {
-            ob = new TenantPage_Search();
-            ob.setVisible(true);
-            this.setVisible(false);
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(TenantPage_Chat.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-    }//GEN-LAST:event_jLabel6MouseClicked
-
-    private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
-        // TODO add your handling code here:
-        TenantPage_Favorate ob = new TenantPage_Favorate();
-        ob.setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_jLabel7MouseClicked
-
     private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
         // TODO add your handling code here:
         TenantPage_profile ob = null;
@@ -157,6 +134,49 @@ public class TenantPage_Chat extends javax.swing.JFrame {
         ob.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jLabel9MouseClicked
+
+    private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
+        // TODO add your handling code here:
+        TenantPage_Favorate ob = new TenantPage_Favorate();
+        ob.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jLabel7MouseClicked
+
+    private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
+        // TODO add your handling code here:
+        TenantPage_Search ob;
+        try {
+            ob = new TenantPage_Search();
+            ob.setVisible(true);
+            this.setVisible(false);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(TenantPage_Chat.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jLabel6MouseClicked
+
+    private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
+        // TODO add your handling code here:
+        TenantPage_Home ob=new TenantPage_Home();
+        ob.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jLabel5MouseClicked
+
+    private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
+        // BBAACCCCKKKKKK
+        if (TenantPage_Current.curr == false) {
+
+            TenantPage_Current ob = new TenantPage_Current();
+            ob.setVisible(true);
+            this.setVisible(false);
+
+        } else {
+
+            TenantPage_Hallinfo ob = new TenantPage_Hallinfo();
+            ob.setVisible(true);
+            this.setVisible(false);
+
+        }
+    }//GEN-LAST:event_jLabel8MouseClicked
 
     /**
      * @param args the command line arguments
@@ -192,14 +212,25 @@ public class TenantPage_Chat extends javax.swing.JFrame {
             }
         });
     }
+    
+//    try{
+//            System.out.println("");
+//}catch(Exception e){
+//    socket = new Socket("127.0.0.1",1201);
+//    input = new DataInputStream(socket.getInputStream());
+//    output = new DataOutputStream(socket.getOutputStream())
+//}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private java.awt.Button button1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private java.awt.TextArea textArea1;
+    private java.awt.TextField textField1;
     // End of variables declaration//GEN-END:variables
 }
