@@ -8,6 +8,7 @@ package project_305;
 import java.io.*;
 import java.io.FileNotFoundException;
 import java.net.*;
+import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -20,11 +21,9 @@ public class OwnerPage_Chat extends javax.swing.JFrame {
     /**
      * Creates new form OwnerPage_Chat
      */
-    static ServerSocket serverSocket;
-    static Socket socket;
-    static DataInputStream dis;
-    static DataOutputStream dos;
     
+    
+    static DataOutputStream dos;
     public OwnerPage_Chat() {
         initComponents();
         setLocationRelativeTo(null);
@@ -104,14 +103,15 @@ public class OwnerPage_Chat extends javax.swing.JFrame {
         jPanel1.add(SendingMsg);
         SendingMsg.setBounds(10, 410, 270, 40);
 
-        send.setText("jButton1");
+        send.setFont(new java.awt.Font("Times New Roman", 2, 14)); // NOI18N
+        send.setText("Send");
         send.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 sendActionPerformed(evt);
             }
         });
         jPanel1.add(send);
-        send.setBounds(190, 480, 97, 29);
+        send.setBounds(190, 480, 75, 29);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project_305/‏‏chat_O.png"))); // NOI18N
         jPanel1.add(jLabel1);
@@ -186,7 +186,7 @@ public class OwnerPage_Chat extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String args[]) throws IOException {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -216,22 +216,15 @@ public class OwnerPage_Chat extends javax.swing.JFrame {
                 new OwnerPage_Chat().setVisible(true);
             }
         });
-    String msgin="";
-    
-        try{
-        serverSocket= new ServerSocket(1201);
-        socket=serverSocket.accept();
         
-        dis=new DataInputStream(socket.getInputStream());
-        dos=new DataOutputStream(socket.getOutputStream());
-            while (!msgin.equalsIgnoreCase("Bye")) {
-                msgin=dis.readUTF();
-                msgArea.setText(msgArea.getText()+"\n"+msgin);
-            }
+        ServerSocket s=new ServerSocket(8800);
+        System.out.println("Server waiting Connection...");
         
-    }   catch (Exception ex) { 
-            Logger.getLogger(OwnerPage_Chat.class.getName()).log(Level.SEVERE, null, ex);
-        } 
+        while (true) {
+                 Socket client =s.accept();
+                 MyThread m=new MyThread(client);
+                 m.start();
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -244,7 +237,39 @@ public class OwnerPage_Chat extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private static javax.swing.JTextArea msgArea;
+    public static javax.swing.JTextArea msgArea;
     private javax.swing.JButton send;
     // End of variables declaration//GEN-END:variables
+}
+class MyThread extends Thread{
+    static ServerSocket serverSocket;
+    static Socket socket;
+    static DataInputStream dis;
+    static DataOutputStream dos;
+    
+    public MyThread(Socket soc) {
+        this.socket = soc;
+    }
+    @Override
+    public void run(){
+        
+        
+    String msgin="";
+    
+        try{
+        
+        dis=new DataInputStream(socket.getInputStream());
+        dos=new DataOutputStream(socket.getOutputStream());
+            while (!msgin.equalsIgnoreCase("Bye")) {
+                msgin=dis.readUTF();
+                OwnerPage_Chat.msgArea.setText(OwnerPage_Chat.msgArea.getText()+"\n"+msgin);
+            }
+        socket.close();
+    }   catch (Exception ex) { 
+            Logger.getLogger(OwnerPage_Chat.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+        
+        
+        
+    }
 }
