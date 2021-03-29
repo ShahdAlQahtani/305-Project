@@ -362,14 +362,13 @@ public class Signup extends javax.swing.JFrame {
             } else if (checkPass.equals("invalid Password")) {
                 invalid.setText(checkPass);
                 invalid.setVisible(true);
-            }else{
-            user.setFname(fname.getText());
-            user.setLname(lname.getText());
-            user.setEmail(Email.getText());
-            user.setPhone_number(Phone.getText());
-            user.setPassword(password.getText());
-            user.setCpassword(confirmPass.getText());
-            
+            } else {
+                user.setFname(fname.getText());
+                user.setLname(lname.getText());
+                user.setEmail(Email.getText());
+                user.setPhone_number(Phone.getText());
+                user.setPassword(password.getText());
+                user.setCpassword(confirmPass.getText());
 
                 try {
                     user.createAccount(user, checkOwner);
@@ -385,8 +384,8 @@ public class Signup extends javax.swing.JFrame {
         } else {
             jLabel3.setText("*Required fields");
         }
-        
-    
+
+
     }//GEN-LAST:event_createAccountActionPerformed
 
     private void confirmPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmPassActionPerformed
@@ -407,8 +406,6 @@ public class Signup extends javax.swing.JFrame {
         ob.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_backActionPerformed
-
-    
 
     public static String isValid(String pass, String cpass) {
         if (pass.equals(cpass)) {

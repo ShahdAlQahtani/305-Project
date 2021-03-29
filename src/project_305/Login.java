@@ -7,9 +7,11 @@ package project_305;
 
 import java.io.*;
 import java.io.IOException;
+import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.Scanner;
+import javax.swing.JOptionPane;
 
 public class Login extends javax.swing.JFrame {
 
@@ -24,14 +26,13 @@ public class Login extends javax.swing.JFrame {
     static String firstO;
     static String lastO;
     static String email;
-            
+
     public Login() throws FileNotFoundException {
         initComponents();
         setLocationRelativeTo(null);
         this.d = new FileReader("Users.txt");
         input = new Scanner(d);
-        
-        
+
     }
 
     /**
@@ -85,14 +86,14 @@ public class Login extends javax.swing.JFrame {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(140, Short.MAX_VALUE)
-                .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(check)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(125, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -108,7 +109,9 @@ public class Login extends javax.swing.JFrame {
         jPanel4.setBackground(new java.awt.Color(181, 196, 196));
 
         back.setBackground(new java.awt.Color(144, 161, 161));
-        back.setIcon(new javax.swing.ImageIcon("/Users/shahad/Desktop/280Pictures/back.png")); // NOI18N
+        back.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project_305/back.png"))); // NOI18N
+        back.setBorder(null);
+        back.setContentAreaFilled(false);
         back.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backActionPerformed(evt);
@@ -121,7 +124,7 @@ public class Login extends javax.swing.JFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addComponent(back)
-                .addGap(0, 24, Short.MAX_VALUE))
+                .addGap(0, 39, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -189,41 +192,53 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void LoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginActionPerformed
-        // TODO add your handling code here:
-         email = Email.getText();
-        String password = Password.getText();
 
-        while (input.hasNext()) {
+        Connection connection = null;
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
 
-            String f = input.next();
-            String l = input.next();
+            String ConnectionURL = "jdbc:mysql://localhost:3306/weddinghallreservation";
 
-            String e = input.next();
-            String p = input.next();
+            PreparedStatement q;
+            connection = DriverManager.getConnection(ConnectionURL, "root", "Ameera");
 
-            if (e.equals(email) && password.equals(p)) {
-
-                if (Signup.Check == true) {
-
+            System.out.println(checkOwner);
+            if (checkOwner) {
+                q = connection.prepareStatement("Select `Email` , `Password` from `owner` where `Email`=? AND `Password`=? ");
+                q.setString(1, Email.getText());
+                q.setString(2, String.valueOf(Password.getPassword()));
+                ResultSet r = q.executeQuery();
+                if (r.next()) {
                     OwnerPage_Home ob = new OwnerPage_Home();
                     ob.setVisible(true);
                     this.setVisible(false);
-                    firstO=f;
-                    lastO=l;
 
                 } else {
-                    TenantPage_Home ob = new TenantPage_Home();
-                    ob.setVisible(true);
-                    this.setVisible(false);
-                    
-                    first=f;
-                    last=l;
+                    incorrectPass.setText("Incorrect email or password");
                 }
 
             } else {
-                incorrectPass.setText("Incorrect email or password");
+                q = connection.prepareStatement("Select `Email` , `Password` from `tenant` where `Email`=? AND `Password`=? ");
+                q.setString(1, Email.getText());
+                q.setString(2, String.valueOf(Password.getPassword()));
+                ResultSet r = q.executeQuery();
+                if (r.next()) {
+                    TenantPage_Home ob = new TenantPage_Home();
+                    ob.setVisible(true);
+                    this.setVisible(false);
+                } else {
+
+                    incorrectPass.setText("Incorrect email or password");
+                }
+
             }
 
+            connection.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex.toString());
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }//GEN-LAST:event_LoginActionPerformed
 
@@ -234,8 +249,10 @@ public class Login extends javax.swing.JFrame {
             ob = new Signup();
             this.setVisible(false);
             ob.setVisible(true);
+
         } catch (IOException ex) {
-            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Login.class
+                    .getName()).log(Level.SEVERE, null, ex);
         }
 
     }//GEN-LAST:event_backActionPerformed
@@ -252,13 +269,13 @@ public class Login extends javax.swing.JFrame {
 
     private void checkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkActionPerformed
         // TODO add your handling code here:
-        
-       if (check.isSelected()){
-           
-          Password.setEchoChar((char)0);
-       } else {
+
+        if (check.isSelected()) {
+
+            Password.setEchoChar((char) 0);
+        } else {
             Password.setEchoChar('*');
-       }
+        }
     }//GEN-LAST:event_checkActionPerformed
 
     /**
@@ -275,16 +292,24 @@ public class Login extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Login.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Login.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Login.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Login.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -293,8 +318,10 @@ public class Login extends javax.swing.JFrame {
             public void run() {
                 try {
                     new Login().setVisible(true);
+
                 } catch (FileNotFoundException ex) {
-                    Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(Login.class
+                            .getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });

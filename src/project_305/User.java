@@ -17,7 +17,7 @@ public class User {
     public String password;
     public String Cpassword;
     public String Phone_number;
-
+    
     public boolean type = false;
 
     public String getEmail() {
@@ -77,8 +77,7 @@ public class User {
     }
 
     public void createAccount(User user, boolean checkOwner) {
-        int ownid = 1200;
-        int tenid = 1400;
+
         Connection connection = null;
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -92,15 +91,15 @@ public class User {
 
             Statement statement = connection.createStatement();
             if (checkOwner) {
-                String query = "insert into OWNER values (" + ownid + 1 + ",'" + user.getFname() + "','" + user.getLname() + "','" + user.getEmail() + "','" + user.getPhone_number() + "','" + user.getPassword() + "')";
+                String query = "insert into OWNER (firstname,lastname,Email,PhoneNumber,Password) values ('" + user.getFname() + "','" + user.getLname() + "','" + user.getEmail() + "','" + user.getPhone_number() + "','" + user.getPassword() + "')";
 
                 statement.executeUpdate(query);
-                JOptionPane.showMessageDialog(null, "The Owner is Added Successfully");
+                JOptionPane.showMessageDialog(null, "The Owner is Added Successfully \n your ID is " );
 
             } else {
-                String query = "insert into TENANT values (" + tenid + 1 + ",'" + user.getFname() + "','" + user.getLname() + "','" + user.getEmail() + "','" + user.getPhone_number() + "','" + user.getPassword() + "')";
+                String query = "insert into TENANT (firstname,lastname,Email,PhoneNumber,Password) TENANT values ('" + user.getFname() + "','" + user.getLname() + "','" + user.getEmail() + "','" + user.getPhone_number() + "','" + user.getPassword() + "')";
                 statement.executeUpdate(query);
-                JOptionPane.showMessageDialog(null, "The Tenant is Added Successfully");
+                JOptionPane.showMessageDialog(null, "The Tenant is Added Successfully \n your ID is" );
             }
             connection.close();
         } catch (SQLException ex) {
