@@ -6,6 +6,7 @@
 package project_305;
 
 import java.io.*;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -20,20 +21,19 @@ import java.util.logging.Logger;
  */
 public class OwnerPage_Chat extends javax.swing.JFrame {
 
+    int port;
+    static ServerSocket server;
+    static Socket client;
+    ExecutorService pool;
+   static int clientcount = 0;
+
     static DataOutputStream dos;
     static DataInputStream dis;
-
-    int port;
-    ServerSocket server = null;
-    static Socket client = null;
-    ExecutorService pool = null;
-    int clientCount = 0;
 
     public OwnerPage_Chat() {
         initComponents();
         setLocationRelativeTo(null);
     }
-
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -101,6 +101,12 @@ public class OwnerPage_Chat extends javax.swing.JFrame {
 
         jPanel1.add(jScrollPane1);
         jScrollPane1.setBounds(30, 250, 240, 210);
+
+        SendingMsg.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SendingMsgActionPerformed(evt);
+            }
+        });
         jPanel1.add(SendingMsg);
         SendingMsg.setBounds(30, 470, 240, 30);
 
@@ -179,13 +185,16 @@ public class OwnerPage_Chat extends javax.swing.JFrame {
         // TODO add your handling code here:
         try {
             String msg = "";
-            dos = new DataOutputStream(client.getOutputStream());
             msg = SendingMsg.getText();
             dos.writeUTF(msg);
         } catch (IOException ex) {
             ex.printStackTrace();
         }
     }//GEN-LAST:event_sendActionPerformed
+
+    private void SendingMsgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SendingMsgActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_SendingMsgActionPerformed
 
     /**
      * @param args the command line arguments
@@ -226,9 +235,87 @@ public class OwnerPage_Chat extends javax.swing.JFrame {
             }
         });
 
-        OwnerPage_Chat serverobj = new OwnerPage_Chat(1201);
-        serverobj.startServer();
+        try {
+            OwnerPage_Chat serverobj = new OwnerPage_Chat(5000);
+            serverobj.startServer();
+        } catch (IOException e) {
+            System.out.println("eeeeeeeeeeeeee");
+        }
     }
+
+//    OwnerPage_Chat(int port) {
+//        this.port = port;
+//        pool = Executors.newFixedThreadPool(5);
+//    }
+//
+//    public void startServer() throws IOException {
+//
+//        server = new ServerSocket(5000);
+//        //     msgArea.setText("Server Booted");
+////        msgArea.setText("Any client can stop the server by sending -1");
+//        while (true) {
+//            client = server.accept();
+//            clientcount++;
+//            ServerThread runnable = new ServerThread(client, clientcount, this);
+//            pool.execute(runnable);
+//        }
+//
+//    }
+
+//    private static class ServerThread implements Runnable {
+//
+//        OwnerPage_Chat server;
+//        Socket client;
+//
+//        int id;
+//        String s;
+//
+//        ServerThread(Socket client, int count, OwnerPage_Chat server) throws IOException {
+//
+//            this.client = client;
+//            this.server = server;
+//            this.id = count;
+//
+//            msgArea.setText("Connection " + id + "established with client " + client);
+//            
+//            dis = new DataInputStream(client.getInputStream());
+//            dos = new DataOutputStream(client.getOutputStream());
+//        }
+//
+//        @Override
+//        public void run() {
+//            int x = 1;
+//            try {
+//                while (true) {
+//                    s = dis.readUTF();
+//
+//                    msgArea.setText(msgArea.getText() + " Client(" + id + ") :" + s + "\n");
+//                    msgArea.setText("Server : ");
+//                    //s=stdin.readLine();
+////                    s = SendingMsg.getText();
+//                //    s = dis.readUTF();
+//                    if (s.equalsIgnoreCase("bye")) {
+//                        dos.writeUTF("BYE");
+//                        x = 0;
+//                        msgArea.setText("Connection ended by server");
+//                        break;
+//                    }
+//                    dos.writeUTF(s);
+//                }
+//
+//                dis.close();
+//                client.close();
+//                dos.close();
+//                if (x == 0) {
+//                    System.out.println("Server cleaning up.");
+//                    System.exit(0);
+//                }
+//            } catch (IOException ex) {
+//                System.out.println("Error : " + ex);
+//            }
+//
+//        }
+//    }
 
     OwnerPage_Chat(int port) {
         this.port = port;
@@ -241,8 +328,8 @@ public class OwnerPage_Chat extends javax.swing.JFrame {
 
         while (true) {
             client = server.accept();
-            clientCount++;
-            ServerThread thread = new ServerThread(client, clientCount, this);
+            clientcount++;
+            ServerThread thread = new ServerThread(client, clientcount, this);
             pool.execute(thread);
         }
 
@@ -310,7 +397,7 @@ public class OwnerPage_Chat extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField SendingMsg;
+    private static javax.swing.JTextField SendingMsg;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

@@ -12,6 +12,11 @@ import java.io.IOException;
 import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.PrintStream;
+import java.net.ServerSocket;
+import java.net.Socket;
 
 /**
  *
@@ -47,10 +52,10 @@ public class TenantPage_Chat extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        massArea = new javax.swing.JTextArea();
         SendingMsg = new javax.swing.JTextField();
         send = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        massArea = new javax.swing.JTextArea();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -100,13 +105,6 @@ public class TenantPage_Chat extends javax.swing.JFrame {
         jLabel1.setText("Client");
         jPanel1.add(jLabel1);
         jLabel1.setBounds(130, 130, 40, 20);
-
-        massArea.setColumns(20);
-        massArea.setRows(5);
-        jScrollPane1.setViewportView(massArea);
-
-        jPanel1.add(jScrollPane1);
-        jScrollPane1.setBounds(30, 250, 240, 210);
         jPanel1.add(SendingMsg);
         SendingMsg.setBounds(30, 470, 240, 30);
 
@@ -119,6 +117,13 @@ public class TenantPage_Chat extends javax.swing.JFrame {
         });
         jPanel1.add(send);
         send.setBounds(110, 520, 60, 30);
+
+        massArea.setColumns(20);
+        massArea.setRows(5);
+        jScrollPane2.setViewportView(massArea);
+
+        jPanel1.add(jScrollPane2);
+        jScrollPane2.setBounds(20, 220, 250, 230);
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project_305/chat_T.png"))); // NOI18N
         jLabel2.setText("jLabel2");
@@ -209,7 +214,7 @@ public class TenantPage_Chat extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String args[]) throws IOException {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -239,10 +244,8 @@ public class TenantPage_Chat extends javax.swing.JFrame {
                 new TenantPage_Chat().setVisible(true);
             }
         });
-
-    
         
-        try {
+   try {
             socket = new Socket("127.0.0.1", 1201);
             input = new DataInputStream(socket.getInputStream());
             output = new DataOutputStream(socket.getOutputStream());
@@ -250,28 +253,24 @@ public class TenantPage_Chat extends javax.swing.JFrame {
             while (true) {
                 massage = input.readUTF();
                 massArea.setText(massArea.getText() + "\n Server:  " + massage);
-
                 if (massage.equalsIgnoreCase("BYE")) {
                     System.out.println("Connection ended by client");
                     break;
                 }
                 massage = input.readUTF();
                 massArea.setText(massArea.getText() + "\n Server:  " + massage);
-
             }
             input.close();
             output.close();
             socket.close();
-   
         } catch (Exception e) {
             System.out.println("Exception");
-
-
         }
-    }
+}
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField SendingMsg;
+    private static javax.swing.JTextField SendingMsg;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel5;
@@ -280,8 +279,8 @@ public class TenantPage_Chat extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    public static javax.swing.JTextArea massArea;
+    private javax.swing.JScrollPane jScrollPane2;
+    private static javax.swing.JTextArea massArea;
     private javax.swing.JButton send;
     // End of variables declaration//GEN-END:variables
 }
