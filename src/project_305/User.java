@@ -84,9 +84,9 @@ public class User {
 
             String ConnectionURL = "jdbc:mysql://localhost:3306/weddinghallreservation";
 
-            connection = DriverManager.getConnection(ConnectionURL, "root", "Ameera");
+        //    connection = DriverManager.getConnection(ConnectionURL, "root", "Ameera");
 //            connection = DriverManager.getConnection(ConnectionURL, "root", "Ameera");
-//            connection = DriverManager.getConnection(ConnectionURL, "root", "Ameera");
+            connection = DriverManager.getConnection(ConnectionURL, "root", "1212");
 //            connection = DriverManager.getConnection(ConnectionURL, "root", "Ameera");
 
             Statement statement = connection.createStatement();
