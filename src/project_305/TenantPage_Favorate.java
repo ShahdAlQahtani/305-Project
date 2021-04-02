@@ -57,7 +57,7 @@ public class TenantPage_Favorate extends javax.swing.JFrame {
         NoFav.setForeground(new java.awt.Color(153, 153, 153));
         NoFav.setText("  No Favorates");
         jPanel1.add(NoFav);
-        NoFav.setBounds(80, 350, 150, 40);
+        NoFav.setBounds(60, 350, 160, 40);
 
         jPanelFav.setBackground(new java.awt.Color(243, 246, 251));
 
@@ -107,7 +107,6 @@ public class TenantPage_Favorate extends javax.swing.JFrame {
         jPanel1.add(jLabel5);
         jLabel5.setBounds(20, 600, 35, 30);
 
-        jLabel8.setIcon(new javax.swing.ImageIcon("/Users/shahad/Desktop/280Pictures/back.png")); // NOI18N
         jLabel8.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel8MouseClicked(evt);

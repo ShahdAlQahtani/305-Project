@@ -21,6 +21,7 @@ public class Login extends javax.swing.JFrame {
     boolean checkOwner;
     FileReader d;
     Scanner input;
+    static int Id;
     static String first;
     static String last;
     static String firstO;
@@ -30,8 +31,8 @@ public class Login extends javax.swing.JFrame {
     public Login() throws FileNotFoundException {
         initComponents();
         setLocationRelativeTo(null);
-        this.d = new FileReader("Users.txt");
-        input = new Scanner(d);
+//        this.d = new FileReader("Users.txt");
+//        input = new Scanner(d);
 
     }
 
@@ -61,7 +62,7 @@ public class Login extends javax.swing.JFrame {
 
         jPanel1.setLayout(null);
         jPanel1.add(Email);
-        Email.setBounds(30, 234, 220, 50);
+        Email.setBounds(30, 240, 220, 50);
 
         jPanel3.setBackground(new java.awt.Color(243, 246, 251));
 
@@ -152,15 +153,15 @@ public class Login extends javax.swing.JFrame {
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addContainerGap(39, Short.MAX_VALUE)
-                .addComponent(Login, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(61, Short.MAX_VALUE)
+                .addComponent(Login, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(Login, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Login)
                 .addContainerGap(22, Short.MAX_VALUE))
         );
 
@@ -198,12 +199,17 @@ public class Login extends javax.swing.JFrame {
             Class.forName("com.mysql.cj.jdbc.Driver");
 
             String ConnectionURL = "jdbc:mysql://localhost:3306/weddinghallreservation";
-
+            PreparedStatement find;
             PreparedStatement q;
+            
             connection = DriverManager.getConnection(ConnectionURL, "root", "Ameera");
+//q = connection.prepareStatement("Select `idOwner` from `owner` where `Email`=? AND `Password`=? ");
+
+
 
             System.out.println(checkOwner);
             if (checkOwner) {
+                
                 q = connection.prepareStatement("Select `Email` , `Password` from `owner` where `Email`=? AND `Password`=? ");
                 q.setString(1, Email.getText());
                 q.setString(2, String.valueOf(Password.getPassword()));
@@ -222,6 +228,7 @@ public class Login extends javax.swing.JFrame {
                 q.setString(1, Email.getText());
                 q.setString(2, String.valueOf(Password.getPassword()));
                 ResultSet r = q.executeQuery();
+                
                 if (r.next()) {
                     TenantPage_Home ob = new TenantPage_Home();
                     ob.setVisible(true);
