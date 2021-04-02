@@ -94,7 +94,8 @@ public class HallInformation {
 
             String ConnectionURL = "jdbc:mysql://localhost:3306/weddinghallreservation";
 
-            connection = DriverManager.getConnection(ConnectionURL, "root", "Ameera");
+         // connection = DriverManager.getConnection(ConnectionURL, "root", "Ameera");
+              connection = DriverManager.getConnection(ConnectionURL, "root", "1212");
             
             InputStream in = new FileInputStream(new File(info.getImage()));
             PreparedStatement ps = connection.prepareStatement("insert into hallinfo (hallname,hallcapacity,halladdress,hallPrice,contactNumber,image) values(?,?,?,?,?,? )");
@@ -114,5 +115,34 @@ public class HallInformation {
             e.printStackTrace();
         }
     }
+    
+        public void updateHall(HallInformation info) {
+        Connection connection = null;
 
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            String ConnectionURL = "jdbc:mysql://localhost:3306/weddinghallreservation";
+
+         // connection = DriverManager.getConnection(ConnectionURL, "root", "Ameera");
+            connection = DriverManager.getConnection(ConnectionURL, "root", "1212");
+            
+            InputStream in = new FileInputStream(new File(info.getImage()));
+            PreparedStatement ps = connection.prepareStatement("insert into hallinfo (hallname,hallcapacity,halladdress,hallPrice,contactNumber,image) values(?,?,?,?,?,? )");
+            ps.setString(1, info.getHallName());
+            ps.setString(2, info.getCapacity());
+            ps.setString(3, info.getHallAddress());
+            ps.setDouble(4, info.getHallprice());
+            ps.setString(5, info.getHallcontactNum());
+            ps.setBlob(6, in);
+
+            ps.executeUpdate();
+            JOptionPane.showMessageDialog(null, "The Hall was Added Successfully ");
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex.toString());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

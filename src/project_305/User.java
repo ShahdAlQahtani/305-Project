@@ -17,7 +17,7 @@ public class User {
     public String password;
     public String Cpassword;
     public String Phone_number;
-    
+
     public boolean type = false;
 
     public String getEmail() {
@@ -84,7 +84,7 @@ public class User {
 
             String ConnectionURL = "jdbc:mysql://localhost:3306/weddinghallreservation";
 
-        //    connection = DriverManager.getConnection(ConnectionURL, "root", "Ameera");
+            //    connection = DriverManager.getConnection(ConnectionURL, "root", "Ameera");
 //            connection = DriverManager.getConnection(ConnectionURL, "root", "Ameera");
             connection = DriverManager.getConnection(ConnectionURL, "root", "1212");
 //            connection = DriverManager.getConnection(ConnectionURL, "root", "Ameera");
@@ -94,13 +94,24 @@ public class User {
                 String query = "insert into OWNER (firstname,lastname,Email,PhoneNumber,Password) values ('" + user.getFname() + "','" + user.getLname() + "','" + user.getEmail() + "','" + user.getPhone_number() + "','" + user.getPassword() + "')";
 
                 statement.executeUpdate(query);
-                JOptionPane.showMessageDialog(null, "The Owner is Added Successfully \n your ID is " );
+                String queryID = "Select idOwner from Owner Where Email =" + "'" + user.getEmail() + "'";
+
+                ResultSet r = statement.executeQuery(queryID);
+                r.next();
+                JOptionPane.showMessageDialog(null, "The Owner is Added Successfully \n your ID is " + r.getInt(1));
 
             } else {
                 String query = "insert into TENANT (firstname,lastname,Email,PhoneNumber,Password)  values ('" + user.getFname() + "','" + user.getLname() + "','" + user.getEmail() + "','" + user.getPhone_number() + "','" + user.getPassword() + "')";
+
                 statement.executeUpdate(query);
-                JOptionPane.showMessageDialog(null, "The Tenant is Added Successfully \n your ID is" );
+
+                String queryID = "Select idtenant from Tenant Where Email =" + "'" + user.getEmail() + "'";
+                
+                ResultSet r = statement.executeQuery(queryID);
+                r.next();
+                JOptionPane.showMessageDialog(null, "The Tenant is Added Successfully \n your ID is" + r.getInt(1));
             }
+
             connection.close();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex.toString());
