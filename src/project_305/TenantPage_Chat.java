@@ -5,18 +5,18 @@
  */
 package project_305;
 
+import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
-import java.net.Socket;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -24,9 +24,6 @@ import java.net.Socket;
  */
 public class TenantPage_Chat extends javax.swing.JFrame {
 
-    /**
-     * Creates new form TenantPage_Chat
-     */
     static Socket socket;
     static DataInputStream input;
     static DataOutputStream output;
@@ -52,10 +49,10 @@ public class TenantPage_Chat extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        SendingMsg = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txt_area = new javax.swing.JTextArea();
+        txt = new javax.swing.JTextField();
         send = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        massArea = new javax.swing.JTextArea();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -105,10 +102,16 @@ public class TenantPage_Chat extends javax.swing.JFrame {
         jLabel1.setText("Client");
         jPanel1.add(jLabel1);
         jLabel1.setBounds(130, 130, 40, 20);
-        jPanel1.add(SendingMsg);
-        SendingMsg.setBounds(30, 470, 240, 30);
 
-        send.setFont(new java.awt.Font("Times New Roman", 2, 14)); // NOI18N
+        txt_area.setColumns(20);
+        txt_area.setRows(5);
+        jScrollPane1.setViewportView(txt_area);
+
+        jPanel1.add(jScrollPane1);
+        jScrollPane1.setBounds(30, 200, 240, 220);
+        jPanel1.add(txt);
+        txt.setBounds(50, 440, 190, 26);
+
         send.setText("Send");
         send.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -116,14 +119,7 @@ public class TenantPage_Chat extends javax.swing.JFrame {
             }
         });
         jPanel1.add(send);
-        send.setBounds(110, 520, 60, 30);
-
-        massArea.setColumns(20);
-        massArea.setRows(5);
-        jScrollPane2.setViewportView(massArea);
-
-        jPanel1.add(jScrollPane2);
-        jScrollPane2.setBounds(20, 220, 250, 230);
+        send.setBounds(100, 490, 67, 29);
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project_305/chat_T.png"))); // NOI18N
         jLabel2.setText("jLabel2");
@@ -201,13 +197,30 @@ public class TenantPage_Chat extends javax.swing.JFrame {
 
     private void sendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendActionPerformed
         // TODO add your handling code here:
+//        try {
+//            String msg = "";
+//            output = new DataOutputStream(socket.getOutputStream());
+//            msg = txt.getText();
+//            output.writeUTF(msg);
+//        } catch (IOException ex) {
+//            ex.printStackTrace();
+//        }
+        
+                 String msg = txt.getText();
+        txt_area.setText(txt_area.getText() + "\r\nMe: " + msg);
+        txt.setText("");
+
         try {
-            String msg = "";
-            output = new DataOutputStream(socket.getOutputStream());
-            msg = SendingMsg.getText();
-            output.writeUTF(msg);
+
+            String nameFile = jLabel1.getText() + ".txt";
+            FileWriter fr = new FileWriter(nameFile);
+            fr.write(txt_area.getText());
+            fr.close();
+
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(TenantPage_Chat.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
-            ex.printStackTrace();
+            Logger.getLogger(TenantPage_Chat.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_sendActionPerformed
 
@@ -244,21 +257,21 @@ public class TenantPage_Chat extends javax.swing.JFrame {
                 new TenantPage_Chat().setVisible(true);
             }
         });
-        
-   try {
-            socket = new Socket("127.0.0.1", 1201);
+
+        try {
+            socket = new Socket("127.0.0.1", 5000);
             input = new DataInputStream(socket.getInputStream());
             output = new DataOutputStream(socket.getOutputStream());
             String massage = "";
             while (true) {
                 massage = input.readUTF();
-                massArea.setText(massArea.getText() + "\n Server:  " + massage);
+                txt_area.setText(txt.getText() + "\n Server:  " + massage);
                 if (massage.equalsIgnoreCase("BYE")) {
                     System.out.println("Connection ended by client");
                     break;
                 }
                 massage = input.readUTF();
-                massArea.setText(massArea.getText() + "\n Server:  " + massage);
+                txt_area.setText(txt.getText() + "\n Server:  " + massage);
             }
             input.close();
             output.close();
@@ -266,11 +279,10 @@ public class TenantPage_Chat extends javax.swing.JFrame {
         } catch (Exception e) {
             System.out.println("Exception");
         }
-}
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private static javax.swing.JTextField SendingMsg;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel5;
@@ -279,8 +291,9 @@ public class TenantPage_Chat extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private static javax.swing.JTextArea massArea;
-    private javax.swing.JButton send;
+    private javax.swing.JScrollPane jScrollPane1;
+    private static javax.swing.JButton send;
+    private static javax.swing.JTextField txt;
+    private static javax.swing.JTextArea txt_area;
     // End of variables declaration//GEN-END:variables
 }

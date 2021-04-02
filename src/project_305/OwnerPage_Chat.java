@@ -14,6 +14,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.*;
 
 /**
  *
@@ -21,11 +22,11 @@ import java.util.logging.Logger;
  */
 public class OwnerPage_Chat extends javax.swing.JFrame {
 
-    int port;
-    static ServerSocket server;
-    static Socket client;
-    ExecutorService pool;
-   static int clientcount = 0;
+    int port = 0;
+    static ServerSocket server = null;
+    static Socket client = null;
+    ExecutorService pool = null;
+    static int clientcount = 0;
 
     static DataOutputStream dos;
     static DataInputStream dis;
@@ -34,6 +35,8 @@ public class OwnerPage_Chat extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
     }
+
+
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -45,9 +48,9 @@ public class OwnerPage_Chat extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        msgArea = new javax.swing.JTextArea();
-        SendingMsg = new javax.swing.JTextField();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        txt_area = new javax.swing.JTextArea();
+        txt = new javax.swing.JTextField();
         send = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
@@ -95,22 +98,15 @@ public class OwnerPage_Chat extends javax.swing.JFrame {
         jPanel1.add(jLabel6);
         jLabel6.setBounds(0, 0, 50, 30);
 
-        msgArea.setColumns(20);
-        msgArea.setRows(5);
-        jScrollPane1.setViewportView(msgArea);
+        txt_area.setColumns(20);
+        txt_area.setRows(5);
+        jScrollPane2.setViewportView(txt_area);
 
-        jPanel1.add(jScrollPane1);
-        jScrollPane1.setBounds(30, 250, 240, 210);
+        jPanel1.add(jScrollPane2);
+        jScrollPane2.setBounds(30, 220, 240, 210);
+        jPanel1.add(txt);
+        txt.setBounds(50, 450, 200, 30);
 
-        SendingMsg.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SendingMsgActionPerformed(evt);
-            }
-        });
-        jPanel1.add(SendingMsg);
-        SendingMsg.setBounds(30, 470, 240, 30);
-
-        send.setFont(new java.awt.Font("Times New Roman", 2, 14)); // NOI18N
         send.setText("Send");
         send.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -118,7 +114,7 @@ public class OwnerPage_Chat extends javax.swing.JFrame {
             }
         });
         jPanel1.add(send);
-        send.setBounds(110, 520, 60, 30);
+        send.setBounds(100, 500, 67, 29);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project_305/‏‏chat_O.png"))); // NOI18N
         jPanel1.add(jLabel1);
@@ -183,18 +179,30 @@ public class OwnerPage_Chat extends javax.swing.JFrame {
 
     private void sendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendActionPerformed
         // TODO add your handling code here:
-        try {
-            String msg = "";
-            msg = SendingMsg.getText();
-            dos.writeUTF(msg);
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
-    }//GEN-LAST:event_sendActionPerformed
 
-    private void SendingMsgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SendingMsgActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_SendingMsgActionPerformed
+//        try {
+//            String msg = "";
+//            dos = new DataOutputStream(client.getOutputStream());
+//            msg = txt.getText();
+//            dos.writeUTF(msg);
+//        }   catch (IOException e) {
+//                Logger.getLogger(OwnerPage_Chat.class.getName()).log(Level.SEVERE, null, e);
+//            }
+//        }
+        
+//        try {
+//
+//            String msg = txt.getText();
+//            dos.writeUTF(msg);
+//            txt_area.setText(txt_area.getText() + "\r\nMe: " + msg);
+//
+//            txt.setText("");
+//
+//        } catch (IOException ex) {
+//            Logger.getLogger(OwnerPage_Chat.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+
+    }//GEN-LAST:event_sendActionPerformed
 
     /**
      * @param args the command line arguments
@@ -232,15 +240,13 @@ public class OwnerPage_Chat extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new OwnerPage_Chat().setVisible(true);
+
             }
         });
 
-        try {
-            OwnerPage_Chat serverobj = new OwnerPage_Chat(5000);
-            serverobj.startServer();
-        } catch (IOException e) {
-            System.out.println("eeeeeeeeeeeeee");
-        }
+        OwnerPage_Chat serverobj = new OwnerPage_Chat(5000);
+        serverobj.startServer();
+
     }
 
 //    OwnerPage_Chat(int port) {
@@ -261,7 +267,6 @@ public class OwnerPage_Chat extends javax.swing.JFrame {
 //        }
 //
 //    }
-
 //    private static class ServerThread implements Runnable {
 //
 //        OwnerPage_Chat server;
@@ -316,39 +321,36 @@ public class OwnerPage_Chat extends javax.swing.JFrame {
 //
 //        }
 //    }
-
     OwnerPage_Chat(int port) {
         this.port = port;
-        pool = Executors.newFixedThreadPool(10);
+        pool = Executors.newFixedThreadPool(5);
     }
 
     public void startServer() throws IOException {
-
-        server = new ServerSocket(1201);
+        server = new ServerSocket(5000);
 
         while (true) {
             client = server.accept();
             clientcount++;
-            ServerThread thread = new ServerThread(client, clientcount, this);
-            pool.execute(thread);
+            ServerThread runnable = new ServerThread(client, clientcount, this);
+            pool.execute(runnable);
         }
-
     }
 
-    private static class ServerThread extends Thread {
+    static class ServerThread extends Thread {
 
         OwnerPage_Chat server = null;
         Socket client = null;
 
         int id;
-        String s;
+        String s = "";
 
         ServerThread(Socket client, int count, OwnerPage_Chat server) throws IOException {
 
             this.client = client;
             this.server = server;
             this.id = count;
-            msgArea.setText("Connection " + id + "established with client " + client);
+            // msgArea.setText("Connection " + id + "established with client " + client);
 
             dis = new DataInputStream(client.getInputStream());
             dos = new DataOutputStream(client.getOutputStream());
@@ -357,35 +359,24 @@ public class OwnerPage_Chat extends javax.swing.JFrame {
 
         @Override
         public void run() {
-            int x = 1;
             try {
-                while (true) {
+                while (!s.equalsIgnoreCase("bye")) {
                     s = dis.readUTF();
-                    msgArea.setText(msgArea.getText() + "\n Server:  " + "Client(" + id + ") :" + s);
 
-                
-                    s = dis.readUTF();
-                    if (s.equalsIgnoreCase("bye")) {
-                        msgArea.setText("BYE");
-                        x = 0;
-                        msgArea.setText("Connection ended by server");
-                        break;
-                    }
-                    msgArea.setText(s);
+                    txt_area.setText(txt.getText().trim() + "\n " + s);
                 }
 
                 dis.close();
                 client.close();
                 dos.close();
-                if (x == 0) {
-                    msgArea.setText("Server cleaning up.");
-                    System.exit(0);
-                }
-            } catch (IOException ex) {
+            } catch (Exception ex) {
+                int x = 0;
                 System.out.println("Error : " + ex);
+
             }
         }
     }
+    
 //        ServerSocket s = new ServerSocket(1201);
 //        System.out.println("Server waiting Connection...");
 //
@@ -397,7 +388,6 @@ public class OwnerPage_Chat extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private static javax.swing.JTextField SendingMsg;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -405,9 +395,10 @@ public class OwnerPage_Chat extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    public static javax.swing.JTextArea msgArea;
-    private javax.swing.JButton send;
+    private javax.swing.JScrollPane jScrollPane2;
+    private static javax.swing.JButton send;
+    public static javax.swing.JTextField txt;
+    private static javax.swing.JTextArea txt_area;
     // End of variables declaration//GEN-END:variables
 }
 
