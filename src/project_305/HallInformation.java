@@ -95,7 +95,7 @@ public class HallInformation {
             String ConnectionURL = "jdbc:mysql://localhost:3306/weddinghallreservation";
 
             connection = DriverManager.getConnection(ConnectionURL, "root", "Ameera");
-            Statement statement = connection.createStatement();
+            
             InputStream in = new FileInputStream(new File(info.getImage()));
             PreparedStatement ps = connection.prepareStatement("insert into hallinfo (hallname,hallcapacity,halladdress,hallPrice,contactNumber,image) values(?,?,?,?,?,? )");
             ps.setString(1, info.getHallName());
