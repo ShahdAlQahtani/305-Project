@@ -48,8 +48,8 @@ public class TenantPage_Home extends javax.swing.JFrame {
 
         Previous.setBackground(new java.awt.Color(255, 255, 255));
         Previous.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
-        Previous.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project_305/PreviousRes.png"))); // NOI18N
-        Previous.setText("Previous Reservation");
+        Previous.setBorder(null);
+        Previous.setContentAreaFilled(false);
         Previous.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 PreviousActionPerformed(evt);
@@ -60,8 +60,8 @@ public class TenantPage_Home extends javax.swing.JFrame {
 
         Search.setBackground(new java.awt.Color(255, 255, 255));
         Search.setFont(new java.awt.Font("Times New Roman", 0, 25)); // NOI18N
-        Search.setIcon(new javax.swing.ImageIcon("/Users/shahad/NetBeansProjects/251project/src/search.jpg")); // NOI18N
-        Search.setText("Search Hall");
+        Search.setBorder(null);
+        Search.setContentAreaFilled(false);
         Search.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 SearchActionPerformed(evt);
@@ -72,8 +72,8 @@ public class TenantPage_Home extends javax.swing.JFrame {
 
         Current.setBackground(new java.awt.Color(255, 255, 255));
         Current.setFont(new java.awt.Font("Times New Roman", 0, 25)); // NOI18N
-        Current.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project_305/currentRes.png"))); // NOI18N
-        Current.setText("Current Reservation");
+        Current.setBorder(null);
+        Current.setContentAreaFilled(false);
         Current.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CurrentActionPerformed(evt);

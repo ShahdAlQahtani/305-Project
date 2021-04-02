@@ -48,39 +48,39 @@ public class OwnerPage_Home extends javax.swing.JFrame {
 
         jButton2.setBackground(new java.awt.Color(255, 255, 255));
         jButton2.setFont(new java.awt.Font("Times New Roman", 0, 25)); // NOI18N
-        jButton2.setIcon(new javax.swing.ImageIcon("/Users/shahad/Desktop/280Pictures/ViewReq.png")); // NOI18N
-        jButton2.setText("View Request");
+        jButton2.setBorder(null);
+        jButton2.setContentAreaFilled(false);
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
         jPanel1.add(jButton2);
-        jButton2.setBounds(0, 220, 300, 90);
+        jButton2.setBounds(0, 230, 300, 80);
 
         jButton3.setBackground(new java.awt.Color(255, 255, 255));
         jButton3.setFont(new java.awt.Font("Times New Roman", 0, 25)); // NOI18N
-        jButton3.setIcon(new javax.swing.ImageIcon("/Users/shahad/Desktop/280Pictures/Offers.png")); // NOI18N
-        jButton3.setText("  Add Offer");
+        jButton3.setBorder(null);
+        jButton3.setContentAreaFilled(false);
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
         jPanel1.add(jButton3);
-        jButton3.setBounds(0, 430, 300, 90);
+        jButton3.setBounds(0, 430, 300, 80);
 
         jButton4.setBackground(new java.awt.Color(255, 255, 255));
         jButton4.setFont(new java.awt.Font("Times New Roman", 0, 25)); // NOI18N
-        jButton4.setIcon(new javax.swing.ImageIcon("/Users/shahad/Desktop/280Pictures/AddHall.png")); // NOI18N
-        jButton4.setText("  Add Hall");
+        jButton4.setBorder(null);
+        jButton4.setContentAreaFilled(false);
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
             }
         });
         jPanel1.add(jButton4);
-        jButton4.setBounds(0, 330, 300, 90);
+        jButton4.setBounds(0, 330, 300, 80);
 
         jPanel3.setBackground(new java.awt.Color(181, 196, 196));
 

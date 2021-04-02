@@ -97,7 +97,7 @@ public class User {
                 JOptionPane.showMessageDialog(null, "The Owner is Added Successfully \n your ID is " );
 
             } else {
-                String query = "insert into TENANT (firstname,lastname,Email,PhoneNumber,Password) TENANT values ('" + user.getFname() + "','" + user.getLname() + "','" + user.getEmail() + "','" + user.getPhone_number() + "','" + user.getPassword() + "')";
+                String query = "insert into TENANT (firstname,lastname,Email,PhoneNumber,Password)  values ('" + user.getFname() + "','" + user.getLname() + "','" + user.getEmail() + "','" + user.getPhone_number() + "','" + user.getPassword() + "')";
                 statement.executeUpdate(query);
                 JOptionPane.showMessageDialog(null, "The Tenant is Added Successfully \n your ID is" );
             }
