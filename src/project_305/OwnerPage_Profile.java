@@ -7,36 +7,37 @@ package project_305;
 
 import java.io.FileNotFoundException;
 import java.io.*;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.Scanner;
 
 public class OwnerPage_Profile extends javax.swing.JFrame {
 
-    FileReader d;
-    Scanner input;
+//    FileReader d;
+//    Scanner input;
 
     public OwnerPage_Profile() throws FileNotFoundException {
         initComponents();
         setLocationRelativeTo(null);
         
-        this.d = new FileReader("Users.txt");
-        input = new Scanner(d);
+//        this.d = new FileReader("Users.txt");
+//        input = new Scanner(d);
+//
+//        while (input.hasNext()) {
+//
+//            String f = input.next();
+//            String l = input.next();
+//            String e = input.next();
+//            input.next();
+//            
+//            if (Login.firstO.equals(f) && Login.lastO.equals(l) && Login.email.equals(e)) {
+//
+//                Name.setText(Login.firstO + " " + Login.lastO);
+//                Email.setText(Login.email);
+//            }
 
-        while (input.hasNext()) {
-
-            String f = input.next();
-            String l = input.next();
-            String e = input.next();
-            input.next();
-            
-            if (Login.firstO.equals(f) && Login.lastO.equals(l) && Login.email.equals(e)) {
-
-                Name.setText(Login.firstO + " " + Login.lastO);
-                Email.setText(Login.email);
-            }
-
-        }
+//        }
     }
 
     /**
@@ -236,7 +237,12 @@ public class OwnerPage_Profile extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        OwnerPage_EditPro ob = new OwnerPage_EditPro();
+        OwnerPage_EditPro ob = null;
+        try {
+            ob = new OwnerPage_EditPro();
+        } catch (SQLException ex) {
+            Logger.getLogger(OwnerPage_Profile.class.getName()).log(Level.SEVERE, null, ex);
+        }
         ob.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed

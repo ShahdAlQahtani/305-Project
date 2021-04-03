@@ -106,7 +106,7 @@ public class User {
                 statement.executeUpdate(query);
 
                 String queryID = "Select idtenant from Tenant Where Email =" + "'" + user.getEmail() + "'";
-                
+
                 ResultSet r = statement.executeQuery(queryID);
                 r.next();
                 JOptionPane.showMessageDialog(null, "The Tenant is Added Successfully \n your ID is" + r.getInt(1));
@@ -117,6 +117,43 @@ public class User {
             JOptionPane.showMessageDialog(null, ex.toString());
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    public void updateAccount(User user, String id) throws ClassNotFoundException, SQLException {
+
+        Connection connection = null;
+
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        String ConnectionURL = "jdbc:mysql://localhost:3306/weddinghallreservation";
+        connection = DriverManager.getConnection(ConnectionURL, "root", "1212");
+
+        PreparedStatement ps = null;
+        try {
+            if (id.startsWith("12")) {
+                String query = "update  Owner set FirstName=?, lastName=?, Email=?, PhoneNumber=?, Password=? where idOwner=" + id + " ";
+                ps = connection.prepareStatement(query);
+                ps.setString(1, user.getFname());
+                ps.setString(2, user.getLname());
+                ps.setString(3, user.getEmail());
+                ps.setString(4, user.getPhone_number());
+                ps.setString(5, user.getPassword());
+                ps.executeUpdate();
+                 JOptionPane.showMessageDialog(null, "The information updated successfully");
+            } else {
+                String query = "update  tenant set FirstName=?, lastName=?, Email=?, PhoneNumber=?, Password=? where idtenant=" + id + " ";
+                ps = connection.prepareStatement(query);
+                ps.setString(1, user.getFname());
+                ps.setString(2, user.getLname());
+                ps.setString(3, user.getEmail());
+                ps.setString(4, user.getPhone_number());
+                ps.setString(5, user.getPassword());
+                ps.executeUpdate();
+                JOptionPane.showMessageDialog(null, "The information updated successfully");
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.toString());
         }
     }
 }

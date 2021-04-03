@@ -7,9 +7,14 @@ package project_305;
 //shahad baik
 //karam abdullah
 //Ameera Moh
+
 import java.io.FileNotFoundException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.*;
 
 /**
  *
@@ -35,7 +40,7 @@ public class ForgetPass extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jTextField6 = new javax.swing.JTextField();
+        email = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jButton4 = new javax.swing.JButton();
@@ -45,9 +50,14 @@ public class ForgetPass extends javax.swing.JFrame {
 
         jPanel1.setLayout(null);
 
-        jTextField6.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        jPanel1.add(jTextField6);
-        jTextField6.setBounds(40, 290, 220, 50);
+        email.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        email.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                emailActionPerformed(evt);
+            }
+        });
+        jPanel1.add(email);
+        email.setBounds(40, 290, 220, 50);
 
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setFont(new java.awt.Font("Times New Roman", 0, 22)); // NOI18N
@@ -63,7 +73,6 @@ public class ForgetPass extends javax.swing.JFrame {
         jPanel3.setBackground(new java.awt.Color(181, 196, 196));
 
         jButton4.setBackground(new java.awt.Color(144, 161, 161));
-        jButton4.setIcon(new javax.swing.ImageIcon("/Users/shahad/Desktop/280Pictures/back.png")); // NOI18N
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
@@ -76,7 +85,7 @@ public class ForgetPass extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addComponent(jButton4)
-                .addGap(0, 24, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -121,12 +130,39 @@ public class ForgetPass extends javax.swing.JFrame {
             ob = new Login();
             ob.setVisible(true);
             this.setVisible(false);
-            
+
         } catch (FileNotFoundException ex) {
             Logger.getLogger(ForgetPass.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void emailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailActionPerformed
+        // TODO add your handling code here:
+
+        Connection connection = null;
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            String ConnectionURL = "jdbc:mysql://localhost:3306/weddinghallreservation";
+            connection = DriverManager.getConnection(ConnectionURL, "root", "1212");
+
+
+            Statement statement = connection.createStatement();
+            String queryID = "Select idOwner from Owner Where Email =" + "'" + email.getText() + "'";
+
+            ResultSet r = statement.executeQuery(queryID);
+            r.next();
+            JOptionPane.showMessageDialog(null, " your ID is " + r.getInt(1));
+
+            connection.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex.toString());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }//GEN-LAST:event_emailActionPerformed
 
     /**
      * @param args the command line arguments
@@ -164,11 +200,11 @@ public class ForgetPass extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField email;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JTextField jTextField6;
     // End of variables declaration//GEN-END:variables
 }

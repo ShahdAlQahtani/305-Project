@@ -17,6 +17,8 @@ public class OwnerPage_Hallinfo extends javax.swing.JFrame {
     public OwnerPage_Hallinfo() {
         initComponents();
         setLocationRelativeTo(null);
+        
+        
     }
 
     /**

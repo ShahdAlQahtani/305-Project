@@ -24,7 +24,7 @@ public class TenantPage_profile extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
 
-        this.d = new FileReader("Users.txt");
+       /* this.d = new FileReader("Users.txt");
         input = new Scanner(d);
 
         while (input.hasNext()) {
@@ -39,7 +39,7 @@ public class TenantPage_profile extends javax.swing.JFrame {
                 email.setText(Login.email);
             }
 
-        }
+        }*/
     }
 
     /**

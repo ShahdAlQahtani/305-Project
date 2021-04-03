@@ -248,7 +248,7 @@ public class OwnerPage_EditHall extends javax.swing.JFrame {
         
         //info.setOwnerName(LoginClass.OwnerName);
         info.setImage(path);
-        info.CreateNewHall(info);
+        info.editHall(info);
     
  
         OwnerPage_HallUpdate ob=new OwnerPage_HallUpdate();
