@@ -5,21 +5,60 @@
  */
 package project_305;
 
-import javax.swing.JFileChooser;
-import java.awt.Image;
 import java.io.*;
+import java.sql.Blob;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 
 public class OwnerPage_EditHall extends javax.swing.JFrame {
 
     /**
      * Creates new form OwnerPage_EditHall
      */
-        String path;
-    public OwnerPage_EditHall() {
+    String path;
+
+    public OwnerPage_EditHall() throws ClassNotFoundException {
         initComponents();
         setLocationRelativeTo(null);
+
+        Connection connection = null;
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            String ConnectionURL = "jdbc:mysql://localhost:3306/weddinghallreservation";
+            PreparedStatement q;
+            connection = DriverManager.getConnection(ConnectionURL, "root", "1212");
+
+            String query = "Select `Hallname` , `hallcapacity` , `hallAddress`, `hallPrice`, `contactNumber`,`image` from `hallinfo` where `idOwner`='" + Login.Id + "' ";
+            Statement stm = connection.createStatement();
+            ResultSet rs = stm.executeQuery(query);
+
+            while (rs.next()) {
+                String hn = rs.getString(1);
+                String hc = rs.getString(2);
+                String ha = rs.getString(3);
+                String hp = rs.getString(4);
+                String cn = rs.getString(5);
+                Blob i = rs.getBlob(6);
+
+                hallName.setText(hn);
+                Capacity.setText(hc);
+                hallAddress.setText(ha);
+                HallPrice.setText(hp);
+                HallContact.setText(hc);
+            
+            }
+
+        } catch (Exception e) {
+            System.err.println("Error");
+        }
     }
 
     /**
@@ -236,51 +275,56 @@ public class OwnerPage_EditHall extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        
-                // TODO add your handling code here:
-         HallInformation info=new HallInformation();
-        
+
+        // TODO add your handling code here:
+        HallInformation info = new HallInformation();
+
         info.setHallName(hallName.getText());
         info.setCapacity(Capacity.getText());;
         info.setHallAddress(hallAddress.getText());
         info.setHallprice(Double.parseDouble(HallPrice.getText()));
         info.setHallcontactNum(HallContact.getText());
-        
+
         //info.setOwnerName(LoginClass.OwnerName);
         info.setImage(path);
         info.editHall(info);
-    
- 
-        OwnerPage_HallUpdate ob=new OwnerPage_HallUpdate();
+
+        OwnerPage_HallUpdate ob = new OwnerPage_HallUpdate();
         ob.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void imagActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imagActionPerformed
         // TODO add your handling code here:
-        JFileChooser fileChos= new JFileChooser();
-            fileChos.showOpenDialog(this);
-            File file = fileChos.getSelectedFile();
-            String path=file.getAbsolutePath();
+
+        JFileChooser fileChos = new JFileChooser();
+        fileChos.showOpenDialog(this);
+        File file = fileChos.getSelectedFile();
+       try{
+            path = file.getAbsolutePath();
+       }catch(NullPointerException n){
+              JOptionPane.showMessageDialog(null, " Please choose a pictture ");
+       }
+       
     }//GEN-LAST:event_imagActionPerformed
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
         // TODO add your handling code here:
-        OwnerPage_Home ob=new OwnerPage_Home();
+        OwnerPage_Home ob = new OwnerPage_Home();
         ob.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jLabel3MouseClicked
 
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
         // TODO add your handling code here:
-        OwnerPage_ViewReq ob=new OwnerPage_ViewReq();
+        OwnerPage_ViewReq ob = new OwnerPage_ViewReq();
         ob.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jLabel5MouseClicked
 
     private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
         // TODO add your handling code here:
-        OwnerPage_Comment ob=new OwnerPage_Comment();
+        OwnerPage_Comment ob = new OwnerPage_Comment();
         ob.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jLabel6MouseClicked
@@ -299,7 +343,7 @@ public class OwnerPage_EditHall extends javax.swing.JFrame {
 
     private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
         // BBAACCCCKKKKKK
-         OwnerPage_Profile ob = null;
+        OwnerPage_Profile ob = null;
         try {
             ob = new OwnerPage_Profile();
         } catch (FileNotFoundException ex) {
@@ -339,7 +383,11 @@ public class OwnerPage_EditHall extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new OwnerPage_EditHall().setVisible(true);
+                try {
+                    new OwnerPage_EditHall().setVisible(true);
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(OwnerPage_EditHall.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

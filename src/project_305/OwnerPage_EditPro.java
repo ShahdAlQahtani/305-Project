@@ -7,6 +7,7 @@ package project_305;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -40,7 +41,7 @@ public class OwnerPage_EditPro extends javax.swing.JFrame {
 
             if (Login.Id.startsWith("12")) {
 
-                String query = "Select `firstname` , `lastname` , `Email`, `PhoneNumber`, `Password`from `owner` where `idOwner`='" + Login.Id + "' ";
+                String query = "Select `firstname` , `lastname` , `Email`, `PhoneNumber`, `Password`  from `owner` where `idOwner` ='" + Login.Id + "' ";
                 Statement stm = connection.createStatement();
                 ResultSet rs = stm.executeQuery(query);
 
@@ -50,14 +51,15 @@ public class OwnerPage_EditPro extends javax.swing.JFrame {
                     String email = rs.getString(3);
                     String phoneNumber = rs.getString(4);
                     String password = rs.getString(5);
-                    String cpassword = rs.getString(6);
+                   
+             
 
                     fName.setText(firstname);
                     lName.setText(lastname);
                     e.setText(email);
                     pN.setText(phoneNumber);
                     pass.setText(password);
-                    cPass.setText(cpassword);
+              
                 }
             }
         } catch (Exception e) {

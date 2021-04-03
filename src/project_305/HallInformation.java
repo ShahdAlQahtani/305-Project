@@ -94,19 +94,18 @@ public class HallInformation {
             
             String ConnectionURL = "jdbc:mysql://localhost:3306/weddinghallreservation";
 
-            // connection = DriverManager.getConnection(ConnectionURL, "root", "Ameera");
             connection = DriverManager.getConnection(ConnectionURL, "root", "1212");
             
             InputStream in = new FileInputStream(new File(info.getImage()));
             
-            PreparedStatement ps = connection.prepareStatement("insert into hallinfo (hallname,hallcapacity,halladdress,hallPrice,contactNumber,image) values(?,?,?,?,?,? )");
+            PreparedStatement ps = connection.prepareStatement("insert into hallinfo (hallname,hallcapacity,halladdress,hallPrice,contactNumber,idOwner,image) values(?,?,?,?,?,?,? )");
             ps.setString(1, info.getHallName());
             ps.setString(2, info.getCapacity());
             ps.setString(3, info.getHallAddress());
             ps.setDouble(4, info.getHallprice());
             ps.setString(5, info.getHallcontactNum());
-            ps.setBlob(6, in);
-            
+            ps.setInt(6, Integer.parseInt(Login.Id));
+            ps.setBlob(7, in); 
             ps.executeUpdate();
             JOptionPane.showMessageDialog(null, "The Hall was Added Successfully ");
             
@@ -125,7 +124,6 @@ public class HallInformation {
             
             String ConnectionURL = "jdbc:mysql://localhost:3306/weddinghallreservation";
 
-            // connection = DriverManager.getConnection(ConnectionURL, "root", "Ameera");
             connection = DriverManager.getConnection(ConnectionURL, "root", "1212");
             
             InputStream in = new FileInputStream(new File(info.getImage()));

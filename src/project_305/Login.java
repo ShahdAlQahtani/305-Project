@@ -213,9 +213,9 @@ public class Login extends javax.swing.JFrame {
             PreparedStatement find;
             PreparedStatement q;
 
-            //  connection = DriverManager.getConnection(ConnectionURL, "root", "Ameera");
+           
             connection = DriverManager.getConnection(ConnectionURL, "root", "1212");
-            //q = connection.prepareStatement("Select `idOwner` from `owner` where `Email`=? AND `Password`=? ");
+        
 
             Id = id.getText();
             System.out.println(checkOwner);

@@ -14,6 +14,7 @@ public class OwnerPage_Hallinfo extends javax.swing.JFrame {
      * Creates new form OwnerPage_Hallinfo
      */
     String path;
+    
     public OwnerPage_Hallinfo() {
         initComponents();
         setLocationRelativeTo(null);

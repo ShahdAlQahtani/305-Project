@@ -48,13 +48,13 @@ public class TenantPage_EditProfile extends javax.swing.JFrame {
                     String email = rs.getString(3);
                     String phoneNumber = rs.getString(4);
                     String password = rs.getString(5);
-                    String cpassword = rs.getString(6);
+              
                     fName.setText(firstname);
                     lName.setText(lastname);
                     e.setText(email);
                     pN.setText(phoneNumber);
                     pass.setText(password);
-                    cPass.setText(cpassword);
+           
                 }
             }
         } catch (Exception e) {
