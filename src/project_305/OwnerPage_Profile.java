@@ -256,7 +256,12 @@ public class OwnerPage_Profile extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        OwnerPage_EditHall ob = new OwnerPage_EditHall();
+        OwnerPage_EditHall ob = null;
+        try {
+            ob = new OwnerPage_EditHall();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(OwnerPage_Profile.class.getName()).log(Level.SEVERE, null, ex);
+        }
         ob.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton4ActionPerformed
