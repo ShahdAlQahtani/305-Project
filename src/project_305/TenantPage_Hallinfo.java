@@ -6,21 +6,55 @@
 package project_305;
 
 import java.io.FileNotFoundException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
-   
-
 public class TenantPage_Hallinfo extends javax.swing.JFrame {
 
-    public static boolean hallInfo=false;
-    public static boolean favCheck=false;
-    
+    public static boolean hallInfo = false;
+    public static boolean favCheck = false;
+
     public TenantPage_Hallinfo() {
         initComponents();
         setLocationRelativeTo(null);
-       // hallInfo=true;
+        // hallInfo=true;
+    }
+
+    public TenantPage_Hallinfo(int HID) {
+        Connection connection = null;
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            String ConnectionURL = "jdbc:mysql://localhost:3306/weddinghallreservation";
+            PreparedStatement q;
+            connection = DriverManager.getConnection(ConnectionURL, "root", "1212");
+
+            String query = "Select * from `hallinfo` where `idHallInfo`='" + TenantPage_Search.HId + "' ";
+            Statement stm = connection.createStatement();
+            ResultSet rs = stm.executeQuery(query);
+
+            while (rs.next()) {
+                String hn = rs.getString(1);
+                String hc = rs.getString(2);
+                String ha = rs.getString(3);
+                String hp = rs.getString(4);
+                String cn = rs.getString(5);
+
+                hallName.setText(hn);
+                Capacity.setText(hc);
+                hallAddress.setText(ha);
+                HallPrice.setText(hp);
+                HallContact.setText(cn);
+            }
+
+        } catch (Exception e) {
+            System.err.println("Error");
+        }
     }
 
     /**
@@ -34,21 +68,33 @@ public class TenantPage_Hallinfo extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        label1 = new java.awt.Label();
+        label2 = new java.awt.Label();
+        label3 = new java.awt.Label();
+        label4 = new java.awt.Label();
+        label5 = new java.awt.Label();
+        hallAddress = new javax.swing.JLabel();
+        HallPrice = new javax.swing.JLabel();
+        Capacity = new javax.swing.JLabel();
+        HallContact = new javax.swing.JLabel();
+        hallName = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        label6 = new java.awt.Label();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setLayout(null);
 
-        jButton1.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(51, 51, 51));
         jButton1.setText("Reserve");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -57,50 +103,7 @@ public class TenantPage_Hallinfo extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton1);
-        jButton1.setBounds(80, 530, 140, 42);
-
-        jPanel2.setBackground(new java.awt.Color(243, 246, 251));
-
-        jButton2.setBackground(new java.awt.Color(255, 255, 255));
-        jButton2.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jButton2.setText("contact");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-
-        jButton3.setBackground(new java.awt.Color(255, 255, 255));
-        jButton3.setIcon(new javax.swing.ImageIcon("/Users/shahad/NetBeansProjects/251project/src/Favvv.jpg")); // NOI18N
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(0, 31, Short.MAX_VALUE)
-                .addComponent(jButton3)
-                .addGap(0, 0, 0)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(10, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(0, 0, 0))
-        );
-
-        jPanel1.add(jPanel2);
-        jPanel2.setBounds(140, 300, 160, 40);
+        jButton1.setBounds(100, 560, 80, 20);
 
         jLabel8.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -142,7 +145,68 @@ public class TenantPage_Hallinfo extends javax.swing.JFrame {
         jPanel1.add(jLabel9);
         jLabel9.setBounds(240, 600, 40, 30);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project_305/TenantPage – 2.png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\shood\\Documents\\NetBeansProjects\\305-Project\\src\\project_305\\قاعة2.jpg")); // NOI18N
+        jPanel1.add(jLabel2);
+        jLabel2.setBounds(70, 180, 160, 160);
+
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setLayout(null);
+
+        label1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        label1.setText("Capacity:");
+        jPanel2.add(label1);
+        label1.setBounds(0, 60, 56, 21);
+
+        label2.setBackground(new java.awt.Color(255, 255, 255));
+        label2.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        label2.setText("Hall Name : ");
+        jPanel2.add(label2);
+        label2.setBounds(0, 0, 65, 21);
+
+        label3.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        label3.setText("Price:");
+        jPanel2.add(label3);
+        label3.setBounds(0, 30, 36, 21);
+
+        label4.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        label4.setName(""); // NOI18N
+        label4.setText("Contact Number:");
+        jPanel2.add(label4);
+        label4.setBounds(0, 90, 101, 21);
+
+        label5.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        label5.setText("Address:");
+        jPanel2.add(label5);
+        label5.setBounds(0, 120, 53, 21);
+        jPanel2.add(hallAddress);
+        hallAddress.setBounds(50, 120, 210, 21);
+        jPanel2.add(HallPrice);
+        HallPrice.setBounds(40, 30, 140, 21);
+        jPanel2.add(Capacity);
+        Capacity.setBounds(60, 60, 170, 22);
+        jPanel2.add(HallContact);
+        HallContact.setBounds(100, 90, 170, 21);
+        jPanel2.add(hallName);
+        hallName.setBounds(75, 1, 180, 20);
+
+        jPanel1.add(jPanel2);
+        jPanel2.setBounds(10, 390, 280, 150);
+
+        jLabel4.setIcon(new javax.swing.ImageIcon("C:\\Users\\shood\\Documents\\NetBeansProjects\\305-Project\\src\\project_305\\قلب.png")); // NOI18N
+        jPanel1.add(jLabel4);
+        jLabel4.setBounds(150, 350, 26, 30);
+
+        jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\shood\\Documents\\NetBeansProjects\\305-Project\\src\\project_305\\message.png")); // NOI18N
+        jPanel1.add(jLabel3);
+        jLabel3.setBounds(110, 350, 30, 30);
+
+        label6.setBackground(new java.awt.Color(178, 197, 196));
+        label6.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        label6.setText("Tha Hall Details");
+        jPanel1.add(label6);
+        label6.setBounds(90, 100, 140, 30);
+
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\shood\\Documents\\NetBeansProjects\\305-Project\\src\\project_305\\page.png")); // NOI18N
         jPanel1.add(jLabel1);
         jLabel1.setBounds(0, 0, 300, 650);
 
@@ -160,33 +224,18 @@ public class TenantPage_Hallinfo extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-        TenantPage_Chat ob = new TenantPage_Chat();
-        ob.setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-        favCheck=true;
-        TenantPage_Favorate ob = new TenantPage_Favorate();
-        ob.setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_jButton3ActionPerformed
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-      //  hallInfo=false;
+        //  hallInfo=false;
         TenantPage_Reservation ob = new TenantPage_Reservation();
         ob.setVisible(true);
         this.setVisible(false);
-        
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
         // BBAACCCCKKKKKK
-         TenantPage_Search ob;
+        TenantPage_Search ob;
         try {
             ob = new TenantPage_Search();
             ob.setVisible(true);
@@ -198,7 +247,7 @@ public class TenantPage_Hallinfo extends javax.swing.JFrame {
 
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
         // TODO add your handling code here:
-        TenantPage_Home ob=new TenantPage_Home();
+        TenantPage_Home ob = new TenantPage_Home();
         ob.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jLabel5MouseClicked
@@ -271,10 +320,16 @@ public class TenantPage_Hallinfo extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Capacity;
+    private javax.swing.JLabel HallContact;
+    private javax.swing.JLabel HallPrice;
+    private javax.swing.JLabel hallAddress;
+    private javax.swing.JLabel hallName;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -282,5 +337,11 @@ public class TenantPage_Hallinfo extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private java.awt.Label label1;
+    private java.awt.Label label2;
+    private java.awt.Label label3;
+    private java.awt.Label label4;
+    private java.awt.Label label5;
+    private java.awt.Label label6;
     // End of variables declaration//GEN-END:variables
 }

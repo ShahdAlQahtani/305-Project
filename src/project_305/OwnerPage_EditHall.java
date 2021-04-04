@@ -52,7 +52,7 @@ public class OwnerPage_EditHall extends javax.swing.JFrame {
                 Capacity.setText(hc);
                 hallAddress.setText(ha);
                 HallPrice.setText(hp);
-                HallContact.setText(hc);
+                HallContact.setText(cn);
             
             }
 
@@ -289,9 +289,7 @@ public class OwnerPage_EditHall extends javax.swing.JFrame {
         info.setImage(path);
         info.editHall(info);
 
-        OwnerPage_HallUpdate ob = new OwnerPage_HallUpdate();
-        ob.setVisible(true);
-        this.setVisible(false);
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void imagActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imagActionPerformed

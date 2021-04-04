@@ -1,12 +1,11 @@
-
 package project_305;
 
-import javax.swing.JFileChooser;
 import java.awt.Image;
 import java.io.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 
 public class OwnerPage_Hallinfo extends javax.swing.JFrame {
 
@@ -14,12 +13,11 @@ public class OwnerPage_Hallinfo extends javax.swing.JFrame {
      * Creates new form OwnerPage_Hallinfo
      */
     String path;
-    
+
     public OwnerPage_Hallinfo() {
         initComponents();
         setLocationRelativeTo(null);
-        
-        
+
     }
 
     /**
@@ -267,30 +265,34 @@ public class OwnerPage_Hallinfo extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-         HallInformation info=new HallInformation();
-        
+        HallInformation info = new HallInformation();
+
         info.setHallName(hallName.getText());
         info.setCapacity(Capacity.getText());;
         info.setHallAddress(hallAddress.getText());
         info.setHallprice(Double.parseDouble(HallPrice.getText()));
         info.setHallcontactNum(HallContact.getText());
-        
+
         //info.setOwnerName(LoginClass.OwnerName);
         info.setImage(path);
         info.CreateNewHall(info);
-    
-        OwnerPage_Home ob=new OwnerPage_Home();
+
+        OwnerPage_Home ob = new OwnerPage_Home();
         ob.setVisible(true);
         this.setVisible(false);
-        
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        JFileChooser fileChos= new JFileChooser();
+        JFileChooser fileChos = new JFileChooser();
         fileChos.showOpenDialog(this);
         File file = fileChos.getSelectedFile();
-        path=file.getAbsolutePath();
+        try {
+            path = file.getAbsolutePath();
+        } catch (NullPointerException n) {
+            JOptionPane.showMessageDialog(null, " Please choose a pictture ");
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
@@ -302,21 +304,21 @@ public class OwnerPage_Hallinfo extends javax.swing.JFrame {
 
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
         // TODO add your handling code here:
-        OwnerPage_Home ob=new OwnerPage_Home();
+        OwnerPage_Home ob = new OwnerPage_Home();
         ob.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jLabel5MouseClicked
 
     private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
         // TODO add your handling code here:
-        OwnerPage_ViewReq ob=new OwnerPage_ViewReq();
+        OwnerPage_ViewReq ob = new OwnerPage_ViewReq();
         ob.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jLabel6MouseClicked
 
     private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
         // TODO add your handling code here:
-        OwnerPage_Comment ob=new OwnerPage_Comment();
+        OwnerPage_Comment ob = new OwnerPage_Comment();
         ob.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jLabel7MouseClicked

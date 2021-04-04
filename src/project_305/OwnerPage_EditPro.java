@@ -351,9 +351,7 @@ public class OwnerPage_EditPro extends javax.swing.JFrame {
                 Logger.getLogger(OwnerPage_EditPro.class.getName()).log(Level.SEVERE, null, ex);
             }
 
-            OwnerPage_ProUpdated ob = new OwnerPage_ProUpdated();
-            ob.setVisible(true);
-            this.setVisible(false);
+
 
         }
 

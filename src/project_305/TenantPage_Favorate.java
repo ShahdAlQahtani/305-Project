@@ -22,11 +22,7 @@ public class TenantPage_Favorate extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         
-        if(TenantPage_Hallinfo.favCheck==true || TenantPage_Search.favCheck1==true){
-            
-            jPanelFav.setVisible(false);
-            NoFav.setVisible(false);
-        }
+
     }
 
     /**

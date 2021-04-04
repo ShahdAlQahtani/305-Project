@@ -140,9 +140,9 @@ public class HallInformation {
             ps.setString(3, info.getHallAddress());
             ps.setDouble(4, info.getHallprice());
             ps.setString(5, info.getHallcontactNum());
-             ps.setString(6, queryidHallInfo);
-            ps.setBlob(6, in);
-            ps.setInt(7, r.getInt(1));
+            ps.setString(6, queryidHallInfo);
+            ps.setBlob(7, in);
+            ps.setInt(8, r.getInt(1));
             ps.executeUpdate();
             JOptionPane.showMessageDialog(null, "The " + info.getHallName() + "is updated Successfully");
             

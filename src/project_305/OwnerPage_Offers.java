@@ -237,9 +237,7 @@ public class OwnerPage_Offers extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        OwnerPage_OfferAdded object = new OwnerPage_OfferAdded();
-        object.setVisible(true);
-        this.setVisible(false);
+    
     }//GEN-LAST:event_jButton3ActionPerformed
 
     public double Offer_offers(double price, int persent) {

@@ -47,7 +47,7 @@ public class ForgetPass extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        email = new javax.swing.JTextField();
         pass = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         invalid = new javax.swing.JLabel();
@@ -58,14 +58,14 @@ public class ForgetPass extends javax.swing.JFrame {
 
         jPanel1.setLayout(null);
 
-        coPass.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        coPass.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
         coPass.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 coPassActionPerformed(evt);
             }
         });
         jPanel1.add(coPass);
-        coPass.setBounds(30, 420, 240, 30);
+        coPass.setBounds(30, 410, 240, 30);
 
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setFont(new java.awt.Font("Times New Roman", 0, 22)); // NOI18N
@@ -122,8 +122,12 @@ public class ForgetPass extends javax.swing.JFrame {
         jLabel4.setText("Confirm password");
         jPanel1.add(jLabel4);
         jLabel4.setBounds(30, 390, 150, 20);
-        jPanel1.add(jTextField1);
-        jTextField1.setBounds(30, 250, 240, 30);
+
+        email.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
+        jPanel1.add(email);
+        email.setBounds(30, 250, 240, 30);
+
+        pass.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
         jPanel1.add(pass);
         pass.setBounds(30, 340, 240, 30);
 
@@ -160,9 +164,8 @@ public class ForgetPass extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         //Submit
-        
-        
-String checkPass = Signup.isValid(pass.getText(), coPass.getText());
+
+    String checkPass = Signup.isValid(pass.getText(), coPass.getText());
         if (checkPass.equals("Wrong match password")) {
             invalid.setText(checkPass);
             invalid.setVisible(true);
@@ -175,14 +178,15 @@ String checkPass = Signup.isValid(pass.getText(), coPass.getText());
             Class.forName("com.mysql.cj.jdbc.Driver");
 
             String ConnectionURL = "jdbc:mysql://localhost:3306/weddinghallreservation";
+        ;
             connection = DriverManager.getConnection(ConnectionURL, "root", "1212");
             PreparedStatement ps = null;
             
              String queryPass;
             if(onwerOrTen.isSelected()){
-                queryPass = "Update Owner set password=?  Where Email =" + "'" + coPass.getText() + "'";
+                queryPass = "Update Owner set password=?  Where Email =" + "'" + email.getText() + "'";
             }else{
-                 queryPass = "Update Tenant set password=? Where Email =" + "'" + coPass.getText() + "'";
+                 queryPass = "Update Tenant set password=? Where Email =" + "'" + email.getText() + "'";
             }
             ps = connection.prepareStatement(queryPass);
             ps.setString(1, pass.getText());
@@ -203,26 +207,6 @@ String checkPass = Signup.isValid(pass.getText(), coPass.getText());
     private void coPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_coPassActionPerformed
         // TODO add your handling code here:
 
-        Connection connection = null;
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-
-            String ConnectionURL = "jdbc:mysql://localhost:3306/weddinghallreservation";
-            connection = DriverManager.getConnection(ConnectionURL, "root", "1212");
-
-            Statement statement = connection.createStatement();
-            String queryID = "Select idOwner from Owner Where Email =" + "'" + coPass.getText() + "'";
-
-            ResultSet r = statement.executeQuery(queryID);
-            r.next();
-            JOptionPane.showMessageDialog(null, " your ID is " + r.getInt(1));
-
-            connection.close();
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, ex.toString());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }//GEN-LAST:event_coPassActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -275,6 +259,7 @@ String checkPass = Signup.isValid(pass.getText(), coPass.getText());
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField coPass;
+    private javax.swing.JTextField email;
     private javax.swing.JLabel invalid;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton4;
@@ -285,7 +270,6 @@ String checkPass = Signup.isValid(pass.getText(), coPass.getText());
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JRadioButton onwerOrTen;
     private javax.swing.JTextField pass;
     // End of variables declaration//GEN-END:variables
