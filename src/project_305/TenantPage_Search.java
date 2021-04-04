@@ -62,7 +62,6 @@ public class TenantPage_Search extends javax.swing.JFrame {
                 hallName1.setText(rs.getString(2));
                 hallPrice1.setText("" + (rs.getDouble(5)));
                 byte[] imagedata = rs.getBytes("image");
-
                 pic1.setIcon(setimage(imagedata));
             }
             if (rs.next()) {
@@ -75,7 +74,6 @@ public class TenantPage_Search extends javax.swing.JFrame {
             }
             if (rs.next()) {
                 HID[2] = rs.getInt(1);
-                System.out.println("777");
                 jPanel9.setVisible(true);
                 hallName3.setText(rs.getString(2));
                 hallPrice3.setText("" + (rs.getDouble(5)));
@@ -251,12 +249,13 @@ public class TenantPage_Search extends javax.swing.JFrame {
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(hallName1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(hallName1, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel10)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(hallPrice1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(111, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -298,7 +297,7 @@ public class TenantPage_Search extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(pic4, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addComponent(jLabel28)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -306,8 +305,8 @@ public class TenantPage_Search extends javax.swing.JFrame {
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addComponent(jLabel31)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(hallName4, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(107, Short.MAX_VALUE))
+                        .addComponent(hallName4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -352,7 +351,7 @@ public class TenantPage_Search extends javax.swing.JFrame {
                     .addGroup(jPanel9Layout.createSequentialGroup()
                         .addComponent(jLabel23)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(hallName3, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(hallName3, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel9Layout.createSequentialGroup()
                         .addComponent(jLabel21)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -402,7 +401,7 @@ public class TenantPage_Search extends javax.swing.JFrame {
                     .addGroup(jPanel10Layout.createSequentialGroup()
                         .addComponent(jLabel16)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(hallName2, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(hallName2, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel10Layout.createSequentialGroup()
                         .addComponent(jLabel14)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -431,12 +430,9 @@ public class TenantPage_Search extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel10, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel9, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+            .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -571,31 +567,27 @@ public class TenantPage_Search extends javax.swing.JFrame {
             PreparedStatement q;
             connection = DriverManager.getConnection(ConnectionURL, "root", "1212");
 
-            String query = "Select * from `hallinfo` where hallname";
+            String query = "Select * from `hallinfo` where hallname='"+SearchText.getText()+"' ";
             Statement stm = connection.createStatement();
             ResultSet rs = stm.executeQuery(query);
-            } catch (Exception e) {
+            
+            if (rs.next()) {
+                jPanel10.setVisible(false);
+                jPanel9.setVisible(false);
+                jPanel7.setVisible(false);
+
+                jPanel4.setVisible(true);
+                HID[0] = rs.getInt(1);
+                hallName1.setText(rs.getString(2));
+                hallPrice1.setText("" + (rs.getDouble(5)));
+                byte[] imagedata = rs.getBytes("image");
+                pic1.setIcon(setimage(imagedata));
+            }else {
+                JOptionPane.showMessageDialog(null, SearchText.getText() + " Hall does not exist");
+            }
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        //        String name = "";
-        //
-        //        while (scan.hasNext()) {
-        //
-        //            name = scan.next();
-        //
-        //            if (name.equals(SearchText.getText())) {
-        //
-        //                hallName.setText("Hall name: " + name);
-        //                addr.setText("Address: " + scan.next().replace("-", " "));
-        //                price.setText("Price: " + scan.nextInt() + " SR");
-        //            }
-        //
-        //        }
-        //        jPanel5.setVisible(true);
-        //        details.setVisible(true);
-        //        Fav.setVisible(true);
-        //        jPanel7.setVisible(true);
-        //        scan.close();
     }//GEN-LAST:event_SearchActionPerformed
 
     private void SearchTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchTextActionPerformed
@@ -603,10 +595,9 @@ public class TenantPage_Search extends javax.swing.JFrame {
     }//GEN-LAST:event_SearchTextActionPerformed
 
     private void jPanel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MouseClicked
-        //&&&&&&&&
-        //    TenantPage_Hallinfo ob = new TenantPage_Hallinfo(HID[3]);
-//        ob.setVisible(true);
-//        this.setVisible(false);
+        TenantPage_Hallinfo ob = new TenantPage_Hallinfo(HID[0]);
+        ob.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_jPanel4MouseClicked
 
     private void SearchTextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SearchTextMouseClicked
