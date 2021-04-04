@@ -68,12 +68,12 @@ public class TenantPage_Hallinfo extends javax.swing.JFrame {
          
 
                 idh.setText("ID: " + id);
-                name.setText(hn);
+              name.setText(hn);
                 Capacity.setText(hc + "");
                 hallAddress.setText(ha);
                 HallPrice.setText(hp + " SR");
                 HallContact.setText(cn);
-                hallPic.setIcon(image);
+                jLabel2.setIcon(image);
 
             }
 
@@ -98,7 +98,7 @@ public class TenantPage_Hallinfo extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        hallPic = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         label1 = new java.awt.Label();
         label3 = new java.awt.Label();
@@ -127,7 +127,7 @@ public class TenantPage_Hallinfo extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton1);
-        jButton1.setBounds(100, 540, 80, 25);
+        jButton1.setBounds(90, 550, 90, 30);
 
         jLabel8.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -168,10 +168,8 @@ public class TenantPage_Hallinfo extends javax.swing.JFrame {
         });
         jPanel1.add(jLabel9);
         jLabel9.setBounds(240, 600, 40, 30);
-
-        hallPic.setIcon(new javax.swing.ImageIcon("C:\\Users\\shood\\Documents\\NetBeansProjects\\305-Project\\src\\project_305\\قاعة2.jpg")); // NOI18N
-        jPanel1.add(hallPic);
-        hallPic.setBounds(70, 180, 160, 160);
+        jPanel1.add(jLabel2);
+        jLabel2.setBounds(70, 180, 160, 160);
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(null);
@@ -179,52 +177,49 @@ public class TenantPage_Hallinfo extends javax.swing.JFrame {
         label1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         label1.setText("Capacity:");
         jPanel2.add(label1);
-        label1.setBounds(0, 40, 56, 21);
+        label1.setBounds(10, 40, 56, 21);
 
         label3.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         label3.setText("Price:");
         jPanel2.add(label3);
-        label3.setBounds(0, 10, 36, 21);
+        label3.setBounds(10, 10, 36, 21);
 
         label4.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         label4.setName(""); // NOI18N
         label4.setText("Contact Number:");
         jPanel2.add(label4);
-        label4.setBounds(0, 70, 101, 21);
+        label4.setBounds(10, 70, 101, 21);
 
         label5.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         label5.setText("Address:");
         jPanel2.add(label5);
-        label5.setBounds(0, 100, 53, 21);
+        label5.setBounds(10, 100, 53, 21);
         jPanel2.add(hallAddress);
-        hallAddress.setBounds(60, 100, 210, 21);
+        hallAddress.setBounds(70, 100, 200, 21);
         jPanel2.add(HallPrice);
-        HallPrice.setBounds(50, 10, 140, 21);
+        HallPrice.setBounds(50, 10, 180, 21);
         jPanel2.add(Capacity);
         Capacity.setBounds(70, 40, 170, 22);
         jPanel2.add(HallContact);
         HallContact.setBounds(110, 70, 170, 21);
 
         jPanel1.add(jPanel2);
-        jPanel2.setBounds(10, 390, 280, 130);
-
-        jLabel4.setIcon(new javax.swing.ImageIcon("C:\\Users\\shood\\Documents\\NetBeansProjects\\305-Project\\src\\project_305\\قلب.png")); // NOI18N
+        jPanel2.setBounds(10, 400, 280, 130);
         jPanel1.add(jLabel4);
-        jLabel4.setBounds(150, 350, 26, 30);
-
-        jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\shood\\Documents\\NetBeansProjects\\305-Project\\src\\project_305\\message.png")); // NOI18N
+        jLabel4.setBounds(150, 350, 0, 30);
         jPanel1.add(jLabel3);
         jLabel3.setBounds(110, 350, 30, 30);
 
         name.setAlignment(java.awt.Label.CENTER);
         name.setBackground(new java.awt.Color(178, 197, 196));
+        name.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         name.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jPanel1.add(name);
-        name.setBounds(20, 60, 80, 30);
+        name.setBounds(90, 84, 120, 26);
 
         idh.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jPanel1.add(idh);
-        idh.setBounds(30, 90, 60, 20);
+        idh.setBounds(120, 120, 60, 20);
 
         jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\shood\\Documents\\NetBeansProjects\\305-Project\\src\\project_305\\page.png")); // NOI18N
         jPanel1.add(jLabel1);
@@ -344,10 +339,10 @@ public class TenantPage_Hallinfo extends javax.swing.JFrame {
     private javax.swing.JLabel HallContact;
     private javax.swing.JLabel HallPrice;
     private javax.swing.JLabel hallAddress;
-    private javax.swing.JLabel hallPic;
     private javax.swing.JLabel idh;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

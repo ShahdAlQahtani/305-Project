@@ -54,7 +54,7 @@
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="100" y="540" width="80" height="-1"/>
+              <AbsoluteConstraints x="90" y="550" width="90" height="30"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -108,12 +108,7 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JLabel" name="hallPic">
-          <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\shood\Documents\NetBeansProjects\305-Project\src\project_305\&#x642;&#x627;&#x639;&#x629;2.jpg"/>
-            </Property>
-          </Properties>
+        <Component class="javax.swing.JLabel" name="jLabel2">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="70" y="180" width="160" height="160"/>
@@ -128,7 +123,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="10" y="390" width="280" height="130"/>
+              <AbsoluteConstraints x="10" y="400" width="280" height="130"/>
             </Constraint>
           </Constraints>
 
@@ -145,7 +140,7 @@
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="0" y="40" width="-1" height="-1"/>
+                  <AbsoluteConstraints x="10" y="40" width="-1" height="-1"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -158,7 +153,7 @@
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="0" y="10" width="-1" height="-1"/>
+                  <AbsoluteConstraints x="10" y="10" width="-1" height="-1"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -172,7 +167,7 @@
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="0" y="70" width="-1" height="-1"/>
+                  <AbsoluteConstraints x="10" y="70" width="-1" height="-1"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -185,21 +180,21 @@
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="0" y="100" width="-1" height="-1"/>
+                  <AbsoluteConstraints x="10" y="100" width="-1" height="-1"/>
                 </Constraint>
               </Constraints>
             </Component>
             <Component class="javax.swing.JLabel" name="hallAddress">
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="60" y="100" width="210" height="21"/>
+                  <AbsoluteConstraints x="70" y="100" width="200" height="21"/>
                 </Constraint>
               </Constraints>
             </Component>
             <Component class="javax.swing.JLabel" name="HallPrice">
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="50" y="10" width="140" height="21"/>
+                  <AbsoluteConstraints x="50" y="10" width="180" height="21"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -220,11 +215,6 @@
           </SubComponents>
         </Container>
         <Component class="javax.swing.JLabel" name="jLabel4">
-          <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\shood\Documents\NetBeansProjects\305-Project\src\project_305\&#x642;&#x644;&#x628;.png"/>
-            </Property>
-          </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="150" y="350" width="-1" height="30"/>
@@ -232,11 +222,6 @@
           </Constraints>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel3">
-          <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\shood\Documents\NetBeansProjects\305-Project\src\project_305\message.png"/>
-            </Property>
-          </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="110" y="350" width="30" height="30"/>
@@ -249,13 +234,16 @@
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="c4" green="c5" red="b2" type="rgb"/>
             </Property>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Default Cursor"/>
+            </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Times New Roman" size="18" style="0"/>
             </Property>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="20" y="60" width="80" height="30"/>
+              <AbsoluteConstraints x="90" y="84" width="120" height="-1"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -267,7 +255,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="30" y="90" width="60" height="20"/>
+              <AbsoluteConstraints x="120" y="120" width="60" height="20"/>
             </Constraint>
           </Constraints>
         </Component>
