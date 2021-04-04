@@ -81,7 +81,6 @@ public class ForgetPass extends javax.swing.JFrame {
         jPanel3.setBackground(new java.awt.Color(181, 196, 196));
 
         jButton4.setBackground(new java.awt.Color(144, 161, 161));
-        jButton4.setIcon(new javax.swing.ImageIcon("C:\\Users\\shood\\Documents\\NetBeansProjects\\305-Project\\src\\project_305\\back.png")); // NOI18N
         jButton4.setBorder(null);
         jButton4.setContentAreaFilled(false);
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -111,12 +110,12 @@ public class ForgetPass extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel2.setText("Enter Your Email");
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(30, 220, 150, 22);
+        jLabel2.setBounds(30, 220, 150, 21);
 
         jLabel3.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel3.setText("Enter new password");
         jPanel1.add(jLabel3);
-        jLabel3.setBounds(30, 310, 180, 22);
+        jLabel3.setBounds(30, 310, 180, 21);
 
         jLabel4.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel4.setText("Confirm password");
@@ -130,7 +129,7 @@ public class ForgetPass extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
         jLabel5.setText("Forget Password");
         jPanel1.add(jLabel5);
-        jLabel5.setBounds(70, 90, 170, 28);
+        jLabel5.setBounds(70, 90, 170, 29);
         jPanel1.add(invalid);
         invalid.setBounds(110, 470, 0, 0);
 
@@ -139,8 +138,6 @@ public class ForgetPass extends javax.swing.JFrame {
         onwerOrTen.setContentAreaFilled(false);
         jPanel1.add(onwerOrTen);
         onwerOrTen.setBounds(30, 460, 79, 30);
-
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\shood\\Documents\\NetBeansProjects\\305-Project\\src\\project_305\\page without home.jpg")); // NOI18N
         jPanel1.add(jLabel1);
         jLabel1.setBounds(0, 0, 300, 650);
 
