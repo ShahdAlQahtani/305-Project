@@ -5,27 +5,41 @@
  */
 package project_305;
 
-import java.io.FileNotFoundException;
+import java.awt.Dimension;
+import java.awt.*;
+import java.util.Scanner;
+import java.io.*;
+import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.*;
 
 public class TenantPage_Hallinfo extends javax.swing.JFrame {
 
+    static int id;
     public static boolean hallInfo = false;
     public static boolean favCheck = false;
 
     public TenantPage_Hallinfo() {
+        this(id);
         initComponents();
         setLocationRelativeTo(null);
+
         // hallInfo=true;
     }
 
     public TenantPage_Hallinfo(int HID) {
+        System.out.println("4444444");
+        id = HID;
+        initComponents();
+        setLocationRelativeTo(null);
+
         Connection connection = null;
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -34,22 +48,33 @@ public class TenantPage_Hallinfo extends javax.swing.JFrame {
             PreparedStatement q;
             connection = DriverManager.getConnection(ConnectionURL, "root", "1212");
 
-            String query = "Select * from `hallinfo` where `idHallInfo`='" + TenantPage_Search.HID + "' ";
+            String query = "Select * from `hallinfo` where `idHallInfo`='" + id + "' ";
             Statement stm = connection.createStatement();
             ResultSet rs = stm.executeQuery(query);
-
             while (rs.next()) {
-                String hn = rs.getString(1);
-                String hc = rs.getString(2);
-                String ha = rs.getString(3);
-                String hp = rs.getString(4);
-                String cn = rs.getString(5);
+                int id = rs.getInt(1);
+                String hn = rs.getString(2);
+                int hc = rs.getInt(3);
+                String ha = rs.getString(4);
+                double hp = rs.getDouble(5);
+                String cn = rs.getString(6);
 
-                hallName.setText(hn);
-                Capacity.setText(hc);
+                byte[] imagedata = rs.getBytes("image");
+                ImageIcon format = null;
+                format = new ImageIcon(imagedata);
+                Image mm = format.getImage();
+                Image img2 = mm.getScaledInstance(110, 133, Image.SCALE_SMOOTH);
+                ImageIcon image = new ImageIcon(img2);
+         
+
+                idh.setText("ID: " + id);
+                name.setText(hn);
+                Capacity.setText(hc + "");
                 hallAddress.setText(ha);
-                HallPrice.setText(hp);
+                HallPrice.setText(hp + " SR");
                 HallContact.setText(cn);
+                hallPic.setIcon(image);
+
             }
 
         } catch (Exception e) {
@@ -73,10 +98,9 @@ public class TenantPage_Hallinfo extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        hallPic = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         label1 = new java.awt.Label();
-        label2 = new java.awt.Label();
         label3 = new java.awt.Label();
         label4 = new java.awt.Label();
         label5 = new java.awt.Label();
@@ -84,10 +108,10 @@ public class TenantPage_Hallinfo extends javax.swing.JFrame {
         HallPrice = new javax.swing.JLabel();
         Capacity = new javax.swing.JLabel();
         HallContact = new javax.swing.JLabel();
-        hallName = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        label6 = new java.awt.Label();
+        name = new java.awt.Label();
+        idh = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -103,7 +127,7 @@ public class TenantPage_Hallinfo extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton1);
-        jButton1.setBounds(100, 560, 80, 20);
+        jButton1.setBounds(100, 540, 80, 25);
 
         jLabel8.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -145,9 +169,9 @@ public class TenantPage_Hallinfo extends javax.swing.JFrame {
         jPanel1.add(jLabel9);
         jLabel9.setBounds(240, 600, 40, 30);
 
-        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\shood\\Documents\\NetBeansProjects\\305-Project\\src\\project_305\\قاعة2.jpg")); // NOI18N
-        jPanel1.add(jLabel2);
-        jLabel2.setBounds(70, 180, 160, 160);
+        hallPic.setIcon(new javax.swing.ImageIcon("C:\\Users\\shood\\Documents\\NetBeansProjects\\305-Project\\src\\project_305\\قاعة2.jpg")); // NOI18N
+        jPanel1.add(hallPic);
+        hallPic.setBounds(70, 180, 160, 160);
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(null);
@@ -155,42 +179,34 @@ public class TenantPage_Hallinfo extends javax.swing.JFrame {
         label1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         label1.setText("Capacity:");
         jPanel2.add(label1);
-        label1.setBounds(0, 60, 56, 21);
-
-        label2.setBackground(new java.awt.Color(255, 255, 255));
-        label2.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        label2.setText("Hall Name : ");
-        jPanel2.add(label2);
-        label2.setBounds(0, 0, 65, 21);
+        label1.setBounds(0, 40, 56, 21);
 
         label3.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         label3.setText("Price:");
         jPanel2.add(label3);
-        label3.setBounds(0, 30, 36, 21);
+        label3.setBounds(0, 10, 36, 21);
 
         label4.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         label4.setName(""); // NOI18N
         label4.setText("Contact Number:");
         jPanel2.add(label4);
-        label4.setBounds(0, 90, 101, 21);
+        label4.setBounds(0, 70, 101, 21);
 
         label5.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         label5.setText("Address:");
         jPanel2.add(label5);
-        label5.setBounds(0, 120, 53, 21);
+        label5.setBounds(0, 100, 53, 21);
         jPanel2.add(hallAddress);
-        hallAddress.setBounds(50, 120, 210, 21);
+        hallAddress.setBounds(60, 100, 210, 21);
         jPanel2.add(HallPrice);
-        HallPrice.setBounds(40, 30, 140, 21);
+        HallPrice.setBounds(50, 10, 140, 21);
         jPanel2.add(Capacity);
-        Capacity.setBounds(60, 60, 170, 22);
+        Capacity.setBounds(70, 40, 170, 22);
         jPanel2.add(HallContact);
-        HallContact.setBounds(100, 90, 170, 21);
-        jPanel2.add(hallName);
-        hallName.setBounds(75, 1, 180, 20);
+        HallContact.setBounds(110, 70, 170, 21);
 
         jPanel1.add(jPanel2);
-        jPanel2.setBounds(10, 390, 280, 150);
+        jPanel2.setBounds(10, 390, 280, 130);
 
         jLabel4.setIcon(new javax.swing.ImageIcon("C:\\Users\\shood\\Documents\\NetBeansProjects\\305-Project\\src\\project_305\\قلب.png")); // NOI18N
         jPanel1.add(jLabel4);
@@ -200,11 +216,15 @@ public class TenantPage_Hallinfo extends javax.swing.JFrame {
         jPanel1.add(jLabel3);
         jLabel3.setBounds(110, 350, 30, 30);
 
-        label6.setBackground(new java.awt.Color(178, 197, 196));
-        label6.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        label6.setText("Tha Hall Details");
-        jPanel1.add(label6);
-        label6.setBounds(90, 100, 140, 30);
+        name.setAlignment(java.awt.Label.CENTER);
+        name.setBackground(new java.awt.Color(178, 197, 196));
+        name.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        jPanel1.add(name);
+        name.setBounds(20, 60, 80, 30);
+
+        idh.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jPanel1.add(idh);
+        idh.setBounds(30, 90, 60, 20);
 
         jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\shood\\Documents\\NetBeansProjects\\305-Project\\src\\project_305\\page.png")); // NOI18N
         jPanel1.add(jLabel1);
@@ -324,10 +344,10 @@ public class TenantPage_Hallinfo extends javax.swing.JFrame {
     private javax.swing.JLabel HallContact;
     private javax.swing.JLabel HallPrice;
     private javax.swing.JLabel hallAddress;
-    private javax.swing.JLabel hallName;
+    private javax.swing.JLabel hallPic;
+    private javax.swing.JLabel idh;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -338,10 +358,10 @@ public class TenantPage_Hallinfo extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private java.awt.Label label1;
-    private java.awt.Label label2;
     private java.awt.Label label3;
     private java.awt.Label label4;
     private java.awt.Label label5;
-    private java.awt.Label label6;
+    private java.awt.Label name;
     // End of variables declaration//GEN-END:variables
+
 }

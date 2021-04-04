@@ -22,26 +22,18 @@ import javax.swing.*;
 
 public class TenantPage_Search extends javax.swing.JFrame {
 
-    JFrame j = this;
-    String m = j.getName();
-
-    static File R = new File("Halls.txt");
-    Scanner scan = new Scanner(R);
-    static boolean favCheck1 = false;
     static int[] HID = new int[4];
 
     public TenantPage_Search() throws FileNotFoundException {
         initComponents();
         setLocationRelativeTo(null);
         Connection connection = null;
-        FileOutputStream out;
-        InputStream in;
 
         jPanel4.setVisible(false);
         jPanel10.setVisible(false);
         jPanel9.setVisible(false);
         jPanel7.setVisible(false);
-        
+
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
 
@@ -53,16 +45,12 @@ public class TenantPage_Search extends javax.swing.JFrame {
             Statement stm = connection.createStatement();
             ResultSet rs = stm.executeQuery(query);
 
-//            File file = new File("star1.png");
-//            out = new FileOutputStream(file);
-
             if (rs.next()) {
                 HID[0] = rs.getInt(1);
                 jPanel4.setVisible(true);
                 hallName1.setText(rs.getString(2));
                 hallPrice1.setText("" + (rs.getDouble(5)));
-                byte[] imagedata = rs.getBytes("image");
-
+                byte[] imagedata = rs.getBytes("image");  
                 pic1.setIcon(setimage(imagedata));
             }
             if (rs.next()) {
@@ -261,7 +249,7 @@ public class TenantPage_Search extends javax.swing.JFrame {
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(14, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(pic1, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
@@ -277,6 +265,11 @@ public class TenantPage_Search extends javax.swing.JFrame {
         );
 
         jPanel7.setBackground(new java.awt.Color(243, 246, 251));
+        jPanel7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel7MouseClicked(evt);
+            }
+        });
 
         pic4.setText("jLabel2");
 
@@ -327,6 +320,11 @@ public class TenantPage_Search extends javax.swing.JFrame {
         );
 
         jPanel9.setBackground(new java.awt.Color(243, 246, 251));
+        jPanel9.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel9MouseClicked(evt);
+            }
+        });
 
         jLabel23.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel23.setText("Hall Name:");
@@ -377,6 +375,11 @@ public class TenantPage_Search extends javax.swing.JFrame {
         );
 
         jPanel10.setBackground(new java.awt.Color(243, 246, 251));
+        jPanel10.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel10MouseClicked(evt);
+            }
+        });
 
         jLabel16.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel16.setText("Hall Name:");
@@ -563,7 +566,7 @@ public class TenantPage_Search extends javax.swing.JFrame {
     private void SearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchActionPerformed
         // TODO add your handling code here:
 
-         Connection connection = null;
+        Connection connection = null;
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
 
@@ -574,7 +577,7 @@ public class TenantPage_Search extends javax.swing.JFrame {
             String query = "Select * from `hallinfo` where hallname";
             Statement stm = connection.createStatement();
             ResultSet rs = stm.executeQuery(query);
-            } catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         //        String name = "";
@@ -604,14 +607,35 @@ public class TenantPage_Search extends javax.swing.JFrame {
 
     private void jPanel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MouseClicked
         //&&&&&&&&
-        //    TenantPage_Hallinfo ob = new TenantPage_Hallinfo(HID[3]);
-//        ob.setVisible(true);
-//        this.setVisible(false);
+        TenantPage_Hallinfo ob = new TenantPage_Hallinfo(HID[0]);
+        ob.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_jPanel4MouseClicked
 
     private void SearchTextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SearchTextMouseClicked
         SearchText.setText("");
     }//GEN-LAST:event_SearchTextMouseClicked
+
+    private void jPanel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel10MouseClicked
+        // TODO add your handling code here:
+        TenantPage_Hallinfo ob = new TenantPage_Hallinfo(HID[1]);
+        ob.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jPanel10MouseClicked
+
+    private void jPanel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel9MouseClicked
+        // TODO add your handling code here:
+        TenantPage_Hallinfo ob = new TenantPage_Hallinfo(HID[2]);
+        ob.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jPanel9MouseClicked
+
+    private void jPanel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel7MouseClicked
+        // TODO add your handling code here:
+        TenantPage_Hallinfo ob = new TenantPage_Hallinfo(HID[3]);
+        ob.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jPanel7MouseClicked
 
     /**
      * @param args the command line arguments
