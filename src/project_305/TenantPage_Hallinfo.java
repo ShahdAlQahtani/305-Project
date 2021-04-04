@@ -34,7 +34,7 @@ public class TenantPage_Hallinfo extends javax.swing.JFrame {
             PreparedStatement q;
             connection = DriverManager.getConnection(ConnectionURL, "root", "1212");
 
-            String query = "Select * from `hallinfo` where `idHallInfo`='" + TenantPage_Search.HId + "' ";
+            String query = "Select * from `hallinfo` where `idHallInfo`='" + TenantPage_Search.HID + "' ";
             Statement stm = connection.createStatement();
             ResultSet rs = stm.executeQuery(query);
 
