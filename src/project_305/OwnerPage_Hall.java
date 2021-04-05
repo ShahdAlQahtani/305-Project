@@ -91,6 +91,7 @@ public class OwnerPage_Hall extends javax.swing.JFrame {
         jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
         jScrollPane1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
+        list.setBackground(new java.awt.Color(243, 246, 251));
         list.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null},
@@ -106,6 +107,9 @@ public class OwnerPage_Hall extends javax.swing.JFrame {
                 "Title 1"
             }
         ));
+        list.setColumnSelectionAllowed(true);
+        list.setFillsViewportHeight(true);
+        list.setFocusCycleRoot(true);
         list.setGridColor(new java.awt.Color(255, 255, 255));
         list.setSelectionForeground(new java.awt.Color(243, 246, 251));
         list.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -177,11 +181,8 @@ public class OwnerPage_Hall extends javax.swing.JFrame {
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-
             String ConnectionURL = "jdbc:mysql://localhost:3306/weddinghallreservation";
-
             connection = DriverManager.getConnection(ConnectionURL, "root", "1212");
-
             String query = "Select `idhallinfo`,`Hallname` , `hallcapacity` , `hallAddress`, `hallPrice`, `contactNumber`,`image` from `hallinfo` where `Hallname`='" + name + "' and `idOwner`='" + Login.Id + "' ";
             Statement stat = connection.createStatement();
             ResultSet rs = stat.executeQuery(query);

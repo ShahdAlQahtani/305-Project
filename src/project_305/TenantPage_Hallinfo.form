@@ -111,7 +111,7 @@
         <Component class="javax.swing.JLabel" name="jLabel2">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="70" y="190" width="160" height="160"/>
+              <AbsoluteConstraints x="60" y="190" width="160" height="160"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -251,9 +251,12 @@
               <Image iconType="3" name="/project_305/message.png"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLabel10MouseClicked"/>
+          </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="110" y="360" width="30" height="30"/>
+              <AbsoluteConstraints x="100" y="350" width="30" height="30"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -268,7 +271,7 @@
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="160" y="360" width="30" height="20"/>
+              <AbsoluteConstraints x="150" y="350" width="30" height="30"/>
             </Constraint>
           </Constraints>
         </Component>

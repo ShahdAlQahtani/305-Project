@@ -36,12 +36,11 @@ public class OwnerPage_EditPro extends javax.swing.JFrame {
             Class.forName("com.mysql.cj.jdbc.Driver");
 
             String ConnectionURL = "jdbc:mysql://localhost:3306/weddinghallreservation";
-            PreparedStatement q;
             connection = DriverManager.getConnection(ConnectionURL, "root", "1212");
 
             if (Login.Id.startsWith("12")) {
 
-                String query = "Select `Hallname` , `HallPrice`  from `favorites` where `idTenant` and `idHallInfo` ='" + Login.Id + "' ";
+                  String query = "Select `firstname` , `lastname` , `Email`, `PhoneNumber`, `Password` from `owner` where `idOwner`='" + Login.Id + "' ";
                 Statement stm = connection.createStatement();
                 ResultSet rs = stm.executeQuery(query);
 
@@ -350,9 +349,6 @@ public class OwnerPage_EditPro extends javax.swing.JFrame {
             } catch (SQLException ex) {
                 Logger.getLogger(OwnerPage_EditPro.class.getName()).log(Level.SEVERE, null, ex);
             }
-
-
-
         }
 
 
