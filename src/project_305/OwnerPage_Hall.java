@@ -22,6 +22,8 @@ public class OwnerPage_Hall extends javax.swing.JFrame {
     /**
      * Creates new form OwnerPage_Hall
      */
+    int id_hall;
+
     public OwnerPage_Hall() {
         initComponents();
         setLocationRelativeTo(null);
@@ -77,6 +79,8 @@ public class OwnerPage_Hall extends javax.swing.JFrame {
         HallPrice = new javax.swing.JLabel();
         HallContact = new javax.swing.JLabel();
         Id = new javax.swing.JLabel();
+        edit = new javax.swing.JButton();
+        delete = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -115,26 +119,44 @@ public class OwnerPage_Hall extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(list);
 
-        panel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 180, 100, 400));
+        panel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 180, 100, 370));
         panel1.add(HallImage, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 130, 130));
 
         hallName.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
-        panel1.add(hallName, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 380, 140, -1));
+        panel1.add(hallName, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 380, 140, 20));
 
         Capacity.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
-        panel1.add(Capacity, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 420, 140, -1));
+        panel1.add(Capacity, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 410, 140, 20));
 
         hallAddress.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
-        panel1.add(hallAddress, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 460, 140, -1));
+        panel1.add(hallAddress, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 440, 140, 20));
 
         HallPrice.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
-        panel1.add(HallPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 500, 140, -1));
+        panel1.add(HallPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 470, 140, 20));
 
         HallContact.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
-        panel1.add(HallContact, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 540, 140, -1));
+        panel1.add(HallContact, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 500, 140, 20));
 
         Id.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
-        panel1.add(Id, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 340, 140, -1));
+        panel1.add(Id, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 350, 140, 20));
+
+        edit.setBackground(new java.awt.Color(255, 255, 255));
+        edit.setText("Edit");
+        edit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editActionPerformed(evt);
+            }
+        });
+        panel1.add(edit, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 540, 70, -1));
+
+        delete.setBackground(new java.awt.Color(255, 255, 255));
+        delete.setText("Delete");
+        delete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteActionPerformed(evt);
+            }
+        });
+        panel1.add(delete, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 540, 70, -1));
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project_305/page.png"))); // NOI18N
@@ -187,12 +209,12 @@ public class OwnerPage_Hall extends javax.swing.JFrame {
             ResultSet rs = stat.executeQuery(query);
 
             while (rs.next()) {
-                Id.setText("ID: " + rs.getString(1));
-
+                id_hall = rs.getInt(1);
+                Id.setText("ID: " + id_hall);
                 hallName.setText("Name: " + rs.getString(2));
                 Capacity.setText("Capacity: " + rs.getInt(3));
                 hallAddress.setText("Address: " + rs.getString(4));
-                HallPrice.setText("price: " + rs.getDouble(5));
+                HallPrice.setText("Price: " + rs.getDouble(5));
                 HallContact.setText("Phone: " + rs.getString(6));
 
                 byte[] imagedata = rs.getBytes("image");
@@ -211,6 +233,42 @@ public class OwnerPage_Hall extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_listMouseClicked
+
+    private void editActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editActionPerformed
+        // TODO add your handling code here:
+        OwnerPage_EditHall ob = null;
+        ob = new OwnerPage_EditHall(id_hall);
+        ob.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_editActionPerformed
+
+    private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
+        // TODO add your handling code here:
+        int index = list.getSelectedRow();
+        String name = list.getValueAt(index, 0).toString();
+        Connection connection = null;
+
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            String ConnectionURL = "jdbc:mysql://localhost:3306/weddinghallreservation";
+
+            connection = DriverManager.getConnection(ConnectionURL, "root", "1212");
+          
+            Statement stat = connection.createStatement();
+           int delete= stat.executeUpdate("delete from hallinfo where Hallname ='" +name + "' ");
+            
+            if(delete==1){
+               JOptionPane.showMessageDialog(null, "The Hall was Deleted Successfully ");  
+            }
+            list();
+            
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex.toString());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_deleteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -253,6 +311,8 @@ public class OwnerPage_Hall extends javax.swing.JFrame {
     private javax.swing.JLabel HallImage;
     private javax.swing.JLabel HallPrice;
     private javax.swing.JLabel Id;
+    private javax.swing.JButton delete;
+    private javax.swing.JButton edit;
     private javax.swing.JLabel hallAddress;
     private javax.swing.JLabel hallName;
     private javax.swing.JLabel jLabel1;

@@ -18,8 +18,6 @@ import javax.swing.JOptionPane;
  */
 public class TenantPage_profile extends javax.swing.JFrame {
 
-    FileReader d;
-    Scanner input;
 
     public TenantPage_profile() throws FileNotFoundException {
         initComponents();
@@ -31,9 +29,9 @@ public class TenantPage_profile extends javax.swing.JFrame {
             String ConnectionURL = "jdbc:mysql://localhost:3306/weddinghallreservation";
 
             connection = DriverManager.getConnection(ConnectionURL, "root", "1212");
-            if (Login.Id.startsWith("12")) {
+            if (Login.Id.startsWith("14")) {
 
-                String query = "Select `firstname` , `lastname`  from `Tenant` where `idTenant` ='" + Login.Id + "' ";
+                String query = "Select `firstname` , `lastname`  from `Tenant` where `idTenant` ='" + Login.Id + "'";
                 Statement stm = connection.createStatement();
                 ResultSet rs = stm.executeQuery(query);
                 while (rs.next()) {
