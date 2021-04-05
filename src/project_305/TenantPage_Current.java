@@ -6,8 +6,16 @@
 package project_305;
 
 import com.sun.glass.ui.Window.Level;
+import java.awt.Image;
 import java.io.FileNotFoundException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.*;
+import java.sql.Statement;
 import java.util.logging.Logger;
+import javax.swing.*;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -21,6 +29,30 @@ public class TenantPage_Current extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         curr = true;
+        list();
+    }
+     public void list() {
+        DefaultTableModel table = new DefaultTableModel();
+        table.addColumn("Hall Name");
+        try {
+            Connection connection = null;
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            String ConnectionURL = "jdbc:mysql://localhost:3306/weddinghallreservation";
+            connection = DriverManager.getConnection(ConnectionURL, "root", "1212");
+            String query = "Select Hallname  from hallinfo,Reservation where Reservation.idTenant ='" + Login.Id + "' and `Hallinfo`.`idHallInfo`=`Reservation`.`idHallinfo` ";
+            Statement stat = connection.createStatement();
+            ResultSet rs = stat.executeQuery(query);
+            while (rs.next()) {
+                table.addRow(new Object[]{
+                    rs.getString(1)
+                });
+            }
+            list.setModel(table);
+        } catch(SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex.toString());
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -33,10 +65,14 @@ public class TenantPage_Current extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        list = new javax.swing.JTable();
+        jTextField1 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        HallImage = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        HallPricee = new javax.swing.JLabel();
+        HallName = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -48,6 +84,39 @@ public class TenantPage_Current extends javax.swing.JFrame {
 
         jPanel1.setLayout(null);
 
+        jScrollPane1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        list.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null}
+            },
+            new String [] {
+                "Title 1"
+            }
+        ));
+        list.setSelectionForeground(new java.awt.Color(243, 246, 251));
+        list.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                listMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(list);
+
+        jPanel1.add(jScrollPane1);
+        jScrollPane1.setBounds(20, 200, 250, 80);
+
+        jTextField1.setBackground(new java.awt.Color(243, 246, 251));
+        jTextField1.setBorder(null);
+        jPanel1.add(jTextField1);
+        jTextField1.setBounds(10, 190, 280, 50);
+
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(51, 51, 51));
@@ -58,51 +127,26 @@ public class TenantPage_Current extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton1);
-        jButton1.setBounds(160, 350, 150, 46);
+        jButton1.setBounds(160, 540, 150, 46);
 
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        HallImage.setText("jLabel1");
+        jPanel1.add(HallImage);
+        HallImage.setBounds(90, 300, 110, 133);
 
-        jButton2.setBackground(new java.awt.Color(255, 255, 255));
-        jButton2.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
-        jButton2.setText("Rating");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 20)); // NOI18N
+        jLabel1.setText("Current Reservation");
+        jPanel1.add(jLabel1);
+        jLabel1.setBounds(70, 90, 170, 30);
 
-        jButton3.setBackground(new java.awt.Color(255, 255, 255));
-        jButton3.setIcon(new javax.swing.ImageIcon("/Users/shahad/Desktop/280Pictures/280Comment.png")); // NOI18N
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
+        HallPricee.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        HallPricee.setText("jLabel1");
+        jPanel1.add(HallPricee);
+        HallPricee.setBounds(90, 490, 100, 17);
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(0, 6, Short.MAX_VALUE)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-
-        jPanel1.add(jPanel2);
-        jPanel2.setBounds(198, 291, 100, 30);
+        HallName.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        HallName.setText("jLabel1");
+        jPanel1.add(HallName);
+        HallName.setBounds(90, 450, 110, 16);
 
         jLabel9.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -144,7 +188,7 @@ public class TenantPage_Current extends javax.swing.JFrame {
         jPanel1.add(jLabel8);
         jLabel8.setBounds(0, 0, 50, 30);
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project_305/TenantPage – 6.png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project_305/doneReserve.jpeg"))); // NOI18N
         jPanel1.add(jLabel2);
         jLabel2.setBounds(0, 0, 300, 650);
 
@@ -171,21 +215,6 @@ public class TenantPage_Current extends javax.swing.JFrame {
         this.setVisible(false);
         curr = false;
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here: RATING
-        TenantPage_Rating ob = new TenantPage_Rating();
-        ob.setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here: EDIITT
-
-        TenantPage_EditRes ob = new TenantPage_EditRes();
-        ob.setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
         // TODO add your handling code here:
@@ -240,6 +269,41 @@ public class TenantPage_Current extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_jLabel8MouseClicked
 
+    private void listMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listMouseClicked
+        // TODO add your handling code here:
+         int index = list.getSelectedRow();
+        String name = list.getValueAt(index, 0).toString();
+        Connection connection = null;
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            String ConnectionURL = "jdbc:mysql://localhost:3306/weddinghallreservation";
+            connection = DriverManager.getConnection(ConnectionURL, "root", "1212");
+            String query = "Select Hallname , HallPrice,image from hallinfo,Reservation where Reservation.idTenant ='" + Login.Id + "'"
+                    + " and hallinfo.idHallInfo=Reservation.idHallInfo and hallinfo.Hallname ='" + name + "'";
+            Statement stat = connection.createStatement();
+            ResultSet rs = stat.executeQuery(query);
+            
+            while (rs.next()) {
+                String Hallname = rs.getString(1);
+                double HallPrice = rs.getDouble(2);
+                
+                HallName.setText(Hallname);
+                HallPricee.setText(HallPrice + "");
+                byte[] imagedata = rs.getBytes("image");
+                ImageIcon format = null;
+                format = new ImageIcon(imagedata);
+                Image mm = format.getImage();
+                Image img2 = mm.getScaledInstance(110, 133, Image.SCALE_SMOOTH);
+                ImageIcon image = new ImageIcon(img2);
+                HallImage.setIcon(image);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex.toString());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_listMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -277,9 +341,11 @@ public class TenantPage_Current extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel HallImage;
+    private javax.swing.JLabel HallName;
+    private javax.swing.JLabel HallPricee;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -287,6 +353,8 @@ public class TenantPage_Current extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTable list;
     // End of variables declaration//GEN-END:variables
 }
