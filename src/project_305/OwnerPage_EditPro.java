@@ -41,7 +41,7 @@ public class OwnerPage_EditPro extends javax.swing.JFrame {
 
             if (Login.Id.startsWith("12")) {
 
-                String query = "Select `firstname` , `lastname` , `Email`, `PhoneNumber`, `Password`  from `owner` where `idOwner` ='" + Login.Id + "' ";
+                String query = "Select `Hallname` , `HallPrice`  from `favorites` where `idTenant` and `idHallInfo` ='" + Login.Id + "' ";
                 Statement stm = connection.createStatement();
                 ResultSet rs = stm.executeQuery(query);
 
@@ -351,9 +351,7 @@ public class OwnerPage_EditPro extends javax.swing.JFrame {
                 Logger.getLogger(OwnerPage_EditPro.class.getName()).log(Level.SEVERE, null, ex);
             }
 
-            OwnerPage_ProUpdated ob = new OwnerPage_ProUpdated();
-            ob.setVisible(true);
-            this.setVisible(false);
+
 
         }
 

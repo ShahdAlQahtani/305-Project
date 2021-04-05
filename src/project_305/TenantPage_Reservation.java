@@ -6,8 +6,16 @@
 package project_305;
 
 import java.io.FileNotFoundException;
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import static project_305.TenantPage_Search.HID;
 
 /**
  *
@@ -33,10 +41,10 @@ public class TenantPage_Reservation extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
-        chairs = new javax.swing.JSpinner();
         jPanel3 = new javax.swing.JPanel();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
         jButton1 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -48,44 +56,29 @@ public class TenantPage_Reservation extends javax.swing.JFrame {
 
         jPanel1.setLayout(null);
 
-        jPanel2.setBackground(new java.awt.Color(243, 246, 251));
-
-        chairs.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(0), Integer.valueOf(0), null, Integer.valueOf(1)));
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(chairs, javax.swing.GroupLayout.DEFAULT_SIZE, 58, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(0, 15, Short.MAX_VALUE)
-                .addComponent(chairs, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-
-        jPanel1.add(jPanel2);
-        jPanel2.setBounds(220, 362, 70, 50);
-
         jPanel3.setBackground(new java.awt.Color(243, 246, 251));
+
+        jDateChooser1.setBackground(new java.awt.Color(243, 246, 251));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 170, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, 249, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 50, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         jPanel1.add(jPanel3);
-        jPanel3.setBounds(120, 290, 170, 50);
+        jPanel3.setBounds(10, 330, 270, 40);
 
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
@@ -98,6 +91,11 @@ public class TenantPage_Reservation extends javax.swing.JFrame {
         });
         jPanel1.add(jButton1);
         jButton1.setBounds(80, 500, 140, 42);
+
+        jLabel2.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        jLabel2.setText("Select Date: ");
+        jPanel1.add(jLabel2);
+        jLabel2.setBounds(20, 290, 100, 21);
 
         jLabel9.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -139,7 +137,7 @@ public class TenantPage_Reservation extends javax.swing.JFrame {
         jPanel1.add(jLabel8);
         jLabel8.setBounds(0, 0, 50, 30);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project_305/TenantPage – 3.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project_305/res1 (2).jpg"))); // NOI18N
         jPanel1.add(jLabel1);
         jLabel1.setBounds(0, 0, 300, 650);
 
@@ -159,11 +157,39 @@ public class TenantPage_Reservation extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // NEXT button
-        
-        TenantPage_Payment ob = new TenantPage_Payment();
-        ob.setVisible(true);
-        this.setVisible(false);
-        
+        Date date = new Date(jDateChooser1.getDate().getTime());
+        Connection connection = null;
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            String ConnectionURL = "jdbc:mysql://localhost:3306/weddinghallreservation";
+            PreparedStatement q;
+            connection = DriverManager.getConnection(ConnectionURL, "root", "1212");
+
+            String query = "Select idReserve from `Reservation` where idHallinfo='" + TenantPage_Hallinfo.id + "' and resDate='" + date + "'";
+            Statement stm = connection.createStatement();
+            ResultSet rs = stm.executeQuery(query);
+            if (rs.next()) {
+                JOptionPane.showMessageDialog(null, " Hall does not exist");
+
+            } else {
+
+                PreparedStatement ps = connection.prepareStatement("insert into reservation (idTenant,idHallinfo,resDate) values(?,?,?)");
+                ps.setInt(1, Integer.parseInt(Login.Id));
+                ps.setInt(2, TenantPage_Hallinfo.id);
+                ps.setDate(3, date);
+                ps.executeUpdate();
+
+                TenantPage_Payment ob = new TenantPage_Payment();
+                ob.setVisible(true);
+                this.setVisible(false);
+             }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+      
+
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -249,16 +275,16 @@ public class TenantPage_Reservation extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JSpinner chairs;
     private javax.swing.JButton jButton1;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     // End of variables declaration//GEN-END:variables
 }
