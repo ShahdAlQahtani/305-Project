@@ -90,13 +90,9 @@ public class OwnerPage_HallUpdate extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         OwnerPage_Profile ob;
-        try {
-            ob = new OwnerPage_Profile();
-            ob.setVisible(true);
-            this.setVisible(false);
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(OwnerPage_HallUpdate.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        ob = new OwnerPage_Profile();
+        ob.setVisible(true);
+        this.setVisible(false);
 
     }//GEN-LAST:event_jButton2ActionPerformed
 

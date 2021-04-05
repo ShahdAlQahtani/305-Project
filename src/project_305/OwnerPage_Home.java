@@ -196,11 +196,7 @@ public class OwnerPage_Home extends javax.swing.JFrame {
     private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
         // TODO add your handling code here:
         OwnerPage_Profile ob = null;
-        try {
-            ob = new OwnerPage_Profile();
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(OwnerPage_Chat.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        ob = new OwnerPage_Profile();
         ob.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jLabel9MouseClicked

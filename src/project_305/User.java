@@ -150,8 +150,10 @@ public class User {
                 JOptionPane.showMessageDialog(null, "The information updated successfully");
             }
 
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex.toString());
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.toString());
+            e.printStackTrace();
         }
     }
 }

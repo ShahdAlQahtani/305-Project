@@ -85,7 +85,7 @@ public class Owner_Logout extends javax.swing.JFrame {
 
     private void YesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_YesActionPerformed
         // TODO add your handling code here:
-        WelcomePage ob = new WelcomePage() ;
+        WelcomePage ob = new WelcomePage();
 
         ob.setVisible(true);
         this.setVisible(false);
@@ -95,11 +95,7 @@ public class Owner_Logout extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         OwnerPage_Profile ob = null;
-        try {
-            ob = new OwnerPage_Profile();
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(OwnerPage_Chat.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        ob = new OwnerPage_Profile();
         ob.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_NoActionPerformed

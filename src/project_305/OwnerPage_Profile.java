@@ -5,39 +5,46 @@
  */
 package project_305;
 
-import java.io.FileNotFoundException;
-import java.io.*;
-import java.sql.SQLException;
+
+
+import java.sql.*;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.Scanner;
+
+import javax.swing.JOptionPane;
 
 public class OwnerPage_Profile extends javax.swing.JFrame {
 
-//    FileReader d;
-//    Scanner input;
-
-    public OwnerPage_Profile() throws FileNotFoundException {
+    public OwnerPage_Profile() {
         initComponents();
         setLocationRelativeTo(null);
-        
-//        this.d = new FileReader("Users.txt");
-//        input = new Scanner(d);
-//
-//        while (input.hasNext()) {
-//
-//            String f = input.next();
-//            String l = input.next();
-//            String e = input.next();
-//            input.next();
-//            
-//            if (Login.firstO.equals(f) && Login.lastO.equals(l) && Login.email.equals(e)) {
-//
-//                Name.setText(Login.firstO + " " + Login.lastO);
-//                Email.setText(Login.email);
-//            }
 
-//        }
+        Connection connection = null;
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            String ConnectionURL = "jdbc:mysql://localhost:3306/weddinghallreservation";
+
+            connection = DriverManager.getConnection(ConnectionURL, "root", "1212");
+            if (Login.Id.startsWith("12")) {
+
+                String query = "Select `firstname` , `lastname`  from `owner` where `idOwner` ='" + Login.Id + "' ";
+                Statement stm = connection.createStatement();
+                ResultSet rs = stm.executeQuery(query);
+                while (rs.next()) {
+
+                    name.setText("Hello " + rs.getString(1) + " " + rs.getString(2));
+                    Id.setText("ID: " + Login.Id);
+
+                }
+            }
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex.toString());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -50,132 +57,22 @@ public class OwnerPage_Profile extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
-        label1 = new java.awt.Label();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jPanel5 = new javax.swing.JPanel();
-        Name = new javax.swing.JLabel();
-        jPanel6 = new javax.swing.JPanel();
-        Email = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         Logout = new javax.swing.JLabel();
+        name = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        Id = new javax.swing.JLabel();
+        label2 = new java.awt.Label();
+        jLabel8 = new javax.swing.JLabel();
+        label3 = new java.awt.Label();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setLayout(null);
-
-        jButton2.setBackground(new java.awt.Color(255, 255, 255));
-        jButton2.setFont(new java.awt.Font("Times New Roman", 0, 13)); // NOI18N
-        jButton2.setText("Edit");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButton2);
-        jButton2.setBounds(190, 302, 70, 29);
-
-        jPanel2.setBackground(new java.awt.Color(243, 246, 251));
-
-        label1.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        label1.setText("Logout");
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(34, Short.MAX_VALUE)
-                .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(20, Short.MAX_VALUE)
-                .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-
-        jPanel1.add(jPanel2);
-        jPanel2.setBounds(170, 540, 90, 50);
-
-        jButton3.setBackground(new java.awt.Color(255, 255, 255));
-        jButton3.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jButton3.setText("View Image");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButton3);
-        jButton3.setBounds(10, 530, 100, 40);
-
-        jButton4.setBackground(new java.awt.Color(255, 255, 255));
-        jButton4.setFont(new java.awt.Font("Times New Roman", 0, 13)); // NOI18N
-        jButton4.setText("Edit");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButton4);
-        jButton4.setBounds(190, 486, 70, 29);
-
-        jPanel5.setBackground(new java.awt.Color(243, 246, 251));
-
-        Name.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(Name, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addComponent(Name, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(11, Short.MAX_VALUE))
-        );
-
-        jPanel1.add(jPanel5);
-        jPanel5.setBounds(84, 180, 200, 60);
-
-        jPanel6.setBackground(new java.awt.Color(255, 255, 255));
-
-        Email.setFont(new java.awt.Font("Times New Roman", 0, 13)); // NOI18N
-        Email.setForeground(new java.awt.Color(102, 102, 102));
-
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(Email, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(Email, javax.swing.GroupLayout.DEFAULT_SIZE, 18, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        jPanel1.add(jPanel6);
-        jPanel6.setBounds(102, 270, 150, 30);
 
         jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -209,15 +106,59 @@ public class OwnerPage_Profile extends javax.swing.JFrame {
         jPanel1.add(jLabel9);
         jLabel9.setBounds(240, 610, 40, 30);
 
+        Logout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project_305/logout.png"))); // NOI18N
         Logout.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 LogoutMouseClicked(evt);
             }
         });
         jPanel1.add(Logout);
-        Logout.setBounds(260, 556, 30, 30);
+        Logout.setBounds(260, 10, 30, 30);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project_305/ownerProfile.png"))); // NOI18N
+        name.setBackground(new java.awt.Color(0, 0, 0));
+        name.setFont(new java.awt.Font("Times New Roman", 0, 19)); // NOI18N
+        name.setText("Hi Ameera");
+        jPanel1.add(name);
+        name.setBounds(70, 300, 180, 40);
+        jPanel1.add(jLabel3);
+        jLabel3.setBounds(100, 180, 100, 100);
+
+        Id.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        Id.setText("ID :1200");
+        Id.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jPanel1.add(Id);
+        Id.setBounds(120, 350, 80, 22);
+
+        label2.setBackground(new java.awt.Color(255, 255, 255));
+        label2.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
+        label2.setText("  My Hall                                     >"); // NOI18N
+        label2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                label2MouseClicked(evt);
+            }
+        });
+        jPanel1.add(label2);
+        label2.setBounds(40, 460, 230, 40);
+
+        jLabel8.setFont(new java.awt.Font("Times New Roman", 0, 30)); // NOI18N
+        jLabel8.setText("Profile");
+        jPanel1.add(jLabel8);
+        jLabel8.setBounds(100, 90, 90, 36);
+
+        label3.setBackground(new java.awt.Color(255, 255, 255));
+        label3.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
+        label3.setText("  Account Information                  >"); // NOI18N
+        label3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                label3MouseClicked(evt);
+            }
+        });
+        jPanel1.add(label3);
+        label3.setBounds(40, 410, 230, 40);
+
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project_305/page.png"))); // NOI18N
+        jLabel1.setText("Account Information          >>"); // NOI18N
         jPanel1.add(jLabel1);
         jLabel1.setBounds(0, 0, 300, 650);
 
@@ -235,54 +176,23 @@ public class OwnerPage_Profile extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-        OwnerPage_EditPro ob = null;
-        try {
-            ob = new OwnerPage_EditPro();
-        } catch (SQLException ex) {
-            Logger.getLogger(OwnerPage_Profile.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        ob.setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-        OwnerPage_HallImage ob = new OwnerPage_HallImage();
-        ob.setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-        OwnerPage_EditHall ob = null;
-        try {
-            ob = new OwnerPage_EditHall();
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(OwnerPage_Profile.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        ob.setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_jButton4ActionPerformed
-
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
         // TODO add your handling code here:
-        OwnerPage_Home ob=new OwnerPage_Home();
+        OwnerPage_Home ob = new OwnerPage_Home();
         ob.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jLabel5MouseClicked
 
     private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
         // TODO add your handling code here:
-        OwnerPage_ViewReq ob=new OwnerPage_ViewReq();
+        OwnerPage_ViewReq ob = new OwnerPage_ViewReq();
         ob.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jLabel6MouseClicked
 
     private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
         // TODO add your handling code here:
-        OwnerPage_Comment ob=new OwnerPage_Comment();
+        OwnerPage_Comment ob = new OwnerPage_Comment();
         ob.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jLabel7MouseClicked
@@ -290,11 +200,7 @@ public class OwnerPage_Profile extends javax.swing.JFrame {
     private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
         // TODO add your handling code here:
         OwnerPage_Profile ob = null;
-        try {
-            ob = new OwnerPage_Profile();
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(OwnerPage_Chat.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        ob = new OwnerPage_Profile();
         ob.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jLabel9MouseClicked
@@ -305,6 +211,25 @@ public class OwnerPage_Profile extends javax.swing.JFrame {
         ob.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_LogoutMouseClicked
+
+    private void label2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label2MouseClicked
+        OwnerPage_Hall ob = null;
+        ob = new OwnerPage_Hall();
+        ob.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_label2MouseClicked
+
+    private void label3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label3MouseClicked
+        // TODO add your handling code here:
+        OwnerPage_EditPro ob = null;
+        try {
+            ob = new OwnerPage_EditPro();
+        } catch (SQLException ex) {
+            Logger.getLogger(OwnerPage_Profile.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        ob.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_label3MouseClicked
 
     /**
      * @param args the command line arguments
@@ -336,31 +261,24 @@ public class OwnerPage_Profile extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                try {
-                    new OwnerPage_Profile().setVisible(true);
-                } catch (FileNotFoundException ex) {
-                    Logger.getLogger(OwnerPage_Profile.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                new OwnerPage_Profile().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel Email;
+    private javax.swing.JLabel Id;
     private javax.swing.JLabel Logout;
-    private javax.swing.JLabel Name;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
-    private java.awt.Label label1;
+    private java.awt.Label label2;
+    private java.awt.Label label3;
+    private javax.swing.JLabel name;
     // End of variables declaration//GEN-END:variables
 }

@@ -90,11 +90,7 @@ public class OwnerPage_ProUpdated extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
          OwnerPage_Profile ob = null;
-        try {
-            ob = new OwnerPage_Profile();
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(OwnerPage_ProUpdated.class.getName()).log(Level.SEVERE, null, ex);
-        }
+         ob = new OwnerPage_Profile();
         ob.setVisible(true);
         this.setVisible(false);
         

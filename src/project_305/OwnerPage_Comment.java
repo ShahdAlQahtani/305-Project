@@ -105,11 +105,7 @@ public class OwnerPage_Comment extends javax.swing.JFrame {
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
         // TODO add your handling code here:
         OwnerPage_Profile ob = null;
-        try {
-            ob = new OwnerPage_Profile();
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(OwnerPage_Chat.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        ob = new OwnerPage_Profile();
         ob.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jLabel5MouseClicked

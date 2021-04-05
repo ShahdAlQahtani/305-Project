@@ -20,22 +20,7 @@ public class TenantPage_ReserveInfo extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         
-        this.d = new FileReader("Users.txt");
-        input = new Scanner(d);
-
-        while (input.hasNext()) {
-
-            String f = input.next();
-            String l = input.next();
-            String e = input.next();
-            input.next();
-            if (Login.first.equals(f) && Login.last.equals(l) && Login.email.equals(e)) {
-
-                Name.setText(Login.first + " " + Login.last);
-                email.setText(Login.email);
-            }
-
-        }
+        
     }
 
     @SuppressWarnings("unchecked")

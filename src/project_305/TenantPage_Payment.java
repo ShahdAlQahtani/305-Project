@@ -21,6 +21,7 @@ public class TenantPage_Payment extends javax.swing.JFrame {
     public TenantPage_Payment() {
         initComponents();
         setLocationRelativeTo(null);
+        panel1.setVisible(false);
     }
 
     /**
@@ -34,19 +35,20 @@ public class TenantPage_Payment extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
-        cv = new javax.swing.JLabel();
-        cn = new javax.swing.JLabel();
-        ex = new javax.swing.JLabel();
-        jPanel5 = new javax.swing.JPanel();
-        Exdate = new javax.swing.JTextField();
-        cvv = new javax.swing.JTextField();
-        jPanel6 = new javax.swing.JPanel();
-        cardNumber1 = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
+        cash = new javax.swing.JRadioButton();
+        cridit = new javax.swing.JRadioButton();
+        panel1 = new java.awt.Panel();
+        cardNumber1 = new javax.swing.JTextField();
+        cn = new javax.swing.JLabel();
+        Exdate = new javax.swing.JTextField();
+        cvv = new javax.swing.JTextField();
+        ex = new javax.swing.JLabel();
+        cv = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -63,65 +65,7 @@ public class TenantPage_Payment extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton1);
-        jButton1.setBounds(80, 500, 140, 42);
-
-        cv.setForeground(new java.awt.Color(255, 0, 0));
-        jPanel1.add(cv);
-        cv.setBounds(170, 470, 110, 20);
-
-        cn.setForeground(new java.awt.Color(255, 0, 0));
-        jPanel1.add(cn);
-        cn.setBounds(30, 360, 130, 20);
-
-        ex.setForeground(new java.awt.Color(255, 0, 0));
-        jPanel1.add(ex);
-        ex.setBounds(20, 470, 110, 20);
-
-        jPanel5.setBackground(new java.awt.Color(243, 246, 251));
-
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addComponent(Exdate, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(cvv, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(34, Short.MAX_VALUE))
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Exdate, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cvv, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, 0))
-        );
-
-        jPanel1.add(jPanel5);
-        jPanel5.setBounds(0, 433, 300, 40);
-
-        jPanel6.setBackground(new java.awt.Color(243, 246, 251));
-
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addContainerGap(14, Short.MAX_VALUE)
-                .addComponent(cardNumber1, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(16, 16, 16))
-        );
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addComponent(cardNumber1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 11, Short.MAX_VALUE))
-        );
-
-        jPanel1.add(jPanel6);
-        jPanel6.setBounds(0, 324, 300, 50);
+        jButton1.setBounds(110, 540, 80, 30);
 
         jLabel9.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -163,7 +107,98 @@ public class TenantPage_Payment extends javax.swing.JFrame {
         jPanel1.add(jLabel8);
         jLabel8.setBounds(0, 0, 50, 30);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project_305/TenantPage – 4.png"))); // NOI18N
+        cash.setFont(new java.awt.Font("Times New Roman", 0, 15)); // NOI18N
+        cash.setText("Cash");
+        jPanel1.add(cash);
+        cash.setBounds(20, 250, 107, 25);
+
+        cridit.setFont(new java.awt.Font("Times New Roman", 0, 15)); // NOI18N
+        cridit.setText("Cridit Card");
+        cridit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                criditActionPerformed(evt);
+            }
+        });
+        jPanel1.add(cridit);
+        cridit.setBounds(20, 290, 107, 25);
+
+        panel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        cardNumber1.setText("Card Number");
+        cardNumber1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cardNumber1MouseClicked(evt);
+            }
+        });
+
+        cn.setForeground(new java.awt.Color(255, 0, 0));
+
+        Exdate.setText("ExDate");
+        Exdate.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ExdateMouseClicked(evt);
+            }
+        });
+
+        cvv.setText("CVV");
+        cvv.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cvvMouseClicked(evt);
+            }
+        });
+
+        ex.setForeground(new java.awt.Color(255, 0, 0));
+
+        cv.setForeground(new java.awt.Color(255, 0, 0));
+
+        javax.swing.GroupLayout panel1Layout = new javax.swing.GroupLayout(panel1);
+        panel1.setLayout(panel1Layout);
+        panel1Layout.setHorizontalGroup(
+            panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panel1Layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addComponent(cn, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(cardNumber1, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panel1Layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(cv, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(ex, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(panel1Layout.createSequentialGroup()
+                                .addComponent(cvv, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(Exdate, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(130, 130, 130))
+        );
+        panel1Layout.setVerticalGroup(
+            panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(cardNumber1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cn, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cvv, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Exdate, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(cv, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ex, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
+        jPanel1.add(panel1);
+        panel1.setBounds(10, 357, 280, 140);
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project_305/res2.jpg"))); // NOI18N
         jPanel1.add(jLabel1);
         jLabel1.setBounds(0, 0, 300, 650);
 
@@ -188,13 +223,9 @@ public class TenantPage_Payment extends javax.swing.JFrame {
         String CVV = cvv.getText();
         String Ex = Exdate.getText();
         
-        boolean labelD1 = true;
-        boolean labelD2 = true;
-        boolean labelD3 = true;
         
-        boolean check1 = false;
-        boolean check2 = false;
-        boolean check3 = false;
+        
+        
 
          boolean labelEmpty1 = false;
         boolean labelEmpty2 = false;
@@ -345,6 +376,26 @@ public class TenantPage_Payment extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_jLabel8MouseClicked
 
+    private void criditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_criditActionPerformed
+        // TODO add your handling code here:
+        panel1.setVisible(true);
+    }//GEN-LAST:event_criditActionPerformed
+
+    private void cardNumber1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cardNumber1MouseClicked
+        // TODO add your handling code here:
+        cardNumber1.setText("");
+    }//GEN-LAST:event_cardNumber1MouseClicked
+
+    private void cvvMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cvvMouseClicked
+        // TODO add your handling code here:
+        cvv.setText("");
+    }//GEN-LAST:event_cvvMouseClicked
+
+    private void ExdateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ExdateMouseClicked
+        // TODO add your handling code here:
+        Exdate.setText("");
+    }//GEN-LAST:event_ExdateMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -384,7 +435,9 @@ public class TenantPage_Payment extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField Exdate;
     private javax.swing.JTextField cardNumber1;
+    private javax.swing.JRadioButton cash;
     private javax.swing.JLabel cn;
+    private javax.swing.JRadioButton cridit;
     private javax.swing.JLabel cv;
     private javax.swing.JTextField cvv;
     private javax.swing.JLabel ex;
@@ -396,7 +449,6 @@ public class TenantPage_Payment extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
+    private java.awt.Panel panel1;
     // End of variables declaration//GEN-END:variables
 }
