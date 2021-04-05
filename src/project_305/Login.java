@@ -115,7 +115,7 @@ public class Login extends javax.swing.JFrame {
             }
         });
         jPanel1.add(check);
-        check.setBounds(40, 380, 141, 29);
+        check.setBounds(40, 380, 129, 23);
 
         label1.setBackground(new java.awt.Color(243, 246, 251));
         label1.setFont(new java.awt.Font("Lucida Grande", 0, 12)); // NOI18N
@@ -138,19 +138,19 @@ public class Login extends javax.swing.JFrame {
             }
         });
         jPanel1.add(Login);
-        Login.setBounds(90, 520, 127, 35);
+        Login.setBounds(90, 520, 127, 34);
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel2.setText("Password:");
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(20, 300, 80, 22);
+        jLabel2.setBounds(20, 300, 80, 21);
 
         jLabel3.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel3.setText("ID:");
         jPanel1.add(jLabel3);
-        jLabel3.setBounds(20, 220, 30, 22);
+        jLabel3.setBounds(20, 220, 30, 21);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\shood\\Documents\\NetBeansProjects\\305-Project\\src\\project_305\\login.jpg")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project_305/login.jpg"))); // NOI18N
         jPanel1.add(jLabel1);
         jLabel1.setBounds(0, 0, 300, 650);
 

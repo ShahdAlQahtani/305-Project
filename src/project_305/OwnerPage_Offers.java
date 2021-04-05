@@ -6,9 +6,15 @@
 package project_305;
 
 import java.io.FileNotFoundException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.*;
+import javax.swing.JOptionPane;
 /**
  *
  * @author shahad
@@ -18,11 +24,39 @@ public class OwnerPage_Offers extends javax.swing.JFrame {
     public static double Amount;
     public double discont;
     public double finalPrice;
-
-    public OwnerPage_Offers() {
+    double Originalprice;
+ 
+    public OwnerPage_Offers() throws SQLException {
         initComponents();
         setLocationRelativeTo(null);
+        
+        Connection connection=null;
+        try {
+            
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            String ConnectionURL = "jdbc:mysql://localhost:3306/weddinghallreservation";
+
+            connection = DriverManager.getConnection(ConnectionURL, "root", "1212");
+            Statement statement = connection.createStatement();
+
+            String query = "select `Hallname` from hallinfo where `idOwner`='" + Login.Id + "'";
+            ResultSet rs = statement.executeQuery(query);
+            
+            while (rs.next()) {
+                String hall = rs.getString(1); 
+                hallName.addItem(hall);
+                System.out.println(hall);
+            }
+            
+             connection.close();
+
+            } catch (SQLException ex) {
+            Logger.getLogger(OwnerPage_Offers.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(OwnerPage_Offers.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -33,25 +67,30 @@ public class OwnerPage_Offers extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jTextField1 = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         compute = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        Apply = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
         Oprice = new javax.swing.JLabel();
         dis = new javax.swing.JLabel();
         FPrice = new javax.swing.JLabel();
+        Oprice1 = new javax.swing.JLabel();
+        Oprice2 = new javax.swing.JLabel();
+        Oprice3 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
+        jLabel11 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<String>();
         amount = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        hallName = new javax.swing.JComboBox<>();
         jLabel10 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+
+        jTextField1.setText("jTextField1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -66,24 +105,70 @@ public class OwnerPage_Offers extends javax.swing.JFrame {
             }
         });
         jPanel1.add(compute);
-        compute.setBounds(180, 320, 100, 40);
+        compute.setBounds(190, 310, 100, 40);
 
-        jButton3.setBackground(new java.awt.Color(255, 255, 255));
-        jButton3.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jButton3.setText("Apply");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        Apply.setBackground(new java.awt.Color(255, 255, 255));
+        Apply.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        Apply.setText("Apply");
+        Apply.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                ApplyActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton3);
-        jButton3.setBounds(170, 520, 100, 40);
-        jPanel1.add(Oprice);
-        Oprice.setBounds(160, 386, 100, 20);
-        jPanel1.add(dis);
-        dis.setBounds(120, 420, 100, 20);
-        jPanel1.add(FPrice);
-        FPrice.setBounds(130, 446, 120, 30);
+        jPanel1.add(Apply);
+        Apply.setBounds(190, 530, 100, 40);
+
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+
+        Oprice1.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
+        Oprice1.setForeground(new java.awt.Color(51, 51, 51));
+        Oprice1.setText("Original price:");
+
+        Oprice2.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
+        Oprice2.setForeground(new java.awt.Color(51, 51, 51));
+        Oprice2.setText("Discount:");
+
+        Oprice3.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
+        Oprice3.setForeground(new java.awt.Color(51, 51, 51));
+        Oprice3.setText("Final price:");
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Oprice1, javax.swing.GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE)
+                    .addComponent(Oprice2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Oprice3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(dis, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE)
+                    .addComponent(Oprice, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(FPrice, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(10, 10, 10))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Oprice, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Oprice1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(Oprice2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(dis, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(FPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Oprice3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+
+        jPanel1.add(jPanel3);
+        jPanel3.setBounds(30, 380, 240, 120);
 
         jLabel8.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -125,13 +210,17 @@ public class OwnerPage_Offers extends javax.swing.JFrame {
         jPanel1.add(jLabel9);
         jLabel9.setBounds(240, 610, 40, 30);
 
-        jPanel2.setBackground(new java.awt.Color(243, 246, 251));
+        jLabel11.setFont(new java.awt.Font("Times New Roman", 0, 30)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel11.setText("Offers");
+        jPanel1.add(jLabel11);
+        jLabel11.setBounds(110, 90, 110, 40);
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel2.setText("Select the hall");
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Hall", "Alqasr", "Larina" }));
+        jLabel2.setText("Hall name:");
+        jPanel1.add(jLabel2);
+        jLabel2.setBounds(20, 220, 80, 20);
 
         amount.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
         amount.setForeground(new java.awt.Color(51, 51, 51));
@@ -141,63 +230,26 @@ public class OwnerPage_Offers extends javax.swing.JFrame {
                 amountMouseClicked(evt);
             }
         });
+        jPanel1.add(amount);
+        amount.setBounds(140, 260, 96, 29);
 
-        jLabel3.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel3.setText("Offer period");
-
-        jLabel4.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel4.setText("Select the amount");
+        hallName.setFont(new java.awt.Font("Times New Roman", 0, 13)); // NOI18N
+        hallName.setToolTipText("hall");
+        hallName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                hallNameActionPerformed(evt);
+            }
+        });
+        jPanel1.add(hallName);
+        hallName.setBounds(100, 220, 140, 27);
 
         jLabel10.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel10.setText("To");
+        jLabel10.setText("Select the amount");
+        jPanel1.add(jLabel10);
+        jLabel10.setBounds(10, 270, 118, 20);
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(amount)
-                            .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap(85, Short.MAX_VALUE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(94, 94, 94)
-                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(21, 21, 21)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel10))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(amount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 10, Short.MAX_VALUE))
-        );
-
-        jPanel1.add(jPanel2);
-        jPanel2.setBounds(0, 180, 300, 140);
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project_305/OwnerPage – 6.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project_305/page.png"))); // NOI18N
         jPanel1.add(jLabel1);
         jLabel1.setBounds(0, 0, 300, 650);
 
@@ -217,37 +269,72 @@ public class OwnerPage_Offers extends javax.swing.JFrame {
 
     private void computeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_computeActionPerformed
         // TODO add your handling code here:
-        int persent = 0;
-        double price = 0;
-        int i;
+    
+        Connection connection=null;
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            String ConnectionURL = "jdbc:mysql://localhost:3306/weddinghallreservation";
 
-        Amount = Integer.parseInt(amount.getText());
+            connection = DriverManager.getConnection(ConnectionURL, "root", "1212");
+            Statement statement = connection.createStatement();
 
-        price = 20000;
-        persent = (int) Amount;
-        discont = price * persent / 100.0;
-        finalPrice = price - discont;
+            String query2 = "select `HallPrice` from hallinfo where `idOwner`='" + Login.Id + "' AND `Hallname` ='" + hallName.getSelectedItem() + "'";
+            ResultSet rs = statement.executeQuery(query2);
+            
+            Originalprice = 0;
+            while (rs.next()) {
+                Originalprice = rs.getDouble("HallPrice");            
+                Oprice.setText(Originalprice + "");
+            }
+            
+            Amount = Integer.parseInt(amount.getText());
+            int persent = (int) Amount;
+            discont =  Originalprice * persent / 100.0;
+            finalPrice = Originalprice - discont;
 
-        Oprice.setText(price + "");
-        dis.setText(discont + " ");
-        FPrice.setText(finalPrice + " ");
+            dis.setText(discont + " ");
+            FPrice.setText(finalPrice + " ");
+
+       
+        } catch (SQLException ex) {
+            Logger.getLogger(OwnerPage_Offers.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(OwnerPage_Offers.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
 
     }//GEN-LAST:event_computeActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+    private void ApplyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ApplyActionPerformed
+        
+        
+        Connection connection=null;
+        try {
+            
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            String ConnectionURL = "jdbc:mysql://localhost:3306/weddinghallreservation";
+
+            connection = DriverManager.getConnection(ConnectionURL, "root", "1212");
+
+            PreparedStatement ps = connection.prepareStatement("update hallinfo set Hallprice=? where `Hallname` ='" + hallName.getSelectedItem() + "'");
+            //String query1 = "Update hallinfo set hallPrice=? values (" + FPrice.getText() + ")";
+            ps.setDouble(1, finalPrice);
+            ps.executeUpdate();
+            
+            
+            JOptionPane.showMessageDialog(null, "The " + hallName.getSelectedItem() + " price is updated Successfully");
+            connection.close();
+       
+        } catch (SQLException ex) {
+            Logger.getLogger(OwnerPage_Offers.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(OwnerPage_Offers.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+       
+    }//GEN-LAST:event_ApplyActionPerformed
+
     
-    }//GEN-LAST:event_jButton3ActionPerformed
-
-    public double Offer_offers(double price, int persent) {
-        double discont, finalPrice;
-
-        discont = price * persent / 100.0;
-        finalPrice = price - discont;
-
-        return discont;
-    }
     private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
         // BBAACCCCKKKKKK
         OwnerPage_Home ob = new OwnerPage_Home();
@@ -257,21 +344,21 @@ public class OwnerPage_Offers extends javax.swing.JFrame {
 
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
         // TODO add your handling code here:
-        OwnerPage_Home ob=new OwnerPage_Home();
+        OwnerPage_Home ob = new OwnerPage_Home();
         ob.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jLabel5MouseClicked
 
     private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
         // TODO add your handling code here:
-        OwnerPage_ViewReq ob=new OwnerPage_ViewReq();
+        OwnerPage_ViewReq ob = new OwnerPage_ViewReq();
         ob.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jLabel6MouseClicked
 
     private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
         // TODO add your handling code here:
-        OwnerPage_Comment ob=new OwnerPage_Comment();
+        OwnerPage_Comment ob = new OwnerPage_Comment();
         ob.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jLabel7MouseClicked
@@ -288,6 +375,11 @@ public class OwnerPage_Offers extends javax.swing.JFrame {
         // TODO add your handling code here:
         amount.setText("");
     }//GEN-LAST:event_amountMouseClicked
+
+    private void hallNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hallNameActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_hallNameActionPerformed
 
     /**
      * @param args the command line arguments
@@ -319,30 +411,37 @@ public class OwnerPage_Offers extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new OwnerPage_Offers().setVisible(true);
+                try {
+                    new OwnerPage_Offers().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(OwnerPage_Offers.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Apply;
     private javax.swing.JLabel FPrice;
     private javax.swing.JLabel Oprice;
+    private javax.swing.JLabel Oprice1;
+    private javax.swing.JLabel Oprice2;
+    private javax.swing.JLabel Oprice3;
     private javax.swing.JTextField amount;
     private javax.swing.JButton compute;
     private javax.swing.JLabel dis;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> hallName;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }

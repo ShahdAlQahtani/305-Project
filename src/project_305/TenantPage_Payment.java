@@ -23,6 +23,7 @@ public class TenantPage_Payment extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         panel1.setVisible(false);
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -56,7 +57,7 @@ public class TenantPage_Payment extends javax.swing.JFrame {
         jPanel1.setLayout(null);
 
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
-        jButton1.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Times New Roman", 0, 20)); // NOI18N
         jButton1.setForeground(new java.awt.Color(51, 51, 51));
         jButton1.setText("Next");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -65,7 +66,7 @@ public class TenantPage_Payment extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton1);
-        jButton1.setBounds(110, 540, 80, 30);
+        jButton1.setBounds(90, 520, 90, 30);
 
         jLabel9.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -109,6 +110,11 @@ public class TenantPage_Payment extends javax.swing.JFrame {
 
         cash.setFont(new java.awt.Font("Times New Roman", 0, 15)); // NOI18N
         cash.setText("Cash");
+        cash.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cashActionPerformed(evt);
+            }
+        });
         jPanel1.add(cash);
         cash.setBounds(20, 250, 107, 25);
 
@@ -122,6 +128,7 @@ public class TenantPage_Payment extends javax.swing.JFrame {
         jPanel1.add(cridit);
         cridit.setBounds(20, 290, 107, 25);
 
+        panel1.setBackground(new java.awt.Color(243, 246, 251));
         panel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         cardNumber1.setText("Card Number");
@@ -219,15 +226,12 @@ public class TenantPage_Payment extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
 
+        if(cridit.isSelected()){
         String cardNum = cardNumber1.getText();
         String CVV = cvv.getText();
         String Ex = Exdate.getText();
-        
-        
-        
-        
 
-         boolean labelEmpty1 = false;
+        boolean labelEmpty1 = false;
         boolean labelEmpty2 = false;
         boolean labelEmpty3 = false;
 
@@ -253,8 +257,23 @@ public class TenantPage_Payment extends javax.swing.JFrame {
         if (labelEmpty1 == true || labelEmpty2 == true || labelEmpty3 == true) {
 
         } else {
+            //if (cridit.isSelected())
+                TenantPage_Reservation.res.setPayment(cardNum);
+//            else
+//                TenantPage_Reservation.res.setPayment(0);
+//            TenantPage_ReserveInfo object = null;
+//            try {
+//                object = new TenantPage_ReserveInfo();
+//            } catch (FileNotFoundException ex) {
+//                Logger.getLogger(TenantPage_Payment.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//            object.setVisible(true);
+//            this.setVisible(false);
 
-            TenantPage_ReserveInfo object = null;
+        }}else{
+         TenantPage_Reservation.res.setPayment("0");   
+        }
+        TenantPage_ReserveInfo object = null;
             try {
                 object = new TenantPage_ReserveInfo();
             } catch (FileNotFoundException ex) {
@@ -262,8 +281,6 @@ public class TenantPage_Payment extends javax.swing.JFrame {
             }
             object.setVisible(true);
             this.setVisible(false);
-
-        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     public String checkCVV(String CVV) {
@@ -378,6 +395,7 @@ public class TenantPage_Payment extends javax.swing.JFrame {
 
     private void criditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_criditActionPerformed
         // TODO add your handling code here:
+        cash.setSelected(false);
         panel1.setVisible(true);
     }//GEN-LAST:event_criditActionPerformed
 
@@ -395,6 +413,12 @@ public class TenantPage_Payment extends javax.swing.JFrame {
         // TODO add your handling code here:
         Exdate.setText("");
     }//GEN-LAST:event_ExdateMouseClicked
+
+    private void cashActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cashActionPerformed
+        // TODO add your handling code here:
+        cridit.setSelected(false);
+        panel1.setVisible(false);
+    }//GEN-LAST:event_cashActionPerformed
 
     /**
      * @param args the command line arguments

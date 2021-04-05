@@ -167,10 +167,8 @@ public class TenantPage_Hallinfo extends javax.swing.JFrame {
         });
         jPanel1.add(jLabel9);
         jLabel9.setBounds(240, 600, 40, 30);
-
-        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\shood\\Documents\\NetBeansProjects\\305-Project\\src\\project_305\\قاعة2.jpg")); // NOI18N
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(70, 190, 160, 160);
+        jLabel2.setBounds(60, 190, 160, 160);
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(null);
@@ -218,20 +216,25 @@ public class TenantPage_Hallinfo extends javax.swing.JFrame {
         jPanel1.add(idh);
         idh.setBounds(120, 120, 60, 20);
 
-        jLabel10.setIcon(new javax.swing.ImageIcon("C:\\Users\\shood\\Documents\\NetBeansProjects\\305-Project\\src\\project_305\\message.png")); // NOI18N
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project_305/message.png"))); // NOI18N
+        jLabel10.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel10MouseClicked(evt);
+            }
+        });
         jPanel1.add(jLabel10);
-        jLabel10.setBounds(110, 360, 30, 30);
+        jLabel10.setBounds(100, 350, 30, 30);
 
-        jLabel11.setIcon(new javax.swing.ImageIcon("C:\\Users\\shood\\Documents\\NetBeansProjects\\305-Project\\src\\project_305\\قلب.png")); // NOI18N
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project_305/قلب.png"))); // NOI18N
         jLabel11.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel11MouseClicked(evt);
             }
         });
         jPanel1.add(jLabel11);
-        jLabel11.setBounds(160, 360, 30, 26);
+        jLabel11.setBounds(150, 350, 30, 30);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\shood\\Documents\\NetBeansProjects\\305-Project\\src\\project_305\\page.png")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project_305/tenant.jpeg"))); // NOI18N
         jPanel1.add(jLabel1);
         jLabel1.setBounds(0, 0, 300, 650);
 
@@ -318,16 +321,36 @@ public class TenantPage_Hallinfo extends javax.swing.JFrame {
             PreparedStatement q;
             connection = DriverManager.getConnection(ConnectionURL, "root", "1212");
 
-            String query = "insert into favorites (idTenant,idHallinfo) values (" + Login.Id + "," + id + ")";
+            String query = "select * from favorites where favorites.idTenant ='" + Login.Id + "' and favorites.idHallInfo='" + id + "'";
             Statement stm = connection.createStatement();
-            stm.executeUpdate(query);
-            TenantPage_Favorate ob = new TenantPage_Favorate();
-            ob.setVisible(true);
-            this.setVisible(false);
+            ResultSet rs = stm.executeQuery(query);
+            if (rs.next()) {
+                JOptionPane.showMessageDialog(null, " This Hall is already in your favorites !!");
+                TenantPage_Favorate ob = new TenantPage_Favorate();
+                ob.setVisible(true);
+                this.setVisible(false);
+            } else {
+                String query2 = "insert into favorites (idTenant,idHallinfo) values (" + Login.Id + "," + id + ")";
+                Statement stm2 = connection.createStatement();
+                stm2.executeUpdate(query2);
+                TenantPage_Favorate ob = new TenantPage_Favorate();
+                ob.setVisible(true);
+                this.setVisible(false);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+
     }//GEN-LAST:event_jLabel11MouseClicked
+
+    private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
+        // TODO add your handling code here:
+         TenantPage_Chat ob = new TenantPage_Chat();
+        ob.setVisible(true);
+        this.setVisible(false);
+        
+    }//GEN-LAST:event_jLabel10MouseClicked
 
     /**
      * @param args the command line arguments

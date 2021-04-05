@@ -5,14 +5,18 @@
  */
 package project_305;
 
+import java.awt.Image;
 import java.io.FileNotFoundException;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -20,32 +24,46 @@ import java.util.logging.Logger;
  */
 public class TenantPage_Favorate extends javax.swing.JFrame {
 
+    static String name;
+    static int idH;
+
     /**
      * Creates new form TenantPage_Favorate
      */
     public TenantPage_Favorate() {
         initComponents();
         setLocationRelativeTo(null);
-        Connection connection = null;
+        list();
+    }
+
+    public void list() {
+        DefaultTableModel table = new DefaultTableModel();
+        table.addColumn("Hall Name");
+
         try {
+            Connection connection = null;
+
             Class.forName("com.mysql.cj.jdbc.Driver");
             String ConnectionURL = "jdbc:mysql://localhost:3306/weddinghallreservation";
-            PreparedStatement q;
             connection = DriverManager.getConnection(ConnectionURL, "root", "1212");
-            String query = "Select `Hallname` , `HallPrice`  from `hallinfo`,`favorites` where `favorites`.`idTenant` ='" + Login.Id + "' and `favorites`.`idHallInfo` ='" + TenantPage_Hallinfo.id + "' and `hallinfo`.`idHallInfo`=`favorites`.`idHallInfo` ";  
-            Statement stm = connection.createStatement();
-            ResultSet rs = stm.executeQuery(query);
+            String query = "Select `Hallname` from `hallinfo`,`favorites` where `favorites`.`idTenant` ='" + Login.Id + "' and `hallinfo`.`idHallInfo`=`favorites`.`idHallInfo` ";
+            Statement stat = connection.createStatement();
+            ResultSet rs = stat.executeQuery(query);
 
             while (rs.next()) {
-                String Hallname = rs.getString(1);
-                double HallPrice = rs.getDouble(2);
-                jLabel2.setText(Hallname);
-                jLabel3.setText(HallPrice + "");
-            }
+                table.addRow(new Object[]{
+                    rs.getString(1)
 
+                });
+
+            }
+            list.setModel(table);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex.toString());
         } catch (Exception e) {
             e.printStackTrace();
         }
+
     }
 
     /**
@@ -58,7 +76,6 @@ public class TenantPage_Favorate extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        NoFav = new java.awt.Label();
         jLabel9 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -67,18 +84,16 @@ public class TenantPage_Favorate extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        list = new javax.swing.JTable();
+        HallImage = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        delete = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setLayout(null);
-
-        NoFav.setBackground(new java.awt.Color(243, 246, 251));
-        NoFav.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
-        NoFav.setForeground(new java.awt.Color(153, 153, 153));
-        NoFav.setText("  No Favorates");
-        jPanel1.add(NoFav);
-        NoFav.setBounds(70, 360, 160, 40);
 
         jLabel9.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -128,16 +143,72 @@ public class TenantPage_Favorate extends javax.swing.JFrame {
         jPanel1.add(jLabel8);
         jLabel8.setBounds(10, 0, 30, 30);
 
-        jLabel2.setText("x");
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setToolTipText("");
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(40, 220, 180, 30);
+        jLabel2.setBounds(100, 450, 100, 30);
 
-        jLabel3.setText("x");
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jPanel1.add(jLabel3);
-        jLabel3.setBounds(40, 260, 180, 30);
+        jLabel3.setBounds(100, 490, 100, 30);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\shood\\Documents\\NetBeansProjects\\305-Project\\src\\project_305\\TenantPage – 7.png")); // NOI18N
+        jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
+        jScrollPane1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        list.setBackground(new java.awt.Color(243, 246, 251));
+        list.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null}
+            },
+            new String [] {
+                "Title 1"
+            }
+        ));
+        list.setColumnSelectionAllowed(true);
+        list.setFillsViewportHeight(true);
+        list.setFocusCycleRoot(true);
+        list.setGridColor(new java.awt.Color(255, 255, 255));
+        list.setSelectionForeground(new java.awt.Color(243, 246, 251));
+        list.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                listMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(list);
+
+        jPanel1.add(jScrollPane1);
+        jScrollPane1.setBounds(60, 210, 180, 70);
+        jPanel1.add(HallImage);
+        HallImage.setBounds(90, 320, 120, 110);
+
+        jLabel4.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("Favorate");
+        jPanel1.add(jLabel4);
+        jLabel4.setBounds(90, 100, 120, 29);
+
+        delete.setIcon(new javax.swing.ImageIcon("C:\\Users\\shood\\Documents\\NetBeansProjects\\project-305\\src\\project_305\\delete.png")); // NOI18N
+        delete.setToolTipText("");
+        delete.setActionCommand("");
+        delete.setContentAreaFilled(false);
+        delete.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                deleteMouseClicked(evt);
+            }
+        });
+        jPanel1.add(delete);
+        delete.setBounds(250, 230, 30, 35);
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project_305/tenant.jpeg"))); // NOI18N
         jPanel1.add(jLabel1);
         jLabel1.setBounds(0, 0, 300, 650);
 
@@ -213,6 +284,83 @@ public class TenantPage_Favorate extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jLabel10MouseClicked
 
+    private void listMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listMouseClicked
+        // TODO add your handling code here:
+
+        int index = list.getSelectedRow();
+        name = list.getValueAt(index, 0).toString();
+
+        Connection connection = null;
+
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            String ConnectionURL = "jdbc:mysql://localhost:3306/weddinghallreservation";
+            connection = DriverManager.getConnection(ConnectionURL, "root", "1212");
+
+            String query = "Select `Hallname` , `HallPrice`,image from `hallinfo`,`favorites` where `favorites`.`idTenant` ='" + Login.Id + "'"
+                    + " and `hallinfo`.`idHallInfo`=`favorites`.`idHallInfo` and `hallinfo`.`Hallname` ='" + name + "'";
+
+            Statement stat = connection.createStatement();
+            ResultSet rs = stat.executeQuery(query);
+
+            while (rs.next()) {
+                String Hallname = rs.getString(1);
+                double HallPrice = rs.getDouble(2);
+                jLabel2.setText(Hallname);
+                jLabel3.setText(HallPrice + "");
+
+                byte[] imagedata = rs.getBytes("image");
+                ImageIcon format = null;
+                format = new ImageIcon(imagedata);
+                Image mm = format.getImage();
+                Image img2 = mm.getScaledInstance(110, 133, Image.SCALE_SMOOTH);
+                ImageIcon image = new ImageIcon(img2);
+                HallImage.setIcon(image);
+            }
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex.toString());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_listMouseClicked
+
+    private void deleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteMouseClicked
+        // TODO add your handling code here:
+        Connection connection = null;
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            String ConnectionURL = "jdbc:mysql://localhost:3306/weddinghallreservation";
+            connection = DriverManager.getConnection(ConnectionURL, "root", "1212");
+
+//            //  String query = "DELETE FROM `favorites`,`hallinfo` where `hallinfo`.`Hallname` ='" + name + "'";
+//          String query = "DELETE  from `favorites` where `favorites`.`idTenant` ='" + Login.Id + "'"
+//                    + " and `hallinfo`.`Hallname` ='" + name + "'";
+//            String query1 = "Select `idHallInfo` from `hallinfo` where 'Hallname'='" + name +"'";
+//            Statement stat1 = connection.createStatement();
+//            ResultSet rs = stat1.executeQuery(query1);
+//            while (rs.next()) {
+//                idH = rs.getInt(1);
+//            }
+
+            String query = "DELETE  from `favorites`";
+            Statement stat = connection.createStatement();
+            stat.executeUpdate(query);
+            list();
+            jLabel2.setText("");
+            jLabel3.setText("");
+            ImageIcon pic = new ImageIcon("Blank_image.png");
+            HallImage.setIcon(pic);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+             JOptionPane.showMessageDialog(null," All Favorites has be Removed ");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+    }//GEN-LAST:event_deleteMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -249,16 +397,20 @@ public class TenantPage_Favorate extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private java.awt.Label NoFav;
+    private javax.swing.JLabel HallImage;
+    private javax.swing.JButton delete;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable list;
     // End of variables declaration//GEN-END:variables
 }

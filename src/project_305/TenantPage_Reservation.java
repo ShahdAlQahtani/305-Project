@@ -23,12 +23,15 @@ import static project_305.TenantPage_Search.HID;
  */
 public class TenantPage_Reservation extends javax.swing.JFrame {
 
+    static Reservation res=new Reservation();
+    static int u;
     /**
      * Creates new form TenantPage_3
      */
     public TenantPage_Reservation() {
         initComponents();
         setLocationRelativeTo(null);
+          
     }
 
     /**
@@ -157,7 +160,11 @@ public class TenantPage_Reservation extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // NEXT button
+      
         Date date = new Date(jDateChooser1.getDate().getTime());
+        res.setReserveDate(date);
+        
+        
         Connection connection = null;
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -170,27 +177,18 @@ public class TenantPage_Reservation extends javax.swing.JFrame {
             Statement stm = connection.createStatement();
             ResultSet rs = stm.executeQuery(query);
             if (rs.next()) {
-                JOptionPane.showMessageDialog(null, " Hall does not exist");
+                JOptionPane.showMessageDialog(null, " Hall is reserved in this day!! Chosse another day!");
 
             } else {
-
-                PreparedStatement ps = connection.prepareStatement("insert into reservation (idTenant,idHallinfo,resDate) values(?,?,?)");
-                ps.setInt(1, Integer.parseInt(Login.Id));
-                ps.setInt(2, TenantPage_Hallinfo.id);
-                ps.setDate(3, date);
-                ps.executeUpdate();
-
-                TenantPage_Payment ob = new TenantPage_Payment();
-                ob.setVisible(true);
+                TenantPage_Payment object = new TenantPage_Payment();
+                object.setVisible(true);
                 this.setVisible(false);
              }
 
         } catch (Exception e) {
             e.printStackTrace();
         }
-      
 
-        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
@@ -226,14 +224,14 @@ public class TenantPage_Reservation extends javax.swing.JFrame {
 
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
         // TODO add your handling code here:
-        TenantPage_Home ob=new TenantPage_Home();
+        TenantPage_Home ob = new TenantPage_Home();
         ob.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jLabel5MouseClicked
 
     private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
         // BBAACCCCKKKKKK
-         TenantPage_Hallinfo ob = new TenantPage_Hallinfo();
+        TenantPage_Hallinfo ob = new TenantPage_Hallinfo();
         ob.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jLabel8MouseClicked

@@ -15,7 +15,7 @@ public class Reservation {
     int idTenant ;
     int idHall;
     Date reserveDate;
-    int Payment;
+    String Payment;
 
     public int getIdTenant() {
         return idTenant;
@@ -29,7 +29,7 @@ public class Reservation {
         return reserveDate;
     }
 
-    public int getPayment() {
+    public String getPayment() {
         return Payment;
     }
 
@@ -45,7 +45,7 @@ public class Reservation {
         this.reserveDate = reserveDate;
     }
 
-    public void setPayment(int Payment) {
+    public void setPayment(String Payment) {
         this.Payment = Payment;
     }
     

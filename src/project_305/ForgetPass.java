@@ -142,6 +142,8 @@ public class ForgetPass extends javax.swing.JFrame {
         onwerOrTen.setContentAreaFilled(false);
         jPanel1.add(onwerOrTen);
         onwerOrTen.setBounds(30, 460, 79, 30);
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project_305/page without home.jpg"))); // NOI18N
         jPanel1.add(jLabel1);
         jLabel1.setBounds(0, 0, 300, 650);
 

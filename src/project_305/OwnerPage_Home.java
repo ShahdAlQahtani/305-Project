@@ -7,6 +7,7 @@
 package project_305;
 
 import java.io.FileNotFoundException;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -167,8 +168,14 @@ public class OwnerPage_Home extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         
-         OwnerPage_Offers ob=new OwnerPage_Offers();
-        ob.setVisible(true);
+         OwnerPage_Offers ob;
+        try {
+            ob = new OwnerPage_Offers();
+                 ob.setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(OwnerPage_Home.class.getName()).log(Level.SEVERE, null, ex);
+        }
+   
         this.setVisible(false);
     }//GEN-LAST:event_jButton3ActionPerformed
 
