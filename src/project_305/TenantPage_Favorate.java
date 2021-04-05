@@ -6,6 +6,11 @@
 package project_305;
 
 import java.io.FileNotFoundException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -21,8 +26,26 @@ public class TenantPage_Favorate extends javax.swing.JFrame {
     public TenantPage_Favorate() {
         initComponents();
         setLocationRelativeTo(null);
-        
+        Connection connection = null;
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            String ConnectionURL = "jdbc:mysql://localhost:3306/weddinghallreservation";
+            PreparedStatement q;
+            connection = DriverManager.getConnection(ConnectionURL, "root", "1212");
+            String query = "Select `Hallname` , `HallPrice`  from `hallinfo`,`favorites` where `favorites`.`idTenant` ='" + Login.Id + "' and `favorites`.`idHallInfo` ='" + TenantPage_Hallinfo.id + "' and `hallinfo`.`idHallInfo`=`favorites`.`idHallInfo` ";  
+            Statement stm = connection.createStatement();
+            ResultSet rs = stm.executeQuery(query);
 
+            while (rs.next()) {
+                String Hallname = rs.getString(1);
+                double HallPrice = rs.getDouble(2);
+                jLabel2.setText(Hallname);
+                jLabel3.setText(HallPrice + "");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -36,12 +59,14 @@ public class TenantPage_Favorate extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         NoFav = new java.awt.Label();
-        jPanelFav = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -53,23 +78,7 @@ public class TenantPage_Favorate extends javax.swing.JFrame {
         NoFav.setForeground(new java.awt.Color(153, 153, 153));
         NoFav.setText("  No Favorates");
         jPanel1.add(NoFav);
-        NoFav.setBounds(60, 350, 160, 40);
-
-        jPanelFav.setBackground(new java.awt.Color(243, 246, 251));
-
-        javax.swing.GroupLayout jPanelFavLayout = new javax.swing.GroupLayout(jPanelFav);
-        jPanelFav.setLayout(jPanelFavLayout);
-        jPanelFavLayout.setHorizontalGroup(
-            jPanelFavLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
-        jPanelFavLayout.setVerticalGroup(
-            jPanelFavLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 140, Short.MAX_VALUE)
-        );
-
-        jPanel1.add(jPanelFav);
-        jPanelFav.setBounds(0, 180, 300, 140);
+        NoFav.setBounds(70, 360, 160, 40);
 
         jLabel9.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -103,6 +112,14 @@ public class TenantPage_Favorate extends javax.swing.JFrame {
         jPanel1.add(jLabel5);
         jLabel5.setBounds(20, 600, 35, 30);
 
+        jLabel10.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel10MouseClicked(evt);
+            }
+        });
+        jPanel1.add(jLabel10);
+        jLabel10.setBounds(0, 0, 50, 30);
+
         jLabel8.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel8MouseClicked(evt);
@@ -111,7 +128,16 @@ public class TenantPage_Favorate extends javax.swing.JFrame {
         jPanel1.add(jLabel8);
         jLabel8.setBounds(10, 0, 30, 30);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project_305/TenantPage – 7.png"))); // NOI18N
+        jLabel2.setText("x");
+        jLabel2.setToolTipText("");
+        jPanel1.add(jLabel2);
+        jLabel2.setBounds(40, 220, 180, 30);
+
+        jLabel3.setText("x");
+        jPanel1.add(jLabel3);
+        jLabel3.setBounds(40, 260, 180, 30);
+
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\shood\\Documents\\NetBeansProjects\\305-Project\\src\\project_305\\TenantPage – 7.png")); // NOI18N
         jPanel1.add(jLabel1);
         jLabel1.setBounds(0, 0, 300, 650);
 
@@ -143,6 +169,7 @@ public class TenantPage_Favorate extends javax.swing.JFrame {
 
     private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
         // TODO add your handling code here:
+
         TenantPage_Favorate ob = new TenantPage_Favorate();
         ob.setVisible(true);
         this.setVisible(false);
@@ -162,17 +189,29 @@ public class TenantPage_Favorate extends javax.swing.JFrame {
 
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
         // TODO add your handling code here:
-        TenantPage_Home ob=new TenantPage_Home();
+        TenantPage_Home ob = new TenantPage_Home();
         ob.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jLabel5MouseClicked
 
     private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
         // BBAACCCCKKKKKK
-       TenantPage_Hallinfo ob = new TenantPage_Hallinfo();
+        TenantPage_Hallinfo ob = new TenantPage_Hallinfo();
         ob.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jLabel8MouseClicked
+
+    private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
+        // BBAACCCCKKKKKK
+        TenantPage_Search ob;
+        try {
+            ob = new TenantPage_Search();
+            ob.setVisible(true);
+            this.setVisible(false);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(TenantPage_Hallinfo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jLabel10MouseClicked
 
     /**
      * @param args the command line arguments
@@ -212,12 +251,14 @@ public class TenantPage_Favorate extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private java.awt.Label NoFav;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanelFav;
     // End of variables declaration//GEN-END:variables
 }
