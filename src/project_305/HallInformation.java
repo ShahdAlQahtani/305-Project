@@ -128,21 +128,19 @@ public class HallInformation {
             
             InputStream in = new FileInputStream(new File(info.getImage()));
             
-            PreparedStatement ps = connection.prepareStatement("update hallinfo set HallName=? Capacity=? HallAddress=? Hallprice=? HallcontactNum=? where idHallInfo=?");
+            PreparedStatement ps = connection.prepareStatement("update hallinfo set HallName=? Capacity=? HallAddress=? Hallprice=? HallcontactNum=? image=? where idHallInfo=?");
             
-            String queryidHallInfo = "Select idHallInfo from hallinfo Where HallName =" + "'" + info.getHallName() + "'";
             
-            ResultSet r = ps.executeQuery(queryidHallInfo);
-            r.next();
+            
+           
             
             ps.setString(1, info.getHallName());
             ps.setString(2, info.getCapacity());
             ps.setString(3, info.getHallAddress());
             ps.setDouble(4, info.getHallprice());
-            ps.setString(5, info.getHallcontactNum());
-            ps.setString(6, queryidHallInfo);
-            ps.setBlob(7, in);
-            ps.setInt(8, r.getInt(1));
+            ps.setString(5, info.getHallcontactNum()); 
+            ps.setBlob(6, in);
+           
             ps.executeUpdate();
             JOptionPane.showMessageDialog(null, "The " + info.getHallName() + "is updated Successfully");
             

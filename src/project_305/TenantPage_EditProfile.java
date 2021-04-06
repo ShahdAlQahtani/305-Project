@@ -33,7 +33,7 @@ public class TenantPage_EditProfile extends javax.swing.JFrame {
             Class.forName("com.mysql.cj.jdbc.Driver");
             
             String ConnectionURL = "jdbc:mysql://localhost:3306/weddinghallreservation";
-            PreparedStatement q;
+         
             connection = DriverManager.getConnection(ConnectionURL, "root", "1212");
             
             if (Login.Id.startsWith("14")) {
@@ -72,7 +72,7 @@ public class TenantPage_EditProfile extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        update = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         fName = new javax.swing.JTextField();
         lName = new javax.swing.JTextField();
@@ -98,16 +98,16 @@ public class TenantPage_EditProfile extends javax.swing.JFrame {
 
         jPanel1.setLayout(null);
 
-        jButton1.setBackground(new java.awt.Color(255, 255, 255));
-        jButton1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jButton1.setText("Update Account");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        update.setBackground(new java.awt.Color(255, 255, 255));
+        update.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        update.setText("Update Account");
+        update.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                updateActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1);
-        jButton1.setBounds(70, 530, 140, 40);
+        jPanel1.add(update);
+        update.setBounds(70, 530, 140, 40);
 
         jPanel5.setBackground(new java.awt.Color(243, 246, 251));
 
@@ -325,12 +325,11 @@ public class TenantPage_EditProfile extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
         // TODO add your handling code here:
         
           User user = new User();
-        if (fName.getText().length() > 0 && lName.getText().length() > 0 && e.getText().length() > 0
-                && pN.getText().length() > 0 && pass.getText().length() > 0 && cPass.getText().length() > 0) {
+        
             
             user.setFname(fName.getText());
             user.setLname(lName.getText());
@@ -345,12 +344,12 @@ public class TenantPage_EditProfile extends javax.swing.JFrame {
             } catch (SQLException ex) {
                 Logger.getLogger(OwnerPage_EditPro.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }
+        
         
         TenantPage_EditProDone ob = new TenantPage_EditProDone();
         ob.setVisible(true);
         this.setVisible(false);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_updateActionPerformed
 
     private void fNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fNameActionPerformed
         // TODO add your handling code here:
@@ -452,7 +451,6 @@ public class TenantPage_EditProfile extends javax.swing.JFrame {
     private javax.swing.JTextField cPass;
     private javax.swing.JTextField e;
     private javax.swing.JTextField fName;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel4;
@@ -471,5 +469,6 @@ public class TenantPage_EditProfile extends javax.swing.JFrame {
     private javax.swing.JTextField lName;
     private javax.swing.JTextField pN;
     private javax.swing.JTextField pass;
+    private javax.swing.JButton update;
     // End of variables declaration//GEN-END:variables
 }

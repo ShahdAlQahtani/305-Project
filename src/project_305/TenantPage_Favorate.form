@@ -197,7 +197,6 @@
               <Image iconType="2" name="C:\Users\shood\Documents\NetBeansProjects\project-305\src\project_305\delete.png"/>
             </Property>
             <Property name="toolTipText" type="java.lang.String" value=""/>
-            <Property name="actionCommand" type="java.lang.String" value=""/>
             <Property name="contentAreaFilled" type="boolean" value="false"/>
           </Properties>
           <Events>

@@ -99,6 +99,12 @@ public class Login extends javax.swing.JFrame {
 
         jPanel1.add(jPanel4);
         jPanel4.setBounds(0, 0, 60, 40);
+
+        Password.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PasswordActionPerformed(evt);
+            }
+        });
         jPanel1.add(Password);
         Password.setBounds(20, 330, 240, 40);
 
@@ -115,7 +121,7 @@ public class Login extends javax.swing.JFrame {
             }
         });
         jPanel1.add(check);
-        check.setBounds(40, 380, 129, 23);
+        check.setBounds(40, 380, 141, 29);
 
         label1.setBackground(new java.awt.Color(243, 246, 251));
         label1.setFont(new java.awt.Font("Lucida Grande", 0, 12)); // NOI18N
@@ -138,17 +144,17 @@ public class Login extends javax.swing.JFrame {
             }
         });
         jPanel1.add(Login);
-        Login.setBounds(90, 520, 127, 34);
+        Login.setBounds(90, 520, 127, 35);
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel2.setText("Password:");
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(20, 300, 80, 21);
+        jLabel2.setBounds(20, 300, 80, 22);
 
         jLabel3.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel3.setText("ID:");
         jPanel1.add(jLabel3);
-        jLabel3.setBounds(20, 220, 30, 21);
+        jLabel3.setBounds(20, 220, 30, 22);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project_305/login.jpg"))); // NOI18N
         jPanel1.add(jLabel1);
@@ -210,7 +216,7 @@ public class Login extends javax.swing.JFrame {
             Class.forName("com.mysql.cj.jdbc.Driver");
 
             String ConnectionURL = "jdbc:mysql://localhost:3306/weddinghallreservation";
-            PreparedStatement find;
+           
             PreparedStatement q;
 
            
@@ -218,7 +224,7 @@ public class Login extends javax.swing.JFrame {
         
 
             Id = id.getText();
-            System.out.println(checkOwner);
+            
             if (Id.startsWith("12")) {
                 q = connection.prepareStatement("Select `idOwner` , `Password` from `owner` where `idOwner`=? AND `Password`=? ");
                 q.setString(1, Id);
@@ -262,6 +268,10 @@ public class Login extends javax.swing.JFrame {
     private void idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_idActionPerformed
+
+    private void PasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PasswordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_PasswordActionPerformed
 
     /**
      * @param args the command line arguments

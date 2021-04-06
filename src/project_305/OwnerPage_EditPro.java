@@ -36,11 +36,12 @@ public class OwnerPage_EditPro extends javax.swing.JFrame {
             Class.forName("com.mysql.cj.jdbc.Driver");
 
             String ConnectionURL = "jdbc:mysql://localhost:3306/weddinghallreservation";
+            PreparedStatement q;
             connection = DriverManager.getConnection(ConnectionURL, "root", "1212");
 
             if (Login.Id.startsWith("12")) {
 
-                  String query = "Select `firstname` , `lastname` , `Email`, `PhoneNumber`, `Password` from `owner` where `idOwner`='" + Login.Id + "' ";
+                String query = "Select `Hallname` , `HallPrice`  from `favorites` where `idTenant` and `idHallInfo` ='" + Login.Id + "' ";
                 Statement stm = connection.createStatement();
                 ResultSet rs = stm.executeQuery(query);
 
@@ -76,7 +77,7 @@ public class OwnerPage_EditPro extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        update = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         fName = new javax.swing.JTextField();
         lName = new javax.swing.JTextField();
@@ -102,16 +103,16 @@ public class OwnerPage_EditPro extends javax.swing.JFrame {
 
         jPanel1.setLayout(null);
 
-        jButton1.setBackground(new java.awt.Color(255, 255, 255));
-        jButton1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jButton1.setText("Update Account");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        update.setBackground(new java.awt.Color(255, 255, 255));
+        update.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        update.setText("Update Account");
+        update.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                updateActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1);
-        jButton1.setBounds(70, 537, 140, 40);
+        jPanel1.add(update);
+        update.setBounds(70, 537, 140, 40);
 
         jPanel5.setBackground(new java.awt.Color(243, 246, 251));
 
@@ -329,13 +330,11 @@ public class OwnerPage_EditPro extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
         // TODO add your handling code here:
 
         User user = new User();
-        if (fName.getText().length() > 0 && lName.getText().length() > 0 && e.getText().length() > 0
-                && pN.getText().length() > 0 && pass.getText().length() > 0 && cPass.getText().length() > 0) {
-
+        
             user.setFname(fName.getText());
             user.setLname(lName.getText());
             user.setEmail(e.getText());
@@ -349,10 +348,13 @@ public class OwnerPage_EditPro extends javax.swing.JFrame {
             } catch (SQLException ex) {
                 Logger.getLogger(OwnerPage_EditPro.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }
 
 
-    }//GEN-LAST:event_jButton1ActionPerformed
+
+        
+
+
+    }//GEN-LAST:event_updateActionPerformed
 
     private void eActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eActionPerformed
         // TODO add your handling code here:
@@ -447,7 +449,6 @@ public class OwnerPage_EditPro extends javax.swing.JFrame {
     private javax.swing.JTextField cPass;
     private javax.swing.JTextField e;
     private javax.swing.JTextField fName;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -466,5 +467,6 @@ public class OwnerPage_EditPro extends javax.swing.JFrame {
     private javax.swing.JTextField pN;
     private javax.swing.JTextField pass;
     private javax.swing.JPanel s;
+    private javax.swing.JButton update;
     // End of variables declaration//GEN-END:variables
 }
