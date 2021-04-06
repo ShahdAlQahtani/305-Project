@@ -216,7 +216,7 @@ public class Login extends javax.swing.JFrame {
             Class.forName("com.mysql.cj.jdbc.Driver");
 
             String ConnectionURL = "jdbc:mysql://localhost:3306/weddinghallreservation";
-            PreparedStatement find;
+           
             PreparedStatement q;
 
            
@@ -224,7 +224,7 @@ public class Login extends javax.swing.JFrame {
         
 
             Id = id.getText();
-            System.out.println(checkOwner);
+            
             if (Id.startsWith("12")) {
                 q = connection.prepareStatement("Select `idOwner` , `Password` from `owner` where `idOwner`=? AND `Password`=? ");
                 q.setString(1, Id);

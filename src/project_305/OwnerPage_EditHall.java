@@ -11,6 +11,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -23,43 +24,46 @@ public class OwnerPage_EditHall extends javax.swing.JFrame {
      * Creates new form OwnerPage_EditHall
      */
     String path;
+   
 
-    public OwnerPage_EditHall() throws ClassNotFoundException {
+    public OwnerPage_EditHall()  {
         initComponents();
         setLocationRelativeTo(null);
 
+    }
+     public OwnerPage_EditHall(int id)  {
+         
+        initComponents();
+        setLocationRelativeTo(null);
+        
         Connection connection = null;
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
 
             String ConnectionURL = "jdbc:mysql://localhost:3306/weddinghallreservation";
-            PreparedStatement q;
+            
             connection = DriverManager.getConnection(ConnectionURL, "root", "1212");
 
-            String query = "Select `Hallname` , `hallcapacity` , `hallAddress`, `hallPrice`, `contactNumber`,`image` from `hallinfo` where `idOwner`='" + Login.Id + "' ";
+            String query = "Select `Hallname` , `hallcapacity` , `hallAddress`, `hallPrice`, `contactNumber`,`image` from `hallinfo` where `idhallinfo`='" + id + "' ";
             Statement stm = connection.createStatement();
             ResultSet rs = stm.executeQuery(query);
 
             while (rs.next()) {
-                String hn = rs.getString(1);
-                String hc = rs.getString(2);
-                String ha = rs.getString(3);
-                String hp = rs.getString(4);
-                String cn = rs.getString(5);
-                Blob i = rs.getBlob(6);
-
-                hallName.setText(hn);
-                Capacity.setText(hc);
-                hallAddress.setText(ha);
-                HallPrice.setText(hp);
-                HallContact.setText(cn);
+                hallName.setText(rs.getString(1));
+                Capacity.setText(rs.getInt(2)+"");
+                hallAddress.setText(rs.getString(3));
+                
+                HallPrice.setText(rs.getDouble(4)+"");
+                HallContact.setText(rs.getString(5));
             
             }
 
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex.toString());
         } catch (Exception e) {
-            System.err.println("Error");
+            e.printStackTrace();
         }
-    }
+     }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -75,7 +79,7 @@ public class OwnerPage_EditHall extends javax.swing.JFrame {
         HallPrice = new javax.swing.JTextField();
         jPanel7 = new javax.swing.JPanel();
         HallContact = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        update = new javax.swing.JButton();
         imag = new javax.swing.JButton();
         s2 = new javax.swing.JPanel();
         hallName = new javax.swing.JTextField();
@@ -118,13 +122,13 @@ public class OwnerPage_EditHall extends javax.swing.JFrame {
 
         jPanel7.setBackground(new java.awt.Color(243, 246, 251));
 
-        jButton1.setBackground(new java.awt.Color(255, 255, 255));
-        jButton1.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(51, 51, 51));
-        jButton1.setText("Update");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        update.setBackground(new java.awt.Color(255, 255, 255));
+        update.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        update.setForeground(new java.awt.Color(51, 51, 51));
+        update.setText("Update");
+        update.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                updateActionPerformed(evt);
             }
         });
 
@@ -141,29 +145,26 @@ public class OwnerPage_EditHall extends javax.swing.JFrame {
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(update)
+                .addGap(39, 39, 39))
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addGap(35, 35, 35)
-                .addComponent(HallContact, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(imag, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(imag)
+                    .addComponent(HallContact, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(55, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addComponent(HallContact, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addGap(0, 29, Short.MAX_VALUE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addComponent(imag, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                .addComponent(imag)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(update, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         jPanel1.add(jPanel7);
@@ -273,10 +274,8 @@ public class OwnerPage_EditHall extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-
-        // TODO add your handling code here:
+    private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
+      // TODO add your handling code here:
         HallInformation info = new HallInformation();
 
         info.setHallName(hallName.getText());
@@ -284,17 +283,14 @@ public class OwnerPage_EditHall extends javax.swing.JFrame {
         info.setHallAddress(hallAddress.getText());
         info.setHallprice(Double.parseDouble(HallPrice.getText()));
         info.setHallcontactNum(HallContact.getText());
-
-        //info.setOwnerName(LoginClass.OwnerName);
         info.setImage(path);
         info.editHall(info);
 
 
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_updateActionPerformed
 
     private void imagActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imagActionPerformed
         // TODO add your handling code here:
-
         JFileChooser fileChos = new JFileChooser();
         fileChos.showOpenDialog(this);
         File file = fileChos.getSelectedFile();
@@ -337,8 +333,8 @@ public class OwnerPage_EditHall extends javax.swing.JFrame {
 
     private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
         // BBAACCCCKKKKKK
-        OwnerPage_Profile ob = null;
-        ob = new OwnerPage_Profile();
+        OwnerPage_Hall ob = null;
+        ob = new OwnerPage_Hall();
         ob.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jLabel8MouseClicked
@@ -373,11 +369,7 @@ public class OwnerPage_EditHall extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                try {
-                    new OwnerPage_EditHall().setVisible(true);
-                } catch (ClassNotFoundException ex) {
-                    Logger.getLogger(OwnerPage_EditHall.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                new OwnerPage_EditHall().setVisible(true);
             }
         });
     }
@@ -389,7 +381,6 @@ public class OwnerPage_EditHall extends javax.swing.JFrame {
     private javax.swing.JTextField hallAddress;
     private javax.swing.JTextField hallName;
     private javax.swing.JButton imag;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -402,5 +393,6 @@ public class OwnerPage_EditHall extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel s2;
+    private javax.swing.JButton update;
     // End of variables declaration//GEN-END:variables
 }

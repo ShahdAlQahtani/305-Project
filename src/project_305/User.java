@@ -84,7 +84,6 @@ public class User {
 
             String ConnectionURL = "jdbc:mysql://localhost:3306/weddinghallreservation";
 
-
             connection = DriverManager.getConnection(ConnectionURL, "root", "1212");
 
             Statement statement = connection.createStatement();
@@ -119,7 +118,7 @@ public class User {
     }
 
     public void updateAccount(User user, String id) throws ClassNotFoundException, SQLException {
-
+        
         Connection connection = null;
 
         Class.forName("com.mysql.cj.jdbc.Driver");
@@ -128,19 +127,19 @@ public class User {
 
         PreparedStatement ps = null;
         try {
-            if (id.startsWith("12")) {
-                String query = "update  Owner set FirstName=?, lastName=?, Email=?, PhoneNumber=?, Password=? where idOwner=" + id + " ";
-                ps = connection.prepareStatement(query);
+            if (id.startsWith("12")) {            
+                
+                ps = connection.prepareStatement("update  Owner set FirstName=?, lastName=?, Email=?, PhoneNumber=?, Password=? where idOwner=" + id + " ");
                 ps.setString(1, user.getFname());
                 ps.setString(2, user.getLname());
                 ps.setString(3, user.getEmail());
                 ps.setString(4, user.getPhone_number());
                 ps.setString(5, user.getPassword());
                 ps.executeUpdate();
-                 JOptionPane.showMessageDialog(null, "The information updated successfully");
+                JOptionPane.showMessageDialog(null, "The information updated successfully");
             } else {
-                String query = "update  tenant set FirstName=?, lastName=?, Email=?, PhoneNumber=?, Password=? where idtenant=" + id + " ";
-                ps = connection.prepareStatement(query);
+                
+                ps = connection.prepareStatement("update  tenant set FirstName=?, lastName=?, Email=?, PhoneNumber=?, Password=? where idtenant=" + id + " ");
                 ps.setString(1, user.getFname());
                 ps.setString(2, user.getLname());
                 ps.setString(3, user.getEmail());
