@@ -327,36 +327,61 @@ public class TenantPage_Favorate extends javax.swing.JFrame {
 
     private void deleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteMouseClicked
         // TODO add your handling code here:
+//        Connection connection = null;
+//        try {
+//            Class.forName("com.mysql.cj.jdbc.Driver");
+//            String ConnectionURL = "jdbc:mysql://localhost:3306/weddinghallreservation";
+//            connection = DriverManager.getConnection(ConnectionURL, "root", "1212");
+//
+////            //  String query = "DELETE FROM `favorites`,`hallinfo` where `hallinfo`.`Hallname` ='" + name + "'";
+////          String query = "DELETE  from `favorites` where `favorites`.`idTenant` ='" + Login.Id + "'"
+////                    + " and `hallinfo`.`Hallname` ='" + name + "'";
+////            String query1 = "Select `idHallInfo` from `hallinfo` where 'Hallname'='" + name +"'";
+////            Statement stat1 = connection.createStatement();
+////            ResultSet rs = stat1.executeQuery(query1);
+////            while (rs.next()) {
+////                idH = rs.getInt(1);
+////            }
+//            String query = "DELETE  from `favorites`";
+//            Statement stat = connection.createStatement();
+//            stat.executeUpdate(query);
+//            list();
+//            jLabel2.setText("");
+//            jLabel3.setText("");
+//            ImageIcon pic = new ImageIcon("Blank_image.png");
+//            HallImage.setIcon(pic);
+//        } catch (SQLException ex) {
+//            ex.printStackTrace();
+//            JOptionPane.showMessageDialog(null, " All Favorites has be Removed ");
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+        
+        
+        int index = list.getSelectedRow();
+        String name = list.getValueAt(index, 0).toString();
         Connection connection = null;
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             String ConnectionURL = "jdbc:mysql://localhost:3306/weddinghallreservation";
             connection = DriverManager.getConnection(ConnectionURL, "root", "1212");
-
-//            //  String query = "DELETE FROM `favorites`,`hallinfo` where `hallinfo`.`Hallname` ='" + name + "'";
-//          String query = "DELETE  from `favorites` where `favorites`.`idTenant` ='" + Login.Id + "'"
-//                    + " and `hallinfo`.`Hallname` ='" + name + "'";
-//            String query1 = "Select `idHallInfo` from `hallinfo` where 'Hallname'='" + name +"'";
-//            Statement stat1 = connection.createStatement();
-//            ResultSet rs = stat1.executeQuery(query1);
-//            while (rs.next()) {
-//                idH = rs.getInt(1);
-//            }
-
-            String query = "DELETE  from `favorites`";
             Statement stat = connection.createStatement();
-            stat.executeUpdate(query);
-            list();
+           int delete= stat.executeUpdate("delete from favorites,hallinfo where hallinfo.Hallname  ='" +name + "' and favorites.idHallinfo=hallinfo.idHallInfo");
+            if(delete==1){
+               JOptionPane.showMessageDialog(null, "The Hall was Deleted Successfully ");  
+            }
+             list();
             jLabel2.setText("");
             jLabel3.setText("");
             ImageIcon pic = new ImageIcon("Blank_image.png");
             HallImage.setIcon(pic);
+            list();
         } catch (SQLException ex) {
-            ex.printStackTrace();
-             JOptionPane.showMessageDialog(null," All Favorites has be Removed ");
+            JOptionPane.showMessageDialog(null, ex.toString());
         } catch (Exception e) {
             e.printStackTrace();
         }
+        
 
 
     }//GEN-LAST:event_deleteMouseClicked
