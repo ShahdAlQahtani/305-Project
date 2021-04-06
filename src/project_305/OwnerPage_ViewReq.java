@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import static java.sql.ResultSet.*;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
@@ -33,27 +34,27 @@ public class OwnerPage_ViewReq extends javax.swing.JFrame {
     }
 
     public void list() {
+        jScrollPane2.setVisible(false);
+        list1.setVisible(false);
+        NoRes.setVisible(false);
+        NoRes.setVisible(false);
         DefaultTableModel table = new DefaultTableModel();
-        table.addColumn("Reservation");
+        table.addColumn("Hall Name");
 
         try {
             Connection connection = null;
-            System.out.println("1111111");
+
             Class.forName("com.mysql.cj.jdbc.Driver");
             String ConnectionURL = "jdbc:mysql://localhost:3306/weddinghallreservation";
             connection = DriverManager.getConnection(ConnectionURL, "root", "1212");
-           System.out.println("222222222");
-            //String query = "Select `Hallname` from `hallinfo`,`reservation` where `hallinfo`.`idHallInfo` =`reservation`.`idHallinfo` and `hallinfo`.`idOwner` ='" + Login.Id + "'";
-            String query = "Select `Hallname` from `hallinfo`,`reservation` where `reservation`.`idHallInfo` =`hallinfo`.`idHallInfo` and `hallinfo`.`idOwner`='" + Login.Id + "'";
+
+            String query = "Select `Hallname` from `hallinfo` where `hallinfo`.`idOwner`='" + Login.Id + "'";
             Statement stat = connection.createStatement();
             ResultSet rs = stat.executeQuery(query);
-            System.out.println("3333333333");
-            while (rs.next()) {
-                System.out.println("444444");
-                table.addRow(new Object[]{
-                    rs.getString(1)
 
-                });
+            while (rs.next()) {
+
+                table.addRow(new Object[]{rs.getString(1)});
 
             }
             list.setModel(table);
@@ -80,11 +81,11 @@ public class OwnerPage_ViewReq extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
+        NoRes = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         list = new javax.swing.JTable();
-        panel1 = new java.awt.Panel();
-        date = new javax.swing.JLabel();
-        tenantName = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        list1 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -131,7 +132,12 @@ public class OwnerPage_ViewReq extends javax.swing.JFrame {
         jPanel1.add(jLabel9);
         jLabel9.setBounds(240, 610, 40, 30);
 
-        jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
+        NoRes.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        NoRes.setText("No Rservation For This Hall..!");
+        jPanel1.add(NoRes);
+        NoRes.setBounds(40, 400, 224, 40);
+
+        jScrollPane1.setBackground(new java.awt.Color(243, 246, 251));
         jScrollPane1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         list.setBackground(new java.awt.Color(243, 246, 251));
@@ -153,7 +159,6 @@ public class OwnerPage_ViewReq extends javax.swing.JFrame {
         list.setColumnSelectionAllowed(true);
         list.setFillsViewportHeight(true);
         list.setFocusCycleRoot(true);
-        list.setGridColor(new java.awt.Color(255, 255, 255));
         list.setSelectionForeground(new java.awt.Color(243, 246, 251));
         list.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -163,41 +168,42 @@ public class OwnerPage_ViewReq extends javax.swing.JFrame {
         jScrollPane1.setViewportView(list);
 
         jPanel1.add(jScrollPane1);
-        jScrollPane1.setBounds(60, 210, 180, 70);
+        jScrollPane1.setBounds(60, 230, 180, 80);
 
-        date.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        date.setText("jLabel3");
+        jScrollPane2.setBackground(new java.awt.Color(243, 246, 251));
+        jScrollPane2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        tenantName.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        tenantName.setText("jLabel2");
+        list1.setBackground(new java.awt.Color(243, 246, 251));
+        list1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null}
+            },
+            new String [] {
+                "Title 1"
+            }
+        ));
+        list1.setColumnSelectionAllowed(true);
+        list1.setFillsViewportHeight(true);
+        list1.setFocusCycleRoot(true);
+        list1.setSelectionForeground(new java.awt.Color(243, 246, 251));
+        list1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                list1MouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(list1);
 
-        javax.swing.GroupLayout panel1Layout = new javax.swing.GroupLayout(panel1);
-        panel1.setLayout(panel1Layout);
-        panel1Layout.setHorizontalGroup(
-            panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(tenantName, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(date, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-        panel1Layout.setVerticalGroup(
-            panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
-                .addContainerGap(24, Short.MAX_VALUE)
-                .addComponent(tenantName, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(date, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
+        jPanel1.add(jScrollPane2);
+        jScrollPane2.setBounds(10, 390, 280, 120);
 
-        jPanel1.add(panel1);
-        panel1.setBounds(40, 360, 220, 120);
-
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\shood\\Documents\\NetBeansProjects\\project-305\\src\\project_305\\page.png")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project_305/page.png"))); // NOI18N
         jPanel1.add(jLabel1);
         jLabel1.setBounds(0, 0, 300, 650);
 
@@ -253,7 +259,6 @@ public class OwnerPage_ViewReq extends javax.swing.JFrame {
 
     private void listMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listMouseClicked
         // TODO add your handling code here:
- System.out.println("555555555");
         int index = list.getSelectedRow();
         String name = list.getValueAt(index, 0).toString();
 
@@ -263,21 +268,34 @@ public class OwnerPage_ViewReq extends javax.swing.JFrame {
             Class.forName("com.mysql.cj.jdbc.Driver");
             String ConnectionURL = "jdbc:mysql://localhost:3306/weddinghallreservation";
             connection = DriverManager.getConnection(ConnectionURL, "root", "1212");
- System.out.println("666666");
-            String query = "Select `firstname` , `lastname`,`resDate` , from `tenant`,`reservation`,`hallinfo` where `tenant`.`idTenant` =`reservation`.`idTenant`"
-                    + "`reservation`.`idHallinfo`=hallinfo`.`idHallInfo`and `hallinfo`.`idOwner`='" + Login.Id + "and `Hallname` ='" + name + "'";
- System.out.println("77777777777");
-            Statement stat = connection.createStatement();
-            ResultSet rs = stat.executeQuery(query);
- System.out.println("8888888888");
-            while (rs.next()) {
-                String firstname = rs.getString(1);
-                String lastname = rs.getString(2);
-                Date resDate = rs.getDate(3);
-                tenantName.setText("Tenant Name: "+firstname +" "+lastname);
-                date.setText("Date: "+resDate.toString());
-            }
 
+            String query = "Select `firstname` , `lastname`,`resDate` from `tenant`,`reservation`,`hallinfo` where `tenant`.`idTenant` =`reservation`.`idTenant` and `hallinfo`.`idOwner`='" + Login.Id + "' and `hallinfo`.`Hallname` ='" + name + "' and `reservation`.`idHallInfo` =`hallinfo`.`idHallInfo`";
+
+            Statement stat = connection.createStatement(TYPE_SCROLL_SENSITIVE, CONCUR_READ_ONLY);
+            ResultSet rs = stat.executeQuery(query);
+
+            if (rs.next()) {
+                jScrollPane2.setVisible(true);
+                list1.setVisible(true);
+                NoRes.setVisible(false);
+                
+                rs.previous();
+                DefaultTableModel table1 = new DefaultTableModel();
+                
+                table1.addColumn("Reserved by");
+                table1.addColumn("Date");
+                
+                while (rs.next()) {
+                    table1.addRow(new Object[]{rs.getString(1), rs.getString(3)});
+                }
+                list1.setModel(table1);
+            } else {
+                jScrollPane2.setVisible(false);
+                System.out.println("(=jjjj");
+                list1.setVisible(false);
+                NoRes.setVisible(true);
+                NoRes.setVisible(true);
+            }
         } catch (SQLException ex) {
             ex.printStackTrace();
             JOptionPane.showMessageDialog(null, ex.toString());
@@ -285,6 +303,10 @@ public class OwnerPage_ViewReq extends javax.swing.JFrame {
             e.printStackTrace();
         }
     }//GEN-LAST:event_listMouseClicked
+
+    private void list1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_list1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_list1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -322,7 +344,7 @@ public class OwnerPage_ViewReq extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel date;
+    private javax.swing.JLabel NoRes;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -331,8 +353,8 @@ public class OwnerPage_ViewReq extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable list;
-    private java.awt.Panel panel1;
-    private javax.swing.JLabel tenantName;
+    private javax.swing.JTable list1;
     // End of variables declaration//GEN-END:variables
 }
