@@ -98,8 +98,8 @@ public class TenantPage_ReserveInfo extends javax.swing.JFrame {
 
         jPanel1.setLayout(null);
 
-        jButton1.setBackground(new java.awt.Color(255, 255, 255));
-        jButton1.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
+        jButton1.setBackground(new java.awt.Color(243, 246, 251));
+        jButton1.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
         jButton1.setForeground(new java.awt.Color(51, 51, 51));
         jButton1.setText("Confirm");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -108,7 +108,7 @@ public class TenantPage_ReserveInfo extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton1);
-        jButton1.setBounds(80, 520, 140, 42);
+        jButton1.setBounds(80, 532, 140, 30);
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 

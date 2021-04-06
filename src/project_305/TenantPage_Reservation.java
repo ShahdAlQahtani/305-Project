@@ -83,8 +83,8 @@ public class TenantPage_Reservation extends javax.swing.JFrame {
         jPanel1.add(jPanel3);
         jPanel3.setBounds(10, 330, 270, 40);
 
-        jButton1.setBackground(new java.awt.Color(255, 255, 255));
-        jButton1.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
+        jButton1.setBackground(new java.awt.Color(243, 246, 251));
+        jButton1.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
         jButton1.setForeground(new java.awt.Color(51, 51, 51));
         jButton1.setText("Next");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -93,7 +93,7 @@ public class TenantPage_Reservation extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton1);
-        jButton1.setBounds(80, 500, 140, 42);
+        jButton1.setBounds(80, 511, 120, 29);
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel2.setText("Select Date: ");
@@ -160,7 +160,7 @@ public class TenantPage_Reservation extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // NEXT button
-      
+      try{
         Date date = new Date(jDateChooser1.getDate().getTime());
         res.setReserveDate(date);
         
@@ -188,6 +188,11 @@ public class TenantPage_Reservation extends javax.swing.JFrame {
         } catch (Exception e) {
             e.printStackTrace();
         }
+      }
+        catch(NullPointerException e){
+                JOptionPane.showMessageDialog(null, " Choose a date first!");
+                }
+        
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
