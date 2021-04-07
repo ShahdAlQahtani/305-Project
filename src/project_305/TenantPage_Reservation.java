@@ -160,7 +160,11 @@ public class TenantPage_Reservation extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // NEXT button
+<<<<<<< Updated upstream
       try{
+=======
+      
+>>>>>>> Stashed changes
         Date date = new Date(jDateChooser1.getDate().getTime());
         res.setReserveDate(date);
         
@@ -188,11 +192,14 @@ public class TenantPage_Reservation extends javax.swing.JFrame {
         } catch (Exception e) {
             e.printStackTrace();
         }
+<<<<<<< Updated upstream
       }
         catch(NullPointerException e){
                 JOptionPane.showMessageDialog(null, " Choose a date first!");
                 }
         
+=======
+>>>>>>> Stashed changes
 
     }//GEN-LAST:event_jButton1ActionPerformed
 

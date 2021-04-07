@@ -56,8 +56,13 @@ public class TenantPage_Payment extends javax.swing.JFrame {
 
         jPanel1.setLayout(null);
 
+<<<<<<< Updated upstream
         jButton1.setBackground(new java.awt.Color(243, 246, 251));
         jButton1.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
+=======
+        jButton1.setBackground(new java.awt.Color(255, 255, 255));
+        jButton1.setFont(new java.awt.Font("Times New Roman", 0, 20)); // NOI18N
+>>>>>>> Stashed changes
         jButton1.setForeground(new java.awt.Color(51, 51, 51));
         jButton1.setText("Next");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -66,7 +71,11 @@ public class TenantPage_Payment extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton1);
+<<<<<<< Updated upstream
         jButton1.setBounds(80, 520, 110, 30);
+=======
+        jButton1.setBounds(90, 520, 90, 30);
+>>>>>>> Stashed changes
 
         jLabel9.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
