@@ -197,30 +197,12 @@ public class TenantPage_Chat extends javax.swing.JFrame {
 
     private void sendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendActionPerformed
         // TODO add your handling code here:
-//        try {
-//            String msg = "";
-//            output = new DataOutputStream(socket.getOutputStream());
-//            msg = txt.getText();
-//            output.writeUTF(msg);
-//        } catch (IOException ex) {
-//            ex.printStackTrace();
-//        }
-        
-                 String msg = txt.getText();
-        txt_area.setText(txt_area.getText() + "\r\nMe: " + msg);
-        txt.setText("");
-
         try {
-
-            String nameFile = jLabel1.getText() + ".txt";
-            FileWriter fr = new FileWriter(nameFile);
-            fr.write(txt_area.getText());
-            fr.close();
-
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(TenantPage_Chat.class.getName()).log(Level.SEVERE, null, ex);
+            String msg = "";
+            msg = txt.getText();
+            output.writeUTF(msg);
         } catch (IOException ex) {
-            Logger.getLogger(TenantPage_Chat.class.getName()).log(Level.SEVERE, null, ex);
+
         }
     }//GEN-LAST:event_sendActionPerformed
 
@@ -277,7 +259,7 @@ public class TenantPage_Chat extends javax.swing.JFrame {
             output.close();
             socket.close();
         } catch (Exception e) {
-            System.out.println("Exception");
+
         }
     }
 

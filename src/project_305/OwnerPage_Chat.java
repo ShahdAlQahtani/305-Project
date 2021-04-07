@@ -36,8 +36,6 @@ public class OwnerPage_Chat extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }
 
-
-
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -174,28 +172,13 @@ public class OwnerPage_Chat extends javax.swing.JFrame {
     private void sendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendActionPerformed
         // TODO add your handling code here:
 
-//        try {
-//            String msg = "";
-//            dos = new DataOutputStream(client.getOutputStream());
-//            msg = txt.getText();
-//            dos.writeUTF(msg);
-//        }   catch (IOException e) {
-//                Logger.getLogger(OwnerPage_Chat.class.getName()).log(Level.SEVERE, null, e);
-//            }
-//        }
-        
-//        try {
-//
-//            String msg = txt.getText();
-//            dos.writeUTF(msg);
-//            txt_area.setText(txt_area.getText() + "\r\nMe: " + msg);
-//
-//            txt.setText("");
-//
-//        } catch (IOException ex) {
-//            Logger.getLogger(OwnerPage_Chat.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-
+        try {
+            String msg = "";
+            msg = txt.getText();
+            dos.writeUTF(msg);
+        } catch (IOException ex) {
+         
+        }
     }//GEN-LAST:event_sendActionPerformed
 
     /**
@@ -237,140 +220,72 @@ public class OwnerPage_Chat extends javax.swing.JFrame {
 
             }
         });
-
-        OwnerPage_Chat serverobj = new OwnerPage_Chat(5000);
-        serverobj.startServer();
-
+    
+            OwnerPage_Chat serverobj = new OwnerPage_Chat(5000);
+            serverobj.startServer();
+    
     }
 
-//    OwnerPage_Chat(int port) {
-//        this.port = port;
-//        pool = Executors.newFixedThreadPool(5);
-//    }
-//
-//    public void startServer() throws IOException {
-//
-//        server = new ServerSocket(5000);
-//        //     msgArea.setText("Server Booted");
-////        msgArea.setText("Any client can stop the server by sending -1");
-//        while (true) {
-//            client = server.accept();
-//            clientcount++;
-//            ServerThread runnable = new ServerThread(client, clientcount, this);
-//            pool.execute(runnable);
-//        }
-//
-//    }
-//    private static class ServerThread implements Runnable {
-//
-//        OwnerPage_Chat server;
-//        Socket client;
-//
-//        int id;
-//        String s;
-//
-//        ServerThread(Socket client, int count, OwnerPage_Chat server) throws IOException {
-//
-//            this.client = client;
-//            this.server = server;
-//            this.id = count;
-//
-//            msgArea.setText("Connection " + id + "established with client " + client);
-//            
-//            dis = new DataInputStream(client.getInputStream());
-//            dos = new DataOutputStream(client.getOutputStream());
-//        }
-//
-//        @Override
-//        public void run() {
-//            int x = 1;
-//            try {
-//                while (true) {
-//                    s = dis.readUTF();
-//
-//                    msgArea.setText(msgArea.getText() + " Client(" + id + ") :" + s + "\n");
-//                    msgArea.setText("Server : ");
-//                    //s=stdin.readLine();
-////                    s = SendingMsg.getText();
-//                //    s = dis.readUTF();
-//                    if (s.equalsIgnoreCase("bye")) {
-//                        dos.writeUTF("BYE");
-//                        x = 0;
-//                        msgArea.setText("Connection ended by server");
-//                        break;
-//                    }
-//                    dos.writeUTF(s);
-//                }
-//
-//                dis.close();
-//                client.close();
-//                dos.close();
-//                if (x == 0) {
-//                    System.out.println("Server cleaning up.");
-//                    System.exit(0);
-//                }
-//            } catch (IOException ex) {
-//                System.out.println("Error : " + ex);
-//            }
-//
-//        }
-//    }
+
     OwnerPage_Chat(int port) {
         this.port = port;
-        pool = Executors.newFixedThreadPool(5);
+        pool = Executors.newFixedThreadPool(10);
     }
 
     public void startServer() throws IOException {
         server = new ServerSocket(5000);
-
         while (true) {
             client = server.accept();
             clientcount++;
-            ServerThread runnable = new ServerThread(client, clientcount, this);
-            pool.execute(runnable);
+            ServerThread thread = new ServerThread(client, clientcount, this);
+            pool.execute(thread);
         }
     }
 
-    static class ServerThread extends Thread {
+    private static class ServerThread extends Thread {
 
         OwnerPage_Chat server = null;
         Socket client = null;
-
         int id;
-        String s = "";
+        String s;
 
         ServerThread(Socket client, int count, OwnerPage_Chat server) throws IOException {
-
             this.client = client;
             this.server = server;
             this.id = count;
-            // msgArea.setText("Connection " + id + "established with client " + client);
-
+            txt_area.setText("Connection " + id + "established with client " + client);
             dis = new DataInputStream(client.getInputStream());
             dos = new DataOutputStream(client.getOutputStream());
-
         }
 
         @Override
         public void run() {
+            int x = 1;
             try {
-                while (!s.equalsIgnoreCase("bye")) {
+                while (true) {
                     s = dis.readUTF();
-
-                    txt_area.setText(txt.getText().trim() + "\n " + s);
+                    txt_area.setText(txt_area.getText() + "\n Server:  " + "Client(" + id + ") :" + s);
+                    s = dis.readUTF();
+                    if (s.equalsIgnoreCase("bye")) {
+                        txt_area.setText("BYE");
+                        x = 0;
+                        txt_area.setText("Connection ended by server");
+                        break;
+                    }
+                    txt_area.setText(s);
                 }
-
                 dis.close();
                 client.close();
                 dos.close();
-            } catch (Exception ex) {
-                int x = 0;
-                System.out.println("Error : " + ex);
-
+                if (x == 0) {
+                    txt_area.setText("Server cleaning up.");
+                    System.exit(0);
+                }
+            } catch (IOException ex) {
+                
             }
         }
     }
-    
 //        ServerSocket s = new ServerSocket(1201);
 //        System.out.println("Server waiting Connection...");
 //

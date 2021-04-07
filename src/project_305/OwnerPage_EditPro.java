@@ -5,9 +5,6 @@
  */
 package project_305;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -16,7 +13,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
+
 
 /**
  *
@@ -41,7 +38,7 @@ public class OwnerPage_EditPro extends javax.swing.JFrame {
 
             if (Login.Id.startsWith("12")) {
 
-                String query = "Select `Hallname` , `HallPrice`  from `favorites` where `idTenant` and `idHallInfo` ='" + Login.Id + "' ";
+                    String query = "Select `firstname` , `lastname` , `Email`, `PhoneNumber`, `Password` from `Owner` where `idOwner`='" + Login.Id + "' ";
                 Statement stm = connection.createStatement();
                 ResultSet rs = stm.executeQuery(query);
 
