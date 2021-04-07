@@ -68,8 +68,8 @@ public class Signup extends javax.swing.JFrame {
         jPanel3.setBackground(new java.awt.Color(181, 196, 196));
 
         back.setBackground(new java.awt.Color(144, 161, 161));
-        back.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project_305/back.png"))); // NOI18N
-        back.setBorder(null);
+        back.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/back.png"))); // NOI18N
+        back.setBorderPainted(false);
         back.setContentAreaFilled(false);
         back.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -82,8 +82,8 @@ public class Signup extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(back)
-                .addGap(0, 39, Short.MAX_VALUE))
+                .addComponent(back, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 32, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -320,7 +320,7 @@ public class Signup extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(102, 102, 102));
         jLabel2.setText("*");
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(230, 194, 30, 24);
+        jLabel2.setBounds(230, 194, 30, 22);
 
         jLabel6.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(102, 102, 102));
@@ -328,7 +328,7 @@ public class Signup extends javax.swing.JFrame {
         jPanel1.add(jLabel6);
         jLabel6.setBounds(100, 194, 30, 20);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project_305/Signup.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Signup.png"))); // NOI18N
         jPanel1.add(jLabel1);
         jLabel1.setBounds(0, 0, 300, 650);
 

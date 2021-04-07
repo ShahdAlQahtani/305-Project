@@ -241,11 +241,11 @@ public class OwnerPage_Hallinfo extends javax.swing.JFrame {
         jPanel1.add(jLabel9);
         jLabel9.setBounds(240, 610, 40, 30);
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project_305/editHallinformatio.png"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/editHallinformatio.png"))); // NOI18N
         jPanel1.add(jLabel3);
         jLabel3.setBounds(0, 0, 300, 650);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project_305/Hallinformation.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Hallinformation.png"))); // NOI18N
         jPanel1.add(jLabel1);
         jLabel1.setBounds(0, 0, 300, 650);
 

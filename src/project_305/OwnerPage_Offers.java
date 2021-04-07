@@ -249,7 +249,7 @@ public class OwnerPage_Offers extends javax.swing.JFrame {
         jPanel1.add(jLabel10);
         jLabel10.setBounds(10, 270, 118, 20);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project_305/page.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/page.png"))); // NOI18N
         jPanel1.add(jLabel1);
         jLabel1.setBounds(0, 0, 300, 650);
 

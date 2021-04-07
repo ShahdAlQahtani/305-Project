@@ -101,7 +101,7 @@ public class TenantPage_Chat extends javax.swing.JFrame {
 
         jLabel1.setText("Client");
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(130, 130, 40, 20);
+        jLabel1.setBounds(130, 130, 37, 16);
 
         txt_area.setColumns(20);
         txt_area.setRows(5);
@@ -119,9 +119,9 @@ public class TenantPage_Chat extends javax.swing.JFrame {
             }
         });
         jPanel1.add(send);
-        send.setBounds(100, 490, 67, 29);
+        send.setBounds(100, 490, 75, 29);
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project_305/chat_T.png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/chat_T.png"))); // NOI18N
         jLabel2.setText("jLabel2");
         jPanel1.add(jLabel2);
         jLabel2.setBounds(0, 0, 300, 650);

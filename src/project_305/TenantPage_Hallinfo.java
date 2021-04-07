@@ -35,7 +35,6 @@ public class TenantPage_Hallinfo extends javax.swing.JFrame {
     }
 
     public TenantPage_Hallinfo(int HID) {
-        System.out.println("4444444");
         id = HID;
         initComponents();
         setLocationRelativeTo(null);
@@ -217,7 +216,7 @@ public class TenantPage_Hallinfo extends javax.swing.JFrame {
         jPanel1.add(idh);
         idh.setBounds(120, 120, 60, 20);
 
-        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project_305/message.png"))); // NOI18N
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/message.png"))); // NOI18N
         jLabel10.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel10MouseClicked(evt);
@@ -226,7 +225,7 @@ public class TenantPage_Hallinfo extends javax.swing.JFrame {
         jPanel1.add(jLabel10);
         jLabel10.setBounds(100, 350, 30, 30);
 
-        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project_305/قلب.png"))); // NOI18N
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/قلب.png"))); // NOI18N
         jLabel11.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel11MouseClicked(evt);
@@ -235,7 +234,7 @@ public class TenantPage_Hallinfo extends javax.swing.JFrame {
         jPanel1.add(jLabel11);
         jLabel11.setBounds(150, 350, 30, 30);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project_305/tenant.jpeg"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/tenant.jpeg"))); // NOI18N
         jPanel1.add(jLabel1);
         jLabel1.setBounds(0, 0, 300, 650);
 

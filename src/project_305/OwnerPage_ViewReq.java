@@ -203,7 +203,7 @@ public class OwnerPage_ViewReq extends javax.swing.JFrame {
         jPanel1.add(jScrollPane2);
         jScrollPane2.setBounds(10, 390, 280, 120);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project_305/page.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/page.png"))); // NOI18N
         jPanel1.add(jLabel1);
         jLabel1.setBounds(0, 0, 300, 650);
 

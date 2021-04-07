@@ -107,7 +107,7 @@ public class TenantPage_profile extends javax.swing.JFrame {
         jPanel1.add(jLabel5);
         jLabel5.setBounds(20, 600, 35, 40);
 
-        logout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project_305/logout.png"))); // NOI18N
+        logout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/logout.png"))); // NOI18N
         logout.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 logoutMouseClicked(evt);
@@ -128,7 +128,7 @@ public class TenantPage_profile extends javax.swing.JFrame {
         Id.setText("ID :1400");
         Id.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel1.add(Id);
-        Id.setBounds(120, 350, 80, 22);
+        Id.setBounds(120, 350, 80, 21);
 
         label3.setBackground(new java.awt.Color(255, 255, 255));
         label3.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
@@ -141,7 +141,7 @@ public class TenantPage_profile extends javax.swing.JFrame {
         jPanel1.add(label3);
         label3.setBounds(40, 440, 230, 40);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project_305/ProfileT.jpg"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/ProfileT.jpg"))); // NOI18N
         jPanel1.add(jLabel1);
         jLabel1.setBounds(0, 0, 300, 650);
 
@@ -198,10 +198,14 @@ public class TenantPage_profile extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel5MouseClicked
 
     private void logoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutMouseClicked
-        // TODO add your handling code here:
-        Tenant_logout ob = new Tenant_logout();
-        ob.setVisible(true);
-        this.setVisible(false);
+        try {
+            // TODO add your handling code here:
+            Login ob = new Login();
+            ob.setVisible(true);
+            this.setVisible(false);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(TenantPage_profile.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_logoutMouseClicked
 
     private void label3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label3MouseClicked

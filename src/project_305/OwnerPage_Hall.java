@@ -92,7 +92,6 @@ public class OwnerPage_Hall extends javax.swing.JFrame {
         jLabel2.setText("Halls");
         panel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 90, 80, -1));
 
-        jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
         jScrollPane1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         list.setBackground(new java.awt.Color(243, 246, 251));
@@ -114,7 +113,6 @@ public class OwnerPage_Hall extends javax.swing.JFrame {
         list.setColumnSelectionAllowed(true);
         list.setFillsViewportHeight(true);
         list.setFocusCycleRoot(true);
-        list.setGridColor(new java.awt.Color(255, 255, 255));
         list.setSelectionForeground(new java.awt.Color(243, 246, 251));
         list.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -163,7 +161,7 @@ public class OwnerPage_Hall extends javax.swing.JFrame {
         panel1.add(delete, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 540, 70, -1));
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project_305/page.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/page.png"))); // NOI18N
         jLabel1.setText("Account Information          >>"); // NOI18N
         jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {

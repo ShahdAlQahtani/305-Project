@@ -173,7 +173,7 @@
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/project_305/OwnerPage.png"/>
+              <Image iconType="3" name="/Image/OwnerPage.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="text&#x9;  Add Hall"/>
           </Properties>

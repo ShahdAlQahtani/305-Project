@@ -251,7 +251,7 @@
         <Component class="javax.swing.JLabel" name="jLabel10">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/project_305/message.png"/>
+              <Image iconType="3" name="/Image/message.png"/>
             </Property>
           </Properties>
           <Events>
@@ -266,7 +266,7 @@
         <Component class="javax.swing.JLabel" name="jLabel11">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/project_305/&#x642;&#x644;&#x628;.png"/>
+              <Image iconType="3" name="/Image/&#x642;&#x644;&#x628;.png"/>
             </Property>
           </Properties>
           <Events>
@@ -281,7 +281,7 @@
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/project_305/tenant.jpeg"/>
+              <Image iconType="3" name="/Image/tenant.jpeg"/>
             </Property>
           </Properties>
           <Constraints>

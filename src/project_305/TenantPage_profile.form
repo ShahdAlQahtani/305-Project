@@ -82,7 +82,7 @@
         <Component class="javax.swing.JLabel" name="logout">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/project_305/logout.png"/>
+              <Image iconType="3" name="/Image/logout.png"/>
             </Property>
           </Properties>
           <Events>
@@ -155,7 +155,7 @@
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/project_305/ProfileT.jpg"/>
+              <Image iconType="3" name="/Image/ProfileT.jpg"/>
             </Property>
           </Properties>
           <Constraints>

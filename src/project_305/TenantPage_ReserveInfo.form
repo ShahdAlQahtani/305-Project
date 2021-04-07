@@ -57,11 +57,7 @@
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-<<<<<<< Updated upstream
               <AbsoluteConstraints x="80" y="532" width="140" height="30"/>
-=======
-              <AbsoluteConstraints x="80" y="520" width="140" height="42"/>
->>>>>>> Stashed changes
             </Constraint>
           </Constraints>
         </Component>
@@ -201,8 +197,6 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel10">
-<<<<<<< Updated upstream
-=======
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Times New Roman" size="14" style="0"/>
@@ -227,38 +221,10 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel13">
->>>>>>> Stashed changes
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Times New Roman" size="14" style="0"/>
                 </Property>
-<<<<<<< Updated upstream
-                <Property name="text" type="java.lang.String" value="Hall Name:"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="jLabel11">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Times New Roman" size="14" style="0"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Date:"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="jLabel12">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Times New Roman" size="14" style="0"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Payment Method:"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="jLabel13">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Times New Roman" size="14" style="0"/>
-                </Property>
-=======
->>>>>>> Stashed changes
                 <Property name="text" type="java.lang.String" value="Capacity:"/>
               </Properties>
             </Component>
@@ -374,7 +340,7 @@
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/project_305/finalPay.jpeg"/>
+              <Image iconType="3" name="/Image/finalPay.jpeg"/>
             </Property>
           </Properties>
           <Constraints>

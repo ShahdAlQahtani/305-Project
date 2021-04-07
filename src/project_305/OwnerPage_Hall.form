@@ -59,9 +59,6 @@
         </Component>
         <Container class="javax.swing.JScrollPane" name="jScrollPane1">
           <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
               <Color id="Default Cursor"/>
             </Property>
@@ -88,9 +85,6 @@
                 <Property name="columnSelectionAllowed" type="boolean" value="true"/>
                 <Property name="fillsViewportHeight" type="boolean" value="true"/>
                 <Property name="focusCycleRoot" type="boolean" value="true"/>
-                <Property name="gridColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                </Property>
                 <Property name="selectionForeground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="fb" green="f6" red="f3" type="rgb"/>
                 </Property>
@@ -218,7 +212,7 @@
               <Font name="Times New Roman" size="16" style="0"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/project_305/page.png"/>
+              <Image iconType="3" name="/Image/page.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Account Information          &gt;&gt;" noResource="true"/>
           </Properties>

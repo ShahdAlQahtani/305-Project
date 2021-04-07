@@ -172,8 +172,7 @@ public class TenantPage_Search extends javax.swing.JFrame {
 
         Search.setBackground(new java.awt.Color(243, 246, 251));
         Search.setFont(new java.awt.Font("Times New Roman", 0, 13)); // NOI18N
-        Search.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project_305/Seaaa.png"))); // NOI18N
-        Search.setBorder(null);
+        Search.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Seaaa.png"))); // NOI18N
         Search.setBorderPainted(false);
         Search.setContentAreaFilled(false);
         Search.addActionListener(new java.awt.event.ActionListener() {
@@ -505,7 +504,7 @@ public class TenantPage_Search extends javax.swing.JFrame {
         jPanel1.add(jLabel8);
         jLabel8.setBounds(0, 10, 50, 30);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project_305/tenant.jpeg"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/tenant.jpeg"))); // NOI18N
         jPanel1.add(jLabel1);
         jLabel1.setBounds(0, 0, 300, 650);
 

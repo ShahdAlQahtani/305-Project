@@ -114,7 +114,7 @@ public class TenantPage_Home extends javax.swing.JFrame {
         jPanel1.add(jLabel5);
         jLabel5.setBounds(20, 600, 35, 30);
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project_305/TenantPage.png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/TenantPage.png"))); // NOI18N
         jPanel1.add(jLabel2);
         jLabel2.setBounds(0, 0, 300, 650);
 

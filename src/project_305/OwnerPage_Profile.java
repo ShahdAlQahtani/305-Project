@@ -7,6 +7,7 @@ package project_305;
 
 
 
+import java.io.FileNotFoundException;
 import java.sql.*;
 
 import java.util.logging.Level;
@@ -106,7 +107,7 @@ public class OwnerPage_Profile extends javax.swing.JFrame {
         jPanel1.add(jLabel9);
         jLabel9.setBounds(240, 610, 40, 30);
 
-        Logout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project_305/logout.png"))); // NOI18N
+        Logout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/logout.png"))); // NOI18N
         Logout.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 LogoutMouseClicked(evt);
@@ -127,7 +128,7 @@ public class OwnerPage_Profile extends javax.swing.JFrame {
         Id.setText("ID :1200");
         Id.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel1.add(Id);
-        Id.setBounds(120, 350, 80, 22);
+        Id.setBounds(120, 350, 80, 21);
 
         label2.setBackground(new java.awt.Color(255, 255, 255));
         label2.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
@@ -143,7 +144,7 @@ public class OwnerPage_Profile extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Times New Roman", 0, 30)); // NOI18N
         jLabel8.setText("Profile");
         jPanel1.add(jLabel8);
-        jLabel8.setBounds(100, 90, 90, 36);
+        jLabel8.setBounds(100, 90, 90, 35);
 
         label3.setBackground(new java.awt.Color(255, 255, 255));
         label3.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
@@ -157,7 +158,7 @@ public class OwnerPage_Profile extends javax.swing.JFrame {
         label3.setBounds(40, 410, 230, 40);
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project_305/page.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/page.png"))); // NOI18N
         jLabel1.setText("Account Information          >>"); // NOI18N
         jPanel1.add(jLabel1);
         jLabel1.setBounds(0, 0, 300, 650);
@@ -206,10 +207,13 @@ public class OwnerPage_Profile extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel9MouseClicked
 
     private void LogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LogoutMouseClicked
-        // TODO add your handling code here:
-        Owner_Logout ob = new Owner_Logout();
-        ob.setVisible(true);
-        this.setVisible(false);
+        try {
+            Login ob = new Login();
+            ob.setVisible(true);
+            this.setVisible(false);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(OwnerPage_Profile.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_LogoutMouseClicked
 
     private void label2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label2MouseClicked

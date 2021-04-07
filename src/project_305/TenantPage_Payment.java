@@ -56,13 +56,8 @@ public class TenantPage_Payment extends javax.swing.JFrame {
 
         jPanel1.setLayout(null);
 
-<<<<<<< Updated upstream
         jButton1.setBackground(new java.awt.Color(243, 246, 251));
         jButton1.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
-=======
-        jButton1.setBackground(new java.awt.Color(255, 255, 255));
-        jButton1.setFont(new java.awt.Font("Times New Roman", 0, 20)); // NOI18N
->>>>>>> Stashed changes
         jButton1.setForeground(new java.awt.Color(51, 51, 51));
         jButton1.setText("Next");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -71,11 +66,7 @@ public class TenantPage_Payment extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton1);
-<<<<<<< Updated upstream
         jButton1.setBounds(80, 520, 110, 30);
-=======
-        jButton1.setBounds(90, 520, 90, 30);
->>>>>>> Stashed changes
 
         jLabel9.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -214,7 +205,7 @@ public class TenantPage_Payment extends javax.swing.JFrame {
         jPanel1.add(panel1);
         panel1.setBounds(10, 357, 280, 140);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project_305/res2.jpg"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/res2.jpg"))); // NOI18N
         jPanel1.add(jLabel1);
         jLabel1.setBounds(0, 0, 300, 650);
 
@@ -266,18 +257,7 @@ public class TenantPage_Payment extends javax.swing.JFrame {
         if (labelEmpty1 == true || labelEmpty2 == true || labelEmpty3 == true) {
 
         } else {
-            //if (cridit.isSelected())
-                TenantPage_Reservation.res.setPayment(cardNum);
-//            else
-//                TenantPage_Reservation.res.setPayment(0);
-//            TenantPage_ReserveInfo object = null;
-//            try {
-//                object = new TenantPage_ReserveInfo();
-//            } catch (FileNotFoundException ex) {
-//                Logger.getLogger(TenantPage_Payment.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-//            object.setVisible(true);
-//            this.setVisible(false);
+            TenantPage_Reservation.res.setPayment(cardNum);
 
         }}else{
          TenantPage_Reservation.res.setPayment("0");   

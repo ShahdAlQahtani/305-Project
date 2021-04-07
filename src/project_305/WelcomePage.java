@@ -64,7 +64,7 @@ public class WelcomePage extends javax.swing.JFrame {
         jPanel1.add(Login);
         Login.setBounds(70, 460, 160, 50);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project_305/firstPage – 2.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/firstPage – 2.png"))); // NOI18N
         jPanel1.add(jLabel1);
         jLabel1.setBounds(0, 0, 290, 650);
 
@@ -97,11 +97,11 @@ public class WelcomePage extends javax.swing.JFrame {
 
     private void LoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginActionPerformed
         // TODO add your handling code here:
-        Login ob;
+        
         try {
-            ob = new Login();
-                 ob.setVisible(true);
-        this.setVisible(false);
+            Login ob = new Login();
+            ob.setVisible(true);
+            this.setVisible(false);
         } catch (FileNotFoundException ex) {
             Logger.getLogger(WelcomePage.class.getName()).log(Level.SEVERE, null, ex);
         }

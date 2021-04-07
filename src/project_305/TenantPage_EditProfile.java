@@ -14,6 +14,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -307,7 +308,7 @@ public class TenantPage_EditProfile extends javax.swing.JFrame {
         jPanel1.add(jLabel10);
         jLabel10.setBounds(230, 600, 40, 40);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project_305/TenantPage – 13.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/TenantPage – 13.png"))); // NOI18N
         jPanel1.add(jLabel1);
         jLabel1.setBounds(0, 0, 300, 650);
 
@@ -346,9 +347,7 @@ public class TenantPage_EditProfile extends javax.swing.JFrame {
             }
         
         
-        TenantPage_EditProDone ob = new TenantPage_EditProDone();
-        ob.setVisible(true);
-        this.setVisible(false);
+        JOptionPane.showMessageDialog(null, "Your information has been Updated successfully!");
     }//GEN-LAST:event_updateActionPerformed
 
     private void fNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fNameActionPerformed

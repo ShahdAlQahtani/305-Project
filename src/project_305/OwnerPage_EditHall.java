@@ -256,7 +256,7 @@ public class OwnerPage_EditHall extends javax.swing.JFrame {
         jPanel1.add(jLabel8);
         jLabel8.setBounds(0, 0, 50, 30);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project_305/editHallinformatio.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/editHallinformatio.png"))); // NOI18N
         jPanel1.add(jLabel1);
         jLabel1.setBounds(0, 0, 300, 650);
 

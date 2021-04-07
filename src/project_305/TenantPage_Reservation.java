@@ -140,7 +140,7 @@ public class TenantPage_Reservation extends javax.swing.JFrame {
         jPanel1.add(jLabel8);
         jLabel8.setBounds(0, 0, 50, 30);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project_305/res1 (2).jpg"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/res1 (2).jpg"))); // NOI18N
         jPanel1.add(jLabel1);
         jLabel1.setBounds(0, 0, 300, 650);
 
@@ -160,11 +160,7 @@ public class TenantPage_Reservation extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // NEXT button
-<<<<<<< Updated upstream
       try{
-=======
-      
->>>>>>> Stashed changes
         Date date = new Date(jDateChooser1.getDate().getTime());
         res.setReserveDate(date);
         
@@ -192,14 +188,11 @@ public class TenantPage_Reservation extends javax.swing.JFrame {
         } catch (Exception e) {
             e.printStackTrace();
         }
-<<<<<<< Updated upstream
       }
         catch(NullPointerException e){
                 JOptionPane.showMessageDialog(null, " Choose a date first!");
                 }
         
-=======
->>>>>>> Stashed changes
 
     }//GEN-LAST:event_jButton1ActionPerformed
 

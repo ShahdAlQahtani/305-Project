@@ -108,11 +108,7 @@ public class TenantPage_ReserveInfo extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton1);
-<<<<<<< Updated upstream
         jButton1.setBounds(80, 532, 140, 30);
-=======
-        jButton1.setBounds(80, 520, 140, 42);
->>>>>>> Stashed changes
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -274,7 +270,7 @@ public class TenantPage_ReserveInfo extends javax.swing.JFrame {
         jPanel1.add(jLabel8);
         jLabel8.setBounds(0, 0, 50, 30);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project_305/finalPay.jpeg"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/finalPay.jpeg"))); // NOI18N
         jPanel1.add(jLabel1);
         jLabel1.setBounds(0, 0, 300, 650);
 
