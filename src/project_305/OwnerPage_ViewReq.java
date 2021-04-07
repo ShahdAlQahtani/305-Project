@@ -286,12 +286,11 @@ public class OwnerPage_ViewReq extends javax.swing.JFrame {
                 table1.addColumn("Date");
                 
                 while (rs.next()) {
-                    table1.addRow(new Object[]{rs.getString(1), rs.getString(3)});
+                    table1.addRow(new Object[]{rs.getString(1)+" "+rs.getString(2), rs.getString(3)});
                 }
                 list1.setModel(table1);
             } else {
                 jScrollPane2.setVisible(false);
-                System.out.println("(=jjjj");
                 list1.setVisible(false);
                 NoRes.setVisible(true);
                 NoRes.setVisible(true);

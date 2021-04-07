@@ -108,7 +108,11 @@ public class TenantPage_ReserveInfo extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton1);
+<<<<<<< Updated upstream
         jButton1.setBounds(80, 532, 140, 30);
+=======
+        jButton1.setBounds(80, 520, 140, 42);
+>>>>>>> Stashed changes
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
