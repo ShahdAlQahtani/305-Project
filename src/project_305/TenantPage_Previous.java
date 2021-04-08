@@ -6,8 +6,18 @@
 package project_305;
 
 import java.io.FileNotFoundException;
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import static java.sql.ResultSet.CONCUR_READ_ONLY;
+import static java.sql.ResultSet.TYPE_SCROLL_SENSITIVE;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -21,6 +31,52 @@ public class TenantPage_Previous extends javax.swing.JFrame {
     public TenantPage_Previous() {
         initComponents();
         setLocationRelativeTo(null);
+        list();
+    }
+
+    public void list() {
+        noresr1.setVisible(false);
+        noresr2.setVisible(false);
+        DefaultTableModel table1 = new DefaultTableModel();
+        table1.addColumn("ReserveId");
+        table1.addColumn("Hall Name");
+        table1.addColumn("Date");
+        Date dayDate=new Date(new java.util.Date().getTime());
+        Connection connection = null;
+
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            String ConnectionURL = "jdbc:mysql://localhost:3306/weddinghallreservation";
+            connection = DriverManager.getConnection(ConnectionURL, "root", "1212");
+            String query = "Select Hallname , resDate , idReserve from hallinfo,Reservation where Reservation.idTenant ='" + Login.Id + "'"
+                    + " and hallinfo.idHallInfo=Reservation.idHallInfo";
+
+            Statement stat = connection.createStatement(TYPE_SCROLL_SENSITIVE, CONCUR_READ_ONLY);
+            ResultSet rs = stat.executeQuery(query);
+
+            if (rs.next()) {
+
+                jScrollPane1.setVisible(true);
+                list.setVisible(true);
+                
+                rs.previous();
+                while (rs.next()) {
+                    Date date=rs.getDate(2);
+                    if(date.before(dayDate))
+                        table1.addRow(new Object[]{rs.getInt(3), rs.getString(1), rs.getDate(2)});
+                }
+                list.setModel(table1);
+            } else {
+                jScrollPane1.setVisible(false);
+                noresr1.setVisible(true);
+                noresr2.setVisible(true);
+                list.setVisible(false);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex.toString());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -33,21 +89,60 @@ public class TenantPage_Previous extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        list = new javax.swing.JTable();
+        jLabel3 = new javax.swing.JLabel();
+        noresr1 = new javax.swing.JLabel();
+        noresr2 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setLayout(null);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/TenantPage – 9.png"))); // NOI18N
-        jPanel1.add(jLabel1);
-        jLabel1.setBounds(0, 0, 300, 650);
+        list.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(list);
 
+        jPanel1.add(jScrollPane1);
+        jScrollPane1.setBounds(10, 250, 280, 150);
+
+        jLabel3.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
+        jLabel3.setText("Your previouse reservation:");
+        jPanel1.add(jLabel3);
+        jLabel3.setBounds(20, 210, 180, 20);
+
+        noresr1.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
+        noresr1.setText("You do not have any ");
+        jPanel1.add(noresr1);
+        noresr1.setBounds(80, 340, 140, 20);
+
+        noresr2.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
+        noresr2.setText("reservation yet ");
+        jPanel1.add(noresr2);
+        noresr2.setBounds(100, 370, 96, 20);
+
+        jLabel2.setFont(new java.awt.Font("Times New Roman", 0, 28)); // NOI18N
+        jLabel2.setText("Previous Reservation");
+        jPanel1.add(jLabel2);
+        jLabel2.setBounds(30, 90, 250, 30);
+
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/back.png"))); // NOI18N
         jLabel8.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel8MouseClicked(evt);
@@ -88,6 +183,10 @@ public class TenantPage_Previous extends javax.swing.JFrame {
         jPanel1.add(jLabel9);
         jLabel9.setBounds(240, 600, 40, 30);
 
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/tenant.jpeg"))); // NOI18N
+        jPanel1.add(jLabel1);
+        jLabel1.setBounds(0, 0, 300, 650);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -111,7 +210,7 @@ public class TenantPage_Previous extends javax.swing.JFrame {
 
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
         // TODO add your handling code here:
-        TenantPage_Home ob=new TenantPage_Home();
+        TenantPage_Home ob = new TenantPage_Home();
         ob.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jLabel5MouseClicked
@@ -184,11 +283,17 @@ public class TenantPage_Previous extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable list;
+    private javax.swing.JLabel noresr1;
+    private javax.swing.JLabel noresr2;
     // End of variables declaration//GEN-END:variables
 }

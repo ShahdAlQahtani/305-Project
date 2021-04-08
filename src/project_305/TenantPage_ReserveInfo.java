@@ -34,7 +34,6 @@ public class TenantPage_ReserveInfo extends javax.swing.JFrame {
             ResultSet rs = stm.executeQuery(queryT);
 
             if (rs.next()) {
-                System.out.println(rs.getString(1));
                 GName.setText(rs.getString(1));
                 Gemail.setText(rs.getString(2));
             }
@@ -44,7 +43,6 @@ public class TenantPage_ReserveInfo extends javax.swing.JFrame {
             ResultSet rsH = stmH.executeQuery(queryH);
 
             if (rsH.next()) {
-                System.out.println(rsH.getString(1));
                 hName.setText(rsH.getString(1));
                 capacity.setText(rsH.getInt(2) + "");
                 hprice.setText(rsH.getDouble(3) + "");
@@ -70,7 +68,7 @@ public class TenantPage_ReserveInfo extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        confirm = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -98,17 +96,17 @@ public class TenantPage_ReserveInfo extends javax.swing.JFrame {
 
         jPanel1.setLayout(null);
 
-        jButton1.setBackground(new java.awt.Color(243, 246, 251));
-        jButton1.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(51, 51, 51));
-        jButton1.setText("Confirm");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        confirm.setBackground(new java.awt.Color(243, 246, 251));
+        confirm.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
+        confirm.setForeground(new java.awt.Color(51, 51, 51));
+        confirm.setText("Confirm");
+        confirm.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                confirmActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1);
-        jButton1.setBounds(80, 532, 140, 30);
+        jPanel1.add(confirm);
+        confirm.setBounds(80, 532, 140, 30);
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -288,7 +286,7 @@ public class TenantPage_ReserveInfo extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void confirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmActionPerformed
         // TODO add your handling code here:
         Connection connection = null;
         try {
@@ -311,7 +309,7 @@ public class TenantPage_ReserveInfo extends javax.swing.JFrame {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_confirmActionPerformed
 
     private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
         // TODO add your handling code here:
@@ -402,10 +400,10 @@ public class TenantPage_ReserveInfo extends javax.swing.JFrame {
     private javax.swing.JLabel GName;
     private javax.swing.JLabel Gemail;
     private javax.swing.JLabel capacity;
+    private javax.swing.JButton confirm;
     private javax.swing.JLabel date;
     private javax.swing.JLabel hName;
     private javax.swing.JLabel hprice;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

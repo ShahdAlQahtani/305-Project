@@ -168,7 +168,7 @@ public class TenantPage_Hallinfo extends javax.swing.JFrame {
         jPanel1.add(jLabel9);
         jLabel9.setBounds(240, 600, 40, 30);
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(60, 190, 160, 160);
+        jLabel2.setBounds(80, 190, 160, 160);
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(null);

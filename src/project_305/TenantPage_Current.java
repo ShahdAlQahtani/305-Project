@@ -26,7 +26,7 @@ import javax.swing.table.DefaultTableModel;
 public class TenantPage_Current extends javax.swing.JFrame {
 
     public static boolean curr = true;
-    int idRese=0;
+    int idRese = 0;
 
     public TenantPage_Current() {
         initComponents();
@@ -36,37 +36,44 @@ public class TenantPage_Current extends javax.swing.JFrame {
     }
 
     public void list() {
-        jScrollPane2.setVisible(false);
-        list1.setVisible(false);
         HallName2.setVisible(false);
         HallName.setVisible(false);
-
-        DefaultTableModel table = new DefaultTableModel();
-        table.addColumn("Hall Name");
-
+        DefaultTableModel table1 = new DefaultTableModel();
+        table1.addColumn("ReserveId");
+        table1.addColumn("Hall Name");
+        table1.addColumn("Date");
+        Date dayDate = new Date(new java.util.Date().getTime());
+        Connection connection = null;
         try {
-            Connection connection = null;
             Class.forName("com.mysql.cj.jdbc.Driver");
             String ConnectionURL = "jdbc:mysql://localhost:3306/weddinghallreservation";
             connection = DriverManager.getConnection(ConnectionURL, "root", "1212");
-            String query = "Select Hallname  from hallinfo,Reservation where Reservation.idTenant ='" + Login.Id + "' and `Hallinfo`.`idHallInfo`=`Reservation`.`idHallinfo` ";
+            String query = "Select Hallname , resDate , idReserve from hallinfo,Reservation where Reservation.idTenant ='" + Login.Id + "'"
+                    + " and hallinfo.idHallInfo=Reservation.idHallInfo";
+
             Statement stat = connection.createStatement(TYPE_SCROLL_SENSITIVE, CONCUR_READ_ONLY);
             ResultSet rs = stat.executeQuery(query);
 
             if (rs.next()) {
+
+                jScrollPane2.setVisible(true);
+                list1.setVisible(true);
+
                 rs.previous();
+
                 while (rs.next()) {
-                    table.addRow(new Object[]{
-                        rs.getString(1)
-                    });
+                    Date date = rs.getDate(2);
+                    if (date.after(dayDate)) {
+                        table1.addRow(new Object[]{rs.getInt(3), rs.getString(1), rs.getDate(2)});
+                    }
                 }
-                list.setModel(table);
+                list1.setModel(table1);
             } else {
                 edit.setVisible(false);
-                jScrollPane1.setVisible(false);
+                jScrollPane2.setVisible(false);
                 HallName2.setVisible(true);
                 HallName.setVisible(true);
-                list.setVisible(false);
+                list1.setVisible(false);
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex.toString());
@@ -85,17 +92,16 @@ public class TenantPage_Current extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        list = new javax.swing.JTable();
+        jLabel4 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         list1 = new javax.swing.JTable();
-        jTextField1 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         HallName2 = new javax.swing.JLabel();
         HallName = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         edit = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -106,35 +112,10 @@ public class TenantPage_Current extends javax.swing.JFrame {
 
         jPanel1.setLayout(null);
 
-        jScrollPane1.setBackground(new java.awt.Color(243, 246, 251));
-        jScrollPane1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-
-        list.setBackground(new java.awt.Color(243, 246, 251));
-        list.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null},
-                {null},
-                {null},
-                {null},
-                {null},
-                {null},
-                {null},
-                {null}
-            },
-            new String [] {
-                "Title 1"
-            }
-        ));
-        list.setSelectionForeground(new java.awt.Color(243, 246, 251));
-        list.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                listMouseClicked(evt);
-            }
-        });
-        jScrollPane1.setViewportView(list);
-
-        jPanel1.add(jScrollPane1);
-        jScrollPane1.setBounds(20, 200, 250, 80);
+        jLabel4.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
+        jLabel4.setText("Your current reservation:");
+        jPanel1.add(jLabel4);
+        jLabel4.setBounds(10, 210, 170, 20);
 
         jScrollPane2.setBackground(new java.awt.Color(243, 246, 251));
         jScrollPane2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -167,12 +148,7 @@ public class TenantPage_Current extends javax.swing.JFrame {
         jScrollPane2.setViewportView(list1);
 
         jPanel1.add(jScrollPane2);
-        jScrollPane2.setBounds(10, 390, 280, 80);
-
-        jTextField1.setBackground(new java.awt.Color(243, 246, 251));
-        jTextField1.setBorder(null);
-        jPanel1.add(jTextField1);
-        jTextField1.setBounds(10, 190, 280, 50);
+        jScrollPane2.setBounds(10, 240, 280, 100);
 
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
@@ -209,6 +185,7 @@ public class TenantPage_Current extends javax.swing.JFrame {
         jPanel1.add(jLabel9);
         jLabel9.setBounds(240, 600, 40, 30);
 
+        edit.setBackground(new java.awt.Color(255, 255, 255));
         edit.setFont(new java.awt.Font("Times New Roman", 0, 13)); // NOI18N
         edit.setText("Edit");
         edit.addActionListener(new java.awt.event.ActionListener() {
@@ -217,7 +194,12 @@ public class TenantPage_Current extends javax.swing.JFrame {
             }
         });
         jPanel1.add(edit);
-        edit.setBounds(10, 490, 75, 29);
+        edit.setBounds(10, 460, 75, 29);
+
+        jLabel3.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel3.setText("To edit: select Reserve Id, then click edit");
+        jPanel1.add(jLabel3);
+        jLabel3.setBounds(20, 440, 260, 16);
 
         jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -243,6 +225,7 @@ public class TenantPage_Current extends javax.swing.JFrame {
         jPanel1.add(jLabel5);
         jLabel5.setBounds(20, 600, 35, 30);
 
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/back.png"))); // NOI18N
         jLabel8.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel8MouseClicked(evt);
@@ -251,7 +234,7 @@ public class TenantPage_Current extends javax.swing.JFrame {
         jPanel1.add(jLabel8);
         jLabel8.setBounds(0, 0, 50, 30);
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/doneReserve.jpeg"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/tenant.jpeg"))); // NOI18N
         jPanel1.add(jLabel2);
         jLabel2.setBounds(0, 0, 300, 650);
 
@@ -332,55 +315,26 @@ public class TenantPage_Current extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_jLabel8MouseClicked
 
-    private void listMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listMouseClicked
-        // TODO add your handling code here:
-        int index = list.getSelectedRow();
-        String name = list.getValueAt(index, 0).toString();
-        Connection connection = null;
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            String ConnectionURL = "jdbc:mysql://localhost:3306/weddinghallreservation";
-            connection = DriverManager.getConnection(ConnectionURL, "root", "1212");
-            String query = "Select Hallname , resDate , idReserve from hallinfo,Reservation where Reservation.idTenant ='" + Login.Id + "'"
-                    + " and hallinfo.idHallInfo=Reservation.idHallInfo and hallinfo.Hallname ='" + name + "'";
-
-            Statement stat = connection.createStatement(TYPE_SCROLL_SENSITIVE, CONCUR_READ_ONLY);
-            ResultSet rs = stat.executeQuery(query);
-
-            if (rs.next()) {
-
-                jScrollPane2.setVisible(true);
-                list1.setVisible(true);
-
-                rs.previous();
-                DefaultTableModel table1 = new DefaultTableModel();
-                table1.addColumn("Reserve Id");
-                table1.addColumn("Hall Name");
-                table1.addColumn("Date");
-
-                while (rs.next()) {
-                    table1.addRow(new Object[]{rs.getString(1), rs.getDate(2),rs.getInt(3)});
-                }
-                list1.setModel(table1);
-            }
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, ex.toString());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }//GEN-LAST:event_listMouseClicked
-
     private void list1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_list1MouseClicked
 
     }//GEN-LAST:event_list1MouseClicked
 
     private void editActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editActionPerformed
         // TODO add your handling code here:
-        int index = list1.getSelectedRow();
-        int idReserve = Integer.parseInt(list1.getValueAt(index, 2).toString());
-        TenantPage_EditRes obj=new TenantPage_EditRes(idReserve);
-        obj.setVisible(true);
-        this.setVisible(false);
+        try {
+            if (list1.getSelectedColumn() >= 1) {
+                JOptionPane.showMessageDialog(null, "please choose the ReserveId");
+            } else {
+                int index = list1.getSelectedRow();
+                int idReserve = (int) list1.getValueAt(index, 0);
+                TenantPage_EditRes obj = new TenantPage_EditRes(idReserve);
+                obj.setVisible(true);
+                this.setVisible(false);
+            }
+
+        } catch (ArrayIndexOutOfBoundsException e) {
+            JOptionPane.showMessageDialog(null, "to edit choose a reservation first");
+        }
     }//GEN-LAST:event_editActionPerformed
 
     /**
@@ -426,16 +380,15 @@ public class TenantPage_Current extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTable list;
     private javax.swing.JTable list1;
     // End of variables declaration//GEN-END:variables
 }

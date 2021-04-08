@@ -164,18 +164,8 @@ public class TenantPage_Reservation extends javax.swing.JFrame {
         Date date = new Date(jDateChooser1.getDate().getTime());
         res.setReserveDate(date);
         
-        
-        Connection connection = null;
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-
-            String ConnectionURL = "jdbc:mysql://localhost:3306/weddinghallreservation";
-            PreparedStatement q;
-            connection = DriverManager.getConnection(ConnectionURL, "root", "1212");
-
-            String query = "Select idReserve from `Reservation` where idHallinfo='" + TenantPage_Hallinfo.id + "' and resDate='" + date + "'";
-            Statement stm = connection.createStatement();
-            ResultSet rs = stm.executeQuery(query);
+            ResultSet rs=res.checkDateForRes(TenantPage_Hallinfo.id, date);
             if (rs.next()) {
                 JOptionPane.showMessageDialog(null, " Hall is reserved in this day!! Chosse another day!");
 
@@ -188,10 +178,9 @@ public class TenantPage_Reservation extends javax.swing.JFrame {
         } catch (Exception e) {
             e.printStackTrace();
         }
-      }
-        catch(NullPointerException e){
+        }catch(NullPointerException e){
                 JOptionPane.showMessageDialog(null, " Choose a date first!");
-                }
+        }
         
 
     }//GEN-LAST:event_jButton1ActionPerformed

@@ -7,7 +7,10 @@ package project_305;
 
 import java.io.FileNotFoundException;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
@@ -23,13 +26,16 @@ import static project_305.TenantPage_Favorate.idH;
 public class TenantPage_EditRes extends javax.swing.JFrame {
 
     int idRES;
+
     public TenantPage_EditRes() {
         initComponents();
         setLocationRelativeTo(null);
     }
 
     public TenantPage_EditRes(int id) {
-        this.idRES=id;
+        initComponents();
+        setLocationRelativeTo(null);
+        this.idRES = id;
     }
 
     /**
@@ -42,9 +48,10 @@ public class TenantPage_EditRes extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        jLabel8 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
-        jRadioButton1 = new javax.swing.JRadioButton();
+        CancelRes = new javax.swing.JRadioButton();
         jPanel3 = new javax.swing.JPanel();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
         jPanel4 = new javax.swing.JPanel();
@@ -59,12 +66,20 @@ public class TenantPage_EditRes extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setLayout(null);
+
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/back.png"))); // NOI18N
+        jLabel8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel8MouseClicked(evt);
+            }
+        });
+        jPanel1.add(jLabel8);
+        jLabel8.setBounds(0, 0, 50, 30);
 
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setFont(new java.awt.Font("Times New Roman", 0, 20)); // NOI18N
@@ -79,12 +94,12 @@ public class TenantPage_EditRes extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
-        jRadioButton1.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        jRadioButton1.setForeground(new java.awt.Color(51, 51, 51));
-        jRadioButton1.setText("Cancel Reservation");
-        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+        CancelRes.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        CancelRes.setForeground(new java.awt.Color(51, 51, 51));
+        CancelRes.setText("Cancel Reservation");
+        CancelRes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton1ActionPerformed(evt);
+                CancelResActionPerformed(evt);
             }
         });
 
@@ -93,13 +108,13 @@ public class TenantPage_EditRes extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jRadioButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(CancelRes, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addComponent(jRadioButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(CancelRes, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -193,7 +208,7 @@ public class TenantPage_EditRes extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel4.setText("OR");
         jPanel1.add(jLabel4);
-        jLabel4.setBounds(30, 290, 25, 21);
+        jLabel4.setBounds(30, 280, 25, 21);
 
         jLabel9.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -227,14 +242,6 @@ public class TenantPage_EditRes extends javax.swing.JFrame {
         jPanel1.add(jLabel5);
         jLabel5.setBounds(20, 600, 35, 30);
 
-        jLabel8.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel8MouseClicked(evt);
-            }
-        });
-        jPanel1.add(jLabel8);
-        jLabel8.setBounds(0, 0, 50, 30);
-
         jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/tenant.jpeg"))); // NOI18N
         jPanel1.add(jLabel1);
@@ -256,7 +263,7 @@ public class TenantPage_EditRes extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here: EDITT
-        if (jRadioButton1.isSelected()) {
+        if (CancelRes.isSelected()) {
             initComponents();
             setLocationRelativeTo(null);
             Connection connection = null;
@@ -268,9 +275,52 @@ public class TenantPage_EditRes extends javax.swing.JFrame {
                 String query2 = "DELETE  from `Reservation` where idReserve='" + idRES + "'";
                 Statement stat = connection.createStatement();
                 stat.executeUpdate(query2);
+                JOptionPane.showMessageDialog(null, "Reservation has been deletd :)");
+                TenantPage_Current object = new TenantPage_Current();
+                object.setVisible(true);
+                this.setVisible(false);
             } catch (SQLException ex) {
                 ex.printStackTrace();
-                JOptionPane.showMessageDialog(null, " All Reservations has be Removed ");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            Date date = null;
+            try {
+                date = new Date(jDateChooser1.getDate().getTime());
+            } catch (NullPointerException e) {
+                JOptionPane.showMessageDialog(null, " Choose a date first!");
+            }
+
+            Connection connection = null;
+            try {
+                Class.forName("com.mysql.cj.jdbc.Driver");
+
+                String ConnectionURL = "jdbc:mysql://localhost:3306/weddinghallreservation";
+                PreparedStatement q;
+                connection = DriverManager.getConnection(ConnectionURL, "root", "1212");
+
+                String query = "Select idReserve from `Reservation` where resDate='" + date + "'";
+                Statement stm = connection.createStatement();
+                ResultSet rs = stm.executeQuery(query);
+                if (rs.next()) {
+                    JOptionPane.showMessageDialog(null, " Hall is reserved in this day!! Chosse another day!");
+
+                } else {
+                    String query2 = "Update Reservation set resDate='" + date + "' where idReserve='" + idRES + "'";
+                    Statement stm2 = connection.createStatement();
+                    int rowUpd = stm2.executeUpdate(query2);
+
+                    if (rowUpd != 0) {
+                        JOptionPane.showMessageDialog(null, " Reservation date is updated.");
+                    } else {
+                        JOptionPane.showMessageDialog(null, "ERROR");
+                    }
+                    TenantPage_Current object = new TenantPage_Current();
+                    object.setVisible(true);
+                    this.setVisible(false);
+                }
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -316,15 +366,14 @@ public class TenantPage_EditRes extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel5MouseClicked
 
     private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
-        // BBAACCCCKKKKKK
         TenantPage_Current ob = new TenantPage_Current();
         ob.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jLabel8MouseClicked
 
-    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+    private void CancelResActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelResActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton1ActionPerformed
+    }//GEN-LAST:event_CancelResActionPerformed
 
     /**
      * @param args the command line arguments
@@ -362,6 +411,7 @@ public class TenantPage_EditRes extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JRadioButton CancelRes;
     private javax.swing.JButton jButton1;
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
@@ -380,7 +430,6 @@ public class TenantPage_EditRes extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }

@@ -139,76 +139,10 @@ public class TenantPage_ReserDone extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         try {
-            // TODO add your handling code here:
-
-            Class.forName("com.mysql.cj.jdbc.Driver");
-
-            String ConnectionURL = "jdbc:mysql://localhost:3306/weddinghallreservation";
-            PreparedStatement q;
-            Connection connection = DriverManager.getConnection(ConnectionURL, "root", "1212");
-
-            String queryT = "Select `firstname`, `Email` from `Tenant` where  `idTenant` ='" + Login.Id + "' ";
-            Statement stm = connection.createStatement();
-            ResultSet rs = stm.executeQuery(queryT);
-            
-            File file= new File("invoice.txt");
-            PrintWriter fr= new PrintWriter(file);
-            
-            
-            fr.println("|——————————INVOICE—————————-——|");
-            fr.println("|                                                                                  |");
-            fr.println("|———————WEDDING HALL SYSTEM———————|");
-            fr.println("|                                                                                  |");
-            fr.println("|--------------------------------------------|");
-            fr.println("|                                                                                  |");
-           
-           
-            while (rs.next()) {
-                String name= rs.getString(1);
-                String email= rs.getString(2);
-            fr.printf("| Tenant Info:        Name:%-39s|\n", name);
-            fr.printf("|                            Email:%-38s|\n", email);
-            }
-            
-            fr.println("|                                                                                  |");
-            
-            String queryH = "Select `Hallname`, `Hallcapacity`, `HallPrice` from `hallinfo` where `idHallInfo`='" + TenantPage_Hallinfo.id + "' ";
-            Statement stmH = connection.createStatement();
-            ResultSet rsH = stmH.executeQuery(queryH);
-
-            if (rsH.next()) {
-            fr.printf("| Reservation Info:  Hall Name: %-31s|\n", rsH.getString(1));
-            fr.printf("|                            Capacity:%-37d|\n", rsH.getInt(2));
-            fr.printf("|                            Price:%-41d|\n", rsH.getInt(3));
-            }
-            
-            fr.printf("|                            Date:%-36s|\n", TenantPage_Reservation.res.getReserveDate().toString());
-            
-           
-            
-            if (TenantPage_Reservation.res.getPayment().equals("0")) {
-                fr.printf("|                            Payment Method:%-24s|\n", "Cash");
-            } else {
-                fr.printf("|                            Payment Method:%-24s|\n", "Cridit card");
-            }
-            
-
-            
-            fr.close();
-           // fr.flush();
-            
-             Desktop desktop = Desktop.getDesktop();
-            if(file.exists()) desktop.open(file);
-            
-        } catch (FileNotFoundException ex) {
+            TenantPage_Reservation.res.confirmAndPrintInvoic(Integer.parseInt(Login.Id),TenantPage_Hallinfo.id,TenantPage_Reservation.res);
+        } catch (Exception ex) {
             Logger.getLogger(TenantPage_ReserDone.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(TenantPage_ReserDone.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(TenantPage_ReserDone.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(TenantPage_ReserDone.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        } 
         
         
     }//GEN-LAST:event_jButton2ActionPerformed
