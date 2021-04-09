@@ -86,6 +86,7 @@ public class OwnerPage_ViewReq extends javax.swing.JFrame {
         list = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
         list1 = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -135,7 +136,7 @@ public class OwnerPage_ViewReq extends javax.swing.JFrame {
         NoRes.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         NoRes.setText("No Rservation For This Hall..!");
         jPanel1.add(NoRes);
-        NoRes.setBounds(40, 400, 224, 40);
+        NoRes.setBounds(40, 400, 221, 40);
 
         jScrollPane1.setBackground(new java.awt.Color(243, 246, 251));
         jScrollPane1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -202,6 +203,15 @@ public class OwnerPage_ViewReq extends javax.swing.JFrame {
 
         jPanel1.add(jScrollPane2);
         jScrollPane2.setBounds(10, 390, 280, 120);
+
+        jButton1.setText("jButton1");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1);
+        jButton1.setBounds(180, 530, 93, 29);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/page.png"))); // NOI18N
         jPanel1.add(jLabel1);
@@ -307,6 +317,14 @@ public class OwnerPage_ViewReq extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_list1MouseClicked
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+
+     OwnerPage_Chat ob = new OwnerPage_Chat();
+        ob.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -344,6 +362,7 @@ public class OwnerPage_ViewReq extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel NoRes;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;

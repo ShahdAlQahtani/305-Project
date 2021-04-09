@@ -5,16 +5,8 @@
  */
 package project_305;
 
-import java.io.*;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.net.ServerSocket;
-import java.net.Socket;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.*;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -22,18 +14,17 @@ import javax.swing.*;
  */
 public class OwnerPage_Chat extends javax.swing.JFrame {
 
-    int port = 0;
-    static ServerSocket server = null;
-    static Socket client = null;
-    ExecutorService pool = null;
-    static int clientcount = 0;
+    static ServerThread cst;
 
-    static DataOutputStream dos;
-    static DataInputStream dis;
-
+//
     public OwnerPage_Chat() {
         initComponents();
         setLocationRelativeTo(null);
+        try {
+            cst = new ServerThread(this);
+        } catch (IOException ex) {
+            ex.getMessage();
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -49,7 +40,7 @@ public class OwnerPage_Chat extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         txt_area = new javax.swing.JTextArea();
         txt = new javax.swing.JTextField();
-        send = new javax.swing.JButton();
+        send = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -101,20 +92,20 @@ public class OwnerPage_Chat extends javax.swing.JFrame {
         jScrollPane2.setViewportView(txt_area);
 
         jPanel1.add(jScrollPane2);
-        jScrollPane2.setBounds(30, 220, 240, 210);
+        jScrollPane2.setBounds(30, 250, 240, 210);
         jPanel1.add(txt);
-        txt.setBounds(50, 450, 200, 30);
+        txt.setBounds(30, 470, 200, 30);
 
-        send.setText("Send");
-        send.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                sendActionPerformed(evt);
+        send.setIcon(new javax.swing.ImageIcon("C:\\Users\\shood\\Documents\\NetBeansProjects\\project-305\\src\\Image\\send m3.png")); // NOI18N
+        send.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sendMouseClicked(evt);
             }
         });
         jPanel1.add(send);
-        send.setBounds(100, 500, 67, 29);
+        send.setBounds(240, 470, 30, 30);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project_305/‏‏chat_O.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\shood\\Documents\\NetBeansProjects\\project-305\\src\\Image\\chat_O.png")); // NOI18N
         jPanel1.add(jLabel1);
         jLabel1.setBounds(0, 0, 300, 650);
 
@@ -133,58 +124,40 @@ public class OwnerPage_Chat extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
-        // TODO add your handling code here:
-        OwnerPage_Home ob = new OwnerPage_Home();
-        ob.setVisible(true);
-        this.setVisible(false);
+
     }//GEN-LAST:event_jLabel2MouseClicked
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
-        // TODO add your handling code here:
-        OwnerPage_ViewReq ob = new OwnerPage_ViewReq();
-        ob.setVisible(true);
-        this.setVisible(false);
+
 
     }//GEN-LAST:event_jLabel3MouseClicked
 
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
         // TODO add your handling code here:
-        OwnerPage_Comment ob = new OwnerPage_Comment();
-        ob.setVisible(true);
-        this.setVisible(false);
+
     }//GEN-LAST:event_jLabel4MouseClicked
 
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
-        // TODO add your handling code here:
-        OwnerPage_Profile ob = null;
-        ob = new OwnerPage_Profile();
-        ob.setVisible(true);
-        this.setVisible(false);
+
     }//GEN-LAST:event_jLabel5MouseClicked
 
     private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
-        // BBAACCCCKKKKKK
-        OwnerPage_ViewReq ob = new OwnerPage_ViewReq();
-        ob.setVisible(true);
-        this.setVisible(false);
+
     }//GEN-LAST:event_jLabel6MouseClicked
 
-    private void sendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendActionPerformed
+    private void sendMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sendMouseClicked
         // TODO add your handling code here:
-
-        try {
-            String msg = "";
-            msg = txt.getText();
-            dos.writeUTF(msg);
+        try{
+          cst.send(txt.getText());
         } catch (IOException ex) {
-         
+            System.out.println(ex.getMessage());
         }
-    }//GEN-LAST:event_sendActionPerformed
+    }//GEN-LAST:event_sendMouseClicked
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) throws IOException {
+/**
+ * @param args the command line arguments
+ */
+public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -196,20 +169,40 @@ public class OwnerPage_Chat extends javax.swing.JFrame {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
 
-                }
+                
+
+
+
+}
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(OwnerPage_Chat.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(OwnerPage_Chat.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(OwnerPage_Chat.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(OwnerPage_Chat.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(OwnerPage_Chat.class  
+
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } 
+
+
+
+catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(OwnerPage_Chat.class  
+
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } 
+
+
+
+catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(OwnerPage_Chat.class  
+
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } 
+
+
+
+catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(OwnerPage_Chat.class  
+
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -220,81 +213,7 @@ public class OwnerPage_Chat extends javax.swing.JFrame {
 
             }
         });
-    
-            OwnerPage_Chat serverobj = new OwnerPage_Chat(5000);
-            serverobj.startServer();
-    
     }
-
-
-    OwnerPage_Chat(int port) {
-        this.port = port;
-        pool = Executors.newFixedThreadPool(10);
-    }
-
-    public void startServer() throws IOException {
-        server = new ServerSocket(5000);
-        while (true) {
-            client = server.accept();
-            clientcount++;
-            ServerThread thread = new ServerThread(client, clientcount, this);
-            pool.execute(thread);
-        }
-    }
-
-    private static class ServerThread extends Thread {
-
-        OwnerPage_Chat server = null;
-        Socket client = null;
-        int id;
-        String s;
-
-        ServerThread(Socket client, int count, OwnerPage_Chat server) throws IOException {
-            this.client = client;
-            this.server = server;
-            this.id = count;
-            txt_area.setText("Connection " + id + "established with client " + client);
-            dis = new DataInputStream(client.getInputStream());
-            dos = new DataOutputStream(client.getOutputStream());
-        }
-
-        @Override
-        public void run() {
-            int x = 1;
-            try {
-                while (true) {
-                    s = dis.readUTF();
-                    txt_area.setText(txt_area.getText() + "\n Server:  " + "Client(" + id + ") :" + s);
-                    s = dis.readUTF();
-                    if (s.equalsIgnoreCase("bye")) {
-                        txt_area.setText("BYE");
-                        x = 0;
-                        txt_area.setText("Connection ended by server");
-                        break;
-                    }
-                    txt_area.setText(s);
-                }
-                dis.close();
-                client.close();
-                dos.close();
-                if (x == 0) {
-                    txt_area.setText("Server cleaning up.");
-                    System.exit(0);
-                }
-            } catch (IOException ex) {
-                
-            }
-        }
-    }
-//        ServerSocket s = new ServerSocket(1201);
-//        System.out.println("Server waiting Connection...");
-//
-//        while (true) {
-//            client = s.accept();
-//            MyThread m = new MyThread(client);
-//            m.start();
-//        }
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
@@ -305,40 +224,8 @@ public class OwnerPage_Chat extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
-    private static javax.swing.JButton send;
+    public static javax.swing.JLabel send;
     public static javax.swing.JTextField txt;
-    private static javax.swing.JTextArea txt_area;
+    public static javax.swing.JTextArea txt_area;
     // End of variables declaration//GEN-END:variables
 }
-
-//class MyThread extends Thread {
-//
-//    static ServerSocket serverSocket;
-//    static Socket socket;
-//    static DataInputStream dis;
-//    static DataOutputStream dos;
-//
-//    public MyThread(Socket soc) {
-//        this.socket = soc;
-//    }
-//
-//    @Override
-//    public void run() {
-//
-//        String msgin = "";
-//
-//        try {
-//
-//            dis = new DataInputStream(socket.getInputStream());
-//            dos = new DataOutputStream(socket.getOutputStream());
-//            while (!msgin.equalsIgnoreCase("Bye")) {
-//                msgin = dis.readUTF();
-//                OwnerPage_Chat.msgArea.setText(OwnerPage_Chat.msgArea.getText() + "\n" + msgin);
-//            }
-//            socket.close();
-//        } catch (Exception ex) {
-//            Logger.getLogger(OwnerPage_Chat.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//
-//    }
-//}

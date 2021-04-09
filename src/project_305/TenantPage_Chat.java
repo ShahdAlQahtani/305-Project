@@ -5,18 +5,10 @@
  */
 package project_305;
 
-import java.io.BufferedReader;
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
+import java.io.*;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintStream;
-import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 
 /**
  *
@@ -24,9 +16,10 @@ import java.util.logging.Logger;
  */
 public class TenantPage_Chat extends javax.swing.JFrame {
 
-    static Socket socket;
-    static DataInputStream input;
-    static DataOutputStream output;
+    DataOutputStream dos;
+    DataInputStream dis;
+    Socket soc;
+
 
     public TenantPage_Chat() {
         initComponents();
@@ -49,10 +42,10 @@ public class TenantPage_Chat extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        jScrollPane2 = new javax.swing.JScrollPane();
         txt_area = new javax.swing.JTextArea();
         txt = new javax.swing.JTextField();
-        send = new javax.swing.JButton();
+        send1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -101,28 +94,27 @@ public class TenantPage_Chat extends javax.swing.JFrame {
 
         jLabel1.setText("Client");
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(130, 130, 37, 16);
+        jLabel1.setBounds(130, 130, 40, 20);
 
         txt_area.setColumns(20);
         txt_area.setRows(5);
-        jScrollPane1.setViewportView(txt_area);
+        jScrollPane2.setViewportView(txt_area);
 
-        jPanel1.add(jScrollPane1);
-        jScrollPane1.setBounds(30, 200, 240, 220);
+        jPanel1.add(jScrollPane2);
+        jScrollPane2.setBounds(30, 250, 240, 210);
         jPanel1.add(txt);
-        txt.setBounds(50, 440, 190, 26);
+        txt.setBounds(30, 470, 200, 30);
 
-        send.setText("Send");
-        send.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                sendActionPerformed(evt);
+        send1.setIcon(new javax.swing.ImageIcon("C:\\Users\\shood\\Documents\\NetBeansProjects\\project-305\\src\\Image\\send m3.png")); // NOI18N
+        send1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                send1MouseClicked(evt);
             }
         });
-        jPanel1.add(send);
-        send.setBounds(100, 490, 75, 29);
+        jPanel1.add(send1);
+        send1.setBounds(240, 470, 30, 30);
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/chat_T.png"))); // NOI18N
-        jLabel2.setText("jLabel2");
+        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\shood\\Documents\\NetBeansProjects\\project-305\\src\\Image\\‏‏chat_O.png")); // NOI18N
         jPanel1.add(jLabel2);
         jLabel2.setBounds(0, 0, 300, 650);
 
@@ -141,70 +133,51 @@ public class TenantPage_Chat extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
-        // TODO add your handling code here:
-        TenantPage_profile ob = null;
-        try {
-            ob = new TenantPage_profile();
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(TenantPage_Chat.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        ob.setVisible(true);
-        this.setVisible(false);
+
     }//GEN-LAST:event_jLabel9MouseClicked
 
     private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
         // TODO add your handling code here:
-        TenantPage_Favorate ob = new TenantPage_Favorate();
-        ob.setVisible(true);
-        this.setVisible(false);
+
     }//GEN-LAST:event_jLabel7MouseClicked
 
     private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
-        // TODO add your handling code here:
-        TenantPage_Search ob;
-        try {
-            ob = new TenantPage_Search();
-            ob.setVisible(true);
-            this.setVisible(false);
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(TenantPage_Chat.class.getName()).log(Level.SEVERE, null, ex);
-        }
+
+
     }//GEN-LAST:event_jLabel6MouseClicked
 
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
-        // TODO add your handling code here:
-        TenantPage_Home ob = new TenantPage_Home();
-        ob.setVisible(true);
-        this.setVisible(false);
+
     }//GEN-LAST:event_jLabel5MouseClicked
 
     private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
-        // BBAACCCCKKKKKK
-        if (TenantPage_Current.curr == false) {
 
-            TenantPage_Current ob = new TenantPage_Current();
-            ob.setVisible(true);
-            this.setVisible(false);
-
-        } else {
-
-            TenantPage_Hallinfo ob = new TenantPage_Hallinfo();
-            ob.setVisible(true);
-            this.setVisible(false);
-
-        }
     }//GEN-LAST:event_jLabel8MouseClicked
 
-    private void sendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendActionPerformed
+    private void send1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_send1MouseClicked
         // TODO add your handling code here:
-        try {
-            String msg = "";
-            msg = txt.getText();
-            output.writeUTF(msg);
-        } catch (IOException ex) {
+      try {
 
+            soc = new Socket(Server.ip, Server.portNumber);
+            dos = new DataOutputStream(soc.getOutputStream());
+            dis = new DataInputStream(soc.getInputStream());
+            ReceiverThread rt = new ReceiverThread(this, dos, dis);
+        } catch (IOException ex) {
+            ex.getMessage();
         }
-    }//GEN-LAST:event_sendActionPerformed
+
+        try {   
+            String str = txt.getText();
+            dos.writeUTF(str);
+   
+            if (str.trim().equalsIgnoreCase("BYE")) {
+
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+                
+    }//GEN-LAST:event_send1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -239,27 +212,36 @@ public class TenantPage_Chat extends javax.swing.JFrame {
                 new TenantPage_Chat().setVisible(true);
             }
         });
+    }
 
-        try {
-            socket = new Socket("127.0.0.1", 5000);
-            input = new DataInputStream(socket.getInputStream());
-            output = new DataOutputStream(socket.getOutputStream());
-            String massage = "";
-            while (true) {
-                massage = input.readUTF();
-                txt_area.setText(txt.getText() + "\n Server:  " + massage);
-                if (massage.equalsIgnoreCase("BYE")) {
-                    System.out.println("Connection ended by client");
-                    break;
-                }
-                massage = input.readUTF();
-                txt_area.setText(txt.getText() + "\n Server:  " + massage);
+    public class ReceiverThread extends Thread {
+
+     TenantPage_Chat CustomerChat;
+     DataOutputStream dos;
+     DataInputStream dis;
+
+        ReceiverThread(TenantPage_Chat cc, DataOutputStream dos, DataInputStream dis) {
+
+            this.CustomerChat = cc;
+            this.dos = dos;
+            this.dis = dis;
+            start();
+
+        }
+
+        public void run() {
+
+            try {
+
+                String str = dis.readUTF();
+                CustomerChat.txt_area.append("Server: " + str + "\n");
+
+               soc.close();
+               dis.close();
+               dos.close();
+            } catch (IOException ex) {
+                System.out.println(ex.getMessage());
             }
-            input.close();
-            output.close();
-            socket.close();
-        } catch (Exception e) {
-
         }
     }
 
@@ -273,9 +255,9 @@ public class TenantPage_Chat extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private static javax.swing.JButton send;
-    private static javax.swing.JTextField txt;
-    private static javax.swing.JTextArea txt_area;
+    private javax.swing.JScrollPane jScrollPane2;
+    public static javax.swing.JLabel send1;
+    public static javax.swing.JTextField txt;
+    public static javax.swing.JTextArea txt_area;
     // End of variables declaration//GEN-END:variables
 }
