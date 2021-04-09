@@ -122,8 +122,8 @@ public class Reservation {
             fr.printf("%-23s%-16s%-11s%3s\n", "|", "Payment Method:", "Credit card", "|");
         }
         
-        System.out.printf("%-46s%7s\n", "|", "|");
-        System.out.printf("%-50s\n", "|---------------------------------------------------|");
+        fr.printf("%-46s%7s\n", "|", "|");
+        fr.printf("%-50s\n", "|---------------------------------------------------|");
         
         fr.close();
         // fr.flush();
