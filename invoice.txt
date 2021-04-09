@@ -1,14 +1,14 @@
-|——————————INVOICE—————————-——|
-|                                                                                  |
-|———————WEDDING HALL SYSTEM———————|
-|                                                                                  |
-|--------------------------------------------|
-|                                                                                  |
-| Tenant Info:        Name:Hoor                                   |
-|                            Email:H@                                    |
-|                                                                                  |
-| Reservation Info:  Hall Name: Qsr                            |
-|                            Capacity:550                                  |
-|                            Price:22000                                    |
-|                            Date:2021-04-14                          |
-|                            Payment Method:Cash                    |
+|--------------------- INVOICE ---------------------|
+|                                                   |
+|                WEDDING HALL SYSTEM                |
+|                                                   |
+|---------------------------------------------------|
+|                                                   |
+| Tenant Info:         Name: Shahad                 |
+|                      Email: shahad@               |
+|                                                   |
+| Reservation Info:    Hall Name: sara              |
+|                      Capacity: 200                |
+|                      Price: 34000                 |
+|                      Date: 2021-04-16             |
+|                      Payment Method: Credit card  |
