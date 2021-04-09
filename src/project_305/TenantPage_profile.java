@@ -115,12 +115,14 @@ public class TenantPage_profile extends javax.swing.JFrame {
         });
         jPanel1.add(logout);
         logout.setBounds(260, 10, 30, 30);
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/user.png"))); // NOI18N
         jPanel1.add(jLabel3);
-        jLabel3.setBounds(100, 180, 100, 100);
+        jLabel3.setBounds(120, 220, 72, 70);
 
         name.setBackground(new java.awt.Color(0, 0, 0));
         name.setFont(new java.awt.Font("Times New Roman", 0, 19)); // NOI18N
-        name.setText("Hi Ameera");
+        name.setText("Hi Ameera Mohammed");
         jPanel1.add(name);
         name.setBounds(70, 300, 180, 40);
 
@@ -128,7 +130,7 @@ public class TenantPage_profile extends javax.swing.JFrame {
         Id.setText("ID :1400");
         Id.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel1.add(Id);
-        Id.setBounds(120, 350, 80, 21);
+        Id.setBounds(120, 350, 80, 22);
 
         label3.setBackground(new java.awt.Color(255, 255, 255));
         label3.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N

@@ -16,12 +16,12 @@ import javax.swing.JOptionPane;
  * @author Ameera
  */
 public class HallInformation {
-    
+    public int idHallinfo;
     public String hallName;
     
     public String hallAddress;
     
-    public String Capacity;
+    public int Capacity;
     
     public String hallcontactNum;
     
@@ -29,6 +29,14 @@ public class HallInformation {
     public String Image;
     
     public String OwnerId;
+
+    public int getIdHallinfo() {
+        return idHallinfo;
+    }
+
+    public void setIdHallinfo(int idHallinfo) {
+        this.idHallinfo = idHallinfo;
+    }
     
     public String getHallName() {
         return hallName;
@@ -45,14 +53,16 @@ public class HallInformation {
     public void setHallAddress(String hallAddress) {
         this.hallAddress = hallAddress;
     }
-    
-    public String getCapacity() {
+
+    public int getCapacity() {
         return Capacity;
     }
-    
-    public void setCapacity(String Capacity) {
+
+    public void setCapacity(int Capacity) {
         this.Capacity = Capacity;
     }
+    
+  
     
     public String getHallcontactNum() {
         return hallcontactNum;
@@ -100,7 +110,7 @@ public class HallInformation {
             
             PreparedStatement ps = connection.prepareStatement("insert into hallinfo (hallname,hallcapacity,halladdress,hallPrice,contactNumber,idOwner,image) values(?,?,?,?,?,?,? )");
             ps.setString(1, info.getHallName());
-            ps.setString(2, info.getCapacity());
+            ps.setInt(2, info.getCapacity());
             ps.setString(3, info.getHallAddress());
             ps.setDouble(4, info.getHallprice());
             ps.setString(5, info.getHallcontactNum());
@@ -116,7 +126,7 @@ public class HallInformation {
         }
     }
     
-    public void editHall(HallInformation info) {
+    public void editHall(HallInformation info ,int Hallid) {
         Connection connection = null;
         
         try {
@@ -128,21 +138,18 @@ public class HallInformation {
             
             InputStream in = new FileInputStream(new File(info.getImage()));
             
-            PreparedStatement ps = connection.prepareStatement("update hallinfo set HallName=? Capacity=? HallAddress=? Hallprice=? HallcontactNum=? image=? where idHallInfo=?");
-            
-            
-            
-           
-            
+            PreparedStatement ps = connection.prepareStatement("update hallinfo set HallName=?, hallcapacity=?, HallAddress=?, Hallprice=?, contactNumber=?, image=? where idHallInfo="+Hallid);
+       
             ps.setString(1, info.getHallName());
-            ps.setString(2, info.getCapacity());
+            ps.setInt(2, info.getCapacity());
             ps.setString(3, info.getHallAddress());
             ps.setDouble(4, info.getHallprice());
             ps.setString(5, info.getHallcontactNum()); 
             ps.setBlob(6, in);
+            
            
             ps.executeUpdate();
-            JOptionPane.showMessageDialog(null, "The " + info.getHallName() + "is updated Successfully");
+            JOptionPane.showMessageDialog(null, "Hall " + info.getHallName() + " is updated Successfully");
             
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex.toString());

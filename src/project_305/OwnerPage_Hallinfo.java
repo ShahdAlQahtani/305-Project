@@ -42,8 +42,8 @@ public class OwnerPage_Hallinfo extends javax.swing.JFrame {
         HallPrice = new javax.swing.JTextField();
         jPanel7 = new javax.swing.JPanel();
         HallContact = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        uploadImage = new javax.swing.JButton();
+        save = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -149,22 +149,22 @@ public class OwnerPage_Hallinfo extends javax.swing.JFrame {
 
         jPanel7.setBackground(new java.awt.Color(243, 246, 251));
 
-        jButton2.setBackground(new java.awt.Color(255, 255, 255));
-        jButton2.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jButton2.setText("Upload Image");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        uploadImage.setBackground(new java.awt.Color(255, 255, 255));
+        uploadImage.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        uploadImage.setText("Upload Image");
+        uploadImage.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                uploadImageActionPerformed(evt);
             }
         });
 
-        jButton1.setBackground(new java.awt.Color(255, 255, 255));
-        jButton1.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(51, 51, 51));
-        jButton1.setText("Save");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        save.setBackground(new java.awt.Color(255, 255, 255));
+        save.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        save.setForeground(new java.awt.Color(51, 51, 51));
+        save.setText("Save");
+        save.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                saveActionPerformed(evt);
             }
         });
 
@@ -178,9 +178,9 @@ public class OwnerPage_Hallinfo extends javax.swing.JFrame {
                 .addContainerGap(55, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
                 .addGap(24, 24, 24)
-                .addComponent(jButton2)
+                .addComponent(uploadImage)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(save)
                 .addGap(41, 41, 41))
         );
         jPanel7Layout.setVerticalGroup(
@@ -190,11 +190,11 @@ public class OwnerPage_Hallinfo extends javax.swing.JFrame {
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addComponent(jButton2)
+                        .addComponent(uploadImage)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
-                        .addComponent(jButton1)
+                        .addComponent(save)
                         .addGap(22, 22, 22))))
         );
 
@@ -263,17 +263,15 @@ public class OwnerPage_Hallinfo extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveActionPerformed
         // TODO add your handling code here:
         HallInformation info = new HallInformation();
 
         info.setHallName(hallName.getText());
-        info.setCapacity(Capacity.getText());;
+        info.setCapacity(Integer.parseInt(Capacity.getText()));;
         info.setHallAddress(hallAddress.getText());
         info.setHallprice(Double.parseDouble(HallPrice.getText()));
         info.setHallcontactNum(HallContact.getText());
-
-        //info.setOwnerName(LoginClass.OwnerName);
         info.setImage(path);
         info.CreateNewHall(info);
 
@@ -281,9 +279,9 @@ public class OwnerPage_Hallinfo extends javax.swing.JFrame {
         ob.setVisible(true);
         this.setVisible(false);
 
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_saveActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void uploadImageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uploadImageActionPerformed
         // TODO add your handling code here:
         JFileChooser fileChos = new JFileChooser();
         fileChos.showOpenDialog(this);
@@ -293,7 +291,7 @@ public class OwnerPage_Hallinfo extends javax.swing.JFrame {
         } catch (NullPointerException n) {
             JOptionPane.showMessageDialog(null, " Please choose a pictture ");
         }
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_uploadImageActionPerformed
 
     private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
         // BBAACCCCKKKKKK
@@ -372,8 +370,6 @@ public class OwnerPage_Hallinfo extends javax.swing.JFrame {
     private javax.swing.JTextField HallPrice;
     private javax.swing.JTextField hallAddress;
     private javax.swing.JTextField hallName;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
@@ -389,5 +385,7 @@ public class OwnerPage_Hallinfo extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel s2;
+    private javax.swing.JButton save;
+    private javax.swing.JButton uploadImage;
     // End of variables declaration//GEN-END:variables
 }

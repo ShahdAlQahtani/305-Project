@@ -118,17 +118,19 @@ public class OwnerPage_Profile extends javax.swing.JFrame {
 
         name.setBackground(new java.awt.Color(0, 0, 0));
         name.setFont(new java.awt.Font("Times New Roman", 0, 19)); // NOI18N
-        name.setText("Hi Ameera");
+        name.setText("Hi Ameera Mohammed");
         jPanel1.add(name);
         name.setBounds(70, 300, 180, 40);
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/user.png"))); // NOI18N
         jPanel1.add(jLabel3);
-        jLabel3.setBounds(100, 180, 100, 100);
+        jLabel3.setBounds(120, 220, 70, 80);
 
         Id.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         Id.setText("ID :1200");
         Id.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel1.add(Id);
-        Id.setBounds(120, 350, 80, 21);
+        Id.setBounds(120, 350, 80, 22);
 
         label2.setBackground(new java.awt.Color(255, 255, 255));
         label2.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
@@ -144,7 +146,7 @@ public class OwnerPage_Profile extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Times New Roman", 0, 30)); // NOI18N
         jLabel8.setText("Profile");
         jPanel1.add(jLabel8);
-        jLabel8.setBounds(100, 90, 90, 35);
+        jLabel8.setBounds(110, 90, 90, 36);
 
         label3.setBackground(new java.awt.Color(255, 255, 255));
         label3.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
@@ -158,7 +160,7 @@ public class OwnerPage_Profile extends javax.swing.JFrame {
         label3.setBounds(40, 410, 230, 40);
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/page.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Ownerp.jpg"))); // NOI18N
         jLabel1.setText("Account Information          >>"); // NOI18N
         jPanel1.add(jLabel1);
         jLabel1.setBounds(0, 0, 300, 650);

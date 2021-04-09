@@ -47,7 +47,7 @@ public class OwnerPage_EditHall extends javax.swing.JFrame {
             String query = "Select `Hallname` , `hallcapacity` , `hallAddress`, `hallPrice`, `contactNumber`,`image` from `hallinfo` where `idhallinfo`='" + id + "' ";
             Statement stm = connection.createStatement();
             ResultSet rs = stm.executeQuery(query);
-
+            Hallid.setText(id+"");
             while (rs.next()) {
                 hallName.setText(rs.getString(1));
                 Capacity.setText(rs.getInt(2)+"");
@@ -55,7 +55,7 @@ public class OwnerPage_EditHall extends javax.swing.JFrame {
                 
                 HallPrice.setText(rs.getDouble(4)+"");
                 HallContact.setText(rs.getString(5));
-            
+                
             }
 
         } catch (SQLException ex) {
@@ -92,6 +92,7 @@ public class OwnerPage_EditHall extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
+        Hallid = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -256,6 +257,10 @@ public class OwnerPage_EditHall extends javax.swing.JFrame {
         jPanel1.add(jLabel8);
         jLabel8.setBounds(0, 0, 50, 30);
 
+        Hallid.setFont(new java.awt.Font("Times New Roman", 0, 15)); // NOI18N
+        jPanel1.add(Hallid);
+        Hallid.setBounds(110, 150, 70, 20);
+
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/editHallinformatio.png"))); // NOI18N
         jPanel1.add(jLabel1);
         jLabel1.setBounds(0, 0, 300, 650);
@@ -279,12 +284,13 @@ public class OwnerPage_EditHall extends javax.swing.JFrame {
         HallInformation info = new HallInformation();
 
         info.setHallName(hallName.getText());
-        info.setCapacity(Capacity.getText());;
+        info.setCapacity(Integer.parseInt(Capacity.getText()));
         info.setHallAddress(hallAddress.getText());
         info.setHallprice(Double.parseDouble(HallPrice.getText()));
         info.setHallcontactNum(HallContact.getText());
         info.setImage(path);
-        info.editHall(info);
+        
+        info.editHall(info,Integer.parseInt(Hallid.getText()));
 
 
     }//GEN-LAST:event_updateActionPerformed
@@ -378,6 +384,7 @@ public class OwnerPage_EditHall extends javax.swing.JFrame {
     private javax.swing.JTextField Capacity;
     private javax.swing.JTextField HallContact;
     private javax.swing.JTextField HallPrice;
+    private javax.swing.JLabel Hallid;
     private javax.swing.JTextField hallAddress;
     private javax.swing.JTextField hallName;
     private javax.swing.JButton imag;

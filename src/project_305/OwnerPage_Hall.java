@@ -72,6 +72,7 @@ public class OwnerPage_Hall extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         list = new javax.swing.JTable();
+        panel2 = new java.awt.Panel();
         HallImage = new javax.swing.JLabel();
         hallName = new javax.swing.JLabel();
         Capacity = new javax.swing.JLabel();
@@ -81,6 +82,9 @@ public class OwnerPage_Hall extends javax.swing.JFrame {
         Id = new javax.swing.JLabel();
         edit = new javax.swing.JButton();
         delete = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -122,25 +126,63 @@ public class OwnerPage_Hall extends javax.swing.JFrame {
         jScrollPane1.setViewportView(list);
 
         panel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 180, 100, 370));
-        panel1.add(HallImage, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 130, 130));
+
+        panel2.setBackground(new java.awt.Color(243, 246, 251));
 
         hallName.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
-        panel1.add(hallName, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 380, 140, 20));
 
         Capacity.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
-        panel1.add(Capacity, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 410, 140, 20));
 
         hallAddress.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
-        panel1.add(hallAddress, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 440, 140, 20));
 
         HallPrice.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
-        panel1.add(HallPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 470, 140, 20));
 
         HallContact.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
-        panel1.add(HallContact, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 500, 140, 20));
 
         Id.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
-        panel1.add(Id, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 350, 140, 20));
+
+        javax.swing.GroupLayout panel2Layout = new javax.swing.GroupLayout(panel2);
+        panel2.setLayout(panel2Layout);
+        panel2Layout.setHorizontalGroup(
+            panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panel2Layout.createSequentialGroup()
+                        .addGroup(panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(hallName, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Capacity, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(hallAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel2Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(HallImage, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(HallPrice, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(HallContact, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Id, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap())
+        );
+        panel2Layout.setVerticalGroup(
+            panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panel2Layout.createSequentialGroup()
+                .addComponent(HallImage, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(hallName, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                .addComponent(Id, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(HallContact, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(HallPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(hallAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(Capacity, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24))
+        );
+
+        panel1.add(panel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, 150, 370));
 
         edit.setBackground(new java.awt.Color(255, 255, 255));
         edit.setText("Edit");
@@ -149,7 +191,7 @@ public class OwnerPage_Hall extends javax.swing.JFrame {
                 editActionPerformed(evt);
             }
         });
-        panel1.add(edit, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 540, 70, -1));
+        panel1.add(edit, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 560, 70, -1));
 
         delete.setBackground(new java.awt.Color(255, 255, 255));
         delete.setText("Delete");
@@ -158,7 +200,28 @@ public class OwnerPage_Hall extends javax.swing.JFrame {
                 deleteActionPerformed(evt);
             }
         });
-        panel1.add(delete, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 540, 70, -1));
+        panel1.add(delete, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 560, 70, -1));
+
+        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel3MouseClicked(evt);
+            }
+        });
+        panel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 610, 50, 40));
+
+        jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel5MouseClicked(evt);
+            }
+        });
+        panel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 600, 50, 50));
+
+        jLabel6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel6MouseClicked(evt);
+            }
+        });
+        panel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 610, 50, 40));
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/page.png"))); // NOI18N
@@ -198,7 +261,7 @@ public class OwnerPage_Hall extends javax.swing.JFrame {
         int index = list.getSelectedRow();
         String name = list.getValueAt(index, 0).toString();
         Connection connection = null;
-
+        panel2.setVisible(true);
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             String ConnectionURL = "jdbc:mysql://localhost:3306/weddinghallreservation";
@@ -255,19 +318,51 @@ public class OwnerPage_Hall extends javax.swing.JFrame {
             connection = DriverManager.getConnection(ConnectionURL, "root", "1212");
           
             Statement stat = connection.createStatement();
+            ResultSet reserved_hall=stat.executeQuery("select * from reservation where idHallinfo="+id_hall);
+            
+            System.out.println(id_hall);
+           
+            if(reserved_hall.next()==true){
+               JOptionPane.showMessageDialog(null, "cannot delete this hall because there is reservation in it");  
+            }else{
            int delete= stat.executeUpdate("delete from hallinfo where Hallname ='" +name + "' ");
             
             if(delete==1){
-               JOptionPane.showMessageDialog(null, "The Hall was Deleted Successfully ");  
+               JOptionPane.showMessageDialog(null, "The Hall was Deleted Successfully "); 
+               
             }
-            list();
             
+            
+            panel2.setVisible(false);
+            list();
+            }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex.toString());
         } catch (Exception e) {
             e.printStackTrace();
         }
     }//GEN-LAST:event_deleteActionPerformed
+
+    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
+        // TODO add your handling code here:
+        OwnerPage_Home ob = new OwnerPage_Home();
+        ob.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jLabel3MouseClicked
+
+    private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
+        // TODO add your handling code here:
+        OwnerPage_ViewReq ob = new OwnerPage_ViewReq();
+        ob.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jLabel5MouseClicked
+
+    private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
+        // TODO add your handling code here:
+        OwnerPage_Comment ob = new OwnerPage_Comment();
+        ob.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jLabel6MouseClicked
 
     /**
      * @param args the command line arguments
@@ -316,8 +411,12 @@ public class OwnerPage_Hall extends javax.swing.JFrame {
     private javax.swing.JLabel hallName;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable list;
     private java.awt.Panel panel1;
+    private java.awt.Panel panel2;
     // End of variables declaration//GEN-END:variables
 }
