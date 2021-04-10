@@ -7,8 +7,6 @@ package project_305;
 
 import java.awt.Image;
 import java.sql.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -187,7 +185,7 @@ public class OwnerPage_Hall extends javax.swing.JFrame {
                 editActionPerformed(evt);
             }
         });
-        panel1.add(edit, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 560, 70, -1));
+        panel1.add(edit, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 560, 80, -1));
 
         delete.setBackground(new java.awt.Color(255, 255, 255));
         delete.setText("Delete");
@@ -196,7 +194,7 @@ public class OwnerPage_Hall extends javax.swing.JFrame {
                 deleteActionPerformed(evt);
             }
         });
-        panel1.add(delete, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 560, 70, -1));
+        panel1.add(delete, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 560, 80, -1));
 
         jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {

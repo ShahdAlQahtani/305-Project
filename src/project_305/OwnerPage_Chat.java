@@ -6,7 +6,6 @@
 package project_305;
 
 import java.io.IOException;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -60,6 +59,20 @@ public class OwnerPage_Chat extends javax.swing.JFrame {
 
         jPanel1.add(jScrollPane2);
         jScrollPane2.setBounds(30, 240, 240, 210);
+
+        txt.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        txt.setForeground(new java.awt.Color(153, 153, 153));
+        txt.setText("Write your massage");
+        txt.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtMouseClicked(evt);
+            }
+        });
+        txt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtActionPerformed(evt);
+            }
+        });
         jPanel1.add(txt);
         txt.setBounds(30, 460, 200, 30);
 
@@ -130,11 +143,13 @@ public class OwnerPage_Chat extends javax.swing.JFrame {
 
     private void sendMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sendMouseClicked
         // TODO add your handling code here:
-               try {
+           
+        try {
             serverThread.send(txt.getText());
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
+            txt.setText(" ");
     }//GEN-LAST:event_sendMouseClicked
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
@@ -165,6 +180,15 @@ public class OwnerPage_Chat extends javax.swing.JFrame {
         ob.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jLabel8MouseClicked
+
+    private void txtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtMouseClicked
+        // TODO add your handling code here:
+             txt.setText(" ");
+    }//GEN-LAST:event_txtMouseClicked
+
+    private void txtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtActionPerformed
 
     /**
      * @param args the command line arguments

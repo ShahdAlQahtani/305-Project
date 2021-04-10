@@ -7,8 +7,6 @@ package project_305;
 
 import java.sql.*;
 import static java.sql.ResultSet.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 

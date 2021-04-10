@@ -7,8 +7,6 @@ package project_305;
 
 import java.io.*;
 import java.sql.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
@@ -18,38 +16,44 @@ public class OwnerPage_EditHall extends javax.swing.JFrame {
      * Creates new form OwnerPage_EditHall
      */
     String path;
-   
 
-    public OwnerPage_EditHall()  {
+    public OwnerPage_EditHall() {
         initComponents();
         setLocationRelativeTo(null);
-
     }
-     public OwnerPage_EditHall(int id)  {
-         
+
+    public OwnerPage_EditHall(int id) {
+
         initComponents();
         setLocationRelativeTo(null);
-        
+        display(id);
+    }
+
+     /**
+     * This Method display the Hall info from the Database
+     */
+    public void display(int id) {
+
         Connection connection = null;
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
 
             String ConnectionURL = "jdbc:mysql://localhost:3306/weddinghallreservation";
-            
+
             connection = DriverManager.getConnection(ConnectionURL, "root", "1212");
 
             String query = "Select `Hallname` , `hallcapacity` , `hallAddress`, `hallPrice`, `contactNumber`,`image` from `hallinfo` where `idhallinfo`='" + id + "' ";
             Statement stm = connection.createStatement();
             ResultSet rs = stm.executeQuery(query);
-            Hallid.setText(id+"");
+            Hallid.setText(id + "");
             while (rs.next()) {
                 hallName.setText(rs.getString(1));
-                Capacity.setText(rs.getInt(2)+"");
+                Capacity.setText(rs.getInt(2) + "");
                 hallAddress.setText(rs.getString(3));
-                
-                HallPrice.setText(rs.getDouble(4)+"");
+
+                HallPrice.setText(rs.getDouble(4) + "");
                 HallContact.setText(rs.getString(5));
-                
+
             }
 
         } catch (SQLException ex) {
@@ -57,7 +61,7 @@ public class OwnerPage_EditHall extends javax.swing.JFrame {
         } catch (Exception e) {
             e.printStackTrace();
         }
-     }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -272,9 +276,11 @@ public class OwnerPage_EditHall extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    /**
+     * This Method takes input from Owner then update his hall info in the Database
+     */
     private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
-      // TODO add your handling code here:
+        // TODO add your handling code here:
         HallInformation info = new HallInformation();
 
         info.setHallName(hallName.getText());
@@ -283,8 +289,8 @@ public class OwnerPage_EditHall extends javax.swing.JFrame {
         info.setHallprice(Double.parseDouble(HallPrice.getText()));
         info.setHallcontactNum(HallContact.getText());
         info.setImage(path);
-        
-        info.editHall(info,Integer.parseInt(Hallid.getText()));
+
+        info.editHall(info, Integer.parseInt(Hallid.getText()));
 
 
     }//GEN-LAST:event_updateActionPerformed
@@ -294,12 +300,12 @@ public class OwnerPage_EditHall extends javax.swing.JFrame {
         JFileChooser fileChos = new JFileChooser();
         fileChos.showOpenDialog(this);
         File file = fileChos.getSelectedFile();
-       try{
+        try {
             path = file.getAbsolutePath();
-       }catch(NullPointerException n){
-              JOptionPane.showMessageDialog(null, " Please choose a pictture ");
-       }
-       
+        } catch (NullPointerException n) {
+            JOptionPane.showMessageDialog(null, " Please choose a pictture ");
+        }
+
     }//GEN-LAST:event_imagActionPerformed
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked

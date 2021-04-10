@@ -1,12 +1,7 @@
 
 package project_305;
 
-import java.io.FileNotFoundException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.sql.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.*;
 
 public class ForgetPass extends javax.swing.JFrame {

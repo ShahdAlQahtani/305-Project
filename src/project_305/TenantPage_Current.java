@@ -1,23 +1,18 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package project_305;
 
-import com.sun.glass.ui.Window.Level;
-import java.awt.Image;
-import java.io.FileNotFoundException;
+
 import java.sql.*;
 import static java.sql.ResultSet.CONCUR_READ_ONLY;
 import static java.sql.ResultSet.TYPE_SCROLL_SENSITIVE;
-import java.util.logging.Logger;
-import javax.swing.*;
+
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
- *
+ * This interface is showing the Tenant current reservation Then, after the
+ * reservation time expired, or the reservation is canceled, the reservation
+ * will be removed from this interface
  * @author shahad
  */
 public class TenantPage_Current extends javax.swing.JFrame {

@@ -11,13 +11,17 @@ import java.util.logging.Logger;
 
 public class OwnerPage_EditPro extends javax.swing.JFrame {
 
-    /**
-     * Creates new form OwnerPage_EditPro
-     */
+ 
     public OwnerPage_EditPro() throws SQLException {
         initComponents();
         setLocationRelativeTo(null);
+        display(); //call display method
+    }
 
+    /**
+     * This Method display the Owner info from the Database
+     */
+    public void display() {
         Connection connection = null;
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -28,7 +32,7 @@ public class OwnerPage_EditPro extends javax.swing.JFrame {
 
             if (Login.Id.startsWith("12")) {
 
-                    String query = "Select `firstname` , `lastname` , `Email`, `PhoneNumber`, `Password` from `Owner` where `idOwner`='" + Login.Id + "' ";
+                String query = "Select `firstname` , `lastname` , `Email`, `PhoneNumber`, `Password` from `Owner` where `idOwner`='" + Login.Id + "' ";
                 Statement stm = connection.createStatement();
                 ResultSet rs = stm.executeQuery(query);
 
@@ -38,8 +42,6 @@ public class OwnerPage_EditPro extends javax.swing.JFrame {
                     String email = rs.getString(3);
                     String phoneNumber = rs.getString(4);
                     String password = rs.getString(5);
-                   
-             
 
                     fName.setText(firstname);
                     lName.setText(lastname);
@@ -47,7 +49,7 @@ public class OwnerPage_EditPro extends javax.swing.JFrame {
                     pN.setText(phoneNumber);
                     pass.setText(password);
                     cPass.setText(password);
-              
+
                 }
             }
         } catch (Exception e) {
@@ -318,28 +320,28 @@ public class OwnerPage_EditPro extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * This Method takes input from Owner then update his info in the Database
+     */
+
     private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
         // TODO add your handling code here:
 
         User user = new User();
-        
-            user.setFname(fName.getText());
-            user.setLname(lName.getText());
-            user.setEmail(e.getText());
-            user.setPhone_number(pN.getText());
-            user.setPassword(pass.getText());
-            user.setCpassword(cPass.getText());
-            try {
-                user.updateAccount(user, Login.Id);
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(OwnerPage_EditPro.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (SQLException ex) {
-                Logger.getLogger(OwnerPage_EditPro.class.getName()).log(Level.SEVERE, null, ex);
-            }
 
-
-
-        
+        user.setFname(fName.getText());
+        user.setLname(lName.getText());
+        user.setEmail(e.getText());
+        user.setPhone_number(pN.getText());
+        user.setPassword(pass.getText());
+        user.setCpassword(cPass.getText());
+        try {
+            user.updateAccount(user, Login.Id);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(OwnerPage_EditPro.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(OwnerPage_EditPro.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
 
     }//GEN-LAST:event_updateActionPerformed

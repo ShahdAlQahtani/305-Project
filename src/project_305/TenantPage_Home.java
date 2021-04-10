@@ -5,9 +5,6 @@
  */
 package project_305;
 
-import java.io.FileNotFoundException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *

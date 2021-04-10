@@ -6,11 +6,8 @@
 package project_305;
 
 import java.sql.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
-import static project_305.TenantPage_Favorate.idH;
+
 
 /**
  *

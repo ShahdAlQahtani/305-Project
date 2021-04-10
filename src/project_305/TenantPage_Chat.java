@@ -60,7 +60,7 @@ public class TenantPage_Chat extends javax.swing.JFrame {
 
         jLabel1.setText("Client");
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(130, 110, 37, 16);
+        jLabel1.setBounds(130, 130, 40, 20);
 
         txt_area.setColumns(20);
         txt_area.setRows(5);
@@ -68,6 +68,20 @@ public class TenantPage_Chat extends javax.swing.JFrame {
 
         jPanel1.add(jScrollPane2);
         jScrollPane2.setBounds(30, 240, 240, 210);
+
+        txt.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        txt.setForeground(new java.awt.Color(153, 153, 153));
+        txt.setText("Write your massage");
+        txt.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtMouseClicked(evt);
+            }
+        });
+        txt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtActionPerformed(evt);
+            }
+        });
         jPanel1.add(txt);
         txt.setBounds(30, 460, 200, 30);
 
@@ -80,7 +94,7 @@ public class TenantPage_Chat extends javax.swing.JFrame {
         jPanel1.add(send);
         send.setBounds(240, 460, 30, 30);
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/tenant.jpeg"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/chat_O.png"))); // NOI18N
         jPanel1.add(jLabel2);
         jLabel2.setBounds(0, 0, 300, 650);
 
@@ -138,6 +152,7 @@ public class TenantPage_Chat extends javax.swing.JFrame {
 
     private void sendMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sendMouseClicked
         // TODO add your handling code here:
+      
         try {
 
             socket = new Socket(Server.ip, Server.portNumber);
@@ -159,6 +174,7 @@ public class TenantPage_Chat extends javax.swing.JFrame {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
+            txt.setText(" ");
     }//GEN-LAST:event_sendMouseClicked
 
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
@@ -196,6 +212,16 @@ public class TenantPage_Chat extends javax.swing.JFrame {
         this.setVisible(false);
 
     }//GEN-LAST:event_jLabel9MouseClicked
+
+    private void txtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_txtActionPerformed
+
+    private void txtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtMouseClicked
+        // TODO add your handling code here:
+      txt.setText(" ");
+    }//GEN-LAST:event_txtMouseClicked
 
     /**
      * @param args the command line arguments

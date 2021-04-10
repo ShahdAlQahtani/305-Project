@@ -6,10 +6,7 @@
 package project_305;
 
 import java.awt.Image;
-import java.io.FileNotFoundException;
 import java.sql.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -33,10 +30,12 @@ public class TenantPage_Favorate extends javax.swing.JFrame {
     }
 
     public void list() {
+
         DefaultTableModel table = new DefaultTableModel();
         table.addColumn("Hall Name");
 
         try {
+
             Connection connection = null;
             //the querey and execute
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -46,10 +45,15 @@ public class TenantPage_Favorate extends javax.swing.JFrame {
             Statement stat = connection.createStatement();
             ResultSet rs = stat.executeQuery(query);
             //retrive the data from the result
-            while (rs.next()) {
-                table.addRow(new Object[]{rs.getString(1)});
-            }//show the List 
-            list.setModel(table);
+
+      
+
+            
+                while (rs.next()) {
+                    table.addRow(new Object[]{rs.getString(1)});
+                }//show the List 
+                list.setModel(table);
+           
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex.toString());
         } catch (Exception e) {
@@ -81,6 +85,8 @@ public class TenantPage_Favorate extends javax.swing.JFrame {
         HallImage = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         delete = new javax.swing.JButton();
+        noresr1 = new javax.swing.JLabel();
+        noresr2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -196,7 +202,17 @@ public class TenantPage_Favorate extends javax.swing.JFrame {
             }
         });
         jPanel1.add(delete);
-        delete.setBounds(250, 230, 30, 38);
+        delete.setBounds(250, 230, 30, 35);
+
+        noresr1.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
+        noresr1.setText("You do not have any ");
+        jPanel1.add(noresr1);
+        noresr1.setBounds(80, 340, 140, 19);
+
+        noresr2.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
+        noresr2.setText("favorate yet ");
+        jPanel1.add(noresr2);
+        noresr2.setBounds(100, 370, 75, 19);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/tenant.jpeg"))); // NOI18N
         jPanel1.add(jLabel1);
@@ -267,7 +283,7 @@ public class TenantPage_Favorate extends javax.swing.JFrame {
         //take the index and get the name selected by user
         int index = list.getSelectedRow();
         name = list.getValueAt(index, 0).toString();
-        
+
         Connection connection = null;
 
         try {
@@ -280,9 +296,10 @@ public class TenantPage_Favorate extends javax.swing.JFrame {
 
             Statement stat = connection.createStatement();
             ResultSet rs = stat.executeQuery(query);
+
             //retrive data and image from DB
             while (rs.next()) {
-                idH=rs.getInt(1);
+                idH = rs.getInt(1);
                 String Hallname = rs.getString(2);
                 double HallPrice = rs.getDouble(3);
                 jLabel2.setText(Hallname);
@@ -312,7 +329,7 @@ public class TenantPage_Favorate extends javax.swing.JFrame {
             String ConnectionURL = "jdbc:mysql://localhost:3306/weddinghallreservation";
             connection = DriverManager.getConnection(ConnectionURL, "root", "1212");
 
-            String query2 = "DELETE  from `Favorites` where idHallinfo='"+idH+"'";
+            String query2 = "DELETE  from `Favorites` where idHallinfo='" + idH + "'";
             Statement stat = connection.createStatement();
             stat.executeUpdate(query2);
             list();//call the list method to reset the list table
@@ -379,5 +396,7 @@ public class TenantPage_Favorate extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable list;
+    private javax.swing.JLabel noresr1;
+    private javax.swing.JLabel noresr2;
     // End of variables declaration//GEN-END:variables
 }

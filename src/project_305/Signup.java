@@ -6,11 +6,6 @@
 package project_305;
 
 
-
-
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 public class Signup extends javax.swing.JFrame {
 
     /**

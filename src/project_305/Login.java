@@ -2,10 +2,8 @@
 package project_305;
 
 
-import java.io.IOException;
+
 import java.sql.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class Login extends javax.swing.JFrame {

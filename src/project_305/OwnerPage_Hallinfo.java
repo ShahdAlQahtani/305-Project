@@ -1,9 +1,7 @@
 package project_305;
 
-import java.awt.Image;
+
 import java.io.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
@@ -262,7 +260,10 @@ public class OwnerPage_Hallinfo extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+/**
+     * this method take an input from Owner then will invoke createNewHall
+     * method
+     */
     private void saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveActionPerformed
         // TODO add your handling code here:
         HallInformation info = new HallInformation();
