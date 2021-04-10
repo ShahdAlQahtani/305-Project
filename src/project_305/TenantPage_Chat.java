@@ -216,13 +216,13 @@ public class TenantPage_Chat extends javax.swing.JFrame {
 
     public class ReceiverThread extends Thread {
 
-     TenantPage_Chat CustomerChat;
+     TenantPage_Chat TenantChat;
      DataOutputStream dos;
      DataInputStream dis;
 
-        ReceiverThread(TenantPage_Chat cc, DataOutputStream dos, DataInputStream dis) {
+        ReceiverThread(TenantPage_Chat TenantChat, DataOutputStream dos, DataInputStream dis) {
 
-            this.CustomerChat = cc;
+            this.TenantChat = TenantChat;
             this.dos = dos;
             this.dis = dis;
             start();
@@ -234,7 +234,7 @@ public class TenantPage_Chat extends javax.swing.JFrame {
             try {
 
                 String str = dis.readUTF();
-                CustomerChat.txt_area.append("Server: " + str + "\n");
+                TenantChat.txt_area.append("Server: " + str + "\n");
 
                soc.close();
                dis.close();
