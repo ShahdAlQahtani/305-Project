@@ -24,13 +24,15 @@ public class OwnerPage_ViewReq extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         list();
     }
-
+/**
+ * THIS METHOD WILL DISPLAY RESERVATION REQUESTS FOR a HALL TO THE OWNER
+ */
     public void list() {
         jScrollPane2.setVisible(false);
         list1.setVisible(false);
         NoRes.setVisible(false);
         NoRes.setVisible(false);
-        DefaultTableModel table = new DefaultTableModel();
+        DefaultTableModel table = new DefaultTableModel();// create a table add add a column
         table.addColumn("Hall Name");
 
         try {
@@ -44,10 +46,8 @@ public class OwnerPage_ViewReq extends javax.swing.JFrame {
             Statement stat = connection.createStatement();
             ResultSet rs = stat.executeQuery(query);
 
-            while (rs.next()) {
-
+            while (rs.next()) { // add a new column for each hall and display its name
                 table.addRow(new Object[]{rs.getString(1)});
-
             }
             list.setModel(table);
         } catch (SQLException ex) {
@@ -272,9 +272,12 @@ public class OwnerPage_ViewReq extends javax.swing.JFrame {
         ob.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jLabel9MouseClicked
-
+/**
+ * this method display all the reservation for a specific hall
+ * @param evt 
+ */
     private void listMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listMouseClicked
-        // TODO add your handling code here:
+        // get the name the owner selected from the first table
         int index = list.getSelectedRow();
         String name = list.getValueAt(index, 0).toString();
 
@@ -290,18 +293,17 @@ public class OwnerPage_ViewReq extends javax.swing.JFrame {
             Statement stat = connection.createStatement(TYPE_SCROLL_SENSITIVE, CONCUR_READ_ONLY);
             ResultSet rs = stat.executeQuery(query);
 
-            if (rs.next()) {
+            if (rs.next()) {// check if there is any reservation for that hall
                 jScrollPane2.setVisible(true);
                 list1.setVisible(true);
                 NoRes.setVisible(false);
 
                 rs.previous();
-                DefaultTableModel table1 = new DefaultTableModel();
-
+                DefaultTableModel table1 = new DefaultTableModel();//create table and add Column
                 table1.addColumn("Reserved by");
                 table1.addColumn("Date");
 
-                while (rs.next()) {
+                while (rs.next()) {//print the reservation request info
                     table1.addRow(new Object[]{rs.getString(1) + " " + rs.getString(2), rs.getString(3)});
                 }
                 list1.setModel(table1);

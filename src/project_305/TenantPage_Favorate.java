@@ -7,6 +7,8 @@ package project_305;
 
 import java.awt.Image;
 import java.sql.*;
+import static java.sql.ResultSet.CONCUR_READ_ONLY;
+import static java.sql.ResultSet.TYPE_SCROLL_SENSITIVE;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -28,8 +30,12 @@ public class TenantPage_Favorate extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         list();
     }
-
+/**
+ * this method display list of tenant's favorite hall 
+ */
     public void list() {
+        noresr1.setVisible(false);
+        noresr2.setVisible(false);
 
         DefaultTableModel table = new DefaultTableModel();
         table.addColumn("Hall Name");
@@ -42,18 +48,28 @@ public class TenantPage_Favorate extends javax.swing.JFrame {
             String ConnectionURL = "jdbc:mysql://localhost:3306/weddinghallreservation";
             connection = DriverManager.getConnection(ConnectionURL, "root", "1212");
             String query = "Select `Hallname` from `hallinfo`,`favorites` where `favorites`.`idTenant` ='" + Login.Id + "' and `hallinfo`.`idHallInfo`=`favorites`.`idHallinfo` ";
-            Statement stat = connection.createStatement();
+            Statement stat = connection.createStatement(TYPE_SCROLL_SENSITIVE, CONCUR_READ_ONLY);
             ResultSet rs = stat.executeQuery(query);
             //retrive the data from the result
 
-      
+            if (rs.next()) {
 
-            
+                jScrollPane1.setVisible(true);
+                list.setVisible(true);
+
+                rs.previous();
+
                 while (rs.next()) {
                     table.addRow(new Object[]{rs.getString(1)});
                 }//show the List 
                 list.setModel(table);
-           
+            } else {
+                delete.setVisible(false);
+                jScrollPane1.setVisible(false);
+                noresr1.setVisible(true);
+                noresr2.setVisible(true);
+                list.setVisible(false);
+            }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex.toString());
         } catch (Exception e) {
@@ -202,17 +218,17 @@ public class TenantPage_Favorate extends javax.swing.JFrame {
             }
         });
         jPanel1.add(delete);
-        delete.setBounds(250, 230, 30, 35);
+        delete.setBounds(250, 230, 30, 38);
 
         noresr1.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
         noresr1.setText("You do not have any ");
         jPanel1.add(noresr1);
-        noresr1.setBounds(80, 340, 140, 19);
+        noresr1.setBounds(80, 340, 140, 20);
 
         noresr2.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
         noresr2.setText("favorate yet ");
         jPanel1.add(noresr2);
-        noresr2.setBounds(100, 370, 75, 19);
+        noresr2.setBounds(100, 370, 110, 20);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/tenant.jpeg"))); // NOI18N
         jPanel1.add(jLabel1);
@@ -277,10 +293,12 @@ public class TenantPage_Favorate extends javax.swing.JFrame {
         ob.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jLabel10MouseClicked
-
+/**
+ * display hall info for selected hall
+ * @param evt 
+ */
     private void listMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listMouseClicked
-        // TODO add your handling code here:
-        //take the index and get the name selected by user
+         //take the index and get the name selected by user
         int index = list.getSelectedRow();
         name = list.getValueAt(index, 0).toString();
 
@@ -320,9 +338,11 @@ public class TenantPage_Favorate extends javax.swing.JFrame {
             e.printStackTrace();
         }
     }//GEN-LAST:event_listMouseClicked
-
+/**
+ * this method delete the hall from the favorite list
+ * @param evt 
+ */
     private void deleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteMouseClicked
-        // TODO add your handling code here:
         Connection connection = null;
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");

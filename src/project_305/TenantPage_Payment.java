@@ -256,11 +256,14 @@ public class TenantPage_Payment extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+/**
+ * this method check what the tenant select for the payment method
+ * @param evt 
+ */
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-
-        if (cridit.isSelected()) {
+        
+        if (cridit.isSelected()) {// if the tenant select the credit card method
+            // take card information
             String cardNum = cardNumber1.getText();
             String CVV = cvv.getText();
             String Ex = Exdate.getText();
@@ -272,7 +275,7 @@ public class TenantPage_Payment extends javax.swing.JFrame {
             String CardNisEmpty = checkCard(cardNum);
             String cvvisEmpty = checkCVV(CVV);
             String ExDateisEmpty = checkExDate(Ex);
-
+            // check card information
             if (CardNisEmpty.equals("Card number is null") || CardNisEmpty.equals("Error Card number")) {
                 cn.setText(CardNisEmpty);
                 labelEmpty1 = true;
@@ -288,15 +291,15 @@ public class TenantPage_Payment extends javax.swing.JFrame {
                 labelEmpty3 = true;
             }
 
-            if (labelEmpty1 == true || labelEmpty2 == true || labelEmpty3 == true) {
+            if (labelEmpty1 == true || labelEmpty2 == true || labelEmpty3 == true) { // if there is something not complete or has a false value
 
-            } else {
+            } else {// if everything is correct then save the card number
                 TenantPage_Reservation.res.setPayment(cardNum);
                 TenantPage_ReserveInfo object = new TenantPage_ReserveInfo();
                 object.setVisible(true);
                 this.setVisible(false);
             }
-        } else {
+        } else {// if the tenant select the cash method
             TenantPage_Reservation.res.setPayment("Cash");
             TenantPage_ReserveInfo object = new TenantPage_ReserveInfo();
             object.setVisible(true);
@@ -304,7 +307,11 @@ public class TenantPage_Payment extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_jButton1ActionPerformed
-
+/**
+ * this method check the CVV and if it's all digit
+ * @param CVV the cvv number
+ * @return string of the CVV is correct or not correct
+ */
     public String checkCVV(String CVV) {
 
         boolean isD2 = true;
@@ -326,7 +333,11 @@ public class TenantPage_Payment extends javax.swing.JFrame {
 
         return CVV;
     }
-
+/**
+ * THIS METHOD CHECK THE CARD NUMBER IF IT'S CORRECT AND CONSIST ALL OF DIGITS
+ * @param CardNum THE CARD NUMBER
+ * @return STRING OF THE CARD NUMBER IS CORRECT OR NOT CORRECT
+ */
     public String checkCard(String CardNum) {
         boolean isD1 = true;
 
@@ -346,7 +357,11 @@ public class TenantPage_Payment extends javax.swing.JFrame {
         }
         return CardNum;
     }
-
+/**
+ * THIS METHOD WILL CHECK THE EXPIRE DATE FOR THE CARD
+ * @param ExDate 
+ * @return STRING OF IF IT'S EXPIRED OR NOT
+ */
     public String checkExDate(String ExDate) {
 
         if (ExDate.isEmpty()) {
@@ -366,11 +381,7 @@ public class TenantPage_Payment extends javax.swing.JFrame {
             } else {
                 return ("Error Expiry Date");
             }
-
         }
-
-        
-    
         return ExDate;
     }
 

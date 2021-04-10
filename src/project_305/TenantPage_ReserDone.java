@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package project_305;
-import java.awt.Desktop;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 

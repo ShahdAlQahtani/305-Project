@@ -5,12 +5,8 @@
  */
 package project_305;
 
-import java.io.FileNotFoundException;
 import java.sql.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import static project_305.TenantPage_Search.HID;
 
 /**
  *
@@ -19,7 +15,6 @@ import static project_305.TenantPage_Search.HID;
 public class TenantPage_Reservation extends javax.swing.JFrame {
 
     static Reservation res=new Reservation();
-    static int u;
     /**
      * Creates new form TenantPage_3
      */
@@ -152,7 +147,10 @@ public class TenantPage_Reservation extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+/**
+ * this method will take the date that tenant select and check if it's available or not
+ * @param evt 
+ */
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // NEXT button
       try{
@@ -160,11 +158,11 @@ public class TenantPage_Reservation extends javax.swing.JFrame {
         res.setReserveDate(date);
         
         try {
-            ResultSet rs=res.checkDateForRes(TenantPage_Hallinfo.id, date);
-            if (rs.next()) {
+            ResultSet rs=res.checkDateForRes(TenantPage_Hallinfo.id, date); // call the method to check about date availability
+            if (rs.next()) { // if it's not available
                 JOptionPane.showMessageDialog(null, " Hall is reserved in this day!! Chosse another day!");
 
-            } else {
+            } else {// if it's available
                 TenantPage_Payment object = new TenantPage_Payment();
                 object.setVisible(true);
                 this.setVisible(false);

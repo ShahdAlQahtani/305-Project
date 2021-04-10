@@ -4,13 +4,13 @@
 |                                                   |
 |---------------------------------------------------|
 |                                                   |
-| Tenant Info:         Name: nada                   |
-|                      Email: nada@                 |
+| Tenant Info:         Name: Fat                    |
+|                      Email: Ff@                   |
 |                                                   |
-| Reservation Info:    Hall Name: aa                |
-|                      Capacity: 11                 |
-|                      Price: 23                    |
-|                      Date: 2021-04-01             |
-|                      Payment Method: Cash         |
+| Reservation Info:    Hall Name: Qsr               |
+|                      Capacity: 550                |
+|                      Price: 22000                 |
+|                      Date: 2021-04-19             |
+|                      Payment Method: Credit card  |
 |                                                   |
 |---------------------------------------------------|
