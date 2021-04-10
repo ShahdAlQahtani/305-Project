@@ -13,10 +13,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author Ameera
- */
 public class OwnerPage_Hall extends javax.swing.JFrame {
 
     /**
@@ -224,7 +220,7 @@ public class OwnerPage_Hall extends javax.swing.JFrame {
         panel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 610, 50, 40));
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/page.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Ownerp.jpg"))); // NOI18N
         jLabel1.setText("Account Information          >>"); // NOI18N
         jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -359,7 +355,7 @@ public class OwnerPage_Hall extends javax.swing.JFrame {
 
     private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
         // TODO add your handling code here:
-        OwnerPage_Comment ob = new OwnerPage_Comment();
+        OwnerPage_Hall ob = new OwnerPage_Hall();
         ob.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jLabel6MouseClicked

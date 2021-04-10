@@ -7,15 +7,8 @@ package project_305;
 
 import java.awt.Dimension;
 import java.awt.*;
-import java.util.Scanner;
 import java.io.*;
-import java.sql.Blob;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
-import java.util.*;
+import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.*;
@@ -24,7 +17,7 @@ public class TenantPage_Search extends javax.swing.JFrame {
 
     static int[] HID = new int[4];
 
-    public TenantPage_Search() throws FileNotFoundException {
+    public TenantPage_Search() {
         initComponents();
         setLocationRelativeTo(null);
         Connection connection = null;
@@ -539,13 +532,9 @@ public class TenantPage_Search extends javax.swing.JFrame {
     private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
         // TODO add your handling code here:
         TenantPage_Search ob;
-        try {
-            ob = new TenantPage_Search();
-            ob.setVisible(true);
-            this.setVisible(false);
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(TenantPage_Chat.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        ob = new TenantPage_Search();
+        ob.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_jLabel6MouseClicked
 
     private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
@@ -558,11 +547,7 @@ public class TenantPage_Search extends javax.swing.JFrame {
     private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
         // TODO add your handling code here:
         TenantPage_profile ob = null;
-        try {
-            ob = new TenantPage_profile();
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(TenantPage_Chat.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        ob = new TenantPage_profile();
         ob.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jLabel9MouseClicked
@@ -669,11 +654,7 @@ public class TenantPage_Search extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                try {
-                    new TenantPage_Search().setVisible(true);
-                } catch (FileNotFoundException ex) {
-                    Logger.getLogger(TenantPage_Search.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                new TenantPage_Search().setVisible(true);
             }
         });
     }

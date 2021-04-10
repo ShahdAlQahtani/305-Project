@@ -19,7 +19,7 @@ import javax.swing.JOptionPane;
 public class TenantPage_profile extends javax.swing.JFrame {
 
 
-    public TenantPage_profile() throws FileNotFoundException {
+    public TenantPage_profile(){
         initComponents();
         setLocationRelativeTo(null);
         Connection connection = null;
@@ -164,11 +164,7 @@ public class TenantPage_profile extends javax.swing.JFrame {
     private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
         // TODO add your handling code here:
         TenantPage_profile ob = null;
-        try {
-            ob = new TenantPage_profile();
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(TenantPage_Chat.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        ob = new TenantPage_profile();
         ob.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jLabel9MouseClicked
@@ -183,13 +179,9 @@ public class TenantPage_profile extends javax.swing.JFrame {
     private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
         // TODO add your handling code here:
         TenantPage_Search ob;
-        try {
-            ob = new TenantPage_Search();
-            ob.setVisible(true);
-            this.setVisible(false);
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(TenantPage_Chat.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        ob = new TenantPage_Search();
+        ob.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_jLabel6MouseClicked
 
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
@@ -200,14 +192,10 @@ public class TenantPage_profile extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel5MouseClicked
 
     private void logoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutMouseClicked
-        try {
-            // TODO add your handling code here:
-            Login ob = new Login();
-            ob.setVisible(true);
-            this.setVisible(false);
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(TenantPage_profile.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        // TODO add your handling code here:
+        Login ob = new Login();
+        ob.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_logoutMouseClicked
 
     private void label3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label3MouseClicked
@@ -247,11 +235,7 @@ public class TenantPage_profile extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                try {
-                    new TenantPage_profile().setVisible(true);
-                } catch (FileNotFoundException ex) {
-                    Logger.getLogger(TenantPage_profile.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                new TenantPage_profile().setVisible(true);
             }
         });
     }

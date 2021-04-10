@@ -1,16 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package project_305;
 
-import java.io.*;
+
 import java.io.IOException;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.Scanner;
 import javax.swing.JOptionPane;
 
 public class Login extends javax.swing.JFrame {
@@ -18,21 +13,15 @@ public class Login extends javax.swing.JFrame {
     /**
      * Creates new form Login
      */
-    boolean checkOwner;
-    FileReader d;
-    Scanner input;
+   
+    
     static String Id;
-    static String first;
-    static String last;
-    static String firstO;
-    static String lastO;
-    static String email;
+    
 
-    public Login() throws FileNotFoundException {
+    public Login()  {
         initComponents();
         setLocationRelativeTo(null);
-//        this.d = new FileReader("Users.txt");
-//        input = new Scanner(d);
+
 
     }
 
@@ -176,16 +165,9 @@ public class Login extends javax.swing.JFrame {
 
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
         // TODO add your handling code here:
-        Signup ob;
-        try {
-            ob = new Signup();
-            this.setVisible(false);
-            ob.setVisible(true);
-
-        } catch (IOException ex) {
-            Logger.getLogger(Login.class
-                    .getName()).log(Level.SEVERE, null, ex);
-        }
+        WelcomePage ob = new WelcomePage();
+        this.setVisible(false);
+        ob.setVisible(true);
 
     }//GEN-LAST:event_backActionPerformed
 
@@ -311,13 +293,7 @@ public class Login extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                try {
-                    new Login().setVisible(true);
-
-                } catch (FileNotFoundException ex) {
-                    Logger.getLogger(Login.class
-                            .getName()).log(Level.SEVERE, null, ex);
-                }
+                new Login().setVisible(true);
             }
         });
     }

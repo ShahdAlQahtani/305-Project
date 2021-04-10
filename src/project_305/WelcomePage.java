@@ -85,26 +85,17 @@ public class WelcomePage extends javax.swing.JFrame {
     private void SignupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SignupActionPerformed
         // TODO add your handling code here:
         Signup ob;
-        try {
-            ob = new Signup();
-                ob.setVisible(true);
+        ob = new Signup();
+        ob.setVisible(true);
         this.setVisible(false);
-        } catch (IOException ex) {
-            Logger.getLogger(WelcomePage.class.getName()).log(Level.SEVERE, null, ex);
-        }
     
     }//GEN-LAST:event_SignupActionPerformed
 
     private void LoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginActionPerformed
         // TODO add your handling code here:
-        
-        try {
-            Login ob = new Login();
-            ob.setVisible(true);
-            this.setVisible(false);
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(WelcomePage.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        Login ob = new Login();
+        ob.setVisible(true);
+        this.setVisible(false);
    
         
     }//GEN-LAST:event_LoginActionPerformed

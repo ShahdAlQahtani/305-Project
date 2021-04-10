@@ -115,7 +115,7 @@ public class TenantPage_Current extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
         jLabel4.setText("Your current reservation:");
         jPanel1.add(jLabel4);
-        jLabel4.setBounds(10, 210, 170, 20);
+        jLabel4.setBounds(10, 210, 170, 19);
 
         jScrollPane2.setBackground(new java.awt.Color(243, 246, 251));
         jScrollPane2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -160,7 +160,7 @@ public class TenantPage_Current extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton1);
-        jButton1.setBounds(160, 540, 150, 46);
+        jButton1.setBounds(80, 540, 150, 30);
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 20)); // NOI18N
         jLabel1.setText("Current Reservation");
@@ -194,7 +194,7 @@ public class TenantPage_Current extends javax.swing.JFrame {
             }
         });
         jPanel1.add(edit);
-        edit.setBounds(10, 460, 75, 29);
+        edit.setBounds(10, 460, 53, 25);
 
         jLabel3.setForeground(new java.awt.Color(102, 102, 102));
         jLabel3.setText("To edit: select Reserve Id, then click edit");
@@ -266,13 +266,9 @@ public class TenantPage_Current extends javax.swing.JFrame {
         // TODO add your handling code here:
         TenantPage_profile ob = null;
 
-        try {
-            ob = new TenantPage_profile();
-            ob.setVisible(true);
-            this.setVisible(false);
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(TenantPage_Current.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
+        ob = new TenantPage_profile();
+        ob.setVisible(true);
+        this.setVisible(false);
         ob.setVisible(true);
         this.setVisible(false);
 
@@ -290,13 +286,9 @@ public class TenantPage_Current extends javax.swing.JFrame {
         // TODO add your handling code here:
         TenantPage_Search ob;
 
-        try {
-            ob = new TenantPage_Search();
-            ob.setVisible(true);
-            this.setVisible(false);
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(TenantPage_Current.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
+        ob = new TenantPage_Search();
+        ob.setVisible(true);
+        this.setVisible(false);
 
 
     }//GEN-LAST:event_jLabel6MouseClicked

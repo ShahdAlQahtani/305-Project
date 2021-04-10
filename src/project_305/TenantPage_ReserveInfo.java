@@ -6,19 +6,14 @@
 package project_305;
 
 import java.io.FileNotFoundException;
-import java.io.*;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.Scanner;
+
 
 public class TenantPage_ReserveInfo extends javax.swing.JFrame {
 
-    public TenantPage_ReserveInfo() throws FileNotFoundException {
+    public TenantPage_ReserveInfo()  {
         initComponents();
         setLocationRelativeTo(null);
         Connection connection = null;
@@ -48,7 +43,7 @@ public class TenantPage_ReserveInfo extends javax.swing.JFrame {
                 hprice.setText(rsH.getDouble(3) + "");
             }
 
-            if (TenantPage_Reservation.res.getPayment().equals("0")) {
+            if (TenantPage_Reservation.res.getPayment().equals("Cash")) {
                 paymethod.setText("Cash");
             } else {
                 paymethod.setText("Cridit card");
@@ -106,7 +101,7 @@ public class TenantPage_ReserveInfo extends javax.swing.JFrame {
             }
         });
         jPanel1.add(confirm);
-        confirm.setBounds(80, 532, 140, 30);
+        confirm.setBounds(80, 540, 140, 30);
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -206,7 +201,7 @@ public class TenantPage_ReserveInfo extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
                     .addComponent(hName))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 13, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel11)
                     .addComponent(date))
@@ -226,7 +221,7 @@ public class TenantPage_ReserveInfo extends javax.swing.JFrame {
         );
 
         jPanel1.add(jPanel2);
-        jPanel2.setBounds(10, 250, 280, 260);
+        jPanel2.setBounds(10, 250, 280, 270);
 
         jLabel9.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -314,11 +309,7 @@ public class TenantPage_ReserveInfo extends javax.swing.JFrame {
     private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
         // TODO add your handling code here:
         TenantPage_profile ob = null;
-        try {
-            ob = new TenantPage_profile();
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(TenantPage_Chat.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        ob = new TenantPage_profile();
         ob.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jLabel9MouseClicked
@@ -333,13 +324,9 @@ public class TenantPage_ReserveInfo extends javax.swing.JFrame {
     private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
         // TODO add your handling code here:
         TenantPage_Search ob;
-        try {
-            ob = new TenantPage_Search();
-            ob.setVisible(true);
-            this.setVisible(false);
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(TenantPage_Chat.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        ob = new TenantPage_Search();
+        ob.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_jLabel6MouseClicked
 
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
@@ -387,11 +374,7 @@ public class TenantPage_ReserveInfo extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                try {
-                    new TenantPage_ReserveInfo().setVisible(true);
-                } catch (FileNotFoundException ex) {
-                    Logger.getLogger(TenantPage_ReserveInfo.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                new TenantPage_ReserveInfo().setVisible(true);
             }
         });
     }

@@ -1,12 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package project_305;
-//shahad baik
-//karam abdullah
-//Ameera Moh
 
 import java.io.FileNotFoundException;
 import java.util.logging.Level;
@@ -16,10 +9,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.*;
 
-/**
- *
- * @author shahad
- */
 public class ForgetPass extends javax.swing.JFrame {
 
     /**
@@ -81,6 +70,7 @@ public class ForgetPass extends javax.swing.JFrame {
         jPanel3.setBackground(new java.awt.Color(181, 196, 196));
 
         jButton4.setBackground(new java.awt.Color(144, 161, 161));
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/back.png"))); // NOI18N
         jButton4.setBorder(null);
         jButton4.setContentAreaFilled(false);
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -94,8 +84,8 @@ public class ForgetPass extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 31, Short.MAX_VALUE))
+                .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -110,12 +100,12 @@ public class ForgetPass extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel2.setText("Enter Your Email");
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(30, 220, 150, 21);
+        jLabel2.setBounds(30, 220, 150, 22);
 
         jLabel3.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel3.setText("Enter new password");
         jPanel1.add(jLabel3);
-        jLabel3.setBounds(30, 310, 180, 21);
+        jLabel3.setBounds(30, 310, 180, 22);
 
         jLabel4.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel4.setText("Confirm password");
@@ -133,7 +123,7 @@ public class ForgetPass extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
         jLabel5.setText("Forget Password");
         jPanel1.add(jLabel5);
-        jLabel5.setBounds(70, 90, 170, 29);
+        jLabel5.setBounds(70, 90, 170, 28);
         jPanel1.add(invalid);
         invalid.setBounds(110, 470, 0, 0);
 
@@ -211,14 +201,9 @@ public class ForgetPass extends javax.swing.JFrame {
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
         Login ob;
-        try {
-            ob = new Login();
-            ob.setVisible(true);
-            this.setVisible(false);
-
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(ForgetPass.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        ob = new Login();
+        ob.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     /**

@@ -5,9 +5,9 @@
  */
 package project_305;
 
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
+
+
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -17,13 +17,13 @@ public class Signup extends javax.swing.JFrame {
      * Creates new form Signup
      */
     boolean checkOwner;
-    FileWriter r;
+   
     static boolean Check;
 
-    public Signup() throws IOException {
+    public Signup()  {
         initComponents();
         setLocationRelativeTo(null);
-        this.r = new FileWriter("Users.txt", true);
+       
 
     }
 
@@ -370,15 +370,10 @@ public class Signup extends javax.swing.JFrame {
                 user.setPassword(password.getText());
                 user.setCpassword(confirmPass.getText());
 
-                try {
-                    user.createAccount(user, checkOwner);
-                    Login object = new Login();
-                    object.setVisible(true);
-                    this.setVisible(false);
-
-                } catch (IOException ex) {
-                    Logger.getLogger(Signup.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                user.createAccount(user, checkOwner);
+                Login object = new Login();
+                object.setVisible(true);
+                this.setVisible(false);
 
             }
         } else {
@@ -449,11 +444,7 @@ public class Signup extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                try {
-                    new Signup().setVisible(true);
-                } catch (IOException ex) {
-                    Logger.getLogger(Signup.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                new Signup().setVisible(true);
             }
         });
     }
