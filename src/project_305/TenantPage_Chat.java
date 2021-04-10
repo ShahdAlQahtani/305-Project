@@ -60,7 +60,7 @@ public class TenantPage_Chat extends javax.swing.JFrame {
 
         jLabel1.setText("Client");
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(130, 130, 40, 20);
+        jLabel1.setBounds(130, 110, 37, 16);
 
         txt_area.setColumns(20);
         txt_area.setRows(5);
@@ -80,7 +80,7 @@ public class TenantPage_Chat extends javax.swing.JFrame {
         jPanel1.add(send);
         send.setBounds(240, 460, 30, 30);
 
-        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\shood\\Documents\\NetBeansProjects\\project-305\\src\\Image\\chat_T.png")); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/tenant.jpeg"))); // NOI18N
         jPanel1.add(jLabel2);
         jLabel2.setBounds(0, 0, 300, 650);
 
@@ -275,7 +275,7 @@ public class TenantPage_Chat extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel send;
-    private javax.swing.JTextField txt;
-    private javax.swing.JTextArea txt_area;
+    private static javax.swing.JTextField txt;
+    public static javax.swing.JTextArea txt_area;
     // End of variables declaration//GEN-END:variables
 }
