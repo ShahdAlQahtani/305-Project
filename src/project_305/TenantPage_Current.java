@@ -8,12 +8,9 @@ package project_305;
 import com.sun.glass.ui.Window.Level;
 import java.awt.Image;
 import java.io.FileNotFoundException;
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.*;
 import static java.sql.ResultSet.CONCUR_READ_ONLY;
 import static java.sql.ResultSet.TYPE_SCROLL_SENSITIVE;
-import java.sql.Statement;
 import java.util.logging.Logger;
 import javax.swing.*;
 import javax.swing.JOptionPane;
@@ -162,10 +159,10 @@ public class TenantPage_Current extends javax.swing.JFrame {
         jPanel1.add(jButton1);
         jButton1.setBounds(80, 540, 150, 30);
 
-        jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 20)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
         jLabel1.setText("Current Reservation");
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(70, 90, 170, 30);
+        jLabel1.setBounds(50, 90, 200, 30);
 
         HallName2.setFont(new java.awt.Font("Times New Roman", 0, 20)); // NOI18N
         HallName2.setText("current reservation.");
