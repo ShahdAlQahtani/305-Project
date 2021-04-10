@@ -9,12 +9,7 @@ import java.awt.Dimension;
 import java.awt.*;
 import java.util.Scanner;
 import java.io.*;
-import java.sql.Blob;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -264,13 +259,9 @@ public class TenantPage_Hallinfo extends javax.swing.JFrame {
     private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
         // BBAACCCCKKKKKK
         TenantPage_Search ob;
-        try {
-            ob = new TenantPage_Search();
-            ob.setVisible(true);
-            this.setVisible(false);
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(TenantPage_Hallinfo.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        ob = new TenantPage_Search();
+        ob.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_jLabel8MouseClicked
 
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
@@ -283,13 +274,9 @@ public class TenantPage_Hallinfo extends javax.swing.JFrame {
     private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
         // TODO add your handling code here:
         TenantPage_Search ob;
-        try {
-            ob = new TenantPage_Search();
-            ob.setVisible(true);
-            this.setVisible(false);
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(TenantPage_Chat.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        ob = new TenantPage_Search();
+        ob.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_jLabel6MouseClicked
 
     private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
@@ -302,11 +289,7 @@ public class TenantPage_Hallinfo extends javax.swing.JFrame {
     private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
         // TODO add your handling code here:
         TenantPage_profile ob = null;
-        try {
-            ob = new TenantPage_profile();
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(TenantPage_Chat.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        ob = new TenantPage_profile();
         ob.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jLabel9MouseClicked

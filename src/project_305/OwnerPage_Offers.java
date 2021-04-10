@@ -5,20 +5,12 @@
  */
 package project_305;
 
-import java.io.FileNotFoundException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.Statement;
+
+import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.*;
 import javax.swing.JOptionPane;
-/**
- *
- * @author shahad
- */
+
 public class OwnerPage_Offers extends javax.swing.JFrame {
 
     public static double Amount;
@@ -358,7 +350,7 @@ public class OwnerPage_Offers extends javax.swing.JFrame {
 
     private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
         // TODO add your handling code here:
-        OwnerPage_Comment ob = new OwnerPage_Comment();
+        OwnerPage_Hall ob = new OwnerPage_Hall();
         ob.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jLabel7MouseClicked

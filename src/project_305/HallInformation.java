@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package project_305;
 
 import java.io.File;
@@ -11,24 +7,14 @@ import java.io.InputStream;
 import java.sql.*;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author Ameera
- */
 public class HallInformation {
     public int idHallinfo;
     public String hallName;
-    
     public String hallAddress;
-    
     public int Capacity;
-    
     public String hallcontactNum;
-    
     public double Hallprice;
-    public String Image;
-    
-    public String OwnerId;
+    public String Image;   
 
     public int getIdHallinfo() {
         return idHallinfo;
@@ -61,9 +47,7 @@ public class HallInformation {
     public void setCapacity(int Capacity) {
         this.Capacity = Capacity;
     }
-    
-  
-    
+     
     public String getHallcontactNum() {
         return hallcontactNum;
     }
@@ -78,14 +62,6 @@ public class HallInformation {
     
     public void setHallprice(double Hallprice) {
         this.Hallprice = Hallprice;
-    }
-    
-    public String getOwnerId() {
-        return OwnerId;
-    }
-    
-    public void setOwnerId(String OwnerId) {
-        this.OwnerId = OwnerId;
     }
     
     public String getImage() {

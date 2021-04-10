@@ -7,11 +7,7 @@ package project_305;
 
 import java.awt.Image;
 import java.io.FileNotFoundException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
@@ -37,7 +33,6 @@ public class TenantPage_Favorate extends javax.swing.JFrame {
     }
 
     public void list() {
-        
         DefaultTableModel table = new DefaultTableModel();
         table.addColumn("Hall Name");
 
@@ -86,8 +81,6 @@ public class TenantPage_Favorate extends javax.swing.JFrame {
         HallImage = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         delete = new javax.swing.JButton();
-        HallName = new javax.swing.JLabel();
-        HallName2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -202,23 +195,8 @@ public class TenantPage_Favorate extends javax.swing.JFrame {
                 deleteMouseClicked(evt);
             }
         });
-        delete.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                deleteActionPerformed(evt);
-            }
-        });
         jPanel1.add(delete);
-        delete.setBounds(250, 230, 30, 35);
-
-        HallName.setFont(new java.awt.Font("Times New Roman", 0, 20)); // NOI18N
-        HallName.setText("You don't have any");
-        jPanel1.add(HallName);
-        HallName.setBounds(70, 300, 160, 60);
-
-        HallName2.setFont(new java.awt.Font("Times New Roman", 0, 20)); // NOI18N
-        HallName2.setText("favorate reservation.");
-        jPanel1.add(HallName2);
-        HallName2.setBounds(70, 330, 170, 70);
+        delete.setBounds(250, 230, 30, 38);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/tenant.jpeg"))); // NOI18N
         jPanel1.add(jLabel1);
@@ -241,11 +219,7 @@ public class TenantPage_Favorate extends javax.swing.JFrame {
     private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
         // TODO add your handling code here:
         TenantPage_profile ob = null;
-        try {
-            ob = new TenantPage_profile();
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(TenantPage_Chat.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        ob = new TenantPage_profile();
         ob.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jLabel9MouseClicked
@@ -261,13 +235,9 @@ public class TenantPage_Favorate extends javax.swing.JFrame {
     private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
         // TODO add your handling code here:
         TenantPage_Search ob;
-        try {
-            ob = new TenantPage_Search();
-            ob.setVisible(true);
-            this.setVisible(false);
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(TenantPage_Chat.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        ob = new TenantPage_Search();
+        ob.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_jLabel6MouseClicked
 
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
@@ -287,13 +257,9 @@ public class TenantPage_Favorate extends javax.swing.JFrame {
     private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
         // BBAACCCCKKKKKK
         TenantPage_Search ob;
-        try {
-            ob = new TenantPage_Search();
-            ob.setVisible(true);
-            this.setVisible(false);
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(TenantPage_Hallinfo.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        ob = new TenantPage_Search();
+        ob.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_jLabel10MouseClicked
 
     private void listMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listMouseClicked
@@ -362,10 +328,6 @@ public class TenantPage_Favorate extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_deleteMouseClicked
 
-    private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_deleteActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -403,8 +365,6 @@ public class TenantPage_Favorate extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel HallImage;
-    private javax.swing.JLabel HallName;
-    private javax.swing.JLabel HallName2;
     private javax.swing.JButton delete;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;

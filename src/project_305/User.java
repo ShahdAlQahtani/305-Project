@@ -5,10 +5,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.*;
 
-/**
- *
- * @author Ameera
- */
 public class User {
 
     public String Fname;
@@ -18,7 +14,6 @@ public class User {
     public String Cpassword;
     public String Phone_number;
 
-    public boolean type = false;
 
     public String getEmail() {
         return email;
@@ -66,14 +61,6 @@ public class User {
 
     public void setLname(String Lname) {
         this.Lname = Lname;
-    }
-
-    public boolean isType() {
-        return type;
-    }
-
-    public void setType(boolean type) {
-        this.type = type;
     }
 
     public void createAccount(User user, boolean checkOwner) {

@@ -5,20 +5,10 @@
  */
 package project_305;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
-/**
- *
- * @author shahad
- */
 public class OwnerPage_EditPro extends javax.swing.JFrame {
 
     /**
@@ -56,6 +46,7 @@ public class OwnerPage_EditPro extends javax.swing.JFrame {
                     e.setText(email);
                     pN.setText(phoneNumber);
                     pass.setText(password);
+                    cPass.setText(password);
               
                 }
             }
@@ -385,7 +376,7 @@ public class OwnerPage_EditPro extends javax.swing.JFrame {
 
     private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
         // TODO add your handling code here:
-        OwnerPage_Comment ob = new OwnerPage_Comment();
+        OwnerPage_Hall ob = new OwnerPage_Hall();
         ob.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jLabel7MouseClicked

@@ -5,14 +5,9 @@
  */
 package project_305;
 
-
-
-import java.io.FileNotFoundException;
 import java.sql.*;
-
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 import javax.swing.JOptionPane;
 
 public class OwnerPage_Profile extends javax.swing.JFrame {
@@ -66,7 +61,6 @@ public class OwnerPage_Profile extends javax.swing.JFrame {
         name = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         Id = new javax.swing.JLabel();
-        label2 = new java.awt.Label();
         jLabel8 = new javax.swing.JLabel();
         label3 = new java.awt.Label();
         jLabel1 = new javax.swing.JLabel();
@@ -132,17 +126,6 @@ public class OwnerPage_Profile extends javax.swing.JFrame {
         jPanel1.add(Id);
         Id.setBounds(120, 350, 80, 22);
 
-        label2.setBackground(new java.awt.Color(255, 255, 255));
-        label2.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
-        label2.setText("  My Hall                                     >"); // NOI18N
-        label2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                label2MouseClicked(evt);
-            }
-        });
-        jPanel1.add(label2);
-        label2.setBounds(40, 460, 230, 40);
-
         jLabel8.setFont(new java.awt.Font("Times New Roman", 0, 30)); // NOI18N
         jLabel8.setText("Profile");
         jPanel1.add(jLabel8);
@@ -157,7 +140,7 @@ public class OwnerPage_Profile extends javax.swing.JFrame {
             }
         });
         jPanel1.add(label3);
-        label3.setBounds(40, 410, 230, 40);
+        label3.setBounds(40, 440, 230, 40);
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Ownerp.jpg"))); // NOI18N
@@ -195,7 +178,7 @@ public class OwnerPage_Profile extends javax.swing.JFrame {
 
     private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
         // TODO add your handling code here:
-        OwnerPage_Comment ob = new OwnerPage_Comment();
+        OwnerPage_Hall ob = new OwnerPage_Hall();
         ob.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jLabel7MouseClicked
@@ -209,21 +192,10 @@ public class OwnerPage_Profile extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel9MouseClicked
 
     private void LogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LogoutMouseClicked
-        try {
-            Login ob = new Login();
-            ob.setVisible(true);
-            this.setVisible(false);
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(OwnerPage_Profile.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_LogoutMouseClicked
-
-    private void label2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label2MouseClicked
-        OwnerPage_Hall ob = null;
-        ob = new OwnerPage_Hall();
+        Login ob = new Login();
         ob.setVisible(true);
         this.setVisible(false);
-    }//GEN-LAST:event_label2MouseClicked
+    }//GEN-LAST:event_LogoutMouseClicked
 
     private void label3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label3MouseClicked
         // TODO add your handling code here:
@@ -283,7 +255,6 @@ public class OwnerPage_Profile extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private java.awt.Label label2;
     private java.awt.Label label3;
     private javax.swing.JLabel name;
     // End of variables declaration//GEN-END:variables
