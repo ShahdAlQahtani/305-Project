@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
  */
 public class TenantPage_EditRes extends javax.swing.JFrame {
 
-    int idRES;
+    int idRES;// the hall ID to edit
 
     public TenantPage_EditRes() {
         initComponents();
@@ -25,7 +25,7 @@ public class TenantPage_EditRes extends javax.swing.JFrame {
     public TenantPage_EditRes(int id) {
         initComponents();
         setLocationRelativeTo(null);
-        this.idRES = id;
+        this.idRES = id; 
     }
 
     /**
@@ -250,10 +250,12 @@ public class TenantPage_EditRes extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+/**
+ * this method will cancel(delete) the hall reservation or edit the reservation date
+ * @param evt 
+ */
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here: EDITT
-        if (CancelRes.isSelected()) {
+        if (CancelRes.isSelected()) {// if the tenant select to cancel the reservation
             initComponents();
             setLocationRelativeTo(null);
             Connection connection = null;
@@ -264,8 +266,8 @@ public class TenantPage_EditRes extends javax.swing.JFrame {
 
                 String query2 = "DELETE  from `Reservation` where idReserve='" + idRES + "'";
                 Statement stat = connection.createStatement();
-                stat.executeUpdate(query2);
-                JOptionPane.showMessageDialog(null, "Reservation has been deletd :)");
+                stat.executeUpdate(query2); // delete the reservation from database
+                JOptionPane.showMessageDialog(null, "Reservation has been deleted :)"); //show successful message
                 TenantPage_Current object = new TenantPage_Current();
                 object.setVisible(true);
                 this.setVisible(false);
@@ -274,9 +276,9 @@ public class TenantPage_EditRes extends javax.swing.JFrame {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        } else {
+        } else { // if the tenant select to edit the reservation date
             Date date = null;
-            try {
+            try {// check if the tenant does not choose any date
                 date = new Date(jDateChooser1.getDate().getTime());
             } catch (NullPointerException e) {
                 JOptionPane.showMessageDialog(null, " Choose a date first!");
@@ -293,10 +295,10 @@ public class TenantPage_EditRes extends javax.swing.JFrame {
                 String query = "Select idReserve from `Reservation` where resDate='" + date + "'";
                 Statement stm = connection.createStatement();
                 ResultSet rs = stm.executeQuery(query);
-                if (rs.next()) {
+                if (rs.next()) {// check if the hall is already reserved in that date
                     JOptionPane.showMessageDialog(null, " Hall is reserved in this day!! Chosse another day!");
 
-                } else {
+                } else {// if the hall is available update the reservation date
                     String query2 = "Update Reservation set resDate='" + date + "' where idReserve='" + idRES + "'";
                     Statement stm2 = connection.createStatement();
                     int rowUpd = stm2.executeUpdate(query2);

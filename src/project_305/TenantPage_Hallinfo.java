@@ -5,30 +5,23 @@
  */
 package project_305;
 
-import java.awt.Dimension;
 import java.awt.*;
-import java.util.Scanner;
-import java.io.*;
 import java.sql.*;
-import java.util.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.*;
 
 public class TenantPage_Hallinfo extends javax.swing.JFrame {
 
-    static int id;
-    public static boolean hallInfo = false;
-    public static boolean favCheck = false;
-
+    static int id;//hall is
+    
     public TenantPage_Hallinfo() {
         this(id);
         initComponents();
         setLocationRelativeTo(null);
-
-        // hallInfo=true;
     }
-
+/**
+ * this method display the hall information 
+ * @param HID 
+ */
     public TenantPage_Hallinfo(int HID) {
         id = HID;
         initComponents();
@@ -46,6 +39,7 @@ public class TenantPage_Hallinfo extends javax.swing.JFrame {
             Statement stm = connection.createStatement();
             ResultSet rs = stm.executeQuery(query);
             while (rs.next()) {
+                //get the hall information and display it
                 int id = rs.getInt(1);
                 String hn = rs.getString(2);
                 int hc = rs.getInt(3);
@@ -293,7 +287,10 @@ public class TenantPage_Hallinfo extends javax.swing.JFrame {
         ob.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jLabel9MouseClicked
-
+/**
+ * this method put the hall into the favoriate table in DB 
+ * @param evt 
+ */
     private void jLabel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseClicked
         // TODO add your handling code here:
         Connection connection = null;
@@ -307,12 +304,12 @@ public class TenantPage_Hallinfo extends javax.swing.JFrame {
             String query = "select * from favorites where favorites.idTenant ='" + Login.Id + "' and favorites.idHallInfo='" + id + "'";
             Statement stm = connection.createStatement();
             ResultSet rs = stm.executeQuery(query);
-            if (rs.next()) {
+            if (rs.next()) {//check the hall if its already exist in favorites table
                 JOptionPane.showMessageDialog(null, " This Hall is already in your favorites !!");
                 TenantPage_Favorate ob = new TenantPage_Favorate();
                 ob.setVisible(true);
                 this.setVisible(false);
-            } else {
+            } else {// if not
                 String query2 = "insert into favorites (idTenant,idHallinfo) values (" + Login.Id + "," + id + ")";
                 Statement stm2 = connection.createStatement();
                 stm2.executeUpdate(query2);

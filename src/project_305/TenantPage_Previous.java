@@ -27,15 +27,17 @@ public class TenantPage_Previous extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         list();
     }
-
+/**
+ * THIS METHOD DISPLAY PREVIOUS RESERVATION INFORMATION
+ */
     public void list() {
         noresr1.setVisible(false);
         noresr2.setVisible(false);
-        DefaultTableModel table1 = new DefaultTableModel();
+        DefaultTableModel table1 = new DefaultTableModel(); // CREATE A TABLE ON AND IT'S COLUMNS
         table1.addColumn("ReserveId");
         table1.addColumn("Hall Name");
         table1.addColumn("Date");
-        Date dayDate=new Date(new java.util.Date().getTime());
+        Date dayDate=new Date(new java.util.Date().getTime());// GET TODAY'S DATE
         Connection connection = null;
 
         try {
@@ -48,19 +50,19 @@ public class TenantPage_Previous extends javax.swing.JFrame {
             Statement stat = connection.createStatement(TYPE_SCROLL_SENSITIVE, CONCUR_READ_ONLY);
             ResultSet rs = stat.executeQuery(query);
 
-            if (rs.next()) {
+            if (rs.next()) {// CHECK IF THERE IS ANY RESERVATION
 
                 jScrollPane1.setVisible(true);
                 list.setVisible(true);
                 
-                rs.previous();
+                rs.previous();// GO BACK FOR THE FIRST RESULT
                 while (rs.next()) {
-                    Date date=rs.getDate(2);
-                    if(date.before(dayDate))
+                    Date date=rs.getDate(2);// GET THE RESERVATION DATE
+                    if(date.before(dayDate))// CHECK OF THE DATE IS BEFORE THE TODAY DATE THEN PRINT IT'S INFORMATION
                         table1.addRow(new Object[]{rs.getInt(3), rs.getString(1), rs.getDate(2)});
                 }
                 list.setModel(table1);
-            } else {
+            } else {// IF NOT THEN THE DISPLAY THERE IS NO RESERVATION
                 jScrollPane1.setVisible(false);
                 noresr1.setVisible(true);
                 noresr2.setVisible(true);
