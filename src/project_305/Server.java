@@ -1,39 +1,33 @@
 package project_305;
 
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ *server class 
  */
-
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-
-/**
- *
- * @author shood
- *
- */
 public class Server {
+
+    // Default ip address and port number
     public static String ip = "127.0.0.1";
     public static int portNumber = 8800;
 }
 
 class ServerThread extends Thread {
 
+    //To creat the connection , we created serverSoket to created server and soket
     OwnerPage_Chat OwnerChat;
     ServerSocket serverSocket;
     Socket socket;
-  
+    // to read messages coming from server
     DataOutputStream dos;
     DataInputStream dis;
-
+    // This Thread class creating multiple threads of the server to allow multiple client connections  at same time
     public ServerThread(OwnerPage_Chat chat) throws IOException {
         this.OwnerChat = chat;
-        serverSocket = new ServerSocket(Tenant.portNumber);   
-        start(); //start thread 
+        serverSocket = new ServerSocket(Tenant.portNumber);//creat serverSocket with tenant potr number
+        start(); //Start Thread 
     }
 
     @Override
@@ -41,33 +35,31 @@ class ServerThread extends Thread {
         while (true) {
 
             try {
-                socket = serverSocket.accept();
-                dis = new DataInputStream(socket.getInputStream());
-                dos = new DataOutputStream(socket.getOutputStream());
-                ReceiverThread rt = new ReceiverThread(OwnerChat, dis, dos, socket);
+                socket = serverSocket.accept();//Accept Socket
+                dis = new DataInputStream(socket.getInputStream()); //tenant input stream
+                dos = new DataOutputStream(socket.getOutputStream());//tenant output stream
+                Receiver rt = new Receiver(OwnerChat, dis, dos, socket);
             } catch (IOException ex) {
                 System.out.println(ex.getMessage());
             }
         }
     }
+// when owner clicks on send button
 
-    
-    public void send(String message) throws IOException {
-
+    public void sendMassges(String message) throws IOException {
         dos.writeUTF(message);
     }
 }
+//Receivering from tenant
 
-
-class ReceiverThread extends Thread {
+class Receiver extends Thread {
 
     OwnerPage_Chat OwnerChat;
     DataOutputStream dos;
     DataInputStream dis;
     Socket socket;
 
-    ReceiverThread(OwnerPage_Chat OwnerChat, DataInputStream dis, DataOutputStream dos, Socket socket) {
-
+    Receiver(OwnerPage_Chat OwnerChat, DataInputStream dis, DataOutputStream dos, Socket socket) {
         this.OwnerChat = OwnerChat;
         this.dis = dis;
         this.dos = dos;
@@ -80,10 +72,11 @@ class ReceiverThread extends Thread {
 
         while (true) {
             try {
-
-                String str = dis.readUTF();
-                OwnerChat.txt_area.append("Client: "+ str + "\n");
-                if (str.trim().equalsIgnoreCase("BYE")) {
+                //recived massges from client
+                String m = dis.readUTF();
+                OwnerChat.txt_area.append("Client: " + m + "\n");
+                //TO close the connection
+                if (m.trim().equalsIgnoreCase("bye")) {
                     break;
                 }
 

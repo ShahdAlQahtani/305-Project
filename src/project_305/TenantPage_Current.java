@@ -1,6 +1,4 @@
-
 package project_305;
-
 
 import java.sql.*;
 import static java.sql.ResultSet.CONCUR_READ_ONLY;
@@ -13,6 +11,7 @@ import javax.swing.table.DefaultTableModel;
  * This interface is showing the Tenant current reservation Then, after the
  * reservation time expired, or the reservation is canceled, the reservation
  * will be removed from this interface
+ *
  * @author shahad
  */
 public class TenantPage_Current extends javax.swing.JFrame {
@@ -47,7 +46,8 @@ public class TenantPage_Current extends javax.swing.JFrame {
             ResultSet rs = stat.executeQuery(query);
 
             if (rs.next()) {
-
+                jLabel4.setVisible(true);
+                jLabel3.setVisible(true);
                 jScrollPane2.setVisible(true);
                 list1.setVisible(true);
 
@@ -61,6 +61,8 @@ public class TenantPage_Current extends javax.swing.JFrame {
                 }
                 list1.setModel(table1);
             } else {
+                jLabel4.setVisible(false);
+                jLabel3.setVisible(false);
                 edit.setVisible(false);
                 jScrollPane2.setVisible(false);
                 HallName2.setVisible(true);
@@ -236,14 +238,11 @@ public class TenantPage_Current extends javax.swing.JFrame {
     private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
         // TODO add your handling code here:
         TenantPage_profile ob = null;
-
         ob = new TenantPage_profile();
         ob.setVisible(true);
         this.setVisible(false);
         ob.setVisible(true);
         this.setVisible(false);
-
-
     }//GEN-LAST:event_jLabel9MouseClicked
 
     private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
@@ -256,12 +255,9 @@ public class TenantPage_Current extends javax.swing.JFrame {
     private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
         // TODO add your handling code here:
         TenantPage_Search ob;
-
         ob = new TenantPage_Search();
         ob.setVisible(true);
         this.setVisible(false);
-
-
     }//GEN-LAST:event_jLabel6MouseClicked
 
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked

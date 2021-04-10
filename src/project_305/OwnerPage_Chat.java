@@ -6,6 +6,12 @@
 package project_305;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -13,11 +19,13 @@ import java.io.IOException;
  */
 public class OwnerPage_Chat extends javax.swing.JFrame {
 
-  static ServerThread serverThread;
+    static ServerThread serverThread; //obj from class Server
 
     public OwnerPage_Chat() {
         initComponents();
         setLocationRelativeTo(null);
+
+        // to start chat
         try {
             serverThread = new ServerThread(this);
         } catch (IOException ex) {
@@ -136,20 +144,21 @@ public class OwnerPage_Chat extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
-       OwnerPage_ViewReq ob = new OwnerPage_ViewReq();
+        OwnerPage_ViewReq ob = new OwnerPage_ViewReq();
         ob.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jLabel6MouseClicked
 
     private void sendMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sendMouseClicked
         // TODO add your handling code here:
-           
+
+        //call sendMessage to pass the message that has been written in text area
         try {
-            serverThread.send(txt.getText());
+            serverThread.sendMassges(txt.getText());
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
-            txt.setText(" ");
+        txt.setText(" ");
     }//GEN-LAST:event_sendMouseClicked
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
@@ -183,7 +192,7 @@ public class OwnerPage_Chat extends javax.swing.JFrame {
 
     private void txtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtMouseClicked
         // TODO add your handling code here:
-             txt.setText(" ");
+        txt.setText(" ");
     }//GEN-LAST:event_txtMouseClicked
 
     private void txtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtActionPerformed
