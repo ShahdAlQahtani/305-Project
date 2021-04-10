@@ -5,7 +5,6 @@
  */
 package project_305;
 
-
 import java.sql.*;
 import static java.sql.ResultSet.*;
 import java.util.logging.Level;
@@ -81,6 +80,9 @@ public class OwnerPage_ViewReq extends javax.swing.JFrame {
         list = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
         list1 = new javax.swing.JTable();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -130,7 +132,7 @@ public class OwnerPage_ViewReq extends javax.swing.JFrame {
         NoRes.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         NoRes.setText("No Rservation For This Hall..!");
         jPanel1.add(NoRes);
-        NoRes.setBounds(40, 400, 224, 40);
+        NoRes.setBounds(40, 400, 221, 40);
 
         jScrollPane1.setBackground(new java.awt.Color(243, 246, 251));
         jScrollPane1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -196,7 +198,28 @@ public class OwnerPage_ViewReq extends javax.swing.JFrame {
         jScrollPane2.setViewportView(list1);
 
         jPanel1.add(jScrollPane2);
-        jScrollPane2.setBounds(10, 390, 280, 120);
+        jScrollPane2.setBounds(10, 370, 280, 120);
+
+        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\shood\\Documents\\NetBeansProjects\\project-305\\src\\Image\\message.png")); // NOI18N
+        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel2MouseClicked(evt);
+            }
+        });
+        jPanel1.add(jLabel2);
+        jLabel2.setBounds(220, 520, 30, 30);
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel3.setText("Contact with");
+        jLabel3.setToolTipText("");
+        jPanel1.add(jLabel3);
+        jLabel3.setBounds(200, 550, 80, 15);
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel4.setText(" Tenant");
+        jLabel4.setToolTipText("");
+        jPanel1.add(jLabel4);
+        jLabel4.setBounds(210, 570, 50, 15);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/page.png"))); // NOI18N
         jPanel1.add(jLabel1);
@@ -273,15 +296,15 @@ public class OwnerPage_ViewReq extends javax.swing.JFrame {
                 jScrollPane2.setVisible(true);
                 list1.setVisible(true);
                 NoRes.setVisible(false);
-                
+
                 rs.previous();
                 DefaultTableModel table1 = new DefaultTableModel();
-                
+
                 table1.addColumn("Reserved by");
                 table1.addColumn("Date");
-                
+
                 while (rs.next()) {
-                    table1.addRow(new Object[]{rs.getString(1)+" "+rs.getString(2), rs.getString(3)});
+                    table1.addRow(new Object[]{rs.getString(1) + " " + rs.getString(2), rs.getString(3)});
                 }
                 list1.setModel(table1);
             } else {
@@ -301,6 +324,13 @@ public class OwnerPage_ViewReq extends javax.swing.JFrame {
     private void list1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_list1MouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_list1MouseClicked
+
+    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+        // TODO add your handling code here:
+        OwnerPage_Chat ob = new OwnerPage_Chat();
+        ob.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jLabel2MouseClicked
 
     /**
      * @param args the command line arguments
@@ -340,6 +370,9 @@ public class OwnerPage_ViewReq extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel NoRes;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;

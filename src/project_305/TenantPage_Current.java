@@ -92,7 +92,6 @@ public class TenantPage_Current extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         list1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         HallName2 = new javax.swing.JLabel();
         HallName = new javax.swing.JLabel();
@@ -147,18 +146,6 @@ public class TenantPage_Current extends javax.swing.JFrame {
         jPanel1.add(jScrollPane2);
         jScrollPane2.setBounds(10, 240, 280, 100);
 
-        jButton1.setBackground(new java.awt.Color(255, 255, 255));
-        jButton1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(51, 51, 51));
-        jButton1.setText("Contact with owner");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButton1);
-        jButton1.setBounds(80, 540, 150, 30);
-
         jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
         jLabel1.setText("Current Reservation");
         jPanel1.add(jLabel1);
@@ -196,7 +183,7 @@ public class TenantPage_Current extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(102, 102, 102));
         jLabel3.setText("To edit: select Reserve Id, then click edit");
         jPanel1.add(jLabel3);
-        jLabel3.setBounds(20, 440, 260, 16);
+        jLabel3.setBounds(20, 440, 260, 20);
 
         jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -250,14 +237,6 @@ public class TenantPage_Current extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        TenantPage_Chat ob = new TenantPage_Chat();
-        ob.setVisible(true);
-        this.setVisible(false);
-        curr = false;
-    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
         // TODO add your handling code here:
@@ -366,7 +345,6 @@ public class TenantPage_Current extends javax.swing.JFrame {
     private javax.swing.JLabel HallName;
     private javax.swing.JLabel HallName2;
     private javax.swing.JButton edit;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

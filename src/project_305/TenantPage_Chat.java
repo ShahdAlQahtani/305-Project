@@ -9,7 +9,6 @@ import java.io.*;
 import java.io.IOException;
 import java.net.Socket;
 
-
 /**
  *
  * @author shahad
@@ -18,8 +17,7 @@ public class TenantPage_Chat extends javax.swing.JFrame {
 
     DataOutputStream dos;
     DataInputStream dis;
-    Socket soc;
-
+    Socket socket;
 
     public TenantPage_Chat() {
         initComponents();
@@ -37,16 +35,16 @@ public class TenantPage_Chat extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         txt_area = new javax.swing.JTextArea();
         txt = new javax.swing.JTextField();
-        send1 = new javax.swing.JLabel();
+        send = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -59,6 +57,32 @@ public class TenantPage_Chat extends javax.swing.JFrame {
         });
         jPanel1.add(jLabel8);
         jLabel8.setBounds(0, 0, 50, 30);
+
+        jLabel1.setText("Client");
+        jPanel1.add(jLabel1);
+        jLabel1.setBounds(130, 130, 40, 20);
+
+        txt_area.setColumns(20);
+        txt_area.setRows(5);
+        jScrollPane2.setViewportView(txt_area);
+
+        jPanel1.add(jScrollPane2);
+        jScrollPane2.setBounds(30, 240, 240, 210);
+        jPanel1.add(txt);
+        txt.setBounds(30, 460, 200, 30);
+
+        send.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/send m.png"))); // NOI18N
+        send.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sendMouseClicked(evt);
+            }
+        });
+        jPanel1.add(send);
+        send.setBounds(240, 460, 30, 30);
+
+        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\shood\\Documents\\NetBeansProjects\\project-305\\src\\Image\\chat_T.png")); // NOI18N
+        jPanel1.add(jLabel2);
+        jLabel2.setBounds(0, 0, 300, 650);
 
         jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -92,32 +116,6 @@ public class TenantPage_Chat extends javax.swing.JFrame {
         jPanel1.add(jLabel9);
         jLabel9.setBounds(240, 600, 40, 30);
 
-        jLabel1.setText("Client");
-        jPanel1.add(jLabel1);
-        jLabel1.setBounds(130, 130, 40, 20);
-
-        txt_area.setColumns(20);
-        txt_area.setRows(5);
-        jScrollPane2.setViewportView(txt_area);
-
-        jPanel1.add(jScrollPane2);
-        jScrollPane2.setBounds(30, 250, 240, 210);
-        jPanel1.add(txt);
-        txt.setBounds(30, 470, 200, 30);
-
-        send1.setIcon(new javax.swing.ImageIcon("C:\\Users\\shood\\Documents\\NetBeansProjects\\project-305\\src\\Image\\send m3.png")); // NOI18N
-        send1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                send1MouseClicked(evt);
-            }
-        });
-        jPanel1.add(send1);
-        send1.setBounds(240, 470, 30, 30);
-
-        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\shood\\Documents\\NetBeansProjects\\project-305\\src\\Image\\‏‏chat_O.png")); // NOI18N
-        jPanel1.add(jLabel2);
-        jLabel2.setBounds(0, 0, 300, 650);
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -132,52 +130,72 @@ public class TenantPage_Chat extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
-
-    }//GEN-LAST:event_jLabel9MouseClicked
-
-    private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
-        // TODO add your handling code here:
-
-    }//GEN-LAST:event_jLabel7MouseClicked
-
-    private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
-
-
-    }//GEN-LAST:event_jLabel6MouseClicked
-
-    private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
-
-    }//GEN-LAST:event_jLabel5MouseClicked
-
     private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
-
+        TenantPage_Hallinfo ob = new TenantPage_Hallinfo();
+        ob.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_jLabel8MouseClicked
 
-    private void send1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_send1MouseClicked
+    private void sendMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sendMouseClicked
         // TODO add your handling code here:
-      try {
+        try {
 
-            soc = new Socket(Server.ip, Server.portNumber);
-            dos = new DataOutputStream(soc.getOutputStream());
-            dis = new DataInputStream(soc.getInputStream());
+            socket = new Socket(Server.ip, Server.portNumber);
+            dos = new DataOutputStream(socket.getOutputStream());
+            dis = new DataInputStream(socket.getInputStream());
             ReceiverThread rt = new ReceiverThread(this, dos, dis);
         } catch (IOException ex) {
             ex.getMessage();
         }
 
-        try {   
+        try {
+
             String str = txt.getText();
             dos.writeUTF(str);
-   
+
             if (str.trim().equalsIgnoreCase("BYE")) {
 
             }
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-                
-    }//GEN-LAST:event_send1MouseClicked
+    }//GEN-LAST:event_sendMouseClicked
+
+    private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
+        // TODO add your handling code here:
+        TenantPage_Home ob = new TenantPage_Home();
+        ob.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jLabel5MouseClicked
+
+    private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
+        // TODO add your handling code here:
+        TenantPage_Search ob;
+
+        ob = new TenantPage_Search();
+        ob.setVisible(true);
+        this.setVisible(false);
+
+    }//GEN-LAST:event_jLabel6MouseClicked
+
+    private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
+        // TODO add your handling code here:
+        TenantPage_Favorate ob = new TenantPage_Favorate();
+        ob.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jLabel7MouseClicked
+
+    private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
+        // TODO add your handling code here:
+        TenantPage_profile ob = null;
+
+        ob = new TenantPage_profile();
+        ob.setVisible(true);
+        this.setVisible(false);
+        ob.setVisible(true);
+        this.setVisible(false);
+
+    }//GEN-LAST:event_jLabel9MouseClicked
 
     /**
      * @param args the command line arguments
@@ -216,13 +234,13 @@ public class TenantPage_Chat extends javax.swing.JFrame {
 
     public class ReceiverThread extends Thread {
 
-     TenantPage_Chat TenantChat;
-     DataOutputStream dos;
-     DataInputStream dis;
+        TenantPage_Chat tenantChat;
+        DataOutputStream dos;
+        DataInputStream dis;
 
-        ReceiverThread(TenantPage_Chat TenantChat, DataOutputStream dos, DataInputStream dis) {
+        ReceiverThread(TenantPage_Chat chat, DataOutputStream dos, DataInputStream dis) {
 
-            this.TenantChat = TenantChat;
+            this.tenantChat = chat;
             this.dos = dos;
             this.dis = dis;
             start();
@@ -234,11 +252,11 @@ public class TenantPage_Chat extends javax.swing.JFrame {
             try {
 
                 String str = dis.readUTF();
-                TenantChat.txt_area.append("Server: " + str + "\n");
+                tenantChat.txt_area.append("Server: " + str + "\n");
 
-               soc.close();
-               dis.close();
-               dos.close();
+                socket.close();
+                dis.close();
+                dos.close();
             } catch (IOException ex) {
                 System.out.println(ex.getMessage());
             }
@@ -256,8 +274,8 @@ public class TenantPage_Chat extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
-    public static javax.swing.JLabel send1;
-    public static javax.swing.JTextField txt;
-    public static javax.swing.JTextArea txt_area;
+    private javax.swing.JLabel send;
+    private javax.swing.JTextField txt;
+    private javax.swing.JTextArea txt_area;
     // End of variables declaration//GEN-END:variables
 }

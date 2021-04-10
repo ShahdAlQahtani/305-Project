@@ -32,7 +32,7 @@ class ServerThread extends Thread {
 
     public ServerThread(OwnerPage_Chat chat) throws IOException {
         this.OwnerChat = chat;
-        serverSocket = new ServerSocket(Customer.portNumber);   
+        serverSocket = new ServerSocket(Tenant.portNumber);   
         start(); //start thread 
     }
 
@@ -51,14 +51,14 @@ class ServerThread extends Thread {
         }
     }
 
-    //Method called whenever Server write message and clicks on send button on forum
+    
     public void send(String message) throws IOException {
 
         dos.writeUTF(message);
     }
 }
 
-//Thread class responsible for recieving from multiple clients 
+
 class ReceiverThread extends Thread {
 
     OwnerPage_Chat OwnerChat;
@@ -93,7 +93,6 @@ class ReceiverThread extends Thread {
         }
 
         try {
-            // close the socket and I/O Streams
             socket.close();
             dis.close();
             dos.close();
