@@ -204,7 +204,7 @@ public class TenantPage_Favorate extends javax.swing.JFrame {
 
         jLabel4.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Favorate");
+        jLabel4.setText("Favorite");
         jPanel1.add(jLabel4);
         jLabel4.setBounds(90, 100, 120, 29);
 
@@ -226,7 +226,7 @@ public class TenantPage_Favorate extends javax.swing.JFrame {
         noresr1.setBounds(80, 340, 140, 20);
 
         noresr2.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
-        noresr2.setText("favorate yet ");
+        noresr2.setText("favorite yet ");
         jPanel1.add(noresr2);
         noresr2.setBounds(100, 370, 110, 20);
 

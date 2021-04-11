@@ -51,17 +51,23 @@ public class OwnerPage_EditPro extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         update = new javax.swing.JButton();
+        FName = new javax.swing.JLabel();
+        LName = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         fName = new javax.swing.JTextField();
         lName = new javax.swing.JTextField();
+        email = new javax.swing.JLabel();
         s = new javax.swing.JPanel();
         e = new javax.swing.JTextField();
+        phone = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
         pN = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
         pass = new javax.swing.JTextField();
         jPanel9 = new javax.swing.JPanel();
         cPass = new javax.swing.JTextField();
+        conPass = new javax.swing.JLabel();
         jPanel10 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -86,6 +92,16 @@ public class OwnerPage_EditPro extends javax.swing.JFrame {
         });
         jPanel1.add(update);
         update.setBounds(70, 537, 140, 40);
+
+        FName.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
+        FName.setText("First Name");
+        jPanel1.add(FName);
+        FName.setBounds(40, 190, 80, 20);
+
+        LName.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
+        LName.setText("Last Name");
+        jPanel1.add(LName);
+        LName.setBounds(170, 190, 80, 20);
 
         jPanel5.setBackground(new java.awt.Color(243, 246, 251));
 
@@ -119,6 +135,11 @@ public class OwnerPage_EditPro extends javax.swing.JFrame {
         jPanel1.add(jPanel5);
         jPanel5.setBounds(0, 200, 290, 40);
 
+        email.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
+        email.setText("Email");
+        jPanel1.add(email);
+        email.setBounds(40, 240, 50, 20);
+
         s.setBackground(new java.awt.Color(243, 246, 251));
 
         e.addActionListener(new java.awt.event.ActionListener() {
@@ -147,6 +168,11 @@ public class OwnerPage_EditPro extends javax.swing.JFrame {
         jPanel1.add(s);
         s.setBounds(0, 260, 290, 50);
 
+        phone.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
+        phone.setText("Phone Number");
+        jPanel1.add(phone);
+        phone.setBounds(40, 310, 110, 20);
+
         jPanel7.setBackground(new java.awt.Color(243, 246, 251));
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
@@ -168,6 +194,11 @@ public class OwnerPage_EditPro extends javax.swing.JFrame {
 
         jPanel1.add(jPanel7);
         jPanel7.setBounds(0, 336, 290, 40);
+
+        jLabel2.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
+        jLabel2.setText("Password");
+        jPanel1.add(jLabel2);
+        jLabel2.setBounds(40, 390, 70, 20);
 
         jPanel8.setBackground(new java.awt.Color(243, 246, 251));
 
@@ -205,13 +236,17 @@ public class OwnerPage_EditPro extends javax.swing.JFrame {
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addComponent(cPass, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cPass, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         jPanel1.add(jPanel9);
         jPanel9.setBounds(0, 485, 290, 40);
+
+        conPass.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
+        conPass.setText("Confirm Pass");
+        jPanel1.add(conPass);
+        conPass.setBounds(40, 470, 100, 20);
 
         jPanel10.setBackground(new java.awt.Color(243, 246, 251));
 
@@ -227,11 +262,12 @@ public class OwnerPage_EditPro extends javax.swing.JFrame {
         jPanel10.setLayout(jPanel10Layout);
         jPanel10Layout.setHorizontalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel10Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
+                .addContainerGap(13, Short.MAX_VALUE)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
                     .addComponent(jLabel5))
-                .addGap(0, 19, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -285,7 +321,7 @@ public class OwnerPage_EditPro extends javax.swing.JFrame {
         jPanel1.add(jLabel9);
         jLabel9.setBounds(240, 610, 40, 30);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Editownerinfo.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/profile_O.png"))); // NOI18N
         jPanel1.add(jLabel1);
         jLabel1.setBounds(0, 0, 300, 650);
 
@@ -424,10 +460,15 @@ public class OwnerPage_EditPro extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel FName;
+    private javax.swing.JLabel LName;
     private javax.swing.JTextField cPass;
+    private javax.swing.JLabel conPass;
     private javax.swing.JTextField e;
+    private javax.swing.JLabel email;
     private javax.swing.JTextField fName;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -444,6 +485,7 @@ public class OwnerPage_EditPro extends javax.swing.JFrame {
     private javax.swing.JTextField lName;
     private javax.swing.JTextField pN;
     private javax.swing.JTextField pass;
+    private javax.swing.JLabel phone;
     private javax.swing.JPanel s;
     private javax.swing.JButton update;
     // End of variables declaration//GEN-END:variables

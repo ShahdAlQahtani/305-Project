@@ -257,7 +257,7 @@ public class OwnerPage_Hall extends javax.swing.JFrame {
         panel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 610, 50, 40));
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Ownerp.jpg"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/page_O.png"))); // NOI18N
         jLabel1.setText("Account Information          >>"); // NOI18N
         jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
