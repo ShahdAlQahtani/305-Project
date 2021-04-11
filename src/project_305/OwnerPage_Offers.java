@@ -1,4 +1,4 @@
-/*
+ /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -18,6 +18,10 @@ public class OwnerPage_Offers extends javax.swing.JFrame {
     public double finalPrice;
     double Originalprice;
  
+    /**
+     * This query brings all the owner halls from database and represents them in the combo box
+     * @throws SQLException 
+     */
     public OwnerPage_Offers() throws SQLException {
         initComponents();
         setLocationRelativeTo(null);
@@ -259,9 +263,13 @@ public class OwnerPage_Offers extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * (query2) brings the selected hall price
+     * After the owner enters the amount% this method will compute the discount and the final price and shows it in the labels
+     * @param evt 
+     */
     private void computeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_computeActionPerformed
-        // TODO add your handling code here:
-    
+       
         Connection connection=null;
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -297,6 +305,10 @@ public class OwnerPage_Offers extends javax.swing.JFrame {
 
     }//GEN-LAST:event_computeActionPerformed
 
+    /**
+     * this method will update the hall price in the database and shows confirmation message 
+     * @param evt 
+     */
     private void ApplyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ApplyActionPerformed
         
         

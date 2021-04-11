@@ -113,7 +113,7 @@ public class Reservation {
         fr.printf("%-50s\n", "|---------------------------------------------------|");
         
         fr.close();
-        // fr.flush();
+  
         Desktop desktop = Desktop.getDesktop();
         if (file.exists()) {
             desktop.open(file);

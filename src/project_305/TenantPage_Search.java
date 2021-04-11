@@ -5,12 +5,9 @@
  */
 package project_305;
 
-import java.awt.Dimension;
+
 import java.awt.*;
-import java.io.*;
 import java.sql.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.*;
 
 public class TenantPage_Search extends javax.swing.JFrame {
@@ -31,7 +28,6 @@ public class TenantPage_Search extends javax.swing.JFrame {
             Class.forName("com.mysql.cj.jdbc.Driver");
 
             String ConnectionURL = "jdbc:mysql://localhost:3306/weddinghallreservation";
-            PreparedStatement q;
             connection = DriverManager.getConnection(ConnectionURL, "root", "1212");
 
             String query = "Select * from `hallinfo` ";
