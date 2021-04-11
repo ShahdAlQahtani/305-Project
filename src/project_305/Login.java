@@ -193,7 +193,7 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_label1MouseClicked
 
     /**
-     * The method take the ID from the user and compares it with the ID from database
+     * The method takes the ID from the user and compares it with the ID from database
      * If the ID starts with "12" then its an Owner, otherwise its a Tenant
      * Also, checks the validation of the password
      * @param evt 
