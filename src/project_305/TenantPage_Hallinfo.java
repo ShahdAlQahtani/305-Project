@@ -5,30 +5,23 @@
  */
 package project_305;
 
-import java.awt.Dimension;
 import java.awt.*;
-import java.util.Scanner;
-import java.io.*;
 import java.sql.*;
-import java.util.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.*;
 
 public class TenantPage_Hallinfo extends javax.swing.JFrame {
 
-    static int id;
-    public static boolean hallInfo = false;
-    public static boolean favCheck = false;
-
+    static int id;//hall is
+    
     public TenantPage_Hallinfo() {
         this(id);
         initComponents();
         setLocationRelativeTo(null);
-
-        // hallInfo=true;
     }
-
+/**
+ * this method display the hall information 
+ * @param HID 
+ */
     public TenantPage_Hallinfo(int HID) {
         id = HID;
         initComponents();
@@ -46,6 +39,7 @@ public class TenantPage_Hallinfo extends javax.swing.JFrame {
             Statement stm = connection.createStatement();
             ResultSet rs = stm.executeQuery(query);
             while (rs.next()) {
+                //get the hall information and display it
                 int id = rs.getInt(1);
                 String hn = rs.getString(2);
                 int hc = rs.getInt(3);
@@ -123,6 +117,7 @@ public class TenantPage_Hallinfo extends javax.swing.JFrame {
         jPanel1.add(jButton1);
         jButton1.setBounds(100, 550, 90, 30);
 
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/back.png"))); // NOI18N
         jLabel8.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel8MouseClicked(evt);
@@ -171,12 +166,12 @@ public class TenantPage_Hallinfo extends javax.swing.JFrame {
         label1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         label1.setText("Capacity:");
         jPanel2.add(label1);
-        label1.setBounds(10, 30, 56, 21);
+        label1.setBounds(10, 30, 57, 21);
 
         label3.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         label3.setText("Price:");
         jPanel2.add(label3);
-        label3.setBounds(10, 10, 36, 21);
+        label3.setBounds(10, 10, 37, 21);
 
         label4.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         label4.setName(""); // NOI18N
@@ -205,7 +200,7 @@ public class TenantPage_Hallinfo extends javax.swing.JFrame {
         name.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         name.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jPanel1.add(name);
-        name.setBounds(90, 84, 120, 26);
+        name.setBounds(90, 84, 120, 25);
 
         idh.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jPanel1.add(idh);
@@ -293,7 +288,10 @@ public class TenantPage_Hallinfo extends javax.swing.JFrame {
         ob.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jLabel9MouseClicked
-
+/**
+ * this method put the hall into the favoriate table in DB 
+ * @param evt 
+ */
     private void jLabel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseClicked
         // TODO add your handling code here:
         Connection connection = null;
@@ -307,12 +305,12 @@ public class TenantPage_Hallinfo extends javax.swing.JFrame {
             String query = "select * from favorites where favorites.idTenant ='" + Login.Id + "' and favorites.idHallInfo='" + id + "'";
             Statement stm = connection.createStatement();
             ResultSet rs = stm.executeQuery(query);
-            if (rs.next()) {
+            if (rs.next()) {//check the hall if its already exist in favorites table
                 JOptionPane.showMessageDialog(null, " This Hall is already in your favorites !!");
                 TenantPage_Favorate ob = new TenantPage_Favorate();
                 ob.setVisible(true);
                 this.setVisible(false);
-            } else {
+            } else {// if not
                 String query2 = "insert into favorites (idTenant,idHallinfo) values (" + Login.Id + "," + id + ")";
                 Statement stm2 = connection.createStatement();
                 stm2.executeUpdate(query2);

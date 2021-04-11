@@ -1,4 +1,3 @@
-
 package project_305;
 
 import java.sql.*;
@@ -146,16 +145,10 @@ public class ForgetPass extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * The method updates the user password in case he/she forgot the password
-     * The user email, password and confirmed password are required
-     * After validates the user email from the database, the password will be updated also in the database
-     * Finally, the confirmation message will be shown
-     * @param evt 
-     */
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        //Submit
 
-    String checkPass = Signup.isValid(pass.getText(), coPass.getText());
+        String checkPass = Signup.isValid(pass.getText(), coPass.getText());
         if (checkPass.equals("Wrong match password")) {
             invalid.setText(checkPass);
             invalid.setVisible(true);
@@ -164,32 +157,34 @@ public class ForgetPass extends javax.swing.JFrame {
             invalid.setVisible(true);
         } else {
             Connection connection = null;
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
+            try {
+                Class.forName("com.mysql.cj.jdbc.Driver");
 
-            String ConnectionURL = "jdbc:mysql://localhost:3306/weddinghallreservation";
-        
-            connection = DriverManager.getConnection(ConnectionURL, "root", "1212");
-            PreparedStatement ps = null;
-            
-            String queryPass;
-            if(onwerOrTen.isSelected()){
-                queryPass = "Update Owner set password=?  Where Email =" + "'" + email.getText() + "'";
-            }else{
-                 queryPass = "Update Tenant set password=? Where Email =" + "'" + email.getText() + "'";
+                String ConnectionURL = "jdbc:mysql://localhost:3306/weddinghallreservation";
+                ;
+                connection = DriverManager.getConnection(ConnectionURL, "root", "1212");
+                PreparedStatement ps = null;
+
+                String queryPass;
+                if (onwerOrTen.isSelected()) {
+                    queryPass = "Update Owner set password=?  Where Email =" + "'" + email.getText() + "'";
+                } else {
+                    queryPass = "Update Tenant set password=? Where Email =" + "'" + email.getText() + "'";
+                }
+                ps = connection.prepareStatement(queryPass);
+                ps.setString(1, pass.getText());
+                ps.executeUpdate();
+
+                JOptionPane.showMessageDialog(null, " your password is updated");
+                connection.close();
+                Login object = new Login();
+                object.setVisible(true);
+                this.setVisible(false);
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, ex.toString());
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-            ps = connection.prepareStatement(queryPass);
-            ps.setString(1, pass.getText());
-            ps.executeUpdate();
-            
-            JOptionPane.showMessageDialog(null, " your password is updated");
-
-            connection.close();
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, ex.toString());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
         }
 
     }//GEN-LAST:event_jButton1ActionPerformed

@@ -1,6 +1,4 @@
-
 package project_305;
-
 
 import java.sql.*;
 import static java.sql.ResultSet.CONCUR_READ_ONLY;
@@ -13,6 +11,7 @@ import javax.swing.table.DefaultTableModel;
  * This interface is showing the Tenant current reservation Then, after the
  * reservation time expired, or the reservation is canceled, the reservation
  * will be removed from this interface
+ *
  * @author shahad
  */
 public class TenantPage_Current extends javax.swing.JFrame {
@@ -28,8 +27,8 @@ public class TenantPage_Current extends javax.swing.JFrame {
     }
 
     public void list() {
-        HallName2.setVisible(false);
-        HallName.setVisible(false);
+        noRes1.setVisible(false);
+        noRes2.setVisible(false);
         DefaultTableModel table1 = new DefaultTableModel();
         table1.addColumn("ReserveId");
         table1.addColumn("Hall Name");
@@ -47,7 +46,8 @@ public class TenantPage_Current extends javax.swing.JFrame {
             ResultSet rs = stat.executeQuery(query);
 
             if (rs.next()) {
-
+                jLabel4.setVisible(true);
+                jLabel3.setVisible(true);
                 jScrollPane2.setVisible(true);
                 list1.setVisible(true);
 
@@ -61,10 +61,12 @@ public class TenantPage_Current extends javax.swing.JFrame {
                 }
                 list1.setModel(table1);
             } else {
+                jLabel4.setVisible(false);
+                jLabel3.setVisible(false);
                 edit.setVisible(false);
                 jScrollPane2.setVisible(false);
-                HallName2.setVisible(true);
-                HallName.setVisible(true);
+                noRes1.setVisible(true);
+                noRes2.setVisible(true);
                 list1.setVisible(false);
             }
         } catch (SQLException ex) {
@@ -88,8 +90,8 @@ public class TenantPage_Current extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         list1 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        HallName2 = new javax.swing.JLabel();
-        HallName = new javax.swing.JLabel();
+        noRes1 = new javax.swing.JLabel();
+        noRes2 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         edit = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
@@ -106,7 +108,7 @@ public class TenantPage_Current extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
         jLabel4.setText("Your current reservation:");
         jPanel1.add(jLabel4);
-        jLabel4.setBounds(10, 210, 170, 19);
+        jLabel4.setBounds(10, 210, 170, 20);
 
         jScrollPane2.setBackground(new java.awt.Color(243, 246, 251));
         jScrollPane2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -146,15 +148,15 @@ public class TenantPage_Current extends javax.swing.JFrame {
         jPanel1.add(jLabel1);
         jLabel1.setBounds(50, 90, 200, 30);
 
-        HallName2.setFont(new java.awt.Font("Times New Roman", 0, 20)); // NOI18N
-        HallName2.setText("current reservation.");
-        jPanel1.add(HallName2);
-        HallName2.setBounds(70, 330, 170, 70);
+        noRes1.setFont(new java.awt.Font("Times New Roman", 0, 20)); // NOI18N
+        noRes1.setText("current reservation.");
+        jPanel1.add(noRes1);
+        noRes1.setBounds(70, 330, 170, 70);
 
-        HallName.setFont(new java.awt.Font("Times New Roman", 0, 20)); // NOI18N
-        HallName.setText("You don't have any");
-        jPanel1.add(HallName);
-        HallName.setBounds(70, 300, 160, 60);
+        noRes2.setFont(new java.awt.Font("Times New Roman", 0, 20)); // NOI18N
+        noRes2.setText("You don't have any");
+        jPanel1.add(noRes2);
+        noRes2.setBounds(70, 300, 160, 60);
 
         jLabel9.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -173,12 +175,12 @@ public class TenantPage_Current extends javax.swing.JFrame {
             }
         });
         jPanel1.add(edit);
-        edit.setBounds(10, 460, 53, 25);
+        edit.setBounds(10, 460, 75, 29);
 
         jLabel3.setForeground(new java.awt.Color(102, 102, 102));
         jLabel3.setText("To edit: select Reserve Id, then click edit");
         jPanel1.add(jLabel3);
-        jLabel3.setBounds(20, 440, 260, 20);
+        jLabel3.setBounds(20, 440, 260, 16);
 
         jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -236,14 +238,11 @@ public class TenantPage_Current extends javax.swing.JFrame {
     private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
         // TODO add your handling code here:
         TenantPage_profile ob = null;
-
         ob = new TenantPage_profile();
         ob.setVisible(true);
         this.setVisible(false);
         ob.setVisible(true);
         this.setVisible(false);
-
-
     }//GEN-LAST:event_jLabel9MouseClicked
 
     private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
@@ -256,12 +255,9 @@ public class TenantPage_Current extends javax.swing.JFrame {
     private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
         // TODO add your handling code here:
         TenantPage_Search ob;
-
         ob = new TenantPage_Search();
         ob.setVisible(true);
         this.setVisible(false);
-
-
     }//GEN-LAST:event_jLabel6MouseClicked
 
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
@@ -337,8 +333,6 @@ public class TenantPage_Current extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel HallName;
-    private javax.swing.JLabel HallName2;
     private javax.swing.JButton edit;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -352,5 +346,7 @@ public class TenantPage_Current extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable list1;
+    private javax.swing.JLabel noRes1;
+    private javax.swing.JLabel noRes2;
     // End of variables declaration//GEN-END:variables
 }

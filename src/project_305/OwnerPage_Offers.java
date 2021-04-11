@@ -1,10 +1,9 @@
- /*
+/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 package project_305;
-
 
 import java.sql.*;
 import java.util.logging.Level;
@@ -17,18 +16,14 @@ public class OwnerPage_Offers extends javax.swing.JFrame {
     public double discont;
     public double finalPrice;
     double Originalprice;
- 
-    /**
-     * This query brings all the owner halls from database and represents them in the combo box
-     * @throws SQLException 
-     */
+
     public OwnerPage_Offers() throws SQLException {
         initComponents();
         setLocationRelativeTo(null);
-        
-        Connection connection=null;
+
+        Connection connection = null;
         try {
-            
+
             Class.forName("com.mysql.cj.jdbc.Driver");
             String ConnectionURL = "jdbc:mysql://localhost:3306/weddinghallreservation";
 
@@ -37,22 +32,21 @@ public class OwnerPage_Offers extends javax.swing.JFrame {
 
             String query = "select `Hallname` from hallinfo where `idOwner`='" + Login.Id + "'";
             ResultSet rs = statement.executeQuery(query);
-            
+
             while (rs.next()) {
-                String hall = rs.getString(1); 
+                String hall = rs.getString(1);
                 hallName.addItem(hall);
                 System.out.println(hall);
             }
-            
-             connection.close();
 
-            } catch (SQLException ex) {
+            connection.close();
+
+        } catch (SQLException ex) {
             Logger.getLogger(OwnerPage_Offers.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(OwnerPage_Offers.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -82,7 +76,7 @@ public class OwnerPage_Offers extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         amount = new javax.swing.JTextField();
-        hallName = new javax.swing.JComboBox<>();
+        hallName = new javax.swing.JComboBox<String>();
         jLabel10 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
@@ -216,7 +210,7 @@ public class OwnerPage_Offers extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(51, 51, 51));
         jLabel2.setText("Hall name:");
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(20, 220, 80, 20);
+        jLabel2.setBounds(20, 220, 80, 19);
 
         amount.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
         amount.setForeground(new java.awt.Color(51, 51, 51));
@@ -227,7 +221,7 @@ public class OwnerPage_Offers extends javax.swing.JFrame {
             }
         });
         jPanel1.add(amount);
-        amount.setBounds(140, 260, 96, 29);
+        amount.setBounds(140, 260, 96, 26);
 
         hallName.setFont(new java.awt.Font("Times New Roman", 0, 13)); // NOI18N
         hallName.setToolTipText("hall");
@@ -237,15 +231,15 @@ public class OwnerPage_Offers extends javax.swing.JFrame {
             }
         });
         jPanel1.add(hallName);
-        hallName.setBounds(100, 220, 140, 27);
+        hallName.setBounds(100, 220, 140, 22);
 
         jLabel10.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(51, 51, 51));
         jLabel10.setText("Select the amount");
         jPanel1.add(jLabel10);
-        jLabel10.setBounds(10, 270, 118, 20);
+        jLabel10.setBounds(10, 270, 118, 19);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/page.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/page_O.png"))); // NOI18N
         jPanel1.add(jLabel1);
         jLabel1.setBounds(0, 0, 300, 650);
 
@@ -263,14 +257,10 @@ public class OwnerPage_Offers extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * (query2) brings the selected hall price
-     * After the owner enters the amount% this method will compute the discount and the final price and shows it in the labels
-     * @param evt 
-     */
     private void computeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_computeActionPerformed
-       
-        Connection connection=null;
+        // TODO add your handling code here:
+
+        Connection connection = null;
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             String ConnectionURL = "jdbc:mysql://localhost:3306/weddinghallreservation";
@@ -280,22 +270,21 @@ public class OwnerPage_Offers extends javax.swing.JFrame {
 
             String query2 = "select `HallPrice` from hallinfo where `idOwner`='" + Login.Id + "' AND `Hallname` ='" + hallName.getSelectedItem() + "'";
             ResultSet rs = statement.executeQuery(query2);
-            
+
             Originalprice = 0;
             while (rs.next()) {
-                Originalprice = rs.getDouble("HallPrice");            
+                Originalprice = rs.getDouble("HallPrice");
                 Oprice.setText(Originalprice + "");
             }
-            
+
             Amount = Integer.parseInt(amount.getText());
             int persent = (int) Amount;
-            discont =  Originalprice * persent / 100.0;
+            discont = Originalprice * persent / 100.0;
             finalPrice = Originalprice - discont;
 
             dis.setText(discont + " ");
             FPrice.setText(finalPrice + " ");
 
-       
         } catch (SQLException ex) {
             Logger.getLogger(OwnerPage_Offers.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
@@ -305,16 +294,11 @@ public class OwnerPage_Offers extends javax.swing.JFrame {
 
     }//GEN-LAST:event_computeActionPerformed
 
-    /**
-     * this method will update the hall price in the database and shows confirmation message 
-     * @param evt 
-     */
     private void ApplyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ApplyActionPerformed
-        
-        
-        Connection connection=null;
+
+        Connection connection = null;
         try {
-            
+
             Class.forName("com.mysql.cj.jdbc.Driver");
             String ConnectionURL = "jdbc:mysql://localhost:3306/weddinghallreservation";
 
@@ -324,21 +308,22 @@ public class OwnerPage_Offers extends javax.swing.JFrame {
             //String query1 = "Update hallinfo set hallPrice=? values (" + FPrice.getText() + ")";
             ps.setDouble(1, finalPrice);
             ps.executeUpdate();
-            
-            
+
             JOptionPane.showMessageDialog(null, "The " + hallName.getSelectedItem() + " price is updated Successfully");
             connection.close();
-       
+            OwnerPage_Home ob = new OwnerPage_Home();
+            ob.setVisible(true);
+            this.setVisible(false);
         } catch (SQLException ex) {
             Logger.getLogger(OwnerPage_Offers.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(OwnerPage_Offers.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-       
+
+
     }//GEN-LAST:event_ApplyActionPerformed
 
-    
+
     private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
         // BBAACCCCKKKKKK
         OwnerPage_Home ob = new OwnerPage_Home();
@@ -382,7 +367,7 @@ public class OwnerPage_Offers extends javax.swing.JFrame {
 
     private void hallNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hallNameActionPerformed
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_hallNameActionPerformed
 
     /**

@@ -138,19 +138,6 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel8">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Times New Roman" size="30" style="0"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Profile"/>
-          </Properties>
-          <Constraints>
-            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="110" y="90" width="90" height="-1"/>
-            </Constraint>
-          </Constraints>
-        </Component>
         <Component class="java.awt.Label" name="label3">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -176,7 +163,7 @@
               <Font name="Times New Roman" size="16" style="0"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Image/Ownerp.jpg"/>
+              <Image iconType="3" name="/Image/profile_O.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Account Information          &gt;&gt;" noResource="true"/>
           </Properties>

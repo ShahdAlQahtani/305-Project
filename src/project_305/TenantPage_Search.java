@@ -5,15 +5,16 @@
  */
 package project_305;
 
-
 import java.awt.*;
 import java.sql.*;
 import javax.swing.*;
 
 public class TenantPage_Search extends javax.swing.JFrame {
 
-    static int[] HID = new int[4];
-
+    static int[] HID = new int[4];//array of hall 
+/**
+ * this method display hall information from DB
+ */
     public TenantPage_Search() {
         initComponents();
         setLocationRelativeTo(null);
@@ -25,16 +26,17 @@ public class TenantPage_Search extends javax.swing.JFrame {
         jPanel7.setVisible(false);
 
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");//load the correct JDBC driver
 
             String ConnectionURL = "jdbc:mysql://localhost:3306/weddinghallreservation";
-            connection = DriverManager.getConnection(ConnectionURL, "root", "1212");
+            PreparedStatement q;
+            connection = DriverManager.getConnection(ConnectionURL, "root", "1212"); //open a connection
 
             String query = "Select * from `hallinfo` ";
-            Statement stm = connection.createStatement();
-            ResultSet rs = stm.executeQuery(query);
+            Statement stm = connection.createStatement();//create statement
+            ResultSet rs = stm.executeQuery(query);//execute statement
 
-            if (rs.next()) {
+            if (rs.next()) {//dispaly 1st hall
                 HID[0] = rs.getInt(1);
                 jPanel4.setVisible(true);
                 hallName1.setText(rs.getString(2));
@@ -44,7 +46,7 @@ public class TenantPage_Search extends javax.swing.JFrame {
 
                 pic1.setIcon(setimage(imagedata));
             }
-            if (rs.next()) {
+            if (rs.next()) {//dispaly 2nd hall
                 HID[1] = rs.getInt(1);
                 jPanel10.setVisible(true);
                 hallName2.setText(rs.getString(2));
@@ -52,7 +54,7 @@ public class TenantPage_Search extends javax.swing.JFrame {
                 byte[] imagedata = rs.getBytes("image");
                 pic2.setIcon(setimage(imagedata));
             }
-            if (rs.next()) {
+            if (rs.next()) {//dispaly 3rd hall
                 HID[2] = rs.getInt(1);
                 jPanel9.setVisible(true);
                 hallName3.setText(rs.getString(2));
@@ -60,7 +62,7 @@ public class TenantPage_Search extends javax.swing.JFrame {
                 byte[] imagedata = rs.getBytes("image");
                 pic3.setIcon(setimage(imagedata));
             }
-            if (rs.next()) {
+            if (rs.next()) { //dispaly 4th hall
                 HID[3] = rs.getInt(1);
                 jPanel7.setVisible(true);
                 hallName4.setText(rs.getString(2));
@@ -73,7 +75,11 @@ public class TenantPage_Search extends javax.swing.JFrame {
         }
         this.setVisible(true);
     }
-
+/**
+ * this method get an image in array of byte and convert it to an ImageIcon
+ * @param imagedata array of byte
+ * @return an ImageIcon
+ */
     public ImageIcon setimage(byte[] imagedata) {
         ImageIcon format = null;
         format = new ImageIcon(imagedata);
@@ -485,6 +491,7 @@ public class TenantPage_Search extends javax.swing.JFrame {
         jPanel1.add(jLabel5);
         jLabel5.setBounds(20, 600, 35, 30);
 
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/back.png"))); // NOI18N
         jLabel8.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel8MouseClicked(evt);
@@ -547,7 +554,10 @@ public class TenantPage_Search extends javax.swing.JFrame {
         ob.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jLabel9MouseClicked
-
+/**
+ * this method search for specific hall written in the textfield
+ * @param evt 
+ */
     private void SearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchActionPerformed
         // TODO add your handling code here:
 
@@ -563,7 +573,7 @@ public class TenantPage_Search extends javax.swing.JFrame {
             Statement stm = connection.createStatement();
             ResultSet rs = stm.executeQuery(query);
 
-            if (rs.next()) {
+            if (rs.next()) {//if the searched hall exist
                 jPanel10.setVisible(false);
                 jPanel9.setVisible(false);
                 jPanel7.setVisible(false);
@@ -574,7 +584,7 @@ public class TenantPage_Search extends javax.swing.JFrame {
                 hallPrice1.setText("" + (rs.getDouble(5)));
                 byte[] imagedata = rs.getBytes("image");
                 pic1.setIcon(setimage(imagedata));
-            }else {
+            }else {//if its not exist
                 JOptionPane.showMessageDialog(null, SearchText.getText() + " Hall does not exist");
             }
 

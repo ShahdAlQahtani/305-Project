@@ -343,8 +343,6 @@ public class TenantPage_EditProfile extends javax.swing.JFrame {
                 Logger.getLogger(OwnerPage_EditPro.class.getName()).log(Level.SEVERE, null, ex);
             }
         
-        
-        JOptionPane.showMessageDialog(null, "Your information has been Updated successfully!");
     }//GEN-LAST:event_updateActionPerformed
 
     private void fNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fNameActionPerformed

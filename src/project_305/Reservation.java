@@ -15,7 +15,8 @@ public class Reservation {
     int idHall;
     Date reserveDate;
     String Payment;
-
+    
+    //setter ans getter
     public int getIdTenant() {
         return idTenant;
     }
@@ -47,7 +48,14 @@ public class Reservation {
     public void setPayment(String Payment) {
         this.Payment = Payment;
     }
-
+    /**
+     * this metohd check if there is a reservation on same date and hall the tenant want
+     * @param id hall id selected by tenant 
+     * @param date date selected by tenant 
+     * @return a ResultSet
+     * @throws SQLException 
+     */
+    
     public ResultSet checkDateForRes(int id, Date date) throws SQLException {
         Connection connection = null;
         String ConnectionURL = "jdbc:mysql://localhost:3306/weddinghallreservation";
@@ -59,7 +67,16 @@ public class Reservation {
         ResultSet rs = stm.executeQuery(query);
         return rs;
     }
-
+    /**
+     * this method Print Invoic in a file 
+     * @param id tenant id
+     * @param Hid  hall id
+     * @param res object has the reservation detsils
+     * @throws ClassNotFoundException
+     * @throws SQLException
+     * @throws FileNotFoundException
+     * @throws IOException 
+     */
     public void confirmAndPrintInvoic(int id, int Hid, Reservation res) throws ClassNotFoundException, SQLException, FileNotFoundException, IOException {
 
         Class.forName("com.mysql.cj.jdbc.Driver");
@@ -67,7 +84,7 @@ public class Reservation {
         String ConnectionURL = "jdbc:mysql://localhost:3306/weddinghallreservation";
         PreparedStatement q;
         Connection connection = DriverManager.getConnection(ConnectionURL, "root", "1212");
-
+        //retreive some tenant's information
         String queryT = "Select `firstname`, `Email` from `Tenant` where  `idTenant` ='" + id + "' ";
         Statement stm = connection.createStatement();
         ResultSet rs = stm.executeQuery(queryT);
@@ -90,7 +107,7 @@ public class Reservation {
         }
 
         fr.printf("%-46s%7s\n", "|", "|");
-        
+        //retreive some hall's information
         String queryH = "Select `Hallname`, `Hallcapacity`, `HallPrice` from `hallinfo` where `idHallInfo`='" + Hid + "' ";
         Statement stmH = connection.createStatement();
         ResultSet rsH = stmH.executeQuery(queryH);
@@ -103,7 +120,7 @@ public class Reservation {
 
         fr.printf("%-23s%-6s%-17s%7s\n", "|", "Date:", res.getReserveDate().toString(), "|");
 
-        if (res.getPayment().equals("0")) {
+        if (res.getPayment().equals("Cash")) {
             fr.printf("%-23s%-16s%-11s%3s\n", "|", "Payment Method:", "Cash", "|");
         } else {
             fr.printf("%-23s%-16s%-11s%3s\n", "|", "Payment Method:", "Credit card", "|");
@@ -111,7 +128,7 @@ public class Reservation {
         
         fr.printf("%-46s%7s\n", "|", "|");
         fr.printf("%-50s\n", "|---------------------------------------------------|");
-        
+        //colse the file 
         fr.close();
   
         Desktop desktop = Desktop.getDesktop();

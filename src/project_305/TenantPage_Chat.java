@@ -9,14 +9,17 @@ import java.io.*;
 import java.io.IOException;
 import java.net.Socket;
 
+
 /**
  *
  * @author shahad
  */
-public class TenantPage_Chat extends javax.swing.JFrame {
 
+public class TenantPage_Chat extends javax.swing.JFrame {
+// To send and receive massges from server
     DataOutputStream dos;
     DataInputStream dis;
+    
     Socket socket;
 
     public TenantPage_Chat() {
@@ -152,29 +155,28 @@ public class TenantPage_Chat extends javax.swing.JFrame {
 
     private void sendMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sendMouseClicked
         // TODO add your handling code here:
-      
-        try {
 
+        try {
+            // To create socket obj we will passing the address and port numner
             socket = new Socket(Server.ip, Server.portNumber);
+            //to send and receive from server
             dos = new DataOutputStream(socket.getOutputStream());
             dis = new DataInputStream(socket.getInputStream());
-            ReceiverThread rt = new ReceiverThread(this, dos, dis);
+            ReceiverThread receiverThread = new ReceiverThread(this, dos, dis);
         } catch (IOException ex) {
             ex.getMessage();
         }
 
+        //sending tenant message by passing it in textarea
         try {
-
             String str = txt.getText();
             dos.writeUTF(str);
-
-            if (str.trim().equalsIgnoreCase("BYE")) {
-
+            if (str.trim().equalsIgnoreCase("BYE")) {//To close the connection
             }
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-            txt.setText(" ");
+        txt.setText(" ");
     }//GEN-LAST:event_sendMouseClicked
 
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
@@ -215,12 +217,12 @@ public class TenantPage_Chat extends javax.swing.JFrame {
 
     private void txtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtActionPerformed
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_txtActionPerformed
 
     private void txtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtMouseClicked
         // TODO add your handling code here:
-      txt.setText(" ");
+        txt.setText(" ");
     }//GEN-LAST:event_txtMouseClicked
 
     /**
@@ -257,20 +259,17 @@ public class TenantPage_Chat extends javax.swing.JFrame {
             }
         });
     }
-
+    //Receive messages from server
     public class ReceiverThread extends Thread {
-
         TenantPage_Chat tenantChat;
         DataOutputStream dos;
         DataInputStream dis;
 
         ReceiverThread(TenantPage_Chat chat, DataOutputStream dos, DataInputStream dis) {
-
             this.tenantChat = chat;
             this.dos = dos;
             this.dis = dis;
             start();
-
         }
 
         public void run() {
@@ -278,8 +277,9 @@ public class TenantPage_Chat extends javax.swing.JFrame {
             try {
 
                 String str = dis.readUTF();
-                tenantChat.txt_area.append("Server: " + str + "\n");
-
+                txt_area.append("Service: "+ str + "\n");//print messges from server
+                
+                
                 socket.close();
                 dis.close();
                 dos.close();

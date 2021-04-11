@@ -131,7 +131,7 @@ public class OwnerPage_Home extends javax.swing.JFrame {
         jPanel1.add(jLabel9);
         jLabel9.setBounds(240, 610, 40, 30);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/OwnerPage.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/home_O.png"))); // NOI18N
         jLabel1.setText("text\t  Add Hall");
         jPanel1.add(jLabel1);
         jLabel1.setBounds(0, 0, 300, 650);
