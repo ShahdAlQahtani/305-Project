@@ -25,10 +25,10 @@ public class OwnerPage_EditHall extends javax.swing.JFrame {
     }
 
     /**
-     * This Method display the Hall info from the Database
+     *  This Method display the Hall info into TextField from the Database
      */
     public void display(int id) {
-
+         // connection to database
         Connection connection = null;
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -36,16 +36,17 @@ public class OwnerPage_EditHall extends javax.swing.JFrame {
             String ConnectionURL = "jdbc:mysql://localhost:3306/weddinghallreservation";
 
             connection = DriverManager.getConnection(ConnectionURL, "root", "1212");
-
+             
+            // select statment to get all data of the Hall from database  
             String query = "Select `Hallname` , `hallcapacity` , `hallAddress`, `hallPrice`, `contactNumber`,`image` from `hallinfo` where `idhallinfo`='" + id + "' ";
             Statement stm = connection.createStatement();
-            ResultSet rs = stm.executeQuery(query);
+            ResultSet rs = stm.executeQuery(query);// result of query
             Hallid.setText(id + "");
             while (rs.next()) {
+              // set all data into TextField to display it for Owner
                 hallName.setText(rs.getString(1));
                 Capacity.setText(rs.getInt(2) + "");
                 hallAddress.setText(rs.getString(3));
-
                 HallPrice.setText(rs.getDouble(4) + "");
                 HallContact.setText(rs.getString(5));
 
@@ -267,13 +268,16 @@ public class OwnerPage_EditHall extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     /**
-     * This Method takes input from Owner then update his hall info in the
-     * Database
+     * This Method takes input from Owner then update his hall info in the Database
+     * 
      */
     private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
         // TODO add your handling code here:
+      
+         // object from Hall to store the information on it
         HallInformation info = new HallInformation();
-
+       
+        // to takes the updated information from TextFeild that entry by Owner
         info.setHallName(hallName.getText());
         info.setCapacity(Integer.parseInt(Capacity.getText()));
         info.setHallAddress(hallAddress.getText());
@@ -282,15 +286,15 @@ public class OwnerPage_EditHall extends javax.swing.JFrame {
         info.setImage(path);
         
 
-        info.editHall(info, Integer.parseInt(Hallid.getText()));
+        info.editHall(info, Integer.parseInt(Hallid.getText()));// call edit hall method and pass the object of hall and id
         OwnerPage_Hall obj = new OwnerPage_Hall();
         obj.setVisible(true);
         this.setVisible(false);
 
     }//GEN-LAST:event_updateActionPerformed
     /**
-     * This button allows the owner to choose a picture then update it in
-     * Database
+     * This button allows the owner to choose a picture then update it in Database
+     * 
      */
     private void imagActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imagActionPerformed
         // TODO add your handling code here:
