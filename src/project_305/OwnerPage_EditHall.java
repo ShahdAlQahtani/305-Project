@@ -11,7 +11,7 @@ import javax.swing.JOptionPane;
 public class OwnerPage_EditHall extends javax.swing.JFrame {
 
     String path;// to save path of the image
-
+    InputStream image1;
     public OwnerPage_EditHall() {
         initComponents();
         setLocationRelativeTo(null);
@@ -48,6 +48,7 @@ public class OwnerPage_EditHall extends javax.swing.JFrame {
 
                 HallPrice.setText(rs.getDouble(4) + "");
                 HallContact.setText(rs.getString(5));
+                image1=rs.getBlob(6).getBinaryStream();
 
             }
 
@@ -279,7 +280,10 @@ public class OwnerPage_EditHall extends javax.swing.JFrame {
         info.setHallAddress(hallAddress.getText());
         info.setHallprice(Double.parseDouble(HallPrice.getText()));
         info.setHallcontactNum(HallContact.getText());
-        info.setImage(path);
+        if(path!=null)
+            info.setImage(path);
+        else
+            info.setBimage(image1);
         
 
         info.editHall(info, Integer.parseInt(Hallid.getText()));

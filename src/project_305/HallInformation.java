@@ -14,7 +14,8 @@ public class HallInformation {
     public int Capacity;
     public String hallcontactNum;
     public double Hallprice;
-    public String Image;   
+    public String Image;
+    public InputStream Bimage;
 
     public int getIdHallinfo() {
         return idHallinfo;
@@ -71,6 +72,14 @@ public class HallInformation {
     public void setImage(String Image) {
         this.Image = Image;
     }
+
+    public InputStream getBimage() {
+        return Bimage;
+    }
+
+    public void setBimage(InputStream Bimage) {
+        this.Bimage = Bimage;
+    }
     
     public void CreateNewHall(HallInformation info) {
         Connection connection = null;
@@ -112,7 +121,7 @@ public class HallInformation {
 
             connection = DriverManager.getConnection(ConnectionURL, "root", "1212");
             
-            InputStream in = new FileInputStream(new File(info.getImage()));
+         //   InputStream in = new FileInputStream(new File(info.getImage()));
             
             PreparedStatement ps = connection.prepareStatement("update hallinfo set HallName=?, hallcapacity=?, HallAddress=?, Hallprice=?, contactNumber=?, image=? where idHallInfo="+Hallid);
        
@@ -121,9 +130,13 @@ public class HallInformation {
             ps.setString(3, info.getHallAddress());
             ps.setDouble(4, info.getHallprice());
             ps.setString(5, info.getHallcontactNum()); 
-            ps.setBlob(6, in);
+           // ps.setBlob(6, in);
             
-           
+            if(info.getImage()!=null){
+                InputStream in = new FileInputStream(new File(info.getImage()));
+            ps.setBlob(6, in);}
+            else
+                ps.setBlob(6, info.getBimage());
             ps.executeUpdate();
             JOptionPane.showMessageDialog(null, "Hall " + info.getHallName() + " is updated Successfully");
             
