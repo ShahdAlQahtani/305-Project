@@ -1,29 +1,22 @@
 
 package project_305;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStream;
+import java.io.*;
 import java.sql.*;
 import javax.swing.JOptionPane;
 
 public class HallInformation {
-    public int idHallinfo;
+    // parameter for class Hall Information
+    
     public String hallName;
     public String hallAddress;
     public int Capacity;
     public String hallcontactNum;
     public double Hallprice;
-    public String Image;
-    public InputStream Bimage;
-
-    public int getIdHallinfo() {
-        return idHallinfo;
-    }
-
-    public void setIdHallinfo(int idHallinfo) {
-        this.idHallinfo = idHallinfo;
-    }
+    public String Image;   
+   /*
+    setter and getter for all varible of class hall information
+    */
     
     public String getHallName() {
         return hallName;
@@ -72,27 +65,24 @@ public class HallInformation {
     public void setImage(String Image) {
         this.Image = Image;
     }
-
-    public InputStream getBimage() {
-        return Bimage;
-    }
-
-    public void setBimage(InputStream Bimage) {
-        this.Bimage = Bimage;
-    }
-    
+    /**
+     * This method working on inserting the hall information to DataBase
+     * @param info we pass object of hallInformation that store the information entered by user
+     */
     public void CreateNewHall(HallInformation info) {
         Connection connection = null;
         
-        try {
+        try { 
+            // connection to dataBase
             Class.forName("com.mysql.cj.jdbc.Driver");
             
             String ConnectionURL = "jdbc:mysql://localhost:3306/weddinghallreservation";
 
             connection = DriverManager.getConnection(ConnectionURL, "root", "1212");
-            
+            // to read the file path of image                                             
             InputStream in = new FileInputStream(new File(info.getImage()));
             
+            // Insert statment for store the information of the hall (Name,capacity,address,price,contact number ,the owner of the hall,image) into the table hallinfo in the database 
             PreparedStatement ps = connection.prepareStatement("insert into hallinfo (hallname,hallcapacity,halladdress,hallPrice,contactNumber,idOwner,image) values(?,?,?,?,?,?,? )");
             ps.setString(1, info.getHallName());
             ps.setInt(2, info.getCapacity());
@@ -102,7 +92,7 @@ public class HallInformation {
             ps.setInt(6, Integer.parseInt(Login.Id));
             ps.setBlob(7, in); 
             ps.executeUpdate();
-            JOptionPane.showMessageDialog(null, "The Hall was Added Successfully ");
+            JOptionPane.showMessageDialog(null, "The Hall ("+info.getHallName()+") was Added Successfully ");
             
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex.toString());
@@ -111,18 +101,26 @@ public class HallInformation {
         }
     }
     
+    /**
+     * This method working on updating the hall information in Database
+     * @param info we pass object of hallInformation that store the information entered by user
+     * @param Hallid id for the hall that we want to update
+     */ 
     public void editHall(HallInformation info ,int Hallid) {
         Connection connection = null;
         
         try {
+             // connection to dataBase
             Class.forName("com.mysql.cj.jdbc.Driver");
             
             String ConnectionURL = "jdbc:mysql://localhost:3306/weddinghallreservation";
 
             connection = DriverManager.getConnection(ConnectionURL, "root", "1212");
             
-         //   InputStream in = new FileInputStream(new File(info.getImage()));
+            // to read the file path of image   
+            InputStream in = new FileInputStream(new File(info.getImage()));
             
+            // update statment for updating iformation hall (Name,capacity,address,price,contact number ,the owner of the hall,image) into the table hallinfo in the database 
             PreparedStatement ps = connection.prepareStatement("update hallinfo set HallName=?, hallcapacity=?, HallAddress=?, Hallprice=?, contactNumber=?, image=? where idHallInfo="+Hallid);
        
             ps.setString(1, info.getHallName());
@@ -130,13 +128,7 @@ public class HallInformation {
             ps.setString(3, info.getHallAddress());
             ps.setDouble(4, info.getHallprice());
             ps.setString(5, info.getHallcontactNum()); 
-           // ps.setBlob(6, in);
-            
-            if(info.getImage()!=null){
-                InputStream in = new FileInputStream(new File(info.getImage()));
-            ps.setBlob(6, in);}
-            else
-                ps.setBlob(6, info.getBimage());
+            ps.setBlob(6, in);
             ps.executeUpdate();
             JOptionPane.showMessageDialog(null, "Hall " + info.getHallName() + " is updated Successfully");
             

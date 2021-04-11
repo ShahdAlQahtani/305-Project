@@ -16,9 +16,10 @@ public class OwnerPage_EditPro extends javax.swing.JFrame {
     }
 
     /**
-     * This Method display the Owner info from the Database
+     * This Method display the Owner info into TextField from the Database
      */
     public void display() {
+        // connection to database
         Connection connection = null;
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -28,11 +29,14 @@ public class OwnerPage_EditPro extends javax.swing.JFrame {
 
             if (Login.Id.startsWith("12")) {//To check the beginning of ID number, since the ID of Owner start with the number 12
 
+                // select statment to get all data of the Tenant from database   
                 String query = "Select `firstname` , `lastname` , `Email`, `PhoneNumber`, `Password` from `Owner` where `idOwner`='" + Login.Id + "' ";
                 Statement stm = connection.createStatement();
-                ResultSet rs = stm.executeQuery(query);
+                ResultSet rs = stm.executeQuery(query); // result of query
 
                 while (rs.next()) {
+                    
+                    // set all data into TextField to display it for user
                     fName.setText(rs.getString(1));
                     lName.setText(rs.getString(2));
                     e.setText(rs.getString(3));
@@ -96,12 +100,12 @@ public class OwnerPage_EditPro extends javax.swing.JFrame {
         FName.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
         FName.setText("First Name");
         jPanel1.add(FName);
-        FName.setBounds(40, 190, 80, 20);
+        FName.setBounds(40, 190, 80, 19);
 
         LName.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
         LName.setText("Last Name");
         jPanel1.add(LName);
-        LName.setBounds(170, 190, 80, 20);
+        LName.setBounds(170, 190, 80, 19);
 
         jPanel5.setBackground(new java.awt.Color(243, 246, 251));
 
@@ -138,7 +142,7 @@ public class OwnerPage_EditPro extends javax.swing.JFrame {
         email.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
         email.setText("Email");
         jPanel1.add(email);
-        email.setBounds(40, 240, 50, 20);
+        email.setBounds(40, 240, 50, 19);
 
         s.setBackground(new java.awt.Color(243, 246, 251));
 
@@ -171,7 +175,7 @@ public class OwnerPage_EditPro extends javax.swing.JFrame {
         phone.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
         phone.setText("Phone Number");
         jPanel1.add(phone);
-        phone.setBounds(40, 310, 110, 20);
+        phone.setBounds(40, 320, 110, 19);
 
         jPanel7.setBackground(new java.awt.Color(243, 246, 251));
 
@@ -198,7 +202,7 @@ public class OwnerPage_EditPro extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
         jLabel2.setText("Password");
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(40, 390, 70, 20);
+        jLabel2.setBounds(40, 390, 70, 19);
 
         jPanel8.setBackground(new java.awt.Color(243, 246, 251));
 
@@ -246,7 +250,7 @@ public class OwnerPage_EditPro extends javax.swing.JFrame {
         conPass.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
         conPass.setText("Confirm Pass");
         jPanel1.add(conPass);
-        conPass.setBounds(40, 470, 100, 20);
+        conPass.setBounds(40, 470, 100, 19);
 
         jPanel10.setBackground(new java.awt.Color(243, 246, 251));
 
@@ -263,7 +267,7 @@ public class OwnerPage_EditPro extends javax.swing.JFrame {
         jPanel10Layout.setHorizontalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
-                .addContainerGap(13, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
                     .addComponent(jLabel5))
@@ -339,33 +343,29 @@ public class OwnerPage_EditPro extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * This Method takes input from Owner then update his info in the Database
+     /**
+     * This Method of button update takes input from Owner then update his info in the Database
      */
 
     private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
         // TODO add your handling code here:
 
+         // object from user to store the information on it
         User user = new User();
 
+        // to takes the updated information from TextFeild that entry by user
         user.setFname(fName.getText());
         user.setLname(lName.getText());
         user.setEmail(e.getText());
         user.setPhone_number(pN.getText());
         user.setPassword(pass.getText());
         user.setCpassword(cPass.getText());
-        try {
-            user.updateAccount(user, Login.Id);
-            
-            OwnerPage_Profile ob = null;
-            ob = new OwnerPage_Profile();
-            ob.setVisible(true);
-            this.setVisible(false);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(OwnerPage_EditPro.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(OwnerPage_EditPro.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        user.updateAccount(user, Login.Id); // call update account method and pass the object of user and user id
+        
+        OwnerPage_Profile ob = null;
+        ob = new OwnerPage_Profile();
+        ob.setVisible(true);
+        this.setVisible(false);
 
 
     }//GEN-LAST:event_updateActionPerformed

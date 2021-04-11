@@ -169,6 +169,10 @@ public class TenantPage_ReserDone extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    /**
+     * this button will call the confirmAndPrintInvoic method to print the invoice
+     * @param evt 
+     */
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         try {
             TenantPage_Reservation.res.confirmAndPrintInvoic(Integer.parseInt(Login.Id),TenantPage_Hallinfo.id,TenantPage_Reservation.res);

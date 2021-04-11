@@ -254,9 +254,11 @@ public class OwnerPage_Hallinfo extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-/**
-     * this method take an input from Owner then will invoke createNewHall
-     * method
+    
+   
+    /**
+     * this method take an input from Owner then will invoke createNewHall method
+     * @param evt 
      */
     private void saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveActionPerformed
         // TODO add your handling code here:
@@ -276,6 +278,11 @@ public class OwnerPage_Hallinfo extends javax.swing.JFrame {
 
     }//GEN-LAST:event_saveActionPerformed
 
+    /**
+     * this method allows the owner to add hall picture
+     * it displays a message in case the owner didn't add a picture
+     * @param evt 
+     */
     private void uploadImageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uploadImageActionPerformed
         // TODO add your handling code here:
         JFileChooser fileChos = new JFileChooser();
@@ -284,7 +291,7 @@ public class OwnerPage_Hallinfo extends javax.swing.JFrame {
         try {
             path = file.getAbsolutePath();
         } catch (NullPointerException n) {
-            JOptionPane.showMessageDialog(null, " Please choose a pictture ");
+            JOptionPane.showMessageDialog(null, " Please choose a picture ");
         }
     }//GEN-LAST:event_uploadImageActionPerformed
 

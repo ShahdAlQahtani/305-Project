@@ -23,17 +23,19 @@ public class TenantPage_Current extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         curr = true;
-        list();
+        list(); //call list method
     }
-
+/**
+ * THIS METHOD DISPLAY CURRENT RESERVATION INFORMATION
+ */
     public void list() {
         noRes1.setVisible(false);
         noRes2.setVisible(false);
-        DefaultTableModel table1 = new DefaultTableModel();
+        DefaultTableModel table1 = new DefaultTableModel(); // CREATE A TABLE ON AND IT'S COLUMNS
         table1.addColumn("ReserveId");
         table1.addColumn("Hall Name");
         table1.addColumn("Date");
-        Date dayDate = new Date(new java.util.Date().getTime());
+        Date dayDate = new Date(new java.util.Date().getTime()); // GET TODAY'S DATE
         Connection connection = null;
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -45,22 +47,22 @@ public class TenantPage_Current extends javax.swing.JFrame {
             Statement stat = connection.createStatement(TYPE_SCROLL_SENSITIVE, CONCUR_READ_ONLY);
             ResultSet rs = stat.executeQuery(query);
 
-            if (rs.next()) {
+            if (rs.next()) {// CHECK IF THERE IS ANY RESERVATION
                 jLabel4.setVisible(true);
                 jLabel3.setVisible(true);
                 jScrollPane2.setVisible(true);
                 list1.setVisible(true);
 
-                rs.previous();
+                rs.previous();// GO BACK FOR THE FIRST RESULT
 
                 while (rs.next()) {
-                    Date date = rs.getDate(2);
-                    if (date.after(dayDate)) {
+                    Date date = rs.getDate(2);// GET THE RESERVATION DATE
+                    if (date.after(dayDate)) { // CHECK OF THE DATE IS AFTER THE TODAY DATE THEN PRINT IT'S INFORMATION
                         table1.addRow(new Object[]{rs.getInt(3), rs.getString(1), rs.getDate(2)});
                     }
                 }
                 list1.setModel(table1);
-            } else {
+            } else {// IF NOT THEN THE DISPLAY THERE IS NO RESERVATION
                 jLabel4.setVisible(false);
                 jLabel3.setVisible(false);
                 edit.setVisible(false);

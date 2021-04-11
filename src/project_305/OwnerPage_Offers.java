@@ -17,6 +17,10 @@ public class OwnerPage_Offers extends javax.swing.JFrame {
     public double finalPrice;
     double Originalprice;
 
+    /**
+     * this query brings all the halls names of the owner from the database
+     * @throws SQLException 
+     */
     public OwnerPage_Offers() throws SQLException {
         initComponents();
         setLocationRelativeTo(null);
@@ -257,6 +261,12 @@ public class OwnerPage_Offers extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * the query2 brings the hall price of the selected hall from the combo box
+     * and represent it as an original price, then takes the amount% from the owner and compute the discount and the final price
+     * then represents all the values in the labels
+     * @param evt 
+     */
     private void computeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_computeActionPerformed
         // TODO add your handling code here:
 
@@ -294,6 +304,11 @@ public class OwnerPage_Offers extends javax.swing.JFrame {
 
     }//GEN-LAST:event_computeActionPerformed
 
+    /**
+     * this method updates the hall price with the final price in the database 
+     * and shows a confirmation message 
+     * @param evt 
+     */
     private void ApplyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ApplyActionPerformed
 
         Connection connection = null;

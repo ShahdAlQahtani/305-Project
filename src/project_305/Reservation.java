@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package project_305;
 
 import java.awt.Desktop;
@@ -11,12 +7,13 @@ import java.sql.*;
 
 public class Reservation {
 
+    // parameter for class Reservation 
     int idTenant;
     int idHall;
     Date reserveDate;
     String Payment;
     
-    //setter ans getter
+    //setter and getter
     public int getIdTenant() {
         return idTenant;
     }
