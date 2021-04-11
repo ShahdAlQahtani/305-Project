@@ -6,7 +6,8 @@ import java.sql.*;
 import javax.swing.JOptionPane;
 
 public class HallInformation {
-    public int idHallinfo;
+    // parameter for class Hall Information
+    
     public String hallName;
     public String hallAddress;
     public int Capacity;
@@ -16,13 +17,6 @@ public class HallInformation {
    /*
     setter and getter for all varible of class hall information
     */
-    public int getIdHallinfo() {
-        return idHallinfo;
-    }
-
-    public void setIdHallinfo(int idHallinfo) {
-        this.idHallinfo = idHallinfo;
-    }
     
     public String getHallName() {
         return hallName;

@@ -294,7 +294,7 @@ public class OwnerPage_Hall extends javax.swing.JFrame {
  */
     private void listMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listMouseClicked
         // TODO add your handling code here:
-        int index = list.getSelectedRow(); //take the row selected by the owner from the table
+        int index = list.getSelectedRow(); //take index of row selected by the owner from the table
         String name = list.getValueAt(index, 0).toString(); // get the value specified in this cell
         Connection connection = null;
         panel2.setVisible(true);

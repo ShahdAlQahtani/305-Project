@@ -5,6 +5,7 @@ import javax.swing.*;
 
 public class User {
 
+   // parameter for class user 
     public String Fname;
     public String Lname;
     public String email;

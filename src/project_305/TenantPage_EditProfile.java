@@ -1,58 +1,51 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * This interface allows the Tenant to edit his personal information
  */
 package project_305;
 
-
-
 import java.sql.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 
-/**
- *
- * @author shahad
- */
+
 public class TenantPage_EditProfile extends javax.swing.JFrame {
 
     /**
-     * Creates new form TenantPage_EditProfile
+     * This constacter display the Tenant info into TextField from the Database
      */
     public TenantPage_EditProfile() {
         initComponents();
         setLocationRelativeTo(null);
-        
-          Connection connection = null;
+
+        // connection to database
+        Connection connection = null;
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            
+
             String ConnectionURL = "jdbc:mysql://localhost:3306/weddinghallreservation";
-         
+
             connection = DriverManager.getConnection(ConnectionURL, "root", "1212");
-            
-            if (Login.Id.startsWith("14")) {
-                
+
+            if (Login.Id.startsWith("14")) { // check for ID that start with 14 for Tenant
+
+                // select statment to get all data of the Tenant from database   
                 String query = "Select `firstname` , `lastname` , `Email`, `PhoneNumber`, `Password` from `tenant` where `idtenant`='" + Login.Id + "' ";
                 Statement stm = connection.createStatement();
-                ResultSet rs = stm.executeQuery(query);
-                
+                ResultSet rs = stm.executeQuery(query); // result of query
+
                 while (rs.next()) {
                     String firstname = rs.getString(1);
                     String lastname = rs.getString(2);
                     String email = rs.getString(3);
                     String phoneNumber = rs.getString(4);
                     String password = rs.getString(5);
-              
+
+                    // set all data into TextField to display it for user
                     fName.setText(firstname);
                     lName.setText(lastname);
                     e.setText(email);
                     pN.setText(phoneNumber);
                     pass.setText(password);
                     cPass.setText(password);
-           
+
                 }
             }
         } catch (Exception e) {
@@ -322,21 +315,29 @@ public class TenantPage_EditProfile extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+ 
+    /**
+     * This Method of button update takes input from Tenant then update his info in the Database
+     */
     private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
         // TODO add your handling code here:
-        
-          User user = new User();
-        
-            
-            user.setFname(fName.getText());
-            user.setLname(lName.getText());
-            user.setEmail(e.getText());
-            user.setPhone_number(pN.getText());
-            user.setPassword(pass.getText());
-            user.setCpassword(cPass.getText());
-            user.updateAccount(user,Login.Id);
-        
+
+        // object from user to store the information on it
+        User user = new User();
+
+        // to takes the updated information from TextFeild that entry by user
+        user.setFname(fName.getText());
+        user.setLname(lName.getText());
+        user.setEmail(e.getText());
+        user.setPhone_number(pN.getText());
+        user.setPassword(pass.getText());
+        user.setCpassword(cPass.getText());
+        user.updateAccount(user, Login.Id); // call update account method and pass the object of user and user id
+
+        TenantPage_profile ob = null;
+        ob = new TenantPage_profile();
+        ob.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_updateActionPerformed
 
     private void fNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fNameActionPerformed
@@ -349,20 +350,19 @@ public class TenantPage_EditProfile extends javax.swing.JFrame {
 
     private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
         // BBAACCCCKKKKKK
-         TenantPage_profile ob = null;
-         ob = new TenantPage_profile();
+        TenantPage_profile ob = null;
+        ob = new TenantPage_profile();
         ob.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jLabel8MouseClicked
 
     private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
         // TODO add your handling code here:
-        TenantPage_Home ob=new TenantPage_Home();
+        TenantPage_Home ob = new TenantPage_Home();
         ob.setVisible(true);
         this.setVisible(false);
-        
-      
-        
+
+
     }//GEN-LAST:event_jLabel6MouseClicked
 
     private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
