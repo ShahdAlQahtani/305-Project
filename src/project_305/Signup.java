@@ -341,11 +341,20 @@ public class Signup extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * If the user press on the Owner check box, then he will be signed up as an Owner
+     * @param evt 
+     */
     private void ownerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ownerActionPerformed
         // TODO add your handling code here:
         checkOwner = owner.isSelected();
     }//GEN-LAST:event_ownerActionPerformed
 
+    /**
+     * This method creates an account to new users after taking some information
+     * The account is created successfully if all conditions are met
+     * @param evt 
+     */
     private void createAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createAccountActionPerformed
         User user = new User();
         if (fname.getText().length() > 0 && lname.getText().length() > 0 && Email.getText().length() > 0
@@ -397,6 +406,14 @@ public class Signup extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_backActionPerformed
 
+    /**
+     * This method check whether the password and the confirmed password are correct and the same
+     * @param pass pass the password 
+     * @param cpass the confirmed password
+     * @return "true" if they were correct and equals, "invalid Password" if it doesn't meet the conditions, 
+     * return "Wrong match password" if the pass and cpass were not equal
+     */
+ 
     public static String isValid(String pass, String cpass) {
         if (pass.equals(cpass)) {
             if (pass.length() >= 8 && Character.isUpperCase(pass.charAt(0))) {

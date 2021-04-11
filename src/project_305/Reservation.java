@@ -120,7 +120,7 @@ public class Reservation {
 
         fr.printf("%-23s%-6s%-17s%7s\n", "|", "Date:", res.getReserveDate().toString(), "|");
 
-        if (res.getPayment().equals("0")) {
+        if (res.getPayment().equals("Cash")) {
             fr.printf("%-23s%-16s%-11s%3s\n", "|", "Payment Method:", "Cash", "|");
         } else {
             fr.printf("%-23s%-16s%-11s%3s\n", "|", "Payment Method:", "Credit card", "|");
@@ -130,7 +130,7 @@ public class Reservation {
         fr.printf("%-50s\n", "|---------------------------------------------------|");
         //colse the file 
         fr.close();
-        // fr.flush();
+  
         Desktop desktop = Desktop.getDesktop();
         if (file.exists()) {
             desktop.open(file);

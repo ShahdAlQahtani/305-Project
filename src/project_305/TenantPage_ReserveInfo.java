@@ -13,6 +13,10 @@ import java.util.logging.Logger;
 
 public class TenantPage_ReserveInfo extends javax.swing.JFrame {
 
+    /**
+     * the queryT will bring the tenant information from the database and display it in the labels
+     * the queryH will bring the reserved hall information from the database and display it in the labels
+     */
     public TenantPage_ReserveInfo()  {
         initComponents();
         setLocationRelativeTo(null);
@@ -43,6 +47,7 @@ public class TenantPage_ReserveInfo extends javax.swing.JFrame {
                 hprice.setText(rsH.getDouble(3) + "");
             }
 
+            // check whether the payment method is cash or credit card
             if (TenantPage_Reservation.res.getPayment().equals("Cash")) {
                 paymethod.setText("Cash");
             } else {
@@ -281,6 +286,10 @@ public class TenantPage_ReserveInfo extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * this method inserts the reservation information into the database
+     * @param evt 
+     */
     private void confirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmActionPerformed
         // TODO add your handling code here:
         Connection connection = null;

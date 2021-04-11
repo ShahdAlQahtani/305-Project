@@ -169,9 +169,12 @@ public class Login extends javax.swing.JFrame {
 
     }//GEN-LAST:event_backActionPerformed
 
+    /**
+     * This method represents the password as stars unless the user select this check box 
+     * @param evt 
+     */
     private void checkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkActionPerformed
-        // TODO add your handling code here:
-
+        
         if (check.isSelected()) {
 
             Password.setEchoChar((char) 0);
@@ -189,6 +192,12 @@ public class Login extends javax.swing.JFrame {
         ob.setVisible(true);
     }//GEN-LAST:event_label1MouseClicked
 
+    /**
+     * The method take the ID from the user and compares it with the ID from database
+     * If the ID starts with "12" then its an Owner, otherwise its a Tenant
+     * Also, checks the validation of the password
+     * @param evt 
+     */
     private void LoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginActionPerformed
 
         Connection connection = null;
@@ -206,26 +215,29 @@ public class Login extends javax.swing.JFrame {
             Id = id.getText();
             
             if (Id.startsWith("12")) {
+                // Query to bring the login information of the owner from Owner table
                 q = connection.prepareStatement("Select `idOwner` , `Password` from `owner` where `idOwner`=? AND `Password`=? ");
                 q.setString(1, Id);
                 q.setString(2, String.valueOf(Password.getPassword()));
                 ResultSet r = q.executeQuery();
-                if (r.next()) {
+                
+                if (r.next()) { // Moving to the Owner home page
                     OwnerPage_Home ob = new OwnerPage_Home();
                     ob.setVisible(true);
                     this.setVisible(false);
 
-                } else {
+                } else { // In case the password is incorrect
                     incorrectPass.setText("Incorrect email or password");
                 }
 
             } else {
+                // Query to bring the login information of the tenant from Tenant table
                 q = connection.prepareStatement("Select `idTenant` , `Password` from `tenant` where `idTenant`=? AND `Password`=? ");
                 q.setString(1, Id);
                 q.setString(2, String.valueOf(Password.getPassword()));
                 ResultSet r = q.executeQuery();
 
-                if (r.next()) {
+                if (r.next()) { // Moving to the Tenant home page
                     TenantPage_Home ob = new TenantPage_Home();
                     ob.setVisible(true);
                     this.setVisible(false);

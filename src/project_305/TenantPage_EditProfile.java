@@ -337,8 +337,6 @@ public class TenantPage_EditProfile extends javax.swing.JFrame {
             user.setCpassword(cPass.getText());
             user.updateAccount(user,Login.Id);
         
-        
-        JOptionPane.showMessageDialog(null, "Your information has been Updated successfully!");
     }//GEN-LAST:event_updateActionPerformed
 
     private void fNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fNameActionPerformed
