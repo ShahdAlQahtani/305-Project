@@ -4,13 +4,13 @@
 |                                                   |
 |---------------------------------------------------|
 |                                                   |
-| Tenant Info:         Name: Fatimah                |
-|                      Email: Ff@                   |
+| Tenant Info:         Name: nada                   |
+|                      Email: nada@                 |
 |                                                   |
-| Reservation Info:    Hall Name: Larina            |
-|                      Capacity: 200                |
-|                      Price: 28800                 |
-|                      Date: 2021-04-16             |
-|                      Payment Method: Cash         |
+| Reservation Info:    Hall Name: larena            |
+|                      Capacity: 100                |
+|                      Price: 4750                  |
+|                      Date: 2021-04-06             |
+|                      Payment Method: Credit card  |
 |                                                   |
 |---------------------------------------------------|
