@@ -335,13 +335,7 @@ public class TenantPage_EditProfile extends javax.swing.JFrame {
             user.setPhone_number(pN.getText());
             user.setPassword(pass.getText());
             user.setCpassword(cPass.getText());
-            try {
-                user.updateAccount(user,Login.Id);
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(OwnerPage_EditPro.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (SQLException ex) {
-                Logger.getLogger(OwnerPage_EditPro.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            user.updateAccount(user,Login.Id);
         
         
         JOptionPane.showMessageDialog(null, "Your information has been Updated successfully!");
