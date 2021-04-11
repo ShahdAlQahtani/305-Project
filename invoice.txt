@@ -4,13 +4,13 @@
 |                                                   |
 |---------------------------------------------------|
 |                                                   |
-| Tenant Info:         Name: Fat                    |
-|                      Email: Ff@                   |
+| Tenant Info:         Name: Shahad                 |
+|                      Email: S@g.com               |
 |                                                   |
-| Reservation Info:    Hall Name: Qsr               |
-|                      Capacity: 550                |
-|                      Price: 22000                 |
-|                      Date: 2021-04-19             |
-|                      Payment Method: Credit card  |
+| Reservation Info:    Hall Name: Larina            |
+|                      Capacity: 200                |
+|                      Price: 28800                 |
+|                      Date: 2021-04-23             |
+|                      Payment Method: Cash         |
 |                                                   |
 |---------------------------------------------------|

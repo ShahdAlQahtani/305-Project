@@ -280,9 +280,12 @@ public class OwnerPage_EditHall extends javax.swing.JFrame {
         info.setHallprice(Double.parseDouble(HallPrice.getText()));
         info.setHallcontactNum(HallContact.getText());
         info.setImage(path);
+        
 
         info.editHall(info, Integer.parseInt(Hallid.getText()));
-
+        OwnerPage_Hall obj = new OwnerPage_Hall();
+        obj.setVisible(true);
+        this.setVisible(false);
 
     }//GEN-LAST:event_updateActionPerformed
     /**

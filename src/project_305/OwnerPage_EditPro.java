@@ -320,6 +320,11 @@ public class OwnerPage_EditPro extends javax.swing.JFrame {
         user.setCpassword(cPass.getText());
         try {
             user.updateAccount(user, Login.Id);
+            
+            OwnerPage_Profile ob = null;
+            ob = new OwnerPage_Profile();
+            ob.setVisible(true);
+            this.setVisible(false);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(OwnerPage_EditPro.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
