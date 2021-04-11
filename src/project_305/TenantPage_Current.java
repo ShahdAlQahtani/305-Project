@@ -279,7 +279,11 @@ public class TenantPage_Current extends javax.swing.JFrame {
     private void list1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_list1MouseClicked
 
     }//GEN-LAST:event_list1MouseClicked
-
+/**
+ * this method will check if the tenant select the reserved ID(by the Column number) 
+ * if so it will open editHall interface, if not it will show a message to tenant to select the reserve ID
+ * @param evt 
+ */
     private void editActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editActionPerformed
         // TODO add your handling code here:
         try {

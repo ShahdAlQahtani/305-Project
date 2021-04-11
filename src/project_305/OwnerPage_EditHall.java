@@ -287,7 +287,7 @@ public class OwnerPage_EditHall extends javax.swing.JFrame {
         if(path!=null)
             info.setImage(path);
         else
-            info.setBimage(image1);
+            info.setImage1(image1);
         
 
         info.editHall(info, Integer.parseInt(Hallid.getText()));// call edit hall method and pass the object of hall and id

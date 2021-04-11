@@ -13,7 +13,8 @@ public class HallInformation {
     public int Capacity;
     public String hallcontactNum;
     public double Hallprice;
-    public String Image;   
+    public String Image;
+    public InputStream image1;
    /*
     setter and getter for all varible of class hall information
     */
@@ -65,6 +66,15 @@ public class HallInformation {
     public void setImage(String Image) {
         this.Image = Image;
     }
+
+    public void setImage1(InputStream image1) {
+        this.image1 = image1;
+    }
+
+    public InputStream getImage1() {
+        return image1;
+    }
+    
     /**
      * This method working on inserting the hall information to DataBase
      * @param info we pass object of hallInformation that store the information entered by user
@@ -117,8 +127,7 @@ public class HallInformation {
 
             connection = DriverManager.getConnection(ConnectionURL, "root", "1212");
             
-            // to read the file path of image   
-            InputStream in = new FileInputStream(new File(info.getImage()));
+              
             
             // update statment for updating iformation hall (Name,capacity,address,price,contact number ,the owner of the hall,image) into the table hallinfo in the database 
             PreparedStatement ps = connection.prepareStatement("update hallinfo set HallName=?, hallcapacity=?, HallAddress=?, Hallprice=?, contactNumber=?, image=? where idHallInfo="+Hallid);
@@ -128,7 +137,14 @@ public class HallInformation {
             ps.setString(3, info.getHallAddress());
             ps.setDouble(4, info.getHallprice());
             ps.setString(5, info.getHallcontactNum()); 
-            ps.setBlob(6, in);
+            
+            if(info.getImage()!=null){
+                // to read the file path of image 
+              InputStream in = new FileInputStream(new File(info.getImage()));
+              ps.setBlob(6, in);
+            }else{
+                ps.setBlob(6, info.getImage1());
+            }
             ps.executeUpdate();
             JOptionPane.showMessageDialog(null, "Hall " + info.getHallName() + " is updated Successfully");
             
