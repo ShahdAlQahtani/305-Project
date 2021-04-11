@@ -48,7 +48,6 @@ public class OwnerPage_Hallinfo extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -136,10 +135,9 @@ public class OwnerPage_Hallinfo extends javax.swing.JFrame {
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel5Layout.createSequentialGroup()
                 .addComponent(HallPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(0, 15, Short.MAX_VALUE))
         );
 
         jPanel1.add(jPanel5);
@@ -239,13 +237,9 @@ public class OwnerPage_Hallinfo extends javax.swing.JFrame {
         jPanel1.add(jLabel9);
         jLabel9.setBounds(240, 610, 40, 30);
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/editHallinformatio.png"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/hallInfo_O.png"))); // NOI18N
         jPanel1.add(jLabel3);
         jLabel3.setBounds(0, 0, 300, 650);
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Hallinformation.png"))); // NOI18N
-        jPanel1.add(jLabel1);
-        jLabel1.setBounds(0, 0, 300, 650);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -371,7 +365,6 @@ public class OwnerPage_Hallinfo extends javax.swing.JFrame {
     private javax.swing.JTextField HallPrice;
     private javax.swing.JTextField hallAddress;
     private javax.swing.JTextField hallName;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

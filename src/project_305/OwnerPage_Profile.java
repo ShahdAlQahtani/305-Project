@@ -61,7 +61,6 @@ public class OwnerPage_Profile extends javax.swing.JFrame {
         name = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         Id = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
         label3 = new java.awt.Label();
         jLabel1 = new javax.swing.JLabel();
 
@@ -126,11 +125,6 @@ public class OwnerPage_Profile extends javax.swing.JFrame {
         jPanel1.add(Id);
         Id.setBounds(120, 350, 80, 22);
 
-        jLabel8.setFont(new java.awt.Font("Times New Roman", 0, 30)); // NOI18N
-        jLabel8.setText("Profile");
-        jPanel1.add(jLabel8);
-        jLabel8.setBounds(110, 90, 90, 36);
-
         label3.setBackground(new java.awt.Color(255, 255, 255));
         label3.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
         label3.setText("  Account Information                  >"); // NOI18N
@@ -143,7 +137,7 @@ public class OwnerPage_Profile extends javax.swing.JFrame {
         label3.setBounds(40, 440, 230, 40);
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Ownerp.jpg"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/profile_O.png"))); // NOI18N
         jLabel1.setText("Account Information          >>"); // NOI18N
         jPanel1.add(jLabel1);
         jLabel1.setBounds(0, 0, 300, 650);
@@ -252,7 +246,6 @@ public class OwnerPage_Profile extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private java.awt.Label label3;

@@ -78,7 +78,7 @@ public class OwnerPage_Offers extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         amount = new javax.swing.JTextField();
-        hallName = new javax.swing.JComboBox<>();
+        hallName = new javax.swing.JComboBox<String>();
         jLabel10 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
@@ -212,7 +212,7 @@ public class OwnerPage_Offers extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(51, 51, 51));
         jLabel2.setText("Hall name:");
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(20, 220, 80, 20);
+        jLabel2.setBounds(20, 220, 80, 19);
 
         amount.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
         amount.setForeground(new java.awt.Color(51, 51, 51));
@@ -223,7 +223,7 @@ public class OwnerPage_Offers extends javax.swing.JFrame {
             }
         });
         jPanel1.add(amount);
-        amount.setBounds(140, 260, 96, 29);
+        amount.setBounds(140, 260, 96, 26);
 
         hallName.setFont(new java.awt.Font("Times New Roman", 0, 13)); // NOI18N
         hallName.setToolTipText("hall");
@@ -233,15 +233,15 @@ public class OwnerPage_Offers extends javax.swing.JFrame {
             }
         });
         jPanel1.add(hallName);
-        hallName.setBounds(100, 220, 140, 27);
+        hallName.setBounds(100, 220, 140, 22);
 
         jLabel10.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(51, 51, 51));
         jLabel10.setText("Select the amount");
         jPanel1.add(jLabel10);
-        jLabel10.setBounds(10, 270, 118, 20);
+        jLabel10.setBounds(10, 270, 118, 19);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/page.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/page_O.png"))); // NOI18N
         jPanel1.add(jLabel1);
         jLabel1.setBounds(0, 0, 300, 650);
 

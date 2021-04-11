@@ -130,7 +130,7 @@ public class OwnerPage_ViewReq extends javax.swing.JFrame {
         NoRes.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         NoRes.setText("No Rservation For This Hall..!");
         jPanel1.add(NoRes);
-        NoRes.setBounds(40, 400, 224, 40);
+        NoRes.setBounds(40, 400, 221, 40);
 
         jScrollPane1.setBackground(new java.awt.Color(243, 246, 251));
         jScrollPane1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -219,7 +219,7 @@ public class OwnerPage_ViewReq extends javax.swing.JFrame {
         jPanel1.add(jLabel4);
         jLabel4.setBounds(210, 570, 50, 15);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/page.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/page_O.png"))); // NOI18N
         jPanel1.add(jLabel1);
         jLabel1.setBounds(0, 0, 300, 650);
 
