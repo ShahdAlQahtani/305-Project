@@ -5,7 +5,10 @@
  */
 package project_305;
 
-
+/**
+ * This is the sign up interface to sign new member to our application
+ * @author karam
+ */
 public class Signup extends javax.swing.JFrame {
 
     /**

@@ -7,7 +7,7 @@ package project_305;
 
 
 /**
- *
+ * This is the payment interface that let the tenant pay for the reservation, second step in reservatio
  * @author shahad
  */
 public class TenantPage_Payment extends javax.swing.JFrame {
@@ -359,7 +359,7 @@ public class TenantPage_Payment extends javax.swing.JFrame {
     }
 /**
  * THIS METHOD WILL CHECK THE EXPIRE DATE FOR THE CARD
- * @param ExDate 
+ * @param ExDate take the expire date of the card
  * @return STRING OF IF IT'S EXPIRED OR NOT
  */
     public String checkExDate(String ExDate) {

@@ -11,7 +11,7 @@ import java.net.Socket;
 
 
 /**
- *
+ * This is the tenant chat interface to chat with hall onwer
  * @author shahad
  */
 
@@ -227,6 +227,7 @@ public class TenantPage_Chat extends javax.swing.JFrame {
 
     /**
      * @param args the command line arguments
+     * @throws java.io.IOException this method may throw an Exception of this type
      */
     public static void main(String args[]) throws IOException {
         /* Set the Nimbus look and feel */

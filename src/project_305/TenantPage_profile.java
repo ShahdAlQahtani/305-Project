@@ -4,7 +4,10 @@ package project_305;
 import java.sql.*;
 import javax.swing.JOptionPane;
 
-
+/**
+ * This is the tenant interface
+ * @author karam
+ */
 public class TenantPage_profile extends javax.swing.JFrame {
 
     /**

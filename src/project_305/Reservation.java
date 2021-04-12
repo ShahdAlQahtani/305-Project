@@ -4,7 +4,10 @@ package project_305;
 import java.awt.Desktop;
 import java.io.*;
 import java.sql.*;
-
+/**
+ * This is the reservation class create an object for the resercation process and stor its info 
+ * @author karam
+ */
 public class Reservation {
 
     // parameter for class Reservation 
@@ -50,7 +53,7 @@ public class Reservation {
      * @param id hall id selected by tenant 
      * @param date date selected by tenant 
      * @return a ResultSet
-     * @throws SQLException 
+     * @throws SQLException this method may throw a SQL Exception 
      */
     
     public ResultSet checkDateForRes(int id, Date date) throws SQLException {
@@ -69,10 +72,10 @@ public class Reservation {
      * @param id tenant id
      * @param Hid  hall id
      * @param res object has the reservation detsils
-     * @throws ClassNotFoundException
-     * @throws SQLException
-     * @throws FileNotFoundException
-     * @throws IOException 
+     * @throws ClassNotFoundException this method may throw an Exception of this type
+     * @throws SQLException or this type
+     * @throws FileNotFoundException or this 
+     * @throws IOException or this
      */
     public void confirmAndPrintInvoic(int id, int Hid, Reservation res) throws ClassNotFoundException, SQLException, FileNotFoundException, IOException {
 

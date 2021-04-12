@@ -8,7 +8,10 @@ package project_305;
 import java.awt.*;
 import java.sql.*;
 import javax.swing.*;
-
+/**
+ * This is the search interface that display the halls to the tenant
+ * @author karam
+ */
 public class TenantPage_Search extends javax.swing.JFrame {
 
     static int[] HID = new int[4];//array of hall 

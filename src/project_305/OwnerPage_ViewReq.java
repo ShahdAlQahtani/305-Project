@@ -11,7 +11,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
- *
+ * This is the view request interface display the requests the onwer received on its halls 
  * @author shahad
  */
 public class OwnerPage_ViewReq extends javax.swing.JFrame {

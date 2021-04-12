@@ -5,7 +5,10 @@ package project_305;
 
 import java.sql.*;
 
-
+/**
+ * This is the tenant edit profile interface to edit tenant information
+ * @author karam
+ */
 public class TenantPage_EditProfile extends javax.swing.JFrame {
 
     /**

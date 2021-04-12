@@ -12,7 +12,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
+ * This is the onwer home interface
  * @author shahad
  */
 public class OwnerPage_Home extends javax.swing.JFrame {

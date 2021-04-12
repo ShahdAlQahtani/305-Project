@@ -9,7 +9,10 @@ import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-
+/**
+ * This is the onwer offer interface let the onwer to do offer on its halls
+ * @author karam
+ */
 public class OwnerPage_Offers extends javax.swing.JFrame {
 
     public static double Amount;
@@ -19,7 +22,7 @@ public class OwnerPage_Offers extends javax.swing.JFrame {
 
     /**
      * this query brings all the halls names of the owner from the database
-     * @throws SQLException 
+     * @throws SQLException this method may throw a SQL Exception 
      */
     public OwnerPage_Offers() throws SQLException {
         initComponents();

@@ -4,7 +4,10 @@ package project_305;
 import java.io.*;
 import java.sql.*;
 import javax.swing.JOptionPane;
-
+/**
+ * This class create an object for each hall and store its all information
+ * @author karam
+ */
 public class HallInformation {
     // parameter for class Hall Information
     

@@ -6,7 +6,10 @@ package project_305;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
+/**
+ * This is the edit profile interface let the onwer to edit its information
+ * @author karam
+ */
 public class OwnerPage_EditPro extends javax.swing.JFrame {
 
     public OwnerPage_EditPro() throws SQLException {

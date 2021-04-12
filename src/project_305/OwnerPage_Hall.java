@@ -12,7 +12,10 @@ import static java.sql.ResultSet.TYPE_SCROLL_SENSITIVE;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-
+/**
+ * This is the halls interface will display all the halls the onwer have
+ * @author karam
+ */
 public class OwnerPage_Hall extends javax.swing.JFrame {
 
     /**

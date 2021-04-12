@@ -2,7 +2,10 @@ package project_305;
 
 import java.sql.*;
 import javax.swing.*;
-
+/**
+ * This is the user class create new user and stor its information 
+ * @author karam
+ */
 public class User {
 
    // parameter for class user 

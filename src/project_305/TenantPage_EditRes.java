@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
 
 
 /**
- *
+ * This is the edit reservation interface that let the tenant to edit its reservation or even cancel it 
  * @author shahad
  */
 public class TenantPage_EditRes extends javax.swing.JFrame {

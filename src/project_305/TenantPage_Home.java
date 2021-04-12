@@ -7,7 +7,7 @@ package project_305;
 
 
 /**
- *
+ * This is the tenant home interface
  * @author shahad
  */
 public class TenantPage_Home extends javax.swing.JFrame {

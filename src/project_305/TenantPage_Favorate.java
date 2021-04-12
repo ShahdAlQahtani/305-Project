@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
- *
+ * This is the Favorite interface that display all the tenant's Favorite hall
  * @author shahad
  */
 public class TenantPage_Favorate extends javax.swing.JFrame {

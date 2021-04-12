@@ -5,7 +5,7 @@
 package project_305;
 
 /**
- *
+ * This is the tenant class for chatting
  * @author shood
  */
 //Default ip address and port number

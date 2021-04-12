@@ -4,7 +4,10 @@ import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-
+/**
+ * This is the onwer profile interface 
+ * @author karam
+ */
 public class OwnerPage_Profile extends javax.swing.JFrame {
 
     /**

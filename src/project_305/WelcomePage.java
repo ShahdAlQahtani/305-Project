@@ -11,7 +11,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
+ * This is the welcome interface
  * @author shahad
  */
 public class WelcomePage extends javax.swing.JFrame {

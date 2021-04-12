@@ -7,7 +7,10 @@ import java.io.*;
 import java.sql.*;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-
+/**
+ * This is the edit Hall interface let the onwer to edit the hall information
+ * @author karam
+ */
 public class OwnerPage_EditHall extends javax.swing.JFrame {
 
     String path;// to save path of the image
@@ -26,6 +29,7 @@ public class OwnerPage_EditHall extends javax.swing.JFrame {
 
     /**
      *  This Method display the Hall info into TextField from the Database
+     * @param id the hall id that will print its information
      */
     public void display(int id) {
          // connection to database

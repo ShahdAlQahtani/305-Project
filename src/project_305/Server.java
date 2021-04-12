@@ -6,7 +6,10 @@ package project_305;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
-
+/**
+ *  This is the server class to apply the chatting 
+ * @author karam
+ */
 public class Server {
 
     // Default ip address and port number

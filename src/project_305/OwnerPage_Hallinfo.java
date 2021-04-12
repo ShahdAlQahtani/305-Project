@@ -4,7 +4,10 @@ package project_305;
 import java.io.*;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-
+/**
+ * This is the hall info interface let the onwer to enter the hall information
+ * @author karam
+ */
 public class OwnerPage_Hallinfo extends javax.swing.JFrame {
 
     /**

@@ -9,7 +9,7 @@ import java.sql.*;
 import javax.swing.JOptionPane;
 
 /**
- *
+ * This is the reservation interface, the first step in reservation process
  * @author shahad
  */
 public class TenantPage_Reservation extends javax.swing.JFrame {

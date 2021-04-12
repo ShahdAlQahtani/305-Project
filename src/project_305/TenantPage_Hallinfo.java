@@ -8,7 +8,10 @@ package project_305;
 import java.awt.*;
 import java.sql.*;
 import javax.swing.*;
-
+/**
+ * This is the hall info interface that display the hall info 
+ * @author karam
+ */
 public class TenantPage_Hallinfo extends javax.swing.JFrame {
 
     static int id;//hall is
@@ -20,7 +23,7 @@ public class TenantPage_Hallinfo extends javax.swing.JFrame {
     }
 /**
  * this method display the hall information 
- * @param HID 
+ * @param HID the hall id that will print its information
  */
     public TenantPage_Hallinfo(int HID) {
         id = HID;

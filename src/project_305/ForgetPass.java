@@ -2,7 +2,10 @@ package project_305;
 
 import java.sql.*;
 import javax.swing.*;
-
+/**
+ * This interface to set the new passwrod if the user forgot
+ * @author karam
+ */
 public class ForgetPass extends javax.swing.JFrame {
 
     /**
