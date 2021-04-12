@@ -15,7 +15,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  * This is the previous interface that display old reservation the tenant reserev
- * @author shahad
+ * @author Group1_CAR
  */
 public class TenantPage_Previous extends javax.swing.JFrame {
 

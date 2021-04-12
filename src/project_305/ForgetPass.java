@@ -4,7 +4,7 @@ import java.sql.*;
 import javax.swing.*;
 /**
  * This interface to set the new passwrod if the user forgot
- * @author karam
+ * @author Group1_CAR
  */
 public class ForgetPass extends javax.swing.JFrame {
 

@@ -7,7 +7,7 @@ import java.sql.*;
 import javax.swing.JOptionPane;
 /**
  * This is login interface to log into the application
- * @author karam
+ * @author Group1_CAR
  */
 public class Login extends javax.swing.JFrame {
 

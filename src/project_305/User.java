@@ -4,7 +4,7 @@ import java.sql.*;
 import javax.swing.*;
 /**
  * This is the user class create new user and stor its information 
- * @author karam
+ * @author Group1_CAR
  */
 public class User {
 
@@ -68,7 +68,7 @@ public class User {
     }
 
     /**
-     * This method for creating Account for the users and store theirinformation in the database
+     * This method for creating Account for the users and store their information in the database
      * @param user we pass object of User that store the information entered by user from Signup interface
      * user
      * @param checkOwner boolean value that specifies whether the user is an

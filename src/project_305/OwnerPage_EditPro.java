@@ -8,7 +8,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 /**
  * This is the edit profile interface let the onwer to edit its information
- * @author karam
+ * @author Group1_CAR
  */
 public class OwnerPage_EditPro extends javax.swing.JFrame {
 

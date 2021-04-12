@@ -6,7 +6,7 @@ import java.io.*;
 import java.sql.*;
 /**
  * This is the reservation class create an object for the resercation process and stor its info 
- * @author karam
+ * @author Group1_CAR
  */
 public class Reservation {
 

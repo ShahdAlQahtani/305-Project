@@ -8,7 +8,7 @@ package project_305;
 
 /**
  * The first interafce of the application 
- * @author shahad
+ * @author Group1_CAR
  */
 public class FirsrPage_1 extends javax.swing.JFrame {
 

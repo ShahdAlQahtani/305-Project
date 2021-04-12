@@ -6,7 +6,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 /**
  * This is the hall info interface let the onwer to enter the hall information
- * @author karam
+ * @author Group1_CAR
  */
 public class OwnerPage_Hallinfo extends javax.swing.JFrame {
 

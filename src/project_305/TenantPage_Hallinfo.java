@@ -10,7 +10,7 @@ import java.sql.*;
 import javax.swing.*;
 /**
  * This is the hall info interface that display the hall info 
- * @author karam
+ * @author Group1_CAR
  */
 public class TenantPage_Hallinfo extends javax.swing.JFrame {
 

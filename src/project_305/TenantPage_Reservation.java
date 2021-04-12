@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
 
 /**
  * This is the reservation interface, the first step in reservation process
- * @author shahad
+ * @author Group1_CAR
  */
 public class TenantPage_Reservation extends javax.swing.JFrame {
 

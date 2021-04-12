@@ -6,7 +6,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 /**
  * This is the onwer profile interface 
- * @author karam
+ * @author Group1_CAR
  */
 public class OwnerPage_Profile extends javax.swing.JFrame {
 

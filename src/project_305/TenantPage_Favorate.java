@@ -15,7 +15,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  * This is the Favorite interface that display all the tenant's Favorite hall
- * @author shahad
+ * @author Group1_CAR
  */
 public class TenantPage_Favorate extends javax.swing.JFrame {
 

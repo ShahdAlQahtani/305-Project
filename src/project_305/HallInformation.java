@@ -6,7 +6,7 @@ import java.sql.*;
 import javax.swing.JOptionPane;
 /**
  * This class create an object for each hall and store its all information
- * @author karam
+ * @author Group1_CAR
  */
 public class HallInformation {
     // parameter for class Hall Information

@@ -13,7 +13,7 @@ import java.util.logging.Logger;
 
 /**
  * This is the onwer home interface
- * @author shahad
+ * @author Group1_CAR
  */
 public class OwnerPage_Home extends javax.swing.JFrame {
 

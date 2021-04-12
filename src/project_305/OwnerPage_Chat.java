@@ -10,7 +10,7 @@ import java.io.IOException;
 
 /**
  * This is the chat interface will let the onwer of the hall to chat with the tenant
- * @author shahad
+ * @author Group1_CAR
  */
 public class OwnerPage_Chat extends javax.swing.JFrame {
 

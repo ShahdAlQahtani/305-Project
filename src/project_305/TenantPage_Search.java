@@ -10,7 +10,7 @@ import java.sql.*;
 import javax.swing.*;
 /**
  * This is the search interface that display the halls to the tenant
- * @author karam
+ * @author Group1_CAR
  */
 public class TenantPage_Search extends javax.swing.JFrame {
 

@@ -5,13 +5,11 @@
  */
 package project_305;
 
-import java.io.FileNotFoundException;
 import java.sql.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 /**
  * This is the reservation info interface display the reservation info before confirm
- * @author karam
+ * @author Group1_CAR
  */
 public class TenantPage_ReserveInfo extends javax.swing.JFrame {
 

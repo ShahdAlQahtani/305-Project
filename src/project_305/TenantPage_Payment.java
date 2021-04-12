@@ -8,7 +8,7 @@ package project_305;
 
 /**
  * This is the payment interface that let the tenant pay for the reservation, second step in reservatio
- * @author shahad
+ * @author Group1_CAR
  */
 public class TenantPage_Payment extends javax.swing.JFrame {
 

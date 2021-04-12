@@ -11,7 +11,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 /**
  * This is the onwer offer interface let the onwer to do offer on its halls
- * @author karam
+ * @author Group1_CAR
  */
 public class OwnerPage_Offers extends javax.swing.JFrame {
 

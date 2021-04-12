@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 /**
  * This is the halls interface will display all the halls the onwer have
- * @author karam
+ * @author Group1_CAR
  */
 public class OwnerPage_Hall extends javax.swing.JFrame {
 

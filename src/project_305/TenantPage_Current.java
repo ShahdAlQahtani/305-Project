@@ -12,7 +12,7 @@ import javax.swing.table.DefaultTableModel;
  * reservation time expired, or the reservation is canceled, the reservation
  * will be removed from this interface
  *
- * @author shahad
+ * @author Group1_CAR
  */
 public class TenantPage_Current extends javax.swing.JFrame {
 

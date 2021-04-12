@@ -12,7 +12,7 @@ import java.net.Socket;
 
 /**
  * This is the tenant chat interface to chat with hall onwer
- * @author shahad
+ * @author Group1_CAR
  */
 
 public class TenantPage_Chat extends javax.swing.JFrame {

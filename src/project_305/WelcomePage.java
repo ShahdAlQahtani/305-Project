@@ -5,14 +5,11 @@
  */
 package project_305;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 
 /**
  * This is the welcome interface
- * @author shahad
+ * @author Group1_CAR
  */
 public class WelcomePage extends javax.swing.JFrame {
 

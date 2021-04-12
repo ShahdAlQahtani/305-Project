@@ -7,7 +7,7 @@ import java.sql.*;
 
 /**
  * This is the tenant edit profile interface to edit tenant information
- * @author karam
+ * @author Group1_CAR
  */
 public class TenantPage_EditProfile extends javax.swing.JFrame {
 

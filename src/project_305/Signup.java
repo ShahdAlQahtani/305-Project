@@ -7,7 +7,7 @@ package project_305;
 
 /**
  * This is the sign up interface to sign new member to our application
- * @author karam
+ * @author Group1_CAR
  */
 public class Signup extends javax.swing.JFrame {
 
@@ -16,7 +16,7 @@ public class Signup extends javax.swing.JFrame {
      */
     boolean checkOwner;
    
-    static boolean Check;
+   
 
     public Signup()  {
         initComponents();

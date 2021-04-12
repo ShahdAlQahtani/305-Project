@@ -8,7 +8,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 /**
  * This is the doneReserve interface the final step in reservation 
- * @author karam
+ * @author Group1_CAR
  */
 public class TenantPage_ReserDone extends javax.swing.JFrame {
 

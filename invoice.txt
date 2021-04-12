@@ -4,13 +4,13 @@
 |                                                   |
 |---------------------------------------------------|
 |                                                   |
-| Tenant Info:         Name: nada                   |
-|                      Email: nada@                 |
+| Tenant Info:         Name: Sara                   |
+|                      Email: soso@gmail.com        |
 |                                                   |
-| Reservation Info:    Hall Name: larena            |
-|                      Capacity: 100                |
-|                      Price: 4750                  |
-|                      Date: 2021-04-06             |
-|                      Payment Method: Credit card  |
+| Reservation Info:    Hall Name: laylati           |
+|                      Capacity: 5000               |
+|                      Price: 5000                  |
+|                      Date: 2021-11-16             |
+|                      Payment Method: Cash         |
 |                                                   |
 |---------------------------------------------------|

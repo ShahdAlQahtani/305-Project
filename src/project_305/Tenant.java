@@ -6,7 +6,7 @@ package project_305;
 
 /**
  * This is the tenant class for chatting
- * @author shood
+ * @author Group1_CAR
  */
 //Default ip address and port number
 public class Tenant {

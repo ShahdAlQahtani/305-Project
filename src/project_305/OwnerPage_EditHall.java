@@ -9,7 +9,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 /**
  * This is the edit Hall interface let the onwer to edit the hall information
- * @author karam
+ * @author Group1_CAR
  */
 public class OwnerPage_EditHall extends javax.swing.JFrame {
 
