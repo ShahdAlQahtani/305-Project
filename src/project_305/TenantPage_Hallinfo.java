@@ -169,12 +169,12 @@ public class TenantPage_Hallinfo extends javax.swing.JFrame {
         label1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         label1.setText("Capacity:");
         jPanel2.add(label1);
-        label1.setBounds(10, 30, 57, 21);
+        label1.setBounds(10, 30, 56, 21);
 
         label3.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         label3.setText("Price:");
         jPanel2.add(label3);
-        label3.setBounds(10, 10, 37, 21);
+        label3.setBounds(10, 10, 36, 21);
 
         label4.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         label4.setName(""); // NOI18N
@@ -201,13 +201,15 @@ public class TenantPage_Hallinfo extends javax.swing.JFrame {
         name.setAlignment(java.awt.Label.CENTER);
         name.setBackground(new java.awt.Color(178, 197, 196));
         name.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        name.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        name.setFont(new java.awt.Font("Times New Roman", 0, 20)); // NOI18N
+        name.setText("Hall Name");
         jPanel1.add(name);
-        name.setBounds(90, 84, 120, 25);
+        name.setBounds(90, 90, 120, 28);
 
-        idh.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        idh.setFont(new java.awt.Font("Times New Roman", 0, 20)); // NOI18N
+        idh.setText("ID");
         jPanel1.add(idh);
-        idh.setBounds(120, 120, 60, 20);
+        idh.setBounds(120, 130, 80, 20);
 
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/message.png"))); // NOI18N
         jLabel10.addMouseListener(new java.awt.event.MouseAdapter() {

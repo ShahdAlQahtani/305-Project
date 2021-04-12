@@ -321,7 +321,7 @@ public class TenantPage_Favorate extends javax.swing.JFrame {
                 String Hallname = rs.getString(2);
                 double HallPrice = rs.getDouble(3);
                 jLabel2.setText(Hallname);
-                jLabel3.setText(HallPrice + "");
+                jLabel3.setText(HallPrice + " SR");
 
                 byte[] imagedata = rs.getBytes("image");
                 ImageIcon format = null;
