@@ -6,8 +6,10 @@ package project_305;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
+
 /**
- *  This is the server class to apply the chatting 
+ * This is the server class to apply the chatting
+ *
  * @author Group1_CAR
  */
 public class Server {
@@ -26,6 +28,7 @@ class ServerThread extends Thread {
     // to read messages coming from server
     DataOutputStream dos;
     DataInputStream dis;
+
     // This Thread class creating multiple threads of the server to allow multiple client connections  at same time
     public ServerThread(OwnerPage_Chat chat) throws IOException {
         this.OwnerChat = chat;
@@ -36,7 +39,6 @@ class ServerThread extends Thread {
     @Override
     public void run() {
         while (true) {
-
             try {
                 socket = serverSocket.accept();//Accept Socket
                 dis = new DataInputStream(socket.getInputStream()); //tenant input stream
@@ -48,15 +50,12 @@ class ServerThread extends Thread {
         }
     }
 // when owner clicks on send button
-
     public void sendMassges(String message) throws IOException {
         dos.writeUTF(message);
     }
 }
 //Receivering from tenant
-
 class Receiver extends Thread {
-
     OwnerPage_Chat OwnerChat;
     DataOutputStream dos;
     DataInputStream dis;
@@ -72,7 +71,6 @@ class Receiver extends Thread {
 
     @Override
     public void run() {
-
         while (true) {
             try {
                 //recived massges from client
@@ -87,7 +85,6 @@ class Receiver extends Thread {
                 ex.getMessage();
             }
         }
-
         try {
             socket.close();
             dis.close();
