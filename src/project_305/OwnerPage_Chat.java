@@ -13,13 +13,12 @@ import java.io.IOException;
  * @author Group1_CAR
  */
 public class OwnerPage_Chat extends javax.swing.JFrame {
-
     static ServerThread serverThread; //obj from class Server
-
+    
     public OwnerPage_Chat() {
         initComponents();
         setLocationRelativeTo(null);
-
+       
         // to start chat
         try {
             serverThread = new ServerThread(this);
@@ -27,7 +26,6 @@ public class OwnerPage_Chat extends javax.swing.JFrame {
             ex.getMessage();
         }
     }
-
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -145,9 +143,7 @@ public class OwnerPage_Chat extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel6MouseClicked
 
     private void sendMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sendMouseClicked
-        // TODO add your handling code here:
-
-        //call sendMessage to pass the message that has been written in text area
+      //call sendMessage to pass the message that has been written in text area
         try {
             serverThread.sendMassges(txt.getText());
         } catch (IOException ex) {
