@@ -45,13 +45,13 @@ public class OwnerPage_Hall extends javax.swing.JFrame {
             connection = DriverManager.getConnection(ConnectionURL, "root", "1212"); //Open a Connection to the database
             String query = "select Hallname from hallinfo where `idOwner`='" + Login.Id + "' ";
             Statement stat = connection.createStatement(TYPE_SCROLL_SENSITIVE, CONCUR_READ_ONLY); // create a statement of type TYPE_SCROLL_SENSITIVE and CONCUR_READ_ONLY
-            ResultSet rs = stat.executeQuery(query);
+            ResultSet rs = stat.executeQuery(query);//execute the query
             
             if (rs.next()) { //check first if there is any hall
                 jScrollPane1.setVisible(true);
                 list.setVisible(true);
 
-                rs.previous(); //then go bacl to the  previous
+                rs.previous(); //then go back to the  previous
                 while (rs.next()) { // and start add row to the table and print elements in it
                     table.addRow(new Object[]{
                         rs.getString("Hallname")
@@ -296,18 +296,18 @@ public class OwnerPage_Hall extends javax.swing.JFrame {
  * @param evt 
  */
     private void listMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listMouseClicked
-        // TODO add your handling code here:
+        
         int index = list.getSelectedRow(); //take index of row selected by the owner from the table
         String name = list.getValueAt(index, 0).toString(); // get the value specified in this cell
         Connection connection = null;
         panel2.setVisible(true);
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");//Load the correct JDBC driver 
             String ConnectionURL = "jdbc:mysql://localhost:3306/weddinghallreservation";
-            connection = DriverManager.getConnection(ConnectionURL, "root", "1212");
+            connection = DriverManager.getConnection(ConnectionURL, "root", "1212"); //Open a Connection to the database
             String query = "Select `idhallinfo`,`Hallname` , `hallcapacity` , `hallAddress`, `hallPrice`, `contactNumber`,`image` from `hallinfo` where `Hallname`='" + name + "' and `idOwner`='" + Login.Id + "' ";
-            Statement stat = connection.createStatement();
-            ResultSet rs = stat.executeQuery(query);
+            Statement stat = connection.createStatement();// create a statement 
+            ResultSet rs = stat.executeQuery(query); //execute the query
 
             while (rs.next()) {
                 id_hall = rs.getInt(1); //display selected hall information

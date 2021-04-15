@@ -5,7 +5,7 @@ import java.awt.Desktop;
 import java.io.*;
 import java.sql.*;
 /**
- * This is the reservation class create an object for the resercation process and stor its info 
+ * This is the reservation class create an object for the reservation process and store its info 
  * @author Group1_CAR
  */
 public class Reservation {
